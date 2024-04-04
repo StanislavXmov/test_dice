@@ -8,7 +8,11 @@ import { MeshStandardMaterial, Vector3 } from 'three';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 import { usePosition } from './state/usePosition';
 
-const setRandomRotate = () => Math.PI / (Math.random() * 4) ;
+const randomInteger = (min: number, max:number) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+const setRandomRotate = () => (randomInteger(0, 360) * Math.PI) / 180;
+
 
 interface Model3d extends GLTF {
   nodes: any;
@@ -26,7 +30,9 @@ const Scene = () => {
     <>
       <Light />
       {/* <gridHelper /> */}
-      <Physics>
+      <Physics
+      // debug
+      >
         <RigidBody type='fixed'>
           <Plane args={[4, 4]} rotation={[-Math.PI / 2, 0, 0]} material={material} />
         </RigidBody>
@@ -48,8 +54,9 @@ const Scene = () => {
           position={position}
           rotation={[setRandomRotate(), setRandomRotate(), setRandomRotate()]}
           linearVelocity={[0,-10,0]}
-          angularVelocity={[0,2,0]}
+          angularVelocity={[0,10,0]}
           colliders="trimesh"
+          mass={100}
         >
           <mesh 
             castShadow 
@@ -72,9 +79,9 @@ function App() {
     <div className={styles.app}>
       <Canvas
         shadows
-        camera={{ fov: 75, position: [-1, 3, 3]}}
+        camera={{ fov: 75, position: [0, 3, 3]}}
       >
-        <OrbitControls />
+        {/* <OrbitControls /> */}
         <Suspense>
           <Scene />
         </Suspense>
