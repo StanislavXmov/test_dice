@@ -1,7 +1,7 @@
 import { Canvas } from '@react-three/fiber';
 import styles from './App.module.scss';
 import { Suspense, useRef, useState } from 'react';
-import { Box, OrbitControls, Plane, useGLTF } from '@react-three/drei';
+import { Box, Line, OrbitControls, Plane, useGLTF } from '@react-three/drei';
 import { Physics, RapierRigidBody, RigidBody } from '@react-three/rapier';
 import { Light } from './environment/Light';
 import { MeshStandardMaterial, Vector3 } from 'three';
@@ -48,6 +48,31 @@ const Scene = () => {
         <RigidBody type='fixed'>
           <Box args={[1, 5, 6]} position={[-2.5, 2.5, 0]} material={material} />
         </RigidBody>
+        <Line 
+          points={[[-2, 0, -2], [2, 0, -2]]}       
+          color="black"                   
+          lineWidth={1}
+        />
+        <Line 
+          points={[[-2, 0, -2], [-2, 4, -2]]}       
+          color="black"                   
+          lineWidth={1}
+        />
+        <Line 
+          points={[[2, 0, -2], [2, 4, -2]]}       
+          color="black"                   
+          lineWidth={1}
+        />
+        <Line 
+          points={[[-2, 0, -2], [-2, 0, 3]]}       
+          color="black"                   
+          lineWidth={1}
+        />
+        <Line 
+          points={[[2, 0, -2], [2, 0, 3]]}       
+          color="black"                   
+          lineWidth={1}
+        />
         <RigidBody
           ref={body}
           type='dynamic'
