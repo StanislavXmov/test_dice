@@ -1,4 +1,4 @@
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import styles from './App.module.scss';
 import { Suspense, useRef, useState } from 'react';
 import { Box, Line, OrbitControls, Plane, useGLTF } from '@react-three/drei';
@@ -25,6 +25,18 @@ const Scene = () => {
   const position = usePosition(s => s.position);
   const {nodes, materials} = useGLTF('./dice.glb') as unknown as Model3d;
   const body = useRef<RapierRigidBody>(null);
+  const counter = useRef<number>(0);
+
+  useFrame(() => {
+    if (body.current && body.current.nextTranslation().y < 0.5 && !body.current.isSleeping()) {
+      counter.current = counter.current + 1;
+      if (counter.current > 10) {
+        console.log(body.current.nextTranslation());
+        body.current.sleep();
+        counter.current = 0;
+      }
+    }
+  });
 
   return (
     <>
@@ -34,42 +46,42 @@ const Scene = () => {
       // debug
       >
         <RigidBody type='fixed'>
-          <Plane args={[4, 4]} rotation={[-Math.PI / 2, 0, 0]} material={material} />
+          <Plane args={[8, 8]} rotation={[-Math.PI / 2, 0, 0]} material={material} />
         </RigidBody>
         <RigidBody type='fixed'>
-          <Box args={[4, 5, 1]} position={[0, 2.5, 2.5]} material={material} />
+          <Box args={[6, 5, 1]} position={[0, 2.5, 3]} material={material} />
         </RigidBody>
         <RigidBody type='fixed'>
-          <Box args={[4, 5, 1]} position={[0, 2.5, -2.5]} material={material} />
+          <Box args={[8, 5, 1]} position={[0, 2.5, -3.5]} material={material} />
         </RigidBody>
         <RigidBody type='fixed'>
-          <Box args={[1, 5, 6]} position={[2.5, 2.5, 0]} material={material} />
+          <Box args={[1, 5, 6.5]} position={[3, 2.5, 0]} material={material} />
         </RigidBody>
         <RigidBody type='fixed'>
-          <Box args={[1, 5, 6]} position={[-2.5, 2.5, 0]} material={material} />
+          <Box args={[1, 5, 6.5]} position={[-3, 2.5, 0]} material={material} />
         </RigidBody>
         <Line 
-          points={[[-2, 0, -2], [2, 0, -2]]}       
+          points={[[-2.5, 0, -3], [2.5, 0, -3]]}       
           color="black"                   
           lineWidth={1}
         />
         <Line 
-          points={[[-2, 0, -2], [-2, 4, -2]]}       
+          points={[[-2.5, 0, -3], [-2.5, 4, -3]]}       
           color="black"                   
           lineWidth={1}
         />
         <Line 
-          points={[[2, 0, -2], [2, 4, -2]]}       
+          points={[[2.5, 0, -3], [2.5, 4, -3]]}       
           color="black"                   
           lineWidth={1}
         />
         <Line 
-          points={[[-2, 0, -2], [-2, 0, 3]]}       
+          points={[[-2.5, 0, -3], [-2.5, 0, 3]]}       
           color="black"                   
           lineWidth={1}
         />
         <Line 
-          points={[[2, 0, -2], [2, 0, 3]]}       
+          points={[[2.5, 0, -3], [2.5, 0, 3]]}       
           color="black"                   
           lineWidth={1}
         />
@@ -104,7 +116,8 @@ function App() {
     <div className={styles.app}>
       <Canvas
         shadows
-        camera={{ fov: 75, position: [0, 3, 3]}}
+        // camera={{ fov: 75, position: [0, 3, 3]}}
+        camera={{ fov: 75, position: [0, 4, 1]}}
       >
         {/* <OrbitControls /> */}
         <Suspense>
