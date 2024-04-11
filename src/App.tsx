@@ -1,7 +1,7 @@
 import { Canvas, useFrame } from '@react-three/fiber';
 import styles from './App.module.scss';
 import { Suspense, useRef, useState } from 'react';
-import { Box, Line, OrbitControls, Plane, useGLTF } from '@react-three/drei';
+import { Box, Line, OrbitControls, Plane, useGLTF, OrthographicCamera } from '@react-three/drei';
 import { Physics, RapierRigidBody, RigidBody } from '@react-three/rapier';
 import { Light } from './environment/Light';
 import { Euler, Mesh, MeshStandardMaterial, Quaternion, Vector3 } from 'three';
@@ -178,7 +178,8 @@ function App() {
       <Canvas
         shadows
         // camera={{ fov: 75, position: [0, 3, 3]}}
-        camera={{ fov: 75, position: [0, 4, 1]}}
+        camera={{ fov: 75, position: [0, 20, 20], zoom: 50}}
+        orthographic
       >
         <OrbitControls />
         <Suspense>
