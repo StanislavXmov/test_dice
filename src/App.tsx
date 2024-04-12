@@ -21,6 +21,7 @@ interface Model3d extends GLTF {
 }
 
 const material = new MeshStandardMaterial({color: '#97dd7c', opacity: 0, transparent: true});
+const material2 = new MeshStandardMaterial({color: '#f5f5f5', opacity: 1, transparent: true});
 
 const Scene = () => {
   const position = usePosition(s => s.position);
@@ -89,42 +90,42 @@ const Scene = () => {
           <Plane args={[8, 8]} rotation={[-Math.PI / 2, 0, 0]} material={material} />
         </RigidBody>
         <RigidBody type='fixed'>
-          <Box args={[6, 5, 1]} position={[0, 2.5, 3]} material={material} />
+          <Box args={[8, 5, 1]} position={[0, 2.5, 4]} material={material} />
         </RigidBody>
         <RigidBody type='fixed'>
-          <Box args={[8, 5, 1]} position={[0, 2.5, -3.5]} material={material} />
+          <Box args={[8, 5, 1]} position={[0, 2.5, -3.5]} material={material2} />
         </RigidBody>
         <RigidBody type='fixed'>
-          <Box args={[1, 5, 6.5]} position={[3, 2.5, 0]} material={material} />
+          <Box args={[1, 5, 8]} position={[4, 2.5, 0]} material={material} />
         </RigidBody>
         <RigidBody type='fixed'>
-          <Box args={[1, 5, 6.5]} position={[-3, 2.5, 0]} material={material} />
+          <Box args={[1, 5, 8]} position={[-4, 2.5, 0]} material={material} />
         </RigidBody>
         <Line 
-          points={[[-2.5, 0, -3], [2.5, 0, -3]]}       
+          points={[[-5.5, 0, -3], [5.5, 0, -3]]}       
           color="black"                   
           lineWidth={1}
         />
-        <Line 
+        {/* <Line 
           points={[[-2.5, 0, -3], [-2.5, 4, -3]]}       
           color="black"                   
           lineWidth={1}
-        />
-        <Line 
+        /> */}
+        {/* <Line 
           points={[[2.5, 0, -3], [2.5, 4, -3]]}       
           color="black"                   
           lineWidth={1}
-        />
-        <Line 
+        /> */}
+        {/* <Line 
           points={[[-2.5, 0, -3], [-2.5, 0, 3]]}       
           color="black"                   
           lineWidth={1}
-        />
-        <Line 
+        /> */}
+        {/* <Line 
           points={[[2.5, 0, -3], [2.5, 0, 3]]}       
           color="black"                   
           lineWidth={1}
-        />
+        /> */}
         <RigidBody
           ref={body}
           type='dynamic'
