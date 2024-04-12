@@ -87,19 +87,19 @@ const Scene = () => {
       // debug
       >
         <RigidBody type='fixed'>
-          <Plane args={[8, 8]} rotation={[-Math.PI / 2, 0, 0]} material={material} />
+          <Plane args={[9, 9]} rotation={[-Math.PI / 2, 0, 0]} material={material} />
         </RigidBody>
         <RigidBody type='fixed'>
-          <Box args={[8, 5, 1]} position={[0, 2.5, 4]} material={material} />
+          <Box args={[8, 5, 1]} position={[0, 2.5, 5]} material={material} />
         </RigidBody>
         <RigidBody type='fixed'>
           <Box args={[8, 5, 1]} position={[0, 2.5, -3.5]} material={material2} />
         </RigidBody>
         <RigidBody type='fixed'>
-          <Box args={[1, 5, 8]} position={[4, 2.5, 0]} material={material} />
+          <Box args={[1, 5, 8]} position={[4, 2.5, 0.5]} material={material} />
         </RigidBody>
         <RigidBody type='fixed'>
-          <Box args={[1, 5, 8]} position={[-4, 2.5, 0]} material={material} />
+          <Box args={[1, 5, 8]} position={[-4, 2.5, 0.5]} material={material} />
         </RigidBody>
         <Line 
           points={[[-5.5, 0, -3], [5.5, 0, -3]]}       
