@@ -18,5 +18,6 @@
     "jsx": "react-jsx"
   },
   "include": ["src"],
+  "types": ["vite-plugin-svgr/client"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
