@@ -6,7 +6,7 @@ interface ValueState {
   setValue: (v: string) => void;
 }
 
-export const useValue = create<ValueState>()(subscribeWithSelector(set => ({
+export const useCoinValue = create<ValueState>()(subscribeWithSelector(set => ({
   value: '?',
   setValue: (v) => set((() => ({value: v}))),
 })));

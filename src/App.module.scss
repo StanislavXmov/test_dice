@@ -4,6 +4,10 @@
   height: 360px;
   border: 2px solid #000;
   border-radius: 12px;
+
+  &:first-child {
+    margin-bottom: 64px;
+  }
 }
 
 .buttonsWrapper {

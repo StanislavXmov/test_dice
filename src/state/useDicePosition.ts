@@ -7,7 +7,7 @@ interface PositionState {
   setPosition: (v: Vector3) => void;
 }
 
-export const usePosition = create<PositionState>()(subscribeWithSelector(set => ({
+export const useDicePosition = create<PositionState>()(subscribeWithSelector(set => ({
   position: new Vector3(0, 5, 0),
   setPosition: (v) => set((() => ({position: v}))),
 })));
