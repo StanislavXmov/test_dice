@@ -4,15 +4,13 @@
   height: 360px;
   border: 2px solid #000;
   border-radius: 8px;
-
-  &:first-child {
-    margin-bottom: 64px;
-  }
 }
 
 .buttonsWrapper {
+  width: 360px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .button {
@@ -22,5 +20,6 @@
 }
 
 .diceIcon {
-  margin-top: 8px;
+  width: 30px;
+  margin-left: 12px;
 }

@@ -17,6 +17,7 @@ import Dice5 from './components/icons/dice_5.svg?react';
 import Dice6 from './components/icons/dice_6.svg?react';
 import Coin1 from './components/icons/coin_1.svg?react';
 import Coin2 from './components/icons/coin_2.svg?react';
+import { Button } from './components/Button/Button';
 
 const dices = {
   1: <Dice1 className={styles.diceIcon} />,
@@ -36,32 +37,25 @@ const coins = {
 
 const ValueElement = () => {
   const value = useDiceValue(s => s.value);
-  return (
-    <div>{dices[value]}</div>
-  );
+  return dices[value];
 }
 
 const CoinValueElement = () => {
   const value = useCoinValue(s => s.value);
-  return (
-    <div>{coins[value]}</div>
-  );
+  return coins[value];
 }
 
 const RoleElement = () => {
   const setPosition = useDicePosition(s => s.setPosition);
   const setValue = useDiceValue(s => s.setValue);
 
+  const handler = () => {
+    setPosition(new Vector3(0, 5, 0));
+    setValue('?');
+  }
+
   return (
-    <button
-      className={styles.button}
-      onClick={() => {
-        setPosition(new Vector3(0, 5, 0));
-        setValue('?');
-      }}
-    >
-      ROLE
-    </button>
+    <Button tittle='ROLE' cb={handler} />
   );
 }
 
@@ -69,16 +63,13 @@ const RoleCoinElement = () => {
   const setPosition = useCoinPosition(s => s.setPosition);
   const setValue = useCoinValue(s => s.setValue);
 
+  const handler = () => {
+    setPosition(new Vector3(0, 7, 0));
+    setValue('?');
+  }
+
   return (
-    <button
-      className={styles.button}
-      onClick={() => {
-        setPosition(new Vector3(0, 7, 0));
-        setValue('?');
-      }}
-    >
-      ROLE COIN
-    </button>
+    <Button tittle='ROLE COIN' cb={handler} />
   );
 }
 
@@ -87,17 +78,17 @@ function App() {
     <>
       <div className={styles.app}>
         <DiceScene />
-        <div className={styles.buttonsWrapper}>
-          <RoleElement />
-          <ValueElement />
-        </div>
+      </div>
+      <div className={styles.buttonsWrapper}>
+        <RoleElement />
+        <ValueElement />
       </div>
       <div className={styles.app}>
         <CoinScene />
-        <div className={styles.buttonsWrapper}>
-          <RoleCoinElement />
-          <CoinValueElement />
-        </div>
+      </div>
+      <div className={styles.buttonsWrapper}>
+        <RoleCoinElement />
+        <CoinValueElement />
       </div>
     </>
     
