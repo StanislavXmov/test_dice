@@ -7,7 +7,8 @@ import { Mesh, MeshStandardMaterial, Vector3 } from 'three';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Light } from '../environment/Light';
 import { useDicePosition } from '../state/useDicePosition';
-import { useDiceValue } from '../state/useDiceValue';
+import { Dice as DiceType, useDiceValue } from '../state/useDiceValue';
+import { useRoleDiceButton } from '../state/useRoleDiceButton';
 
 const randomInteger = (min: number, max:number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -25,6 +26,7 @@ const material2 = new MeshStandardMaterial({color: '#f5f5f5', opacity: 1, transp
 export const Dice = () => {
   const position = useDicePosition(s => s.position);
   const setValue = useDiceValue(s => s.setValue);
+  const setDisabled = useRoleDiceButton(s => s.setDisabled);
 
   const {nodes, materials} = useGLTF('./dice.glb') as unknown as Model3d;
   const body = useRef<RapierRigidBody>(null);
@@ -59,20 +61,26 @@ export const Dice = () => {
         box5.current.getWorldPosition(v5);
         box6.current.getWorldPosition(v6);
 
+        let v: DiceType | null = null;
+
         if (v1.y > 1) {
-          setValue('1');
+          v = '1';
         } else if (v2.y > 1) {
-          setValue('2');
+          v = '2';
         } else if (v3.y > 1) {
-          setValue('3');
+          v = '3';
         } else if (v4.y > 1) {
-          setValue('4');
+          v = '4';
         } else if (v5.y > 1) {
-          setValue('5');
+          v = '5';
         } else if (v6.y > 1) {
-          setValue('6');
+          v = '6';
         } else {
-          setValue('?');
+          v = '?';
+        }
+        if (v) {
+          setValue(v);
+          setDisabled(false);
         }
       }
     }
