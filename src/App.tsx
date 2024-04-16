@@ -18,6 +18,7 @@ import Dice6 from './components/icons/dice_6.svg?react';
 import Coin1 from './components/icons/coin_1.svg?react';
 import Coin2 from './components/icons/coin_2.svg?react';
 import { Button } from './components/Button/Button';
+import { Range } from './components/Range/Range';
 
 const dices = {
   1: <Dice1 className={styles.diceIcon} />,
@@ -83,15 +84,15 @@ function App() {
         <RoleElement />
         <ValueElement />
       </div>
-      <div className={styles.app}>
+      {/* <div className={styles.app}>
         <CoinScene />
       </div>
       <div className={styles.buttonsWrapper}>
         <RoleCoinElement />
         <CoinValueElement />
-      </div>
+      </div> */}
+      {/* <Range /> */}
     </>
-    
   );
 }
 
