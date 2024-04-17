@@ -19,6 +19,8 @@ import Coin1 from './components/icons/coin_1.svg?react';
 import Coin2 from './components/icons/coin_2.svg?react';
 import { Button } from './components/Button/Button';
 import { Range } from './components/Range/Range';
+import { useRoleDiceButton } from './state/useRoleDiceButton';
+import { useRoleCoinButton } from './state/useRoleCoinButton';
 
 const dices = {
   1: <Dice1 className={styles.diceIcon} />,
@@ -49,6 +51,8 @@ const CoinValueElement = () => {
 const RoleElement = () => {
   const setPosition = useDicePosition(s => s.setPosition);
   const setValue = useDiceValue(s => s.setValue);
+  const disabled = useRoleDiceButton(s => s.disabled);
+  const setDisabled = useRoleDiceButton(s => s.setDisabled);
 
   const handler = () => {
     setPosition(new Vector3(0, 5, 0));
@@ -56,13 +60,21 @@ const RoleElement = () => {
   }
 
   return (
-    <Button tittle='ROLE' cb={handler} />
+    <Button
+      tittle='ROLE'
+      cb={handler}
+      disabled={disabled}
+      setDisabled={setDisabled}
+      timeout={3000}
+    />
   );
 }
 
 const RoleCoinElement = () => {
   const setPosition = useCoinPosition(s => s.setPosition);
   const setValue = useCoinValue(s => s.setValue);
+  const disabled = useRoleCoinButton(s => s.disabled);
+  const setDisabled = useRoleCoinButton(s => s.setDisabled);
 
   const handler = () => {
     setPosition(new Vector3(0, 7, 0));
@@ -70,7 +82,13 @@ const RoleCoinElement = () => {
   }
 
   return (
-    <Button tittle='ROLE COIN' cb={handler} />
+    <Button
+      tittle='ROLE COIN'
+      cb={handler}
+      disabled={disabled}
+      setDisabled={setDisabled}
+      timeout={5000}
+    />
   );
 }
 
@@ -84,13 +102,13 @@ function App() {
         <RoleElement />
         <ValueElement />
       </div>
-      {/* <div className={styles.app}>
+      <div className={styles.app}>
         <CoinScene />
       </div>
       <div className={styles.buttonsWrapper}>
         <RoleCoinElement />
         <CoinValueElement />
-      </div> */}
+      </div>
       {/* <Range /> */}
     </>
   );

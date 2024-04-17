@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 
-type Coin = 'OREL' | '5' | '?'
+export type Coin = 'OREL' | '5' | '?'
 
 interface ValueState {
   value: Coin;

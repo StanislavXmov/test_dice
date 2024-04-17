@@ -6,28 +6,26 @@ import styles from './Button.module.scss';
 interface ButtonProps {
   tittle: string;
   cb: () => void;
+  disabled: boolean;
+  setDisabled: (v: boolean) => void;
+  timeout: number;
 }
 
-export const Button = ({tittle, cb}: ButtonProps) => {
-  const disabled = useRoleDiceButton(s => s.disabled);
-  const setDisabled = useRoleDiceButton(s => s.setDisabled);
-
+export const Button = ({tittle, cb, disabled, setDisabled, timeout}: ButtonProps) => {
   const timer = useRef<number>(null)
 
   const handler = () => {
     setDisabled(true);
     cb();
 
-    timer.current = setTimeout(() => {
-      setDisabled(false);
-    }, 3000);
-  }
-
-  useEffect(() => {
-    if (disabled && timer.current) {
+    if (timer.current) {
       clearTimeout(timer.current);
     }
-  }, [disabled]);
+
+    timer.current = setTimeout(() => {
+      setDisabled(false);
+    }, timeout);
+  }
 
   return (
     <button

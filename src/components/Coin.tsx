@@ -7,7 +7,8 @@ import { Mesh, MeshStandardMaterial, Vector3 } from 'three';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Light } from '../environment/Light';
 import { useCoinPosition } from '../state/useCoinPosition';
-import { useCoinValue } from '../state/useCoinValue';
+import { Coin as CoinType, useCoinValue } from '../state/useCoinValue';
+import { useRoleCoinButton } from '../state/useRoleCoinButton';
 
 const randomInteger = (min: number, max:number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -25,6 +26,7 @@ const material2 = new MeshStandardMaterial({color: '#f5f5f5', opacity: 1, transp
 export const Coin = () => {
   const position = useCoinPosition(s => s.position);
   const setValue = useCoinValue(s => s.setValue);
+  const setDisabled = useRoleCoinButton(s => s.setDisabled);
 
   const {nodes, materials} = useGLTF('./coin.glb') as unknown as Model3d;
   
@@ -48,12 +50,18 @@ export const Coin = () => {
         box1.current.getWorldPosition(v1);
         box2.current.getWorldPosition(v2);
 
-        if (v1.y > v2.y) {
-          setValue('5');
-        } else if (v2.y > v1.y) {
-          setValue('OREL');
+        let v: CoinType | null = null;
+
+        if (v1.y > 0.15) {
+          v = '5';
+        } else if (v2.y > 0.15) {
+          v = 'OREL';
         } else {
-          setValue('?');
+          v = '?';
+        }
+        if (v) {
+          setValue(v);
+          setDisabled(false);
         }
       }
     }
