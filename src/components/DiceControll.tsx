@@ -1,3 +1,4 @@
+import { Key } from 'react';
 import { Vector3 } from 'three';
 import { Button } from './Button/Button';
 import { useDicePosition } from '../state/useDicePosition';
@@ -22,6 +23,22 @@ const dices = {
   6: <Dice6 className={styles.diceIcon} />,
   '?': <span className={styles.diceIcon} >?</span>,
 }
+
+const dicesTable = {
+  1: (key: Key) => <Dice1 className={styles.diceIconTable} key={key} />,
+  2: (key: Key) => <Dice2 className={styles.diceIconTable} key={key} />,
+  3: (key: Key) => <Dice3 className={styles.diceIconTable} key={key} />,
+  4: (key: Key) => <Dice4 className={styles.diceIconTable} key={key} />,
+  5: (key: Key) => <Dice5 className={styles.diceIconTable} key={key} />,
+  6: (key: Key) => <Dice6 className={styles.diceIconTable} key={key} />,
+  '?': (key: Key) =>  <span className={styles.diceIconTable} key={key} >?</span>,
+}
+
+// export const TestDice = () => {
+//   return new Array(50).fill(true).map((_, i) => 
+//     <Dice1 key={i} className={styles.diceIconTable} />
+//   );
+// }
 
 export const DiceControll = () => {
   const setPosition = useDicePosition(s => s.setPosition);
@@ -48,4 +65,14 @@ export const DiceControll = () => {
 export const DiceValueElement = () => {
   const value = useDiceValue(s => s.value);
   return dices[value];
+}
+
+export const DiceTableValue = () => {
+  const values = useDiceValue(s => s.values);
+  
+  return (
+    <div className={styles.table}>
+      {values.map((v, i) => dicesTable[v](i))}
+    </div>
+  );
 }

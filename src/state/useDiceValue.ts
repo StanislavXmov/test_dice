@@ -6,9 +6,17 @@ export type Dice = '1'|'2'|'3'|'4'|'5'|'6'|'?';
 interface ValueState {
   value: Dice;
   setValue: (v: Dice) => void;
+  values: Dice[];
 }
 
 export const useDiceValue = create<ValueState>()(subscribeWithSelector(set => ({
+  values: [],
   value: '?',
-  setValue: (v) => set((() => ({value: v}))),
+  setValue: (v) => set(((s) => {
+    if (v !== '?') {
+      return {value: v, values: [...s.values, v]};
+    }
+    
+    return {value: v};
+  })),
 })));
