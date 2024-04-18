@@ -2,7 +2,7 @@
 import { DiceScene } from './components/DiceScene';
 import { CoinScene } from './components/CoinScene';
 import { DiceControll, DiceTableValue, DiceValueElement } from './components/DiceControll';
-import { CoinControll, CoinValueElement } from './components/CoinControll';
+import { CoinControll, CoinTableValue, CoinValueElement } from './components/CoinControll';
 
 import styles from './App.module.scss';
 
@@ -21,13 +21,17 @@ function App() {
         </div>
         <DiceTableValue />
       </div>
-      
-      <div className={styles.app}>
-        <CoinScene />
-      </div>
-      <div className={styles.buttonsWrapper}>
-        <CoinControll />
-        <CoinValueElement />
+      <div className={styles.wrapper}>
+        <div>
+          <div className={styles.app}>
+            <CoinScene />
+          </div>
+          <div className={styles.buttonsWrapper}>
+            <CoinControll />
+            <CoinValueElement />
+          </div>
+        </div>
+        <CoinTableValue />
       </div>
     </>
   );

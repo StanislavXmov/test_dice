@@ -1,3 +1,4 @@
+import { Key } from "react";
 import { Vector3 } from "three";
 import { Button } from "./Button/Button";
 import { useCoinValue } from "../state/useCoinValue";
@@ -9,10 +10,17 @@ import Coin2 from './icons/coin_2.svg?react';
 
 import styles from '../App.module.scss';
 
+
 const coins = {
   'OREL': <Coin1 className={styles.diceIcon} />,
   '5': <Coin2 className={styles.diceIcon} />,
   '?': <span className={styles.diceIcon} >?</span>,
+}
+
+const coinsTable = {
+  'OREL': (key: Key) => <Coin1 className={styles.diceIconTable} key={key} />,
+  '5': (key: Key) => <Coin2 className={styles.diceIconTable} key={key} />,
+  '?': (key: Key) => <span className={styles.diceIconTable} key={key} >?</span>,
 }
 
 export const CoinControll = () => {
@@ -40,4 +48,15 @@ export const CoinControll = () => {
 export const CoinValueElement = () => {
   const value = useCoinValue(s => s.value);
   return coins[value];
+}
+
+export const CoinTableValue = () => {
+  const values = useCoinValue(s => s.values);
+  console.log(values);
+  
+  return (
+    <div className={styles.table}>
+      {values.map((v, i) => coinsTable[v](i))}
+    </div>
+  );
 }
