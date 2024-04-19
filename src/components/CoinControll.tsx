@@ -52,7 +52,6 @@ export const CoinValueElement = () => {
 
 export const CoinTableValue = () => {
   const values = useCoinValue(s => s.values);
-  console.log(values);
   
   return (
     <div className={styles.table}>
