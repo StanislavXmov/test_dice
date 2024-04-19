@@ -1,11 +1,10 @@
 
 
 .inputWraper {
-  margin: 32px;
-  padding: 0px 12px;
+  padding: 0px;
   display: flex;
   align-items: center;
-  width: 180px;
+  width: 156px;
   height: 32px;
   position: relative;
 
@@ -14,7 +13,7 @@
 
 .line {
   display: block;
-  width: 12px;
+  width: 6px;
   height: 1px;
   background-color: #000;
 }
@@ -22,7 +21,7 @@
 input[type=range] {
   height: 25px;
   -webkit-appearance: none;
-  width: 100%;
+  width: 144px;
 }
 input[type=range]:focus {
   outline: none;
@@ -106,4 +105,63 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
   background: #000000;
+}
+
+.label {
+  position: absolute;
+  left: 6px;
+  top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+}
+
+.labelValue {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: center;
+  opacity: 0.2;
+}
+
+.labelValue0 {
+  position: absolute;
+  left: 3px;
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelValue1 {
+  position: absolute;
+  left: calc(144px / 5 + 1px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelValue2 {
+  position: absolute;
+  left: calc(144px / 5 * 2 + 1px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelValue3 {
+  position: absolute;
+  left: calc(144px / 5 * 3 - 2px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelValue4 {
+  position: absolute;
+  left: calc(144px / 5 * 4 - 2px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelValue5 {
+  position: absolute;
+  left: calc(144px / 5 * 5 - 5px);
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.lavelActive {
+  opacity: 1;
 }

@@ -5,6 +5,7 @@ import { DiceControll, DiceTableValue, DiceValueElement } from './components/Dic
 import { CoinControll, CoinTableValue, CoinValueElement } from './components/CoinControll';
 
 import styles from './App.module.scss';
+import { Range } from './components/Range/Range';
 
 function App() {  
   return (
@@ -33,6 +34,7 @@ function App() {
         </div>
         <CoinTableValue />
       </div>
+      <Range />
     </>
   );
 }
