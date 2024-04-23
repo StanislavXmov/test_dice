@@ -35,6 +35,10 @@
   text-align: center;
 }
 
+.graphValuePosition {
+  position: absolute;
+}
+
 .sideLabelDefault {
   font-family: Inter;
   font-size: 12px;
@@ -59,6 +63,7 @@
 
 .graph {
   height: 226px;
+  position: relative;
 }
 
 .graphLabel {

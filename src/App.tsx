@@ -11,7 +11,7 @@ import { CoinsGraph } from './components/Coins/CoinsGraph/CoinsGraph';
 function App() {  
   return (
     <>
-      <div className={styles.wrapper}>
+      {/* <div className={styles.wrapper}>
         <div>
           <div className={styles.app}>
             <DiceScene />
@@ -22,7 +22,7 @@ function App() {
           </div>
         </div>
         <DiceTableValue />
-      </div>
+      </div> */}
       <div className={styles.wrapper}>
         <div>
           <div className={styles.app}>

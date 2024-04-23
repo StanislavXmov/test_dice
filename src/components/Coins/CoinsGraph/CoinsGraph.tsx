@@ -43,6 +43,7 @@ const width = 96;
 const padding1 = 5;
 const rectHeight = 10;
 const rectWidth = 30;
+const maxH = 20;
 
 const Rect = ({x, y}: {x: number, y: number}) => {
   return (
@@ -50,11 +51,35 @@ const Rect = ({x, y}: {x: number, y: number}) => {
   );
 }
 
-// <rect y="22" width="30" height="10" fill="#09CA9B"/>
-// <rect x="38" y="22" width="30" height="10" fill="#09CA9B"/>
-// <rect x="38" y="11" width="30" height="10" fill="#09CA9B"/>
-// <rect x="38" width="30" height="10" fill="#09CA9B"/>
-
+const GraphType1 = ({valuesObject}: {valuesObject: Record<Coin, number> }) => {
+  return (
+    <>
+        <div
+          className={`${styles.graphValue} ${styles.graphValuePosition}`}
+          style={{top: `${height - rectHeight * (valuesObject.OREL) - valuesObject.OREL - 13}px`}}
+        >
+          {valuesObject.OREL}
+        </div>
+        <div
+          className={`${styles.graphValue} ${styles.graphValuePosition}`}
+          style={{
+            top: `${height - rectHeight * (valuesObject[5]) - valuesObject[5] - 13}px`,
+            left: '56px',
+          }}
+        >
+          {valuesObject[5]}
+        </div>
+        <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} fill="none" xmlns="http://www.w3.org/2000/svg">
+          {new Array(valuesObject.OREL).fill(null).map((_, i) => 
+            (<Rect key={i} x={padding1} y={height - rectHeight * (i + 1) - i} />))
+          }
+          {new Array(valuesObject[5]).fill(null).map((_, i) => 
+            (<Rect key={i} x={padding1 + rectWidth + 26} y={height - rectHeight * (i + 1) - i} />))
+          }
+        </svg>
+    </>
+  );
+}
 
 export const CoinsGraph = () => {
   const values = useCoinValue(s => s.values);
@@ -62,6 +87,7 @@ export const CoinsGraph = () => {
   const valuesObject = getMappedValues(sortedValues);
   console.log(values, sortedValues, valuesObject);
 
+  const graphType = (valuesObject.OREL > maxH || valuesObject[5] > maxH);
   
   return (
     <div className={styles.wrapper}>
@@ -71,14 +97,15 @@ export const CoinsGraph = () => {
       </div>
       <div className={styles.graphWrapper}>
         <div className={styles.graphValues}>
-          <div className={styles.graphValue} >0,5009</div>
-          <div className={styles.graphValue} >0,5009</div>
+          {graphType && (
+            <>
+              <div className={styles.graphValue} >120</div>
+              <div className={styles.graphValue} >2</div>
+            </>
+          )}
         </div>
         <div className={styles.graph}>
-          <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} fill="none" xmlns="http://www.w3.org/2000/svg">
-            <Rect x={padding1} y={height - rectHeight} />
-            <Rect x={padding1} y={height - rectHeight * 2 - 1} />
-          </svg>
+          {!graphType && (<GraphType1 valuesObject={valuesObject} />)}
         </div>
         <div className={styles.graphLabel}>
           <div className={styles.label}>
