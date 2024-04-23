@@ -6,6 +6,7 @@ import { CoinControll, CoinTableValue, CoinValueElement } from './components/Coi
 
 import styles from './App.module.scss';
 import { Range } from './components/Range/Range';
+import { CoinsGraph } from './components/Coins/CoinsGraph/CoinsGraph';
 
 function App() {  
   return (
@@ -33,6 +34,7 @@ function App() {
           </div>
         </div>
         <CoinTableValue />
+        <CoinsGraph />
       </div>
       <Range />
     </>

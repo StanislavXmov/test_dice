@@ -1,0 +1,87 @@
+.wrapper {
+  margin-left: 16px;
+  width: 200px;
+  height: 300px;
+  display: grid;
+  gap: 22px; 
+  grid-template-columns: 82px 96px;
+  grid-template-rows: 300px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.graphWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.graphValues {
+  height: 16px;
+  display: flex;
+  gap: 16px;
+}
+
+.graphValue {
+  width: 40px;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: center;
+}
+
+.sideLabelDefault {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+}
+
+.sideLabelValues {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+
+  opacity: 0.5;
+}
+
+.icon {
+  width: 30px;
+}
+
+.graph {
+  height: 226px;
+}
+
+.graphLabel {
+  margin: 6px 0 0 0;
+  display: flex;
+  gap: 16px;
+  height: 50px;
+}
+
+.label {
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.value {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: center;
+
+  opacity: 0.5;
+}
