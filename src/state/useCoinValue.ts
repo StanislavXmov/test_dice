@@ -9,8 +9,12 @@ interface ValueState {
   values: Coin[];
 }
 
+const test_values: Coin[] = [
+  
+];
+
 export const useCoinValue = create<ValueState>()(subscribeWithSelector(set => ({
-  values: [],
+  values: test_values,
   value: '?',
   setValue: (v) => set(((s) => {
     if (v !== '?') {

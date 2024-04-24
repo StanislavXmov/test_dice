@@ -51,6 +51,18 @@ const Rect = ({x, y}: {x: number, y: number}) => {
   );
 }
 
+const RectMaxType = ({x}: {x: number}) => {
+  return (
+    <rect x={x} y={0} width={rectWidth} height={height} fill="#09CA9B"/>
+  );
+}
+
+const RectValueType = ({x, value}: {x: number, value: number}) => {
+  return (
+    <rect x={x} y={height - value} width={rectWidth} height={value} fill="#09CA9B"/>
+  );
+}
+
 const GraphType1 = ({valuesObject}: {valuesObject: Record<Coin, number> }) => {
   return (
     <>
@@ -81,11 +93,51 @@ const GraphType1 = ({valuesObject}: {valuesObject: Record<Coin, number> }) => {
   );
 }
 
+const GraphType2 = ({valuesObject}: {valuesObject: Record<Coin, number> }) => {
+  const isLeftMax = valuesObject.OREL > valuesObject[5];
+
+  let d: number = 0; 
+  if (isLeftMax) {
+    d = height / valuesObject.OREL;
+  } else {
+    d = height / valuesObject[5];
+  }  
+
+  return (
+    <>
+        <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} fill="none" xmlns="http://www.w3.org/2000/svg">
+          {isLeftMax && (
+            <>
+              <RectMaxType
+                x={padding1}
+              />
+              <RectValueType
+                x={padding1 + rectWidth + 26}
+                value={d * valuesObject[5]}
+              />
+            </>
+          )}
+          {!isLeftMax && (
+            <>
+              <RectMaxType
+                x={padding1 + rectWidth + 26}
+              />
+              <RectValueType
+                x={padding1}
+                value={d * valuesObject.OREL}
+              />
+            </>
+          )}
+        </svg>
+    </>
+  );
+}
+
 export const CoinsGraph = () => {
   const values = useCoinValue(s => s.values);
   const sortedValues = sortValues(values);
   const valuesObject = getMappedValues(sortedValues);
-  console.log(values, sortedValues, valuesObject);
+  // console.log(values, sortedValues, valuesObject);
 
   const graphType = (valuesObject.OREL > maxH || valuesObject[5] > maxH);
   
@@ -99,13 +151,14 @@ export const CoinsGraph = () => {
         <div className={styles.graphValues}>
           {graphType && (
             <>
-              <div className={styles.graphValue} >120</div>
-              <div className={styles.graphValue} >2</div>
+              <div className={styles.graphValue} >{valuesObject.OREL}</div>
+              <div className={styles.graphValue} >{valuesObject[5]}</div>
             </>
           )}
         </div>
         <div className={styles.graph}>
           {!graphType && (<GraphType1 valuesObject={valuesObject} />)}
+          {graphType && (<GraphType2 valuesObject={valuesObject} />)}
         </div>
         <div className={styles.graphLabel}>
           <div className={styles.label}>
