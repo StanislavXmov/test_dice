@@ -3,11 +3,12 @@ import { DiceScene } from './components/Dices/DiceScene';
 import { CoinScene } from './components/Coins/CoinScene';
 import { DiceControll, DiceTableValue, DiceValueElement } from './components/Dices/DiceControll';
 import { CoinControll, CoinTableValue, CoinValueElement } from './components/Coins/CoinControll';
-
 import { Range } from './components/Range/Range';
 import { CoinsGraph } from './components/Coins/CoinsGraph/CoinsGraph';
+import { DicesGraph } from './components/Dices/DicesGraph/DicesGraph';
 
 import styles from './App.module.scss';
+
 
 function App() {  
   return (
@@ -23,6 +24,7 @@ function App() {
           </div>
         </div>
         <DiceTableValue />
+        <DicesGraph />
       </div>
       <div className={styles.wrapper}>
         <div>
