@@ -1,7 +1,7 @@
 
-import { DiceScene } from './components/DiceScene';
+import { DiceScene } from './components/Dices/DiceScene';
 import { CoinScene } from './components/Coins/CoinScene';
-import { DiceControll, DiceTableValue, DiceValueElement } from './components/DiceControll';
+import { DiceControll, DiceTableValue, DiceValueElement } from './components/Dices/DiceControll';
 import { CoinControll, CoinTableValue, CoinValueElement } from './components/Coins/CoinControll';
 
 import { Range } from './components/Range/Range';
@@ -12,7 +12,7 @@ import styles from './App.module.scss';
 function App() {  
   return (
     <>
-      {/* <div className={styles.wrapper}>
+      <div className={styles.wrapper}>
         <div>
           <div className={styles.app}>
             <DiceScene />
@@ -23,7 +23,7 @@ function App() {
           </div>
         </div>
         <DiceTableValue />
-      </div> */}
+      </div>
       <div className={styles.wrapper}>
         <div>
           <div className={styles.app}>

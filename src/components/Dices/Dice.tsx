@@ -5,10 +5,10 @@ import { Physics, RapierRigidBody, RigidBody } from '@react-three/rapier';
 import { Mesh, MeshStandardMaterial, Vector3 } from 'three';
 
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
-import { Light } from '../environment/Light';
-import { useDicePosition } from '../state/useDicePosition';
-import { Dice as DiceType, useDiceValue } from '../state/useDiceValue';
-import { useRoleDiceButton } from '../state/useRoleDiceButton';
+import { Light } from '../../environment/Light';
+import { useDicePosition } from '../../state/useDicePosition';
+import { Dice as DiceType, useDiceValue } from '../../state/useDiceValue';
+import { useRoleDiceButton } from '../../state/useRoleDiceButton';
 
 const randomInteger = (min: number, max:number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;

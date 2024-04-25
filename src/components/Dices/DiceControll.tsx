@@ -1,18 +1,18 @@
 import { Key } from 'react';
 import { Vector3 } from 'three';
-import { Button } from './Button/Button';
-import { useDicePosition } from '../state/useDicePosition';
-import { useRoleDiceButton } from '../state/useRoleDiceButton';
-import { useDiceValue } from '../state/useDiceValue';
+import { Button } from '../Button/Button';
+import { useDicePosition } from '../../state/useDicePosition';
+import { useRoleDiceButton } from '../../state/useRoleDiceButton';
+import { useDiceValue } from '../../state/useDiceValue';
 
-import Dice1 from './icons/dice_1.svg?react';
-import Dice2 from './icons/dice_2.svg?react';
-import Dice3 from './icons/dice_3.svg?react';
-import Dice4 from './icons/dice_4.svg?react';
-import Dice5 from './icons/dice_5.svg?react';
-import Dice6 from './icons/dice_6.svg?react';
+import Dice1 from '../icons/dice_1.svg?react';
+import Dice2 from '../icons/dice_2.svg?react';
+import Dice3 from '../icons/dice_3.svg?react';
+import Dice4 from '../icons/dice_4.svg?react';
+import Dice5 from '../icons/dice_5.svg?react';
+import Dice6 from '../icons/dice_6.svg?react';
 
-import styles from '../App.module.scss';
+import styles from './Dices.module.scss';
 
 const dices = {
   1: <Dice1 className={styles.diceIcon} />,
