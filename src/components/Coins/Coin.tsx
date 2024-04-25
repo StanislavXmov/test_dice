@@ -5,10 +5,10 @@ import { Physics, RapierRigidBody, RigidBody, CuboidCollider } from '@react-thre
 import { Mesh, MeshStandardMaterial, Vector3 } from 'three';
 
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
-import { Light } from '../environment/Light';
-import { useCoinPosition } from '../state/useCoinPosition';
-import { Coin as CoinType, useCoinValue } from '../state/useCoinValue';
-import { useRoleCoinButton } from '../state/useRoleCoinButton';
+import { Light } from '../../environment/Light';
+import { useCoinPosition } from '../../state/useCoinPosition';
+import { Coin as CoinType, useCoinValue } from '../../state/useCoinValue';
+import { useRoleCoinButton } from '../../state/useRoleCoinButton';
 
 const randomInteger = (min: number, max:number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;

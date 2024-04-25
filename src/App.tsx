@@ -1,12 +1,13 @@
 
 import { DiceScene } from './components/DiceScene';
-import { CoinScene } from './components/CoinScene';
+import { CoinScene } from './components/Coins/CoinScene';
 import { DiceControll, DiceTableValue, DiceValueElement } from './components/DiceControll';
-import { CoinControll, CoinTableValue, CoinValueElement } from './components/CoinControll';
+import { CoinControll, CoinTableValue, CoinValueElement } from './components/Coins/CoinControll';
 
-import styles from './App.module.scss';
 import { Range } from './components/Range/Range';
 import { CoinsGraph } from './components/Coins/CoinsGraph/CoinsGraph';
+
+import styles from './App.module.scss';
 
 function App() {  
   return (

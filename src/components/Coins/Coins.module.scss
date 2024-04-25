@@ -1,0 +1,20 @@
+.table {
+  width: 238px;
+  height: 334px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(6, 30px);
+  grid-template-rows: repeat(auto-fill, 30px);
+  overflow-y: scroll;
+
+  border: 1px solid #000;
+}
+
+.coinIcon {
+  width: 30px;
+  margin-left: 12px;
+}
+
+.coinIconTable {
+  width: 30px;
+}
