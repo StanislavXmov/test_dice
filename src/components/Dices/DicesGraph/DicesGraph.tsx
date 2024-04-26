@@ -115,6 +115,36 @@ const GraphType1 = ({valuesObject}: {valuesObject: DiceValues }) => {
   );
 }
 
+const GraphType2 = ({valuesObject, maxDiceVarian}: {valuesObject: DiceValues, maxDiceVarian: DiceString }) => {
+  const keys = Object.keys(valuesObject) as DiceString[];
+  const idx = keys.indexOf(maxDiceVarian);
+  let d: number = height / valuesObject[maxDiceVarian];
+
+  keys.splice(idx, 1);
+  
+  return (
+    <>
+      <svg
+        width={width}
+        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+        fill="none" xmlns="http://www.w3.org/2000/svg"
+      >
+          <RectMaxType
+            x={padding1 + (rectWidth + 26) * idx}
+          />
+          {keys.map((k, i) => (
+            <RectValueType
+              key={i}
+              x={padding1 + (rectWidth + 26) * (Number(k) - 1)}
+              value={d * valuesObject[k]}
+            />
+          ))}
+      </svg>
+    </>
+  );
+}
+
 export const DicesGraph = () => {
   const values = useDiceValue(s => s.values);
   const sortedValues = sortValues(values);
@@ -144,7 +174,7 @@ export const DicesGraph = () => {
         </div>
         <div className={styles.graph}>
           {!graphType && (<GraphType1 valuesObject={valuesObject} />)}
-          {/* {graphType && (<GraphType2 valuesObject={valuesObject} />)} */}
+          {graphType && (<GraphType2 valuesObject={valuesObject} maxDiceVarian={maxDiceVarian} />)}
         </div>
         <div className={styles.graphLabel}>
           <div className={styles.label}>
