@@ -9,8 +9,23 @@ interface ValueState {
   values: Dice[];
 }
 
+const values: Dice[] = [
+  '1',
+  '2',
+  '3',
+  '2',
+  '3',
+  '2',
+  '3',
+  '3',
+  '3',
+  '3',
+  '3',
+  '3',
+];
+
 export const useDiceValue = create<ValueState>()(subscribeWithSelector(set => ({
-  values: [],
+  values: values,
   value: '?',
   setValue: (v) => set(((s) => {
     if (v !== '?') {
