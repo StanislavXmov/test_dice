@@ -8,6 +8,20 @@ import { CoinsGraph } from './components/Coins/CoinsGraph/CoinsGraph';
 import { DicesGraph } from './components/Dices/DicesGraph/DicesGraph';
 
 import styles from './App.module.scss';
+import { Switch, SwitchType } from './components/Switch/Switch';
+import { useState } from 'react';
+
+const Test = () => {
+  const [type, setType] = useState<SwitchType>('List');
+  return (
+    <div className={styles.test}>
+      <Switch onChange={setType} type={type} />
+      <div>
+        {type}
+      </div>
+    </div>
+  );
+}
 
 
 function App() {  
@@ -40,6 +54,7 @@ function App() {
         <CoinsGraph />
       </div>
       <Range />
+      <Test />
     </>
   );
 }
