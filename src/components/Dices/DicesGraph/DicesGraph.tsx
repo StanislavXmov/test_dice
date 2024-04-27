@@ -62,10 +62,11 @@ const findMaxCounter = (valuesObject: DiceValues) => {
 
 const height = 226;
 const width = 320;
-const padding1 = 5;
+const padding1 = 0;
 const rectHeight = 10;
 const rectWidth = 30;
 const maxH = 20;
+const gap = 8;
 
 const Rect = ({x, y}: {x: number, y: number}) => {
   return (
@@ -96,7 +97,7 @@ const GraphType1 = ({valuesObject}: {valuesObject: DiceValues }) => {
             className={`${styles.graphValue} ${styles.graphValuePosition}`}
             style={{
               top: `${height - rectHeight * (valuesObject[k]) - valuesObject[k] - 13}px`,
-              left: `${56 * i}px`,
+              left: `${(rectWidth + gap) * i}px`,
             }}
           >
             {valuesObject[k]}
@@ -106,7 +107,7 @@ const GraphType1 = ({valuesObject}: {valuesObject: DiceValues }) => {
           {keys.map((k, j) => (
             <Fragment key={j}>
             {new Array(valuesObject[k]).fill(null).map((_, i) => 
-              (<Rect key={i} x={padding1 + (rectWidth + 26) * j} y={height - rectHeight * (i + 1) - i} />))
+              (<Rect key={i} x={padding1 + (rectWidth + gap) * j} y={height - rectHeight * (i + 1) - i} />))
             }
             </Fragment>
           ))}
@@ -131,12 +132,12 @@ const GraphType2 = ({valuesObject, maxDiceVarian}: {valuesObject: DiceValues, ma
         fill="none" xmlns="http://www.w3.org/2000/svg"
       >
           <RectMaxType
-            x={padding1 + (rectWidth + 26) * idx}
+            x={padding1 + (rectWidth + gap) * idx}
           />
           {keys.map((k, i) => (
             <RectValueType
               key={i}
-              x={padding1 + (rectWidth + 26) * (Number(k) - 1)}
+              x={padding1 + (rectWidth + gap) * (Number(k) - 1)}
               value={d * valuesObject[k]}
             />
           ))}
@@ -156,8 +157,8 @@ export const DicesGraph = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.side}>
-        <span className={styles.sideLabelDefault}>Количество раз для каждого исхода</span>
-        <span className={styles.sideLabelValues}>Доля выпадения ≈</span>
+        <span className={styles.sideLabelDefault}>Кол-во раз</span>
+        <span className={styles.sideLabelValues}>Доля ≈</span>
       </div>
       <div className={styles.graphWrapper}>
         <div className={styles.graphValues}>
@@ -179,27 +180,27 @@ export const DicesGraph = () => {
         <div className={styles.graphLabel}>
           <div className={styles.label}>
             <Dice1 className={styles.icon} />
-            <div className={styles.value} >0,4991</div>
+            <div className={styles.value} >0,49</div>
           </div>
           <div className={styles.label}>
             <Dice2 className={styles.icon} />
-            <div className={styles.value} >0,5009</div>
+            <div className={styles.value} >0,50</div>
           </div>
           <div className={styles.label}>
             <Dice3 className={styles.icon} />
-            <div className={styles.value} >0,5009</div>
+            <div className={styles.value} >0,50</div>
           </div>
           <div className={styles.label}>
             <Dice4 className={styles.icon} />
-            <div className={styles.value} >0,5009</div>
+            <div className={styles.value} >0,50</div>
           </div>
           <div className={styles.label}>
             <Dice5 className={styles.icon} />
-            <div className={styles.value} >0,5009</div>
+            <div className={styles.value} >0,50</div>
           </div>
           <div className={styles.label}>
             <Dice6 className={styles.icon} />
-            <div className={styles.value} >0,5009</div>
+            <div className={styles.value} >0,50</div>
           </div>
         </div>
       </div>
