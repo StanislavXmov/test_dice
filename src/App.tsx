@@ -10,24 +10,13 @@ import { DicesGraph } from './components/Dices/DicesGraph/DicesGraph';
 import styles from './App.module.scss';
 import { Switch, SwitchType } from './components/Switch/Switch';
 import { useState } from 'react';
-
-const Test = () => {
-  const [type, setType] = useState<SwitchType>('List');
-  return (
-    <div className={styles.test}>
-      <Switch onChange={setType} type={type} />
-      <div>
-        {type}
-      </div>
-    </div>
-  );
-}
+import { CoinLayer1 } from './components/Coins/Layers/CoinLayer1';
 
 
 function App() {  
   return (
     <>
-      <div className={styles.wrapper}>
+      {/* <div className={styles.wrapper}>
         <div>
           <div className={styles.app}>
             <DiceScene />
@@ -53,8 +42,8 @@ function App() {
         <CoinTableValue />
         <CoinsGraph />
       </div>
-      <Range />
-      <Test />
+      <Range />*/}
+      <CoinLayer1 />
     </>
   );
 }

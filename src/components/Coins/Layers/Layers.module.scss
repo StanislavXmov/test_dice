@@ -1,0 +1,55 @@
+.layer {
+  padding: 26px;
+  width: 640px;
+  height: 480px;
+
+  border: 1px solid black;
+}
+
+.title {
+  margin: 0px 0px 18px;
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29.05px;
+  text-align: left;
+}
+
+.wrapper {
+  height: 380px;
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 294px 1fr;
+  grid-template-rows: 1fr;
+}
+
+.sideLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.scene {
+  width: 294px;
+  height: 294px;
+}
+
+.buttonsWrapper {
+  margin: 12px 0 0;
+  display: flex;
+  justify-content: center;
+}
+
+.sideRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.subTitle {
+  margin: 0px 0px 4px;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: left;
+
+}

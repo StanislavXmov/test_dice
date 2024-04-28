@@ -4,14 +4,14 @@ import { useRoleDiceButton } from '../../state/useRoleDiceButton';
 import styles from './Button.module.scss';
 
 interface ButtonProps {
-  tittle: string;
+  title: string;
   cb: () => void;
   disabled: boolean;
   setDisabled: (v: boolean) => void;
   timeout: number;
 }
 
-export const Button = ({tittle, cb, disabled, setDisabled, timeout}: ButtonProps) => {
+export const Button = ({title, cb, disabled, setDisabled, timeout}: ButtonProps) => {
   const timer = useRef<number>(null)
 
   const handler = () => {
@@ -33,7 +33,7 @@ export const Button = ({tittle, cb, disabled, setDisabled, timeout}: ButtonProps
       onClick={handler}
       disabled={disabled}
     >
-      {tittle}
+      {title}
     </button>
   )
 }

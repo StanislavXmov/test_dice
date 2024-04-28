@@ -53,7 +53,7 @@ export const DiceControll = () => {
 
   return (
     <Button
-      tittle='ROLE'
+      title='Бросить'
       cb={handler}
       disabled={disabled}
       setDisabled={setDisabled}

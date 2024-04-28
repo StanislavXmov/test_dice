@@ -36,7 +36,7 @@ export const CoinControll = () => {
 
   return (
     <Button
-      tittle='ROLE COIN'
+      title='Бросить'
       cb={handler}
       disabled={disabled}
       setDisabled={setDisabled}
