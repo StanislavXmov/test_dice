@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+// import { OrbitControls } from "@react-three/drei";
 import { Coin } from "./Coin";
 
 
@@ -8,10 +8,10 @@ export const CoinScene = () => {
   return (
     <Canvas
       shadows
-      camera={{ fov: 75, position: [0, 20, 20], zoom: 50}}
+      camera={{ fov: 75, position: [0, 20, 20], zoom: 41.5}}
       orthographic
     >
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       <Suspense>
         <Coin />
       </Suspense>

@@ -71,11 +71,8 @@ export const Coin = () => {
     <>
       <Light />
       <Physics
-      // debug
+        // debug
       >
-        {/* <RigidBody type='fixed'>
-          <Plane args={[9, 9]} rotation={[-Math.PI / 2, 0, 0]} material={material} />
-        </RigidBody> */}
         <CuboidCollider args={[9, 0.5, 9]} position={[0, -0.5, 0]} />
         <RigidBody type='fixed'>
           <Box args={[8, 5, 1]} position={[0, 2.5, 5]} material={material} />
