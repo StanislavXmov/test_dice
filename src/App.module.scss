@@ -25,3 +25,10 @@
 .test {
   margin-top: 24px;
 }
+
+.testWrapper {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}

@@ -44,8 +44,10 @@ function App() {
         <CoinsGraph />
       </div>
       <Range />*/}
-      {/* <CoinLayer1 /> */}
-      <DiceLayer1 />
+      <div className={styles.testWrapper}>
+        <CoinLayer1 />
+        <DiceLayer1 />
+      </div>
     </>
   );
 }
