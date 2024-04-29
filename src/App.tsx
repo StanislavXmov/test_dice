@@ -11,6 +11,7 @@ import styles from './App.module.scss';
 import { Switch, SwitchType } from './components/Switch/Switch';
 import { useState } from 'react';
 import { CoinLayer1 } from './components/Coins/Layers/CoinLayer1';
+import { DiceLayer1 } from './components/Dices/Layers/DiceLayer1';
 
 
 function App() {  
@@ -43,7 +44,8 @@ function App() {
         <CoinsGraph />
       </div>
       <Range />*/}
-      <CoinLayer1 />
+      {/* <CoinLayer1 /> */}
+      <DiceLayer1 />
     </>
   );
 }
