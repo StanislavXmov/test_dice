@@ -12,6 +12,7 @@ import { Switch, SwitchType } from './components/Switch/Switch';
 import { useState } from 'react';
 import { CoinLayer1 } from './components/Coins/Layers/CoinLayer1';
 import { DiceLayer1 } from './components/Dices/Layers/DiceLayer1';
+import { TableLayer } from './components/Table/TableLayer';
 
 
 function App() {  
@@ -44,10 +45,11 @@ function App() {
         <CoinsGraph />
       </div>
       <Range />*/}
-      <div className={styles.testWrapper}>
+      {/* <div className={styles.testWrapper}>
         <CoinLayer1 />
         <DiceLayer1 />
-      </div>
+      </div> */}
+      <TableLayer />
     </>
   );
 }
