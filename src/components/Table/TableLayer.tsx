@@ -20,6 +20,8 @@ const dicesTable = {
 
 type Edge = 6 | 8 | 12;
 
+type ViewTable = 'values' | 'sum';
+
 const information = {
   task: 'Бросили два шестигранных кубика. Выделите в таблице ячейки, которые соответсвуют условию сумма на выпавших гранях больше 7.'
 }
@@ -28,7 +30,7 @@ type Type1Edge = 1|2|3|4|5|6;
 const type1Array: Type1Edge[] = [1,2,3,4,5,6];
 const cells1Array = new Array(type1Array.length * type1Array.length).fill(null);
 
-const TableType1 = () => {
+const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
   return (
     <div className={styles.tableType1}>
       <div className={styles.horizontalLabelType1}>
@@ -50,29 +52,46 @@ const TableType1 = () => {
 
 const Table = () => {
   const [type, setType] = useState<Edge>(6);
+  const [tableView, setTableView] = useState<ViewTable>('values');
 
   const selectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     setType(Number(e.target.value) as Edge);
   }
 
+  const selectTableViewHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+    setTableView(e.target.value as ViewTable);
+  }
+
   return (
     <>
       <div className={styles.wrapper}>
-        {type === 6 && <TableType1 />}
-        <label className={styles.label} htmlFor="select">
-          Кол-во граней
-          <select
-            id='select'
-            className={styles.select}
-            onChange={selectHandler}
-          >
-            <option>6</option>
-            <option>8</option>
-            <option>12</option>
-          </select>
-        </label>
+        {type === 6 && <TableType1 tableView={tableView} />}
+        <div className={styles.controllWrapper}>
+          <label className={styles.label} htmlFor="selectType">
+            Кол-во граней
+            <select
+              id='selectType'
+              className={styles.select}
+              onChange={selectHandler}
+            >
+              <option>6</option>
+              <option>8</option>
+              <option>12</option>
+            </select>
+          </label>
+          <label className={styles.label} htmlFor="tableView">
+            В таблице показаны
+            <select
+              id='tableView'
+              className={styles.tableViewSelect}
+              onChange={selectTableViewHandler}
+            >
+              <option value={'values'}>выпавшие значения</option>
+              <option value={'sum'}>суммы ячеек</option>
+            </select>
+          </label>
+        </div>
       </div>
-      
     </>
   );
 }

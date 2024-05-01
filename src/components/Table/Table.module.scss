@@ -29,16 +29,26 @@
   text-align: left;
 }
 
+.controllWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
 .label {
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
   line-height: 14.52px;
-  text-align: center;
 }
 
 .select {
   margin: 0px 0px 0px 12px;
+  padding: 2px 2px;
+}
+
+.tableViewSelect {
+  margin: 4px 0px 0px 0px;
   padding: 2px 2px;
 }
 
