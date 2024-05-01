@@ -62,6 +62,11 @@
   height: 30px;
 }
 
+.dice3IconTable {
+  width: 22px;
+  height: 22px;
+}
+
 .tableType1 {
   width: 352px;
   display: grid;
@@ -133,6 +138,47 @@
 .cellType2 {
   width: 30px;
   height: 30px;
+
+  background: #F2F2F2;
+  cursor: pointer;
+}
+
+.tableType3 {
+  width: 358px;
+  display: grid;
+  grid-template-columns: 22px 330px;
+  grid-template-rows: 22px 330px;
+  gap: 6px;
+}
+
+.horizontalLabelType3 {
+  grid-column: 2 / -1;
+  display: flex;
+  gap: 6px;
+}
+
+.verticalLabelType3 {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.verticalIcon3 {
+  width: 22px;
+  height: 22px;
+  transform: translateY(1px);
+}
+
+.tableWrapperType3 {
+  display: grid;
+  grid-template-columns: repeat(12, 22px);
+  grid-template-rows: repeat(12, 22px);
+  gap: 6px;
+}
+
+.cellType3 {
+  width: 22px;
+  height: 22px;
 
   background: #F2F2F2;
   cursor: pointer;

@@ -52,18 +52,18 @@ const dices2Table = {
 }
 
 const dices3Table = {
-  1: (key: Key) => <Dice3_1 className={styles.diceIconTable} key={key} />,
-  2: (key: Key) => <Dice3_2 className={styles.diceIconTable} key={key} />,
-  3: (key: Key) => <Dice3_3 className={styles.diceIconTable} key={key} />,
-  4: (key: Key) => <Dice3_4 className={styles.diceIconTable} key={key} />,
-  5: (key: Key) => <Dice3_5 className={styles.diceIconTable} key={key} />,
-  6: (key: Key) => <Dice3_6 className={styles.diceIconTable} key={key} />,
-  7: (key: Key) => <Dice3_7 className={styles.diceIconTable} key={key} />,
-  8: (key: Key) => <Dice3_8 className={styles.diceIconTable} key={key} />,
-  9: (key: Key) => <Dice3_9 className={styles.diceIconTable} key={key} />,
-  10: (key: Key) => <Dice3_10 className={styles.diceIconTable} key={key} />,
-  11: (key: Key) => <Dice3_11 className={styles.diceIconTable} key={key} />,
-  12: (key: Key) => <Dice3_12 className={styles.diceIconTable} key={key} />,
+  1: (key: Key) => <Dice3_1 className={styles.dice3IconTable} key={key} />,
+  2: (key: Key) => <Dice3_2 className={styles.dice3IconTable} key={key} />,
+  3: (key: Key) => <Dice3_3 className={styles.dice3IconTable} key={key} />,
+  4: (key: Key) => <Dice3_4 className={styles.dice3IconTable} key={key} />,
+  5: (key: Key) => <Dice3_5 className={styles.dice3IconTable} key={key} />,
+  6: (key: Key) => <Dice3_6 className={styles.dice3IconTable} key={key} />,
+  7: (key: Key) => <Dice3_7 className={styles.dice3IconTable} key={key} />,
+  8: (key: Key) => <Dice3_8 className={styles.dice3IconTable} key={key} />,
+  9: (key: Key) => <Dice3_9 className={styles.dice3IconTable} key={key} />,
+  10: (key: Key) => <Dice3_10 className={styles.dice3IconTable} key={key} />,
+  11: (key: Key) => <Dice3_11 className={styles.dice3IconTable} key={key} />,
+  12: (key: Key) => <Dice3_12 className={styles.dice3IconTable} key={key} />,
 }
 
 type Edge = 6 | 8 | 12;
@@ -122,6 +122,30 @@ const TableType2 = ({ tableView }: {tableView: ViewTable}) => {
   );
 }
 
+type Type3Edge = 1|2|3|4|5|6|7|8|9|10|11|12;
+const type3Array: Type3Edge[] = [1,2,3,4,5,6,7,8,9,10,11,12];
+const cells3Array = new Array(type3Array.length * type3Array.length).fill(null);
+
+const TableType3 = ({ tableView }: {tableView: ViewTable}) => {
+  return (
+    <div className={styles.tableType3}>
+      <div className={styles.horizontalLabelType3}>
+        {type3Array.map((k) => (dices3Table[k](k)))}
+      </div>
+      <div className={styles.verticalLabelType3}>
+        {type3Array.map((k) => (<div key={k} className={styles.verticalIcon3}>{dices3Table[k](k)}</div>))}
+      </div>
+      <div className={styles.tableWrapperType3}>
+        {cells3Array.map((_, i) => (
+          <div key={i} className={styles.cellType3}>
+
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const Table = () => {
   const [type, setType] = useState<Edge>(6);
   const [tableView, setTableView] = useState<ViewTable>('values');
@@ -139,6 +163,7 @@ const Table = () => {
       <div className={styles.wrapper}>
         {type === 6 && <TableType1 tableView={tableView} />}
         {type === 8 && <TableType2 tableView={tableView} />}
+        {type === 12 && <TableType3 tableView={tableView} />}
         <div className={styles.controllWrapper}>
           <label className={styles.label} htmlFor="selectType">
             Кол-во граней
