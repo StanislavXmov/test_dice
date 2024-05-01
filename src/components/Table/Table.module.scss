@@ -57,6 +57,11 @@
   height: 40px;
 }
 
+.dice2IconTable {
+  width: 30px;
+  height: 30px;
+}
+
 .tableType1 {
   width: 352px;
   display: grid;
@@ -87,6 +92,47 @@
 .cellType1 {
   width: 40px;
   height: 40px;
+
+  background: #F2F2F2;
+  cursor: pointer;
+}
+
+.tableType2 {
+  width: 334px;
+  display: grid;
+  grid-template-columns: 30px 296px;
+  grid-template-rows: 30px 296px;
+  gap: 4px 8px;
+}
+
+.horizontalLabelType2 {
+  grid-column: 2 / -1;
+  display: flex;
+  gap: 8px;
+}
+
+.verticalLabelType2 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.verticalIcon2 {
+  width: 30px;
+  height: 30px;
+  transform: translateY(4px);
+}
+
+.tableWrapperType2 {
+  display: grid;
+  grid-template-columns: repeat(8, 30px);
+  grid-template-rows: repeat(8, 30px);
+  gap: 8px;
+}
+
+.cellType2 {
+  width: 30px;
+  height: 30px;
 
   background: #F2F2F2;
   cursor: pointer;

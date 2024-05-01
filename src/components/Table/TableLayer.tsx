@@ -9,6 +9,28 @@ import Dice4 from '../icons/dice_4.svg?react';
 import Dice5 from '../icons/dice_5.svg?react';
 import Dice6 from '../icons/dice_6.svg?react';
 
+import Dice2_1 from '../icons/dice8_1.svg?react';
+import Dice2_2 from '../icons/dice8_2.svg?react';
+import Dice2_3 from '../icons/dice8_3.svg?react';
+import Dice2_4 from '../icons/dice8_4.svg?react';
+import Dice2_5 from '../icons/dice8_5.svg?react';
+import Dice2_6 from '../icons/dice8_6.svg?react';
+import Dice2_7 from '../icons/dice8_7.svg?react';
+import Dice2_8 from '../icons/dice8_8.svg?react';
+
+import Dice3_1 from '../icons/dice12_1.svg?react';
+import Dice3_2 from '../icons/dice12_2.svg?react';
+import Dice3_3 from '../icons/dice12_3.svg?react';
+import Dice3_4 from '../icons/dice12_4.svg?react';
+import Dice3_5 from '../icons/dice12_5.svg?react';
+import Dice3_6 from '../icons/dice12_6.svg?react';
+import Dice3_7 from '../icons/dice12_7.svg?react';
+import Dice3_8 from '../icons/dice12_8.svg?react';
+import Dice3_9 from '../icons/dice12_9.svg?react';
+import Dice3_10 from '../icons/dice12_10.svg?react';
+import Dice3_11 from '../icons/dice12_11.svg?react';
+import Dice3_12 from '../icons/dice12_12.svg?react';
+
 const dicesTable = {
   1: (key: Key) => <Dice1 className={styles.diceIconTable} key={key} />,
   2: (key: Key) => <Dice2 className={styles.diceIconTable} key={key} />,
@@ -16,6 +38,32 @@ const dicesTable = {
   4: (key: Key) => <Dice4 className={styles.diceIconTable} key={key} />,
   5: (key: Key) => <Dice5 className={styles.diceIconTable} key={key} />,
   6: (key: Key) => <Dice6 className={styles.diceIconTable} key={key} />,
+}
+
+const dices2Table = {
+  1: (key: Key) => <Dice2_1 className={styles.dice2IconTable} key={key} />,
+  2: (key: Key) => <Dice2_2 className={styles.dice2IconTable} key={key} />,
+  3: (key: Key) => <Dice2_3 className={styles.dice2IconTable} key={key} />,
+  4: (key: Key) => <Dice2_4 className={styles.dice2IconTable} key={key} />,
+  5: (key: Key) => <Dice2_5 className={styles.dice2IconTable} key={key} />,
+  6: (key: Key) => <Dice2_6 className={styles.dice2IconTable} key={key} />,
+  7: (key: Key) => <Dice2_7 className={styles.dice2IconTable} key={key} />,
+  8: (key: Key) => <Dice2_8 className={styles.dice2IconTable} key={key} />,
+}
+
+const dices3Table = {
+  1: (key: Key) => <Dice3_1 className={styles.diceIconTable} key={key} />,
+  2: (key: Key) => <Dice3_2 className={styles.diceIconTable} key={key} />,
+  3: (key: Key) => <Dice3_3 className={styles.diceIconTable} key={key} />,
+  4: (key: Key) => <Dice3_4 className={styles.diceIconTable} key={key} />,
+  5: (key: Key) => <Dice3_5 className={styles.diceIconTable} key={key} />,
+  6: (key: Key) => <Dice3_6 className={styles.diceIconTable} key={key} />,
+  7: (key: Key) => <Dice3_7 className={styles.diceIconTable} key={key} />,
+  8: (key: Key) => <Dice3_8 className={styles.diceIconTable} key={key} />,
+  9: (key: Key) => <Dice3_9 className={styles.diceIconTable} key={key} />,
+  10: (key: Key) => <Dice3_10 className={styles.diceIconTable} key={key} />,
+  11: (key: Key) => <Dice3_11 className={styles.diceIconTable} key={key} />,
+  12: (key: Key) => <Dice3_12 className={styles.diceIconTable} key={key} />,
 }
 
 type Edge = 6 | 8 | 12;
@@ -50,6 +98,30 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
   );
 }
 
+type Type2Edge = 1|2|3|4|5|6|7|8;
+const type2Array: Type2Edge[] = [1,2,3,4,5,6,7,8];
+const cells2Array = new Array(type2Array.length * type2Array.length).fill(null);
+
+const TableType2 = ({ tableView }: {tableView: ViewTable}) => {
+  return (
+    <div className={styles.tableType2}>
+      <div className={styles.horizontalLabelType2}>
+        {type2Array.map((k) => (dices2Table[k](k)))}
+      </div>
+      <div className={styles.verticalLabelType2}>
+        {type2Array.map((k) => (<div key={k} className={styles.verticalIcon2}>{dices2Table[k](k)}</div>))}
+      </div>
+      <div className={styles.tableWrapperType2}>
+        {cells2Array.map((_, i) => (
+          <div key={i} className={styles.cellType2}>
+
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const Table = () => {
   const [type, setType] = useState<Edge>(6);
   const [tableView, setTableView] = useState<ViewTable>('values');
@@ -66,6 +138,7 @@ const Table = () => {
     <>
       <div className={styles.wrapper}>
         {type === 6 && <TableType1 tableView={tableView} />}
+        {type === 8 && <TableType2 tableView={tableView} />}
         <div className={styles.controllWrapper}>
           <label className={styles.label} htmlFor="selectType">
             Кол-во граней
