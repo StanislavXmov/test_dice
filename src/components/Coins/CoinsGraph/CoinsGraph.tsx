@@ -135,9 +135,9 @@ const GraphType2 = ({valuesObject}: {valuesObject: Record<Coin, number> }) => {
 
 export const CoinsGraph = () => {
   const values = useCoinValue(s => s.values);
+  const length = values.length;
   const sortedValues = sortValues(values);
   const valuesObject = getMappedValues(sortedValues);
-  // console.log(values, sortedValues, valuesObject);
 
   const graphType = (valuesObject.OREL > maxH || valuesObject[5] > maxH);
   
@@ -163,11 +163,11 @@ export const CoinsGraph = () => {
         <div className={styles.graphLabel}>
           <div className={styles.label}>
             <Coin1 className={styles.icon} />
-            <div className={styles.value} >0,4991</div>
+            <div className={styles.value} >{valuesObject['OREL'] > 0 ? (valuesObject['OREL'] / length).toFixed(4): '0.0000'}</div>
           </div>
           <div className={styles.label}>
             <Coin2 className={styles.icon} />
-            <div className={styles.value} >0,5009</div>
+            <div className={styles.value} >{valuesObject['5'] > 0 ? (valuesObject['5'] / length).toFixed(4): '0.0000'}</div>
           </div>
         </div>
       </div>

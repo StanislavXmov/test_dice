@@ -148,6 +148,7 @@ const GraphType2 = ({valuesObject, maxDiceVarian}: {valuesObject: DiceValues, ma
 
 export const DicesGraph = () => {
   const values = useDiceValue(s => s.values);
+  const length = values.length;
   const sortedValues = sortValues(values);
   const valuesObject = getMappedValues(sortedValues);
   const maxDiceVarian = findMaxCounter(valuesObject);
@@ -180,27 +181,27 @@ export const DicesGraph = () => {
         <div className={styles.graphLabel}>
           <div className={styles.label}>
             <Dice1 className={styles.icon} />
-            <div className={styles.value} >0,49</div>
+            <div className={styles.value} >{valuesObject[1] > 0 ? (valuesObject[1] / length).toFixed(2): '0.00'}</div>
           </div>
           <div className={styles.label}>
             <Dice2 className={styles.icon} />
-            <div className={styles.value} >0,50</div>
+            <div className={styles.value} >{valuesObject[2] > 0 ? (valuesObject[2] / length).toFixed(2): '0.00'}</div>
           </div>
           <div className={styles.label}>
             <Dice3 className={styles.icon} />
-            <div className={styles.value} >0,50</div>
+            <div className={styles.value} >{valuesObject[3] > 0 ? (valuesObject[3] / length).toFixed(2): '0.00'}</div>
           </div>
           <div className={styles.label}>
             <Dice4 className={styles.icon} />
-            <div className={styles.value} >0,50</div>
+            <div className={styles.value} >{valuesObject[4] > 0 ? (valuesObject[4] / length).toFixed(2): '0.00'}</div>
           </div>
           <div className={styles.label}>
             <Dice5 className={styles.icon} />
-            <div className={styles.value} >0,50</div>
+            <div className={styles.value} >{valuesObject[5] > 0 ? (valuesObject[5] / length).toFixed(2): '0.00'}</div>
           </div>
           <div className={styles.label}>
             <Dice6 className={styles.icon} />
-            <div className={styles.value} >0,50</div>
+            <div className={styles.value} >{valuesObject[6] > 0 ? (valuesObject[6] / length).toFixed(2): '0.00'}</div>
           </div>
         </div>
       </div>
