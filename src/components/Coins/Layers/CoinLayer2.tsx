@@ -19,6 +19,24 @@ const toCaseCount = (arg: number) => {
   return titles[(arg % 100 > 4 && arg % 100 < 20) ? 2 : cases[Math.min(arg % 10, 5)]];
 }
 
+// randomNumber(min, max) {
+//   return Math.random() * (max - min) + min
+// }
+
+// randomRoundNumber(min, max, array) {
+//   let r = Math.round(this.randomNumber(min, max));
+//   if (array && array.includes(r)) {
+//       return this.randomRoundNumber(min, max, array);
+//   } else {
+//       return r;
+//   }
+// }
+
+const randomNumber = (min: number, max: number) => {
+  return Math.round(Math.random() * (max - min) + min);
+}
+
+
 const RightSide = () => {
 
   return (
@@ -40,6 +58,10 @@ const CoinControll = () => {
   const handler = () => {
     setPosition(new Vector3(0, 7, 0));
     setValue('?');
+    
+    for (let i = 0; i < counter; i++) {
+      console.log(randomNumber(0, 1));
+    }
   }
 
   return (
