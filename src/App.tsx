@@ -45,11 +45,11 @@ function App() {
         <CoinsGraph />
       </div>
       <Range />*/}
-      {/* <div className={styles.testWrapper}>
+      <div className={styles.testWrapper}>
         <CoinLayer1 />
         <DiceLayer1 />
-      </div> */}
-      <TableLayer />
+        <TableLayer />
+      </div>
     </>
   );
 }
