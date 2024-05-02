@@ -11,11 +11,15 @@ const labes = [
   {inputValue: 5, id: 5, labelValue: 1000},
 ];
 
-export const Range = () => {
+export type CounterType = 5|10|50|100|500|1000;
+
+export const Range = ({setCounter}: {setCounter: (v: CounterType) => void}) => {
   const [value, setValue] = useState(0);
 
   const handler = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(Number(e.target.value));
+    const counter = labes[Number(e.target.value)].labelValue;
+    setCounter(counter as CounterType);
   }
   return (
     <div className={styles.inputWraper}>
