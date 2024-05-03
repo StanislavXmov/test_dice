@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
 import { CoinScene } from '../CoinScene';
-import { Switch, SwitchType } from '../../Switch/Switch';
 import { CoinsGraph } from '../CoinsGraph/CoinsGraph';
-import { useCoinValue } from '../../../state/useCoinValue';
+import { Coin, useCoinValue } from '../../../state/useCoinValue';
 
 import styles from './Layers.module.scss';
 import { useCoinPosition } from '../../../state/useCoinPosition';
@@ -39,6 +38,7 @@ const CoinControll = () => {
   const [counter, setCounter] = useState<CounterType>(1); 
   const setPosition = useCoinPosition(s => s.setPosition);
   const setValue = useCoinValue(s => s.setValue);
+  const setValues = useCoinValue(s => s.setValues);
   const setActive = useCoinValue(s => s.setActive);
   const disabled = useRoleCoinButton(s => s.disabled);
   const setDisabled = useRoleCoinButton(s => s.setDisabled);
@@ -53,10 +53,19 @@ const CoinControll = () => {
     
     setPosition(new Vector3(0, 7, 0));
     setValue('?');
-    
-    // for (let i = 0; i < counter; i++) {
-    //   console.log(randomNumber(0, 1));
-    // }
+
+    const values: Coin[] = [];
+
+    for (let i = 0; i < counter; i++) {
+      const r = randomNumber(0, 1);
+      if (r === 0) {
+        values.push('OREL');
+      } else {
+        values.push('5');
+      }
+    }
+
+    setValues(values);
   }
 
   return (
