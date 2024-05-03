@@ -3,15 +3,16 @@ import { ChangeEvent, useState } from 'react';
 import styles from './Range.module.scss';
 
 const labes = [
-  {inputValue: 0, id: 0, labelValue: 5},
-  {inputValue: 1, id: 1, labelValue: 10},
-  {inputValue: 2, id: 2, labelValue: 50},
-  {inputValue: 3, id: 3, labelValue: 100},
-  {inputValue: 4, id: 4, labelValue: 500},
-  {inputValue: 5, id: 5, labelValue: 1000},
+  {inputValue: 0, id: 0, labelValue: 1},
+  {inputValue: 1, id: 1, labelValue: 5},
+  {inputValue: 2, id: 2, labelValue: 10},
+  {inputValue: 3, id: 3, labelValue: 50},
+  {inputValue: 4, id: 4, labelValue: 100},
+  {inputValue: 5, id: 5, labelValue: 500},
+  {inputValue: 6, id: 6, labelValue: 1000},
 ];
 
-export type CounterType = 5|10|50|100|500|1000;
+export type CounterType = 1|5|10|50|100|500|1000;
 
 export const Range = ({setCounter}: {setCounter: (v: CounterType) => void}) => {
   const [value, setValue] = useState(0);
@@ -29,7 +30,7 @@ export const Range = ({setCounter}: {setCounter: (v: CounterType) => void}) => {
         type="range"
         value={value}
         min={0}
-        max={5}
+        max={6}
         step={1}
         onChange={handler}
       />

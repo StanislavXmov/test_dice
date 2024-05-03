@@ -26,6 +26,7 @@ const material2 = new MeshStandardMaterial({color: '#f5f5f5', opacity: 1, transp
 export const Coin = () => {
   const position = useCoinPosition(s => s.position);
   const setValue = useCoinValue(s => s.setValue);
+  const isActive = useCoinValue(s => s.isActive);
   const setDisabled = useRoleCoinButton(s => s.setDisabled);
 
   const {nodes, materials} = useGLTF('./coin.glb') as unknown as Model3d;
@@ -38,6 +39,9 @@ export const Coin = () => {
   const counter = useRef<number>(0);
 
   useFrame(() => {
+    if (!isActive) {
+      return;
+    }
     if (body.current && body.current.nextTranslation().y < 0.06 && !body.current.isSleeping()) {
       counter.current = counter.current + 1;
       if (counter.current > 10) {
