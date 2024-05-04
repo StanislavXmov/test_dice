@@ -4,14 +4,18 @@ import { subscribeWithSelector } from "zustand/middleware";
 export type Dice = '1'|'2'|'3'|'4'|'5'|'6'|'?';
 
 interface ValueState {
+  isActive: boolean;
+  setActive: (v: boolean) => void;
   value: Dice;
   setValue: (v: Dice) => void;
+  setValues: (v: Dice[]) => void;
   values: Dice[];
 }
 
 const values: Dice[] = [];
 
 export const useDiceValue = create<ValueState>()(subscribeWithSelector(set => ({
+  isActive: true,
   values: values,
   value: '?',
   setValue: (v) => set(((s) => {
@@ -21,4 +25,8 @@ export const useDiceValue = create<ValueState>()(subscribeWithSelector(set => ({
     
     return {value: v};
   })),
+  setValues: (v) => set(((s) => {
+    return {values: [...s.values, ...v]};
+  })),
+  setActive: (v) => set(() => ({isActive: v})),
 })));

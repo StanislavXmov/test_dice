@@ -26,6 +26,7 @@ const material2 = new MeshStandardMaterial({color: '#f5f5f5', opacity: 1, transp
 export const Dice = () => {
   const position = useDicePosition(s => s.position);
   const setValue = useDiceValue(s => s.setValue);
+  const isActive = useDiceValue(s => s.isActive);
   const setDisabled = useRoleDiceButton(s => s.setDisabled);
 
   const {nodes, materials} = useGLTF('./dice.glb') as unknown as Model3d;
@@ -41,6 +42,9 @@ export const Dice = () => {
   const counter = useRef<number>(0);
 
   useFrame(() => {
+    if (!isActive) {
+      return;
+    }
     if (body.current && body.current.nextTranslation().y < 0.5 && !body.current.isSleeping()) {
       counter.current = counter.current + 1;
       if (counter.current > 10) {

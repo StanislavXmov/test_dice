@@ -1,16 +1,15 @@
 import { useState } from 'react';
+import { Vector3 } from 'three';
 
-import { CoinScene } from '../CoinScene';
-import { CoinsGraph } from '../CoinsGraph/CoinsGraph';
-import { Coin, useCoinValue } from '../../../state/useCoinValue';
+import { DiceScene } from '../DiceScene';
+import { DicesGraph } from '../DicesGraph/DicesGraph';
+import { Dice, useDiceValue } from '../../../state/useDiceValue';
+import { CounterType, Range } from '../../Range/Range';
+import { Button } from '../../Button/Button';
+import { useDicePosition } from '../../../state/useDicePosition';
+import { useRoleDiceButton } from '../../../state/useRoleDiceButton';
 
 import styles from './Layers.module.scss';
-import { useCoinPosition } from '../../../state/useCoinPosition';
-import { useRoleCoinButton } from '../../../state/useRoleCoinButton';
-import { Vector3 } from 'three';
-import { Button } from '../../Button/Button';
-import { CounterType, Range } from '../../Range/Range';
-
 
 const toCaseCount = (arg: number) => {
   let titles = ['бросок', 'броска', 'бросков'];
@@ -22,26 +21,22 @@ const randomNumber = (min: number, max: number) => {
   return Math.round(Math.random() * (max - min) + min);
 }
 
-
 const RightSide = () => {
-
   return (
-    <div>
-      <CoinsGraph />
+    <div> 
+      <DicesGraph />
     </div>
   );
 }
 
-
-
-const CoinControll = () => {
-  const [counter, setCounter] = useState<CounterType>(1); 
-  const setPosition = useCoinPosition(s => s.setPosition);
-  const setValue = useCoinValue(s => s.setValue);
-  const setValues = useCoinValue(s => s.setValues);
-  const setActive = useCoinValue(s => s.setActive);
-  const disabled = useRoleCoinButton(s => s.disabled);
-  const setDisabled = useRoleCoinButton(s => s.setDisabled);
+const DiceControll = () => {
+  const [counter, setCounter] = useState<CounterType>(1);
+  const setPosition = useDicePosition(s => s.setPosition);
+  const setValue = useDiceValue(s => s.setValue);
+  const setValues = useDiceValue(s => s.setValues);
+  const setActive = useDiceValue(s => s.setActive);
+  const disabled = useRoleDiceButton(s => s.disabled);
+  const setDisabled = useRoleDiceButton(s => s.setDisabled);
 
   const handler = () => {
     if (counter !== 1) {
@@ -54,14 +49,22 @@ const CoinControll = () => {
     setPosition(new Vector3(0, 7, 0));
     setValue('?');
 
-    const values: Coin[] = [];
+    const values: Dice[] = [];
 
     for (let i = 0; i < counter; i++) {
-      const r = randomNumber(0, 1);
+      const r = randomNumber(0, 5);
       if (r === 0) {
-        values.push('OREL');
-      } else {
+        values.push('1');
+      } else if (r === 1) {
+        values.push('2');
+      } else if (r === 2) {
+        values.push('3');
+      } else if (r === 3) {
+        values.push('4');
+      } else if (r === 4) {
         values.push('5');
+      } else if (r === 5) {
+        values.push('6');
       }
     }
 
@@ -82,17 +85,17 @@ const CoinControll = () => {
   );
 }
 
-export const CoinLayer2 = () => {
+export const DiceLayer2 = () => {
   return (
     <div className={styles.layer}>
-      <h2 className={styles.title}>Бросок монеты</h2>
+      <h2 className={styles.title}>Бросок кубика</h2>
       <div className={styles.wrapper}>
         <div className={styles.sideLeft}>
           <div className={styles.scene}>
-            <CoinScene />
+            <DiceScene />
           </div>
           <div className={styles.buttonsWrapper}>
-            <CoinControll />
+            <DiceControll />
           </div>
         </div>
         <div className={styles.sideRight}>
