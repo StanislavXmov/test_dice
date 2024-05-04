@@ -56,16 +56,18 @@ const CoinControll = () => {
 
     const values: Coin[] = [];
 
-    for (let i = 0; i < counter; i++) {
-      const r = randomNumber(0, 1);
-      if (r === 0) {
-        values.push('OREL');
-      } else {
-        values.push('5');
+    if (counter !== 1) {
+      for (let i = 0; i < counter; i++) {
+        const r = randomNumber(0, 1);
+        if (r === 0) {
+          values.push('OREL');
+        } else {
+          values.push('5');
+        }
       }
-    }
 
-    setValues(values);
+      setValues(values);
+    }
   }
 
   return (

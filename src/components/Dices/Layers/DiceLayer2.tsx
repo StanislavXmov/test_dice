@@ -51,24 +51,26 @@ const DiceControll = () => {
 
     const values: Dice[] = [];
 
-    for (let i = 0; i < counter; i++) {
-      const r = randomNumber(0, 5);
-      if (r === 0) {
-        values.push('1');
-      } else if (r === 1) {
-        values.push('2');
-      } else if (r === 2) {
-        values.push('3');
-      } else if (r === 3) {
-        values.push('4');
-      } else if (r === 4) {
-        values.push('5');
-      } else if (r === 5) {
-        values.push('6');
+    if (counter !== 1) {
+      for (let i = 0; i < counter; i++) {
+        const r = randomNumber(0, 5);
+        if (r === 0) {
+          values.push('1');
+        } else if (r === 1) {
+          values.push('2');
+        } else if (r === 2) {
+          values.push('3');
+        } else if (r === 3) {
+          values.push('4');
+        } else if (r === 4) {
+          values.push('5');
+        } else if (r === 5) {
+          values.push('6');
+        }
       }
+  
+      setValues(values);
     }
-
-    setValues(values);
   }
 
   return (
