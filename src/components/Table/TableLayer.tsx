@@ -30,6 +30,7 @@ import Dice3_9 from '../icons/dice12_9.svg?react';
 import Dice3_10 from '../icons/dice12_10.svg?react';
 import Dice3_11 from '../icons/dice12_11.svg?react';
 import Dice3_12 from '../icons/dice12_12.svg?react';
+import { Cell, useTable } from '../../state/useTable';
 
 const dicesTable = {
   1: (key: Key) => <Dice1 className={styles.diceIconTable} key={key} />,
@@ -76,9 +77,27 @@ const information = {
 
 type Type1Edge = 1|2|3|4|5|6;
 const type1Array: Type1Edge[] = [1,2,3,4,5,6];
-const cells1Array = new Array(type1Array.length * type1Array.length).fill(null);
+const cells1Array: Cell[] = new Array(type1Array.length * type1Array.length).fill(null).map<Cell>((_, i) => {
+  let x = (i + 1) % 6;
+  if (x === 0) {
+    x = 6;
+  }
+  const y = Math.floor(i / 6) + 1;
+  
+  return ({
+    id: i,
+    x: x,
+    y: y,
+  })
+});
 
 const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
+  const selected = useTable(s => s.selected);
+  const add = useTable(s => s.add);
+
+  console.log(selected);
+  
+
   return (
     <div className={styles.tableType1}>
       <div className={styles.horizontalLabelType1}>
@@ -88,8 +107,12 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
         {type1Array.map((k) => (dicesTable[k](k)))}
       </div>
       <div className={styles.tableWrapperType1}>
-        {cells1Array.map((_, i) => (
-          <div key={i} className={styles.cellType1}>
+        {cells1Array.map((c, i) => (
+          <div
+            key={i}
+            className={`${styles.cellType1} ${selected.includes(c) ?styles.active : ''}`}
+            onClick={() => add(c)}
+          >
 
           </div>
         ))}
