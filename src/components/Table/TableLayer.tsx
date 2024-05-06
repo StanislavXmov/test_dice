@@ -67,6 +67,12 @@ const dices3Table = {
   12: (key: Key) => <Dice3_12 className={styles.dice3IconTable} key={key} />,
 }
 
+const toCaseCount = (arg: number) => {
+  let titles = ['ячейка', 'ячейки', 'ячеек'];
+  let cases = [2, 0, 1, 1, 1, 2];
+  return titles[(arg % 100 > 4 && arg % 100 < 20) ? 2 : cases[Math.min(arg % 10, 5)]];
+}
+
 type Edge = 6 | 8 | 12;
 
 type ViewTable = 'values' | 'sum';
@@ -95,9 +101,6 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
   const selected = useTable(s => s.selected);
   const add = useTable(s => s.add);
 
-  console.log(selected);
-  
-
   return (
     <div className={styles.tableType1}>
       <div className={styles.horizontalLabelType1}>
@@ -113,7 +116,7 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
             className={`${styles.cellType1} ${selected.includes(c) ?styles.active : ''}`}
             onClick={() => add(c)}
           >
-
+            {tableView === 'values' ? `${c.y},${c.x}` : `${c.y + c.x}`}
           </div>
         ))}
       </div>
@@ -172,6 +175,9 @@ const TableType3 = ({ tableView }: {tableView: ViewTable}) => {
 const Table = () => {
   const [type, setType] = useState<Edge>(6);
   const [tableView, setTableView] = useState<ViewTable>('values');
+  const selected = useTable(s => s.selected);
+  console.log('Table');
+  
 
   const selectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     setType(Number(e.target.value) as Edge);
@@ -211,6 +217,18 @@ const Table = () => {
               <option value={'sum'}>суммы ячеек</option>
             </select>
           </label>
+          <div>
+            {selected.length === 0 && (
+              <span className={styles.selectedInfo}>
+                В таблице не выбрано ячеек.
+              </span>
+            )}
+            {selected.length > 0 && (
+              <span className={styles.selectedInfo}>
+                {`В таблице  выбрана ${selected.length} ${toCaseCount(selected.length)} из ${type * type}.`}
+              </span>
+              )}
+          </div>
         </div>
       </div>
     </>
