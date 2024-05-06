@@ -126,9 +126,24 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
 
 type Type2Edge = 1|2|3|4|5|6|7|8;
 const type2Array: Type2Edge[] = [1,2,3,4,5,6,7,8];
-const cells2Array = new Array(type2Array.length * type2Array.length).fill(null);
+const cells2Array = new Array(type2Array.length * type2Array.length).fill(null).map<Cell>((_, i) => {
+  let x = (i + 1) % 8;
+  if (x === 0) {
+    x = 8;
+  }
+  const y = Math.floor(i / 8) + 1;
+  
+  return ({
+    id: i,
+    x: x,
+    y: y,
+  })
+});
 
 const TableType2 = ({ tableView }: {tableView: ViewTable}) => {
+  const selected = useTable(s => s.selected);
+  const add = useTable(s => s.add);
+
   return (
     <div className={styles.tableType2}>
       <div className={styles.horizontalLabelType2}>
@@ -138,9 +153,13 @@ const TableType2 = ({ tableView }: {tableView: ViewTable}) => {
         {type2Array.map((k) => (<div key={k} className={styles.verticalIcon2}>{dices2Table[k](k)}</div>))}
       </div>
       <div className={styles.tableWrapperType2}>
-        {cells2Array.map((_, i) => (
-          <div key={i} className={styles.cellType2}>
-
+        {cells2Array.map((c, i) => (
+          <div
+            key={i}
+            className={`${styles.cellType2} ${selected.includes(c) ?styles.active : ''}`}
+            onClick={() => add(c)}
+          >
+            {tableView === 'values' ? `${c.y},${c.x}` : `${c.y + c.x}`}
           </div>
         ))}
       </div>
@@ -150,9 +169,24 @@ const TableType2 = ({ tableView }: {tableView: ViewTable}) => {
 
 type Type3Edge = 1|2|3|4|5|6|7|8|9|10|11|12;
 const type3Array: Type3Edge[] = [1,2,3,4,5,6,7,8,9,10,11,12];
-const cells3Array = new Array(type3Array.length * type3Array.length).fill(null);
+const cells3Array = new Array(type3Array.length * type3Array.length).fill(null).map<Cell>((_, i) => {
+  let x = (i + 1) % 12;
+  if (x === 0) {
+    x = 12;
+  }
+  const y = Math.floor(i / 12) + 1;
+  
+  return ({
+    id: i,
+    x: x,
+    y: y,
+  })
+});
 
 const TableType3 = ({ tableView }: {tableView: ViewTable}) => {
+  const selected = useTable(s => s.selected);
+  const add = useTable(s => s.add);
+
   return (
     <div className={styles.tableType3}>
       <div className={styles.horizontalLabelType3}>
@@ -162,9 +196,13 @@ const TableType3 = ({ tableView }: {tableView: ViewTable}) => {
         {type3Array.map((k) => (<div key={k} className={styles.verticalIcon3}>{dices3Table[k](k)}</div>))}
       </div>
       <div className={styles.tableWrapperType3}>
-        {cells3Array.map((_, i) => (
-          <div key={i} className={styles.cellType3}>
-
+        {cells3Array.map((c, i) => (
+          <div
+            key={i}
+            className={`${styles.cellType3} ${selected.includes(c) ?styles.active : ''}`}
+            onClick={() => add(c)}
+          >
+            {tableView === 'values' ? `${c.y},${c.x}` : `${c.y + c.x}`}
           </div>
         ))}
       </div>
@@ -176,11 +214,13 @@ const Table = () => {
   const [type, setType] = useState<Edge>(6);
   const [tableView, setTableView] = useState<ViewTable>('values');
   const selected = useTable(s => s.selected);
-  console.log('Table');
+  const clear = useTable(s => s.clear);
+  console.log(selected);
   
 
   const selectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     setType(Number(e.target.value) as Edge);
+    clear();
   }
 
   const selectTableViewHandler = (e: ChangeEvent<HTMLSelectElement>) => {

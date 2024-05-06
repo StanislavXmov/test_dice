@@ -10,6 +10,7 @@ export type Cell = {
 interface ValueState {
   selected: Cell[];
   add: (v: Cell) => void;
+  clear: () => void;
 }
 
 export const useTable = create<ValueState>()(subscribeWithSelector(set => ({
@@ -20,5 +21,5 @@ export const useTable = create<ValueState>()(subscribeWithSelector(set => ({
     }
     return {selected: [...s.selected, v]};
   })),
-
+  clear: () => set(() => ({selected: []}))
 })));
