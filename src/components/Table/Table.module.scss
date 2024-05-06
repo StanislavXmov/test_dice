@@ -8,7 +8,6 @@
 
 .wrapper {
   display: flex;
-  gap: 44px;
 }
 
 .title {
@@ -30,9 +29,19 @@
 }
 
 .controllWrapper {
+  margin: 0px 0px 0px 26px;
+  width: 208px;
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+
+.controllMarginType2 {
+  margin: 0px 0px 0px 44px;
+}
+
+.controllMarginType3 {
+  margin: 0px 0px 0px 20px;
 }
 
 .label {

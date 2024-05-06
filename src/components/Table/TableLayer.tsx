@@ -193,7 +193,9 @@ const Table = () => {
         {type === 6 && <TableType1 tableView={tableView} />}
         {type === 8 && <TableType2 tableView={tableView} />}
         {type === 12 && <TableType3 tableView={tableView} />}
-        <div className={styles.controllWrapper}>
+        <div className={
+          `${styles.controllWrapper} ${type === 8 ? styles.controllMarginType2 : ''} ${type === 12 ? styles.controllMarginType3 : ''}`
+          }>
           <label className={styles.label} htmlFor="selectType">
             Кол-во граней
             <select
