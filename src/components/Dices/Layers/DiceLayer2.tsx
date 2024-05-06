@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Vector3 } from 'three';
+import random from 'random';
+
 
 import { DiceScene } from '../DiceScene';
 import { DicesGraph } from '../DicesGraph/DicesGraph';
@@ -53,7 +55,7 @@ const DiceControll = () => {
 
     if (counter !== 1) {
       for (let i = 0; i < counter; i++) {
-        const r = randomNumber(0, 5);
+        const r = random.int(0, 5);
         if (r === 0) {
           values.push('1');
         } else if (r === 1) {
