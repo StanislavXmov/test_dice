@@ -33,6 +33,7 @@ const RightSide = () => {
 
 const DiceControll = () => {
   const [counter, setCounter] = useState<CounterType>(1);
+  const [counterView, setCounterView] = useState(false);
   const setPosition = useDicePosition(s => s.setPosition);
   const setValue = useDiceValue(s => s.setValue);
   const setValues = useDiceValue(s => s.setValues);
@@ -43,7 +44,11 @@ const DiceControll = () => {
   const handler = () => {
     if (counter !== 1) {
       setActive(false);
-      setDisabled(false);
+      setCounterView(true);
+      // setDisabled(false);
+      setTimeout(() => {
+        setCounterView(false);
+      }, 1000);
     } else {
       setActive(true);
     }
@@ -77,12 +82,13 @@ const DiceControll = () => {
 
   return (
     <div className={styles.coinControllWrapper}>
+      <div className={`${styles.counter} ${counterView ? styles.counterVisible : ''}`}>× {counter}</div>
       <Button
         title={`Бросить ${counter} раз`}
         cb={handler}
         disabled={disabled}
         setDisabled={setDisabled}
-        timeout={5000}
+        timeout={counter === 1 ? 5000 : 1000}
       />
       <Range setCounter={setCounter} />
     </div>
