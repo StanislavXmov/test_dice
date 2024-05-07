@@ -16,8 +16,8 @@ function App() {
         {/* <CoinLayer1 /> */}
         {/* <CoinLayer2 /> */}
         {/* <DiceLayer1 /> */}
-        <DiceLayer2 />
-        {/* <TableLayer /> */}
+        {/* <DiceLayer2 /> */}
+        <TableLayer />
       </div>
     </>
   );
