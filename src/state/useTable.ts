@@ -18,7 +18,8 @@ interface ValueState {
 export const useTable = create<ValueState>()(subscribeWithSelector(set => ({
   selected: [],
   add: (v) => set(((s) => {
-    if (s.selected.includes(v)) {
+    const finded = s.selected.find(f => f.id === v.id);
+    if (finded) {
       return {selected: s.selected.filter(c => c.id !== v.id)};
     }
     return {selected: [...s.selected, v]};

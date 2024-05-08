@@ -100,7 +100,7 @@ const cells1Array: Cell[] = new Array(type1Array.length * type1Array.length).fil
 const findedAllY = (cells: Cell[], idx: number, typeCount: number) => {
   let allFinded = true;
 
-  for (let i = 0; i < type1Array.length; i++) {
+  for (let i = 0; i < typeCount; i++) {
     const id = (i * typeCount) + idx;
     const findes = cells.find(f => f.id === id);
     if (!findes) {
@@ -114,7 +114,7 @@ const findedAllY = (cells: Cell[], idx: number, typeCount: number) => {
 const findedAllX = (cells: Cell[], idx: number, typeCount: number) => {
   let allFinded = true;
 
-  for (let i = 0; i < type1Array.length; i++) {
+  for (let i = 0; i < typeCount; i++) {
     const id = (idx * typeCount) + i;
     const findes = cells.find(f => f.id === id);
     if (!findes) {
@@ -235,20 +235,84 @@ const cells2Array = new Array(type2Array.length * type2Array.length).fill(null).
 const TableType2 = ({ tableView }: {tableView: ViewTable}) => {
   const selected = useTable(s => s.selected);
   const add = useTable(s => s.add);
+  const addMore = useTable(s => s.addMore);
+  const removeIds = useTable(s => s.removeIds);
+
+  const horizontalLabelHandler = (k: Type2Edge, idx: number) => {
+    if (findedAllY(selected, idx, 8)) {
+      const ids: number[] = [];
+      for (let i = 0; i < type2Array.length; i++) {
+        const id = (i * 8) + idx;
+        ids.push(id);
+      }
+      removeIds(ids);
+      return;
+    }
+    
+    const cells: Cell[] = [];
+    for (let i = 0; i < type2Array.length; i++) {
+      const id = (i * 8) + idx;
+      const finded = selected.find(f => f.id === id);
+      if (!finded) {
+        cells.push({
+          id,
+          x: k,
+          y: i + 1,
+        });
+      }
+    }
+    addMore(cells);
+  }
+
+  const verticalLabelHandler = (k: Type2Edge, idx: number) => {
+    if (findedAllX(selected, idx, 8)) {
+      const ids: number[] = [];
+      for (let i = 0; i < type2Array.length; i++) {
+        const id = (idx * 8) + i;
+        ids.push(id);
+      }
+      removeIds(ids);
+      return;
+    }
+    
+    const cells: Cell[] = [];
+    
+    for (let i = 0; i < type2Array.length; i++) {
+      const id = (idx * 8) + i;
+      const finded = selected.find(f => f.id === id);
+      if (!finded) {
+        cells.push({
+          id,
+          x: i + 1,
+          y: k,
+        });
+      }
+    }
+    addMore(cells);
+  }
+
+  const includes = (c: Cell) => {
+    const finded = selected.find(f => f.id === c.id);
+    if (finded) {
+      return true;
+    } else {
+      return false
+    }
+  }
 
   return (
     <div className={styles.tableType2}>
       <div className={styles.horizontalLabelType2}>
-        {type2Array.map((k) => (dices2Table[k](k)))}
+        {type2Array.map((k, i) => <div key={k} onClick={() => horizontalLabelHandler(k, i)}>{dices2Table[k](k)}</div>)}
       </div>
       <div className={styles.verticalLabelType2}>
-        {type2Array.map((k) => (<div key={k} className={styles.verticalIcon2}>{dices2Table[k](k)}</div>))}
+        {type2Array.map((k, i) => (<div key={k} onClick={() => verticalLabelHandler(k, i)} className={styles.verticalIcon2}>{dices2Table[k](k)}</div>))}
       </div>
       <div className={styles.tableWrapperType2}>
         {cells2Array.map((c, i) => (
           <div
             key={i}
-            className={`${styles.cellType2} ${selected.includes(c) ?styles.active : ''}`}
+            className={`${styles.cellType2} ${includes(c) ?styles.active : ''}`}
             onClick={() => add(c)}
           >
             {tableView === 'values' ? `${c.y},${c.x}` : `${c.y + c.x}`}
@@ -278,20 +342,84 @@ const cells3Array = new Array(type3Array.length * type3Array.length).fill(null).
 const TableType3 = ({ tableView }: {tableView: ViewTable}) => {
   const selected = useTable(s => s.selected);
   const add = useTable(s => s.add);
+  const addMore = useTable(s => s.addMore);
+  const removeIds = useTable(s => s.removeIds);
+
+  const horizontalLabelHandler = (k: Type3Edge, idx: number) => {
+    if (findedAllY(selected, idx, 12)) {
+      const ids: number[] = [];
+      for (let i = 0; i < type3Array.length; i++) {
+        const id = (i * 12) + idx;
+        ids.push(id);
+      }
+      removeIds(ids);
+      return;
+    }
+    
+    const cells: Cell[] = [];
+    for (let i = 0; i < type3Array.length; i++) {
+      const id = (i * 12) + idx;
+      const finded = selected.find(f => f.id === id);
+      if (!finded) {
+        cells.push({
+          id,
+          x: k,
+          y: i + 1,
+        });
+      }
+    }
+    addMore(cells);
+  }
+
+  const verticalLabelHandler = (k: Type3Edge, idx: number) => {
+    if (findedAllX(selected, idx, 12)) {
+      const ids: number[] = [];
+      for (let i = 0; i < type3Array.length; i++) {
+        const id = (idx * 12) + i;
+        ids.push(id);
+      }
+      removeIds(ids);
+      return;
+    }
+    
+    const cells: Cell[] = [];
+    
+    for (let i = 0; i < type3Array.length; i++) {
+      const id = (idx * 12) + i;
+      const finded = selected.find(f => f.id === id);
+      if (!finded) {
+        cells.push({
+          id,
+          x: i + 1,
+          y: k,
+        });
+      }
+    }
+    addMore(cells);
+  }
+
+  const includes = (c: Cell) => {
+    const finded = selected.find(f => f.id === c.id);
+    if (finded) {
+      return true;
+    } else {
+      return false
+    }
+  }
 
   return (
     <div className={styles.tableType3}>
       <div className={styles.horizontalLabelType3}>
-        {type3Array.map((k) => (dices3Table[k](k)))}
+        {type3Array.map((k, i) => <div key={k} onClick={() => horizontalLabelHandler(k, i)}>{dices3Table[k](k)}</div>)}
       </div>
       <div className={styles.verticalLabelType3}>
-        {type3Array.map((k) => (<div key={k} className={styles.verticalIcon3}>{dices3Table[k](k)}</div>))}
+        {type3Array.map((k, i) => (<div key={k} onClick={() => verticalLabelHandler(k, i)} className={styles.verticalIcon3}>{dices3Table[k](k)}</div>))}
       </div>
       <div className={styles.tableWrapperType3}>
         {cells3Array.map((c, i) => (
           <div
             key={i}
-            className={`${styles.cellType3} ${selected.includes(c) ?styles.active : ''}`}
+            className={`${styles.cellType3} ${includes(c) ?styles.active : ''}`}
             onClick={() => add(c)}
           >
             {tableView === 'values' ? `${c.y},${c.x}` : `${c.y + c.x}`}
