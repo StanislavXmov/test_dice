@@ -97,11 +97,25 @@ const cells1Array: Cell[] = new Array(type1Array.length * type1Array.length).fil
   })
 });
 
-const findedAll = (cells: Cell[], k: Type1Edge, idx: number) => {
+const findedAllY = (cells: Cell[], idx: number, typeCount: number) => {
   let allFinded = true;
 
   for (let i = 0; i < type1Array.length; i++) {
-    const id = (i * 6) + idx;
+    const id = (i * typeCount) + idx;
+    const findes = cells.find(f => f.id === id);
+    if (!findes) {
+      allFinded = false;
+    }
+  }
+  
+  return allFinded;
+}
+
+const findedAllX = (cells: Cell[], idx: number, typeCount: number) => {
+  let allFinded = true;
+
+  for (let i = 0; i < type1Array.length; i++) {
+    const id = (idx * typeCount) + i;
     const findes = cells.find(f => f.id === id);
     if (!findes) {
       allFinded = false;
@@ -118,7 +132,7 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
   const removeIds = useTable(s => s.removeIds); 
 
   const horizontalLabelHandler = (k: Type1Edge, idx: number) => {
-    if (findedAll(selected, k, idx)) {
+    if (findedAllY(selected, idx, 6)) {
       const ids: number[] = [];
       for (let i = 0; i < type1Array.length; i++) {
         const id = (i * 6) + idx;
@@ -143,6 +157,33 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
     addMore(cells);
   }
 
+  const verticalLabelHandler = (k: Type1Edge, idx: number) => {
+    if (findedAllX(selected, idx, 6)) {
+      const ids: number[] = [];
+      for (let i = 0; i < type1Array.length; i++) {
+        const id = (idx * 6) + i;
+        ids.push(id);
+      }
+      removeIds(ids);
+      return;
+    }
+    
+    const cells: Cell[] = [];
+    
+    for (let i = 0; i < type1Array.length; i++) {
+      const id = (idx * 6) + i;
+      const finded = selected.find(f => f.id === id);
+      if (!finded) {
+        cells.push({
+          id,
+          x: i + 1,
+          y: k,
+        });
+      }
+    }
+    addMore(cells);
+  }
+
   const includes = (c: Cell) => {
     const finded = selected.find(f => f.id === c.id);
     if (finded) {
@@ -158,7 +199,7 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
         {type1Array.map((k, i) => <div key={k} onClick={() => horizontalLabelHandler(k, i)}>{dicesTable[k](k)}</div>)}
       </div>
       <div className={styles.verticalLabelType1}>
-        {type1Array.map((k) => (dicesTable[k](k)))}
+        {type1Array.map((k, i) => <div key={k} onClick={() => verticalLabelHandler(k, i)} className={styles.diceIconWrapper}>{dicesTable[k](k)}</div>)}
       </div>
       <div className={styles.tableWrapperType1}>
         {cells1Array.map((c, i) => (
