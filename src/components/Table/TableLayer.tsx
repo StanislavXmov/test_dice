@@ -1,4 +1,6 @@
 import React, { ChangeEvent, Key, useState } from 'react';
+import { Cell, useTable } from '../../state/useTable';
+import { Button } from '../Button/Button';
 
 import styles from './Table.module.scss';
 
@@ -30,7 +32,6 @@ import Dice3_9 from '../icons/dice12_9.svg?react';
 import Dice3_10 from '../icons/dice12_10.svg?react';
 import Dice3_11 from '../icons/dice12_11.svg?react';
 import Dice3_12 from '../icons/dice12_12.svg?react';
-import { Cell, useTable } from '../../state/useTable';
 
 const dicesTable = {
   1: (key: Key) => <Dice1 className={styles.diceIconTable} key={key} />,
@@ -492,6 +493,15 @@ const Table = () => {
               )}
           </div>
         </div>
+      </div>
+      <div className={`${styles.checkWrapper} ${type === 8 ? styles.checkWrapperMarginType2 : ''} ${type === 12 ? styles.checkWrapperMarginType3 : ''}`}>
+        <Button
+          title='Проверить'
+          disabled={false}
+          cb={() => console.log('Проверить')}
+          setDisabled={() => {}}
+          timeout={1000}
+        />
       </div>
     </>
   );
