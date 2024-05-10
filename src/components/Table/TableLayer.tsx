@@ -1,5 +1,5 @@
-import React, { ChangeEvent, Key, useState } from 'react';
-import { Cell, useTable } from '../../state/useTable';
+import { ChangeEvent, Key, useState } from 'react';
+import { Cell, Edge, useTable } from '../../state/useTable';
 import { Button } from '../Button/Button';
 
 import styles from './Table.module.scss';
@@ -74,12 +74,12 @@ const toCaseCount = (arg: number) => {
   return titles[(arg % 100 > 4 && arg % 100 < 20) ? 2 : cases[Math.min(arg % 10, 5)]];
 }
 
-type Edge = 6 | 8 | 12;
-
 type ViewTable = 'values' | 'sum';
 
 const information = {
-  task: 'Бросили два шестигранных кубика. Выделите в таблице ячейки, которые соответсвуют условию сумма на выпавших гранях больше 7.'
+  '6': 'Бросили два шестигранных кубика. Выделите в таблице ячейки, которые соответсвуют условию сумма на выпавших гранях больше 7.',
+  '8': 'Бросили два восьмигранных кубика. Выделите в таблице ячейки, которые соответсвуют условию сумма на выпавших гранях больше 7.',
+  '12': 'Бросили два 12-гранных кубика. Выделите в таблице ячейки, которые соответсвуют условию сумма на выпавших гранях больше 7.',
 }
 
 type Type1Edge = 1|2|3|4|5|6;
@@ -432,13 +432,13 @@ const TableType3 = ({ tableView }: {tableView: ViewTable}) => {
 }
 
 const Table = () => {
-  const [type, setType] = useState<Edge>(6);
   const [tableView, setTableView] = useState<ViewTable>('values');
+  const type = useTable(s => s.type);
+  const setType = useTable(s => s.setType);
   const selected = useTable(s => s.selected);
   const clear = useTable(s => s.clear);
   console.log(selected);
   
-
   const selectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     setType(Number(e.target.value) as Edge);
     clear();
@@ -507,13 +507,22 @@ const Table = () => {
   );
 }
 
+const TableDesc = () => {
+  const type = useTable(s => s.type);
+  return (
+    <div className={styles.desc}>
+      {type === 6 && information[6]}
+      {type === 8 && information[8]}
+      {type === 12 && information[12]}
+    </div>
+  );
+}
+
 export const TableLayer = () => {
   return (
     <div className={styles.layer}>
       <h2 className={styles.title}>Задача</h2>
-      <div className={styles.desc}>
-        {information.task}
-      </div>
+      <TableDesc />
       <h2 className={styles.title}>Таблица исходов</h2>
       <div>
         <Table />

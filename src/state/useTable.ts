@@ -7,15 +7,21 @@ export type Cell = {
   id: number;
 }
 
+export type Edge = 6 | 8 | 12;
+
 interface ValueState {
   selected: Cell[];
   add: (v: Cell) => void;
   addMore: (v: Cell[]) => void;
   removeIds: (ids: number[]) => void;
   clear: () => void;
+  type: Edge;
+  setType: (v: Edge) => void;
 }
 
 export const useTable = create<ValueState>()(subscribeWithSelector(set => ({
+  type: 6,
+  setType: (v) => set(() => ({type: v})),
   selected: [],
   add: (v) => set(((s) => {
     const finded = s.selected.find(f => f.id === v.id);
