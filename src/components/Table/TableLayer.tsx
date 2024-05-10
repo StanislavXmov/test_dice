@@ -439,11 +439,12 @@ const TableType3 = ({ tableView }: {tableView: ViewTable}) => {
 
 const Table = () => {
   const [tableView, setTableView] = useState<ViewTable>('values');
+  const [disabled, setDisabled] = useState(false);
   const type = useTable(s => s.type);
   const setType = useTable(s => s.setType);
   const selected = useTable(s => s.selected);
   const clear = useTable(s => s.clear);
-  console.log(selected);
+  // console.log(selected);
   
   const selectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     setType(Number(e.target.value) as Edge);
@@ -452,6 +453,29 @@ const Table = () => {
 
   const selectTableViewHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     setTableView(e.target.value as ViewTable);
+  }
+
+  const checkHandler = () => {
+    let finded = true;
+    const answerList = answer[type];
+
+    if (answerList.length !== selected.length) {
+      finded = false;
+      console.log('checkHandler', finded);
+      return;
+    }
+
+    for (let i = 0; i < answerList.length; i++) {
+      const id = answerList[i];
+      if (selected.find(c => c.id === id)) {
+        continue;
+      } else {
+        finded = false;
+        break;
+      } 
+    }
+
+    console.log('checkHandler', finded);
   }
 
   return (
@@ -503,9 +527,9 @@ const Table = () => {
       <div className={`${styles.checkWrapper} ${type === 8 ? styles.checkWrapperMarginType2 : ''} ${type === 12 ? styles.checkWrapperMarginType3 : ''}`}>
         <Button
           title='Проверить'
-          disabled={false}
-          cb={() => console.log('Проверить')}
-          setDisabled={() => {}}
+          disabled={disabled}
+          cb={checkHandler}
+          setDisabled={setDisabled}
           timeout={1000}
         />
       </div>
