@@ -6,6 +6,7 @@ import { DiceLayer1 } from './components/Dices/Layers/DiceLayer1';
 import { TableLayer } from './components/Table/TableLayer';
 import { CoinLayer2 } from './components/Coins/Layers/CoinLayer2';
 import { DiceLayer2 } from './components/Dices/Layers/DiceLayer2';
+import { DiceSeries } from './components/Coins/Series/Series';
 
 import styles from './App.module.scss';
 
@@ -17,7 +18,8 @@ function App() {
         {/* <CoinLayer2 /> */}
         {/* <DiceLayer1 /> */}
         {/* <DiceLayer2 /> */}
-        <TableLayer />
+        {/* <TableLayer /> */}
+        <DiceSeries />
       </div>
     </>
   );
