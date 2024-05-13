@@ -440,6 +440,9 @@ const TableType3 = ({ tableView }: {tableView: ViewTable}) => {
 const Table = () => {
   const [tableView, setTableView] = useState<ViewTable>('values');
   const [disabled, setDisabled] = useState(false);
+
+  const [valueAnswer, setValueAnswer] = useState(false);
+
   const type = useTable(s => s.type);
   const setType = useTable(s => s.setType);
   const selected = useTable(s => s.selected);
@@ -461,7 +464,7 @@ const Table = () => {
 
     if (answerList.length !== selected.length) {
       finded = false;
-      console.log('checkHandler', finded);
+      setValueAnswer(finded);
       return;
     }
 
@@ -475,7 +478,7 @@ const Table = () => {
       } 
     }
 
-    console.log('checkHandler', finded);
+    setValueAnswer(finded);
   }
 
   return (
@@ -526,7 +529,8 @@ const Table = () => {
       </div>
       <div className={`${styles.checkWrapper} ${type === 8 ? styles.checkWrapperMarginType2 : ''} ${type === 12 ? styles.checkWrapperMarginType3 : ''}`}>
         <Button
-          title='Проверить'
+          // test
+          title={`Проверить${valueAnswer ? ' верно' : ''}`}
           disabled={disabled}
           cb={checkHandler}
           setDisabled={setDisabled}
