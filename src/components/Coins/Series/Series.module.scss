@@ -29,3 +29,48 @@
   gap: 24px;
   margin: 12px 0px 0px 0px;
 }
+
+.listWrapper {
+  margin: 12px 0px 0px 0px;
+  padding: 6px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: 200px;
+
+  border-top: 1px solid #00000020;
+  border-bottom: 1px solid #00000020;
+  overflow-y: scroll;
+}
+
+.list {
+  padding: 3px;
+  height: 22px;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.activeList {
+  background: #09CA9B20;
+}
+
+.itemsWrapper {
+  display: flex;
+  gap: 4px;
+}
+
+.coinIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.listInfo {
+  margin: 0px 12px 0px 0px;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+
+}

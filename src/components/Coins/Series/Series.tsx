@@ -1,19 +1,30 @@
 import { useState } from 'react';
 import { LengthRange } from './components/Range/LengthRange';
 import { SerialsRange } from './components/Range/SerialsRange';
-import { useDiceSeries } from '../../../state/useDiceSeries';
+import { Coin, useCoinSeries } from '../../../state/useCoinSeries';
 import { Button } from '../../Button/Button';
 import { EventSelect } from './components/Select/EventSelect';
 import { KSelect } from './components/Select/KSelect';
 
+import Coin1 from '../../icons/coin_1.svg?react';
+import Coin2 from '../../icons/coin_2.svg?react';
+
 import styles from './Series.module.scss';
+
+const test: Coin[] = [
+  '5',
+  'OREL',
+  '5',
+  '5',
+  '5'
+];
 
 export const DiceSeries = () => {
   const [disabled, setDisabled] = useState(false);
-  const length = useDiceSeries(s => s.length);
-  const seriesN = useDiceSeries(s => s.seriesN);
-  const event = useDiceSeries(s => s.event);
-  const k = useDiceSeries(s => s.k);
+  const length = useCoinSeries(s => s.length);
+  const seriesN = useCoinSeries(s => s.seriesN);
+  const event = useCoinSeries(s => s.event);
+  const k = useCoinSeries(s => s.k);
 
   const startHandler = () => {
     console.log('START');
@@ -48,6 +59,25 @@ export const DiceSeries = () => {
           <KSelect />
         </div>
       </div>
+      <div className={styles.listWrapper}>
+        {/* test */}
+        <div className={`${styles.list} ${styles.activeList}`}>
+          <div className={styles.itemsWrapper}>
+            {test.map((c, i) => (
+              <div key={i}>
+                {c === 'OREL' ? <Coin1 className={styles.coinIcon} /> : <Coin2 className={styles.coinIcon} />}
+              </div>
+            ))}
+          </div>
+          <span className={styles.listInfo}>успешная серия</span>
+        </div>
+      </div>
     </div>
   )
+}
+
+const coins = {
+  'OREL': <Coin1 className={styles.coinIcon} />,
+  '5': <Coin2 className={styles.coinIcon} />,
+  '?': <span className={styles.coinIcon} >?</span>,
 }

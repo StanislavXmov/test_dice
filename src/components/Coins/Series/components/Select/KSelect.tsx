@@ -1,11 +1,11 @@
 import { ChangeEvent } from 'react';
-import { useDiceSeries } from '../../../../../state/useDiceSeries';
+import { useCoinSeries } from '../../../../../state/useCoinSeries';
 
 import styles from './Select.module.scss'
 
 export const KSelect = () => {
-  const setK = useDiceSeries(s => s.setK);
-  const length = useDiceSeries(s => s.length);
+  const setK = useCoinSeries(s => s.setK);
+  const length = useCoinSeries(s => s.length);
 
   const selectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     setK(Number(e.target.value));

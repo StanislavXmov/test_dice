@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 
-import { Length, useDiceSeries } from '../../../../../state/useDiceSeries';
+import { Length, useCoinSeries } from '../../../../../state/useCoinSeries';
 
 import styles from './Range.module.scss';
 
@@ -13,7 +13,7 @@ const labes = [
 
 export const LengthRange = () => {
   const [value, setValue] = useState(0);
-  const setLength = useDiceSeries(s => s.setLength);
+  const setLength = useCoinSeries(s => s.setLength);
 
   const handler = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(Number(e.target.value));

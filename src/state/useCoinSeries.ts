@@ -5,7 +5,7 @@ export type Coin = 'OREL' | '5';
 
 export type Length = 5 | 10 | 15;
 
-interface DiceSeriesState {
+interface CoinSeriesState {
   length: Length;
   setLength: (v: Length) => void;
   seriesN: number;
@@ -18,7 +18,7 @@ interface DiceSeriesState {
 
 
 
-export const useDiceSeries = create<DiceSeriesState>()(subscribeWithSelector(set => ({
+export const useCoinSeries = create<CoinSeriesState>()(subscribeWithSelector(set => ({
   length: 5,
   setLength: (v) => set(() => ({length: v})),
   seriesN: 2,

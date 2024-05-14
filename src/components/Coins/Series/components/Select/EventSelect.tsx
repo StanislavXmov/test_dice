@@ -1,10 +1,10 @@
 import { ChangeEvent } from 'react';
-import { Coin, useDiceSeries } from '../../../../../state/useDiceSeries';
+import { Coin, useCoinSeries } from '../../../../../state/useCoinSeries';
 
 import styles from './Select.module.scss'
 
 export const EventSelect = () => {
-  const setEvent = useDiceSeries(s => s.setEvent);
+  const setEvent = useCoinSeries(s => s.setEvent);
   const selectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     setEvent(e.target.value as Coin);
   }
