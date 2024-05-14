@@ -4,6 +4,7 @@ import { SerialsRange } from './components/Range/SerialsRange';
 import { useDiceSeries } from '../../../state/useDiceSeries';
 import { Button } from '../../Button/Button';
 import { EventSelect } from './components/Select/EventSelect';
+import { KSelect } from './components/Select/KSelect';
 
 import styles from './Series.module.scss';
 
@@ -12,6 +13,7 @@ export const DiceSeries = () => {
   const length = useDiceSeries(s => s.length);
   const seriesN = useDiceSeries(s => s.seriesN);
   const event = useDiceSeries(s => s.event);
+  const k = useDiceSeries(s => s.k);
 
   const startHandler = () => {
     console.log('START');
@@ -19,7 +21,7 @@ export const DiceSeries = () => {
 
   return (
     <div className={styles.wrapper}>
-      {`length: ${length}, seriesN: ${seriesN}, event: ${event}`}
+      {`length: ${length}, seriesN: ${seriesN}, event: ${event}, k: ${k}`}
       <h2 className={styles.title}>Серии бросков монеты</h2>
       <div className={styles.controllWrapper}>
         <div>
@@ -41,6 +43,9 @@ export const DiceSeries = () => {
       <div className={styles.controllWrapper}>
         <div>
           <EventSelect />
+        </div>
+        <div>
+          <KSelect />
         </div>
       </div>
     </div>

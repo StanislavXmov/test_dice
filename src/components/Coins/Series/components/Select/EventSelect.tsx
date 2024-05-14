@@ -9,10 +9,10 @@ export const EventSelect = () => {
     setEvent(e.target.value as Coin);
   }
   return (
-    <label className={styles.label} htmlFor="selectType">
+    <label className={styles.label} htmlFor="EventSelect">
       Событие:
       <select
-        id='selectType'
+        id='EventSelect'
         className={styles.select}
         onChange={selectHandler}
         defaultValue={'5'}
