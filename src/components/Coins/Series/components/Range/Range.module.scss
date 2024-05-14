@@ -144,6 +144,44 @@ input[type=range]:focus::-ms-fill-upper {
   transform: translateX(-50%);
 }
 
+.labelSerialsValue0 {
+  position: absolute;
+  left: 0px;
+  top: 0;
+  transform: translateX(0);
+}
+
+.labelSerialsValue1 {
+  position: absolute;
+  left: calc(144px / 5 + 2px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelSerialsValue2 {
+  position: absolute;
+  left: calc(144px / 5 * 2 + 1px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelSerialsValue3 {
+  position: absolute;
+  left: calc(144px / 5 * 3 - 1px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelSerialsValue4 {
+  position: absolute;
+  left: calc(144px / 5 * 4 - 2px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelSerialsValue5 {
+  position: absolute;
+  left: calc(144px / 5 * 5 - 3px);
+  top: 0;
+  transform: translateX(-50%);
+}
+
 .labelValue0 {
   position: absolute;
   left: 0px;
