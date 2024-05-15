@@ -22,13 +22,20 @@ const factorial = (n: number): number => {
   }
 }
 
-const test: Coin[] = [
-  '5',
-  'OREL',
-  '5',
-  '5',
-  '5'
-];
+const match = (event: Coin, k: number, list: Coin[]) => {
+  let count = 0;
+  list.forEach(c => {
+    if (c === event) {
+      count++;
+    }
+  });
+
+  if (count >= k) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 export const DiceSeries = () => {
   const [disabled, setDisabled] = useState(false);
@@ -91,7 +98,7 @@ export const DiceSeries = () => {
       </div>
       <div className={styles.listWrapper}>
         {series.map((s, i) => (
-          <div key={i} className={`${styles.list} ${''}`}>
+          <div key={i} className={`${styles.list} ${match(event, k, s) ? styles.activeList : ''}`}>
             <div className={styles.itemsWrapper}>
               {s.map((c, i) => (
                 <div key={i}>
@@ -99,20 +106,9 @@ export const DiceSeries = () => {
                 </div>
               ))}
             </div>
-            {/* <span className={styles.listInfo}>успешная серия</span> */}
+            {match(event, k, s) && <span className={styles.listInfo}>успешная серия</span>}
           </div>
         ))}
-        
-        {/* <div className={`${styles.list} ${styles.activeList}`}>
-          <div className={styles.itemsWrapper}>
-            {test.map((c, i) => (
-              <div key={i}>
-                {c === 'OREL' ? <Coin1 className={styles.coinIcon} /> : <Coin2 className={styles.coinIcon} />}
-              </div>
-            ))}
-          </div>
-          <span className={styles.listInfo}>успешная серия</span>
-        </div> */}
       </div>
       <div className={styles.infoWrapper}>
         <div>
