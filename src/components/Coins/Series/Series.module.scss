@@ -74,3 +74,37 @@
   text-align: left;
 
 }
+
+.infoWrapper {
+  margin: 12px 0px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoLabel {
+  width: 210px;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+}
+
+.info span {
+  font-family: serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: center;
+  font-style: italic;
+}
+
+sub {
+  // vertical-align: bottom;
+  position: relative;
+  left: -7px;
+}
+
+sub, sup {
+  font-size: 10px;
+}

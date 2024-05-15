@@ -11,6 +11,16 @@ import Coin2 from '../../icons/coin_2.svg?react';
 
 import styles from './Series.module.scss';
 
+const factorial = (n: number): number => {
+  if (n < 0) {
+    return -1;
+  } else if (n === 0) {
+    return 1;
+  } else {
+    return n * factorial(n - 1);
+  }
+}
+
 const test: Coin[] = [
   '5',
   'OREL',
@@ -72,12 +82,25 @@ export const DiceSeries = () => {
           <span className={styles.listInfo}>успешная серия</span>
         </div>
       </div>
+      <div className={styles.infoWrapper}>
+        <div>
+          <div className={styles.infoLabel}>
+            Теоретическая вероятность события по формуле Бернулли
+          </div>
+          <div className={styles.info}>
+            <span>P{' '}<sup>k</sup><sub>n</sub>={' '}</span><span>P{' '}<sup>5</sup><sub>10</sub>={' '}</span>
+            <span>C{' '}<sup>5</sup><sub>10</sub></span><span>0.5<sup>5</sup></span><span>0.5<sup>10 - 5</sup>≈{' '}0.26</span>
+          </div>
+        </div>
+        <div>
+          <div className={styles.infoLabel}>
+            Доля успешных серий в эксперименте
+          </div>
+          <div className={styles.info}>
+            <span>P{' '}<sub>эксп</sub>={' '}</span><span>0 / 2 ={' '}0</span>
+          </div>
+        </div>
+      </div>
     </div>
   )
-}
-
-const coins = {
-  'OREL': <Coin1 className={styles.coinIcon} />,
-  '5': <Coin2 className={styles.coinIcon} />,
-  '?': <span className={styles.coinIcon} >?</span>,
 }
