@@ -2,7 +2,7 @@ import { useState } from 'react';
 import random from 'random';
 import { LengthRange } from './components/Range/LengthRange';
 import { SerialsRange } from './components/Range/SerialsRange';
-import { Coin, useCoinSeries } from '../../../state/useCoinSeries';
+import { Coin, Length, useCoinSeries } from '../../../state/useCoinSeries';
 import { Button } from '../../Button/Button';
 import { EventSelect } from './components/Select/EventSelect';
 import { KSelect } from './components/Select/KSelect';
@@ -20,6 +20,11 @@ const factorial = (n: number): number => {
   } else {
     return n * factorial(n - 1);
   }
+}
+
+const calc = (k: number, n: Length) => {
+  const c = factorial(n) / (factorial(k) * factorial(n - k));
+  return c * Math.pow(0.5, k) * Math.pow(0.5, n - k);
 }
 
 const match = (event: Coin, k: number, list: Coin[]) => {
@@ -116,8 +121,33 @@ export const DiceSeries = () => {
             Теоретическая вероятность события по формуле Бернулли
           </div>
           <div className={styles.info}>
-            <span>P{' '}<sup>k</sup><sub>n</sub>={' '}</span><span>P{' '}<sup>5</sup><sub>10</sub>={' '}</span>
-            <span>C{' '}<sup>5</sup><sub>10</sub></span><span>0.5<sup>5</sup></span><span>0.5<sup>10 - 5</sup>≈{' '}0.26</span>
+            <span className={styles.d} style={{width: '24px'}}>
+              <span className={styles.dValue}>P</span>
+              <span className={styles.sup}>k</span>
+              <span className={styles.sub}>n</span>
+            </span>
+            <span style={{width: '16px'}}>=</span>
+            <span className={styles.d} style={{width: length >= 10 ? '28px' : '24px'}}>
+              <span className={styles.dValue}>P</span>
+              <span className={styles.sup}>{k}</span>
+              <span className={styles.sub}>{length}</span>
+            </span>
+            <span style={{width: '16px'}}>=</span>
+            <span className={styles.d} style={{width: length >= 10 ? '28px' : '24px'}}>
+              <span className={styles.dValue}>C</span>
+              <span className={styles.sup}>{k}</span>
+              <span className={styles.sub}>{length}</span>
+            </span>
+            <span className={styles.value}>0.5</span>
+            <span className={styles.dWithoutValue} style={{width: k >= 10 ? '16px' : '12px'}}>
+              <span className={styles.supWithoutValue}>{k}</span>
+            </span>
+            <span className={styles.value}>0.5</span>
+            <span className={styles.dWithoutValue} style={{width: k >= 10 ? '16px' : '12px'}}>
+              <span className={styles.supWithoutValue}>{`${length} - ${k}`}</span>
+            </span>
+            <span style={{width: (k >= 10 || length >= 10) ? '28px' : '22px', textAlign: 'right', marginRight: '4px'}}>≈</span>
+            <span className={styles.value}>{calc(k, length).toFixed(2)}</span>
           </div>
         </div>
         <div>
