@@ -72,9 +72,19 @@ export const DiceSeries = () => {
     setSeries(seriesList);
   }
 
+  const findedMatch = () => {
+    let counter = 0;
+    series.forEach(s => {
+      if (match(event, k, s)) {
+        counter++;
+      }
+    });
+    return counter;
+  }
+
   return (
     <div className={styles.wrapper}>
-      {`length: ${length}, seriesN: ${seriesN}, event: ${event}, k: ${k}`}
+      {/* {`length: ${length}, seriesN: ${seriesN}, event: ${event}, k: ${k}`} */}
       <h2 className={styles.title}>Серии бросков монеты</h2>
       <div className={styles.controllWrapper}>
         <div>
@@ -155,7 +165,11 @@ export const DiceSeries = () => {
             Доля успешных серий в эксперименте
           </div>
           <div className={styles.info}>
-            <span>P{' '}<sub>эксп</sub>={' '}</span><span>0 / 2 ={' '}0</span>
+            <span className={styles.d} style={{width: length >= 10 ? '28px' : '24px'}}>
+              <span className={styles.dValue}>P</span>
+              <span className={styles.sub}>{'эксп'}</span>
+            </span>
+            <span className={styles.value} style={{width: '20px', textAlign: 'right', marginRight: '4px'}}>=</span><span className={styles.value}>{findedMatch()} / {series.length} ={' '}{findedMatch() / series.length}</span>
           </div>
         </div>
       </div>
