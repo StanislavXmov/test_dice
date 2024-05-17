@@ -35,7 +35,7 @@ const match = (event: Coin, k: number, list: Coin[]) => {
     }
   });
 
-  if (count >= k) {
+  if (count === k) {
     return true;
   } else {
     return false;
@@ -69,7 +69,11 @@ export const DiceSeries = () => {
       seriesList.push(list);
     }
 
-    setSeries(seriesList);
+    setSeries([]);
+
+    setTimeout(() => {
+      setSeries(seriesList);
+    }, 500);
   }
 
   const findedMatch = () => {
@@ -100,7 +104,7 @@ export const DiceSeries = () => {
           disabled={disabled}
           cb={startHandler}
           setDisabled={setDisabled}
-          timeout={1000}
+          timeout={500}
         />
       </div>
       <div className={styles.controllWrapper}>
@@ -169,7 +173,13 @@ export const DiceSeries = () => {
               <span className={styles.dValue}>P</span>
               <span className={styles.sub}>{'эксп'}</span>
             </span>
-            <span className={styles.value} style={{width: '20px', textAlign: 'right', marginRight: '4px'}}>=</span><span className={styles.value}>{findedMatch()} / {series.length} ={' '}{findedMatch() / series.length}</span>
+            <span className={styles.value} style={{width: '20px', textAlign: 'right', marginRight: '4px'}}>=</span>
+            {findedMatch() > 0 && (
+              <span className={styles.value}>{findedMatch()} / {series.length} ={' '}{findedMatch() / series.length}</span>
+            )}
+            {findedMatch() === 0 && (
+              <span className={styles.value}>0</span>
+            )}
           </div>
         </div>
       </div>

@@ -22,7 +22,8 @@ interface CoinSeriesState {
 
 export const useCoinSeries = create<CoinSeriesState>()(subscribeWithSelector(set => ({
   series: [],
-  setSeries: (v) => set((s) => ({series: [...s.series, ...v]})),
+  // setSeries: (v) => set((s) => ({series: [...s.series, ...v]})),
+  setSeries: (v) => set((s) => ({series: [...v]})),
   length: 5,
   setLength: (v) => set(() => ({length: v})),
   seriesN: 2,
