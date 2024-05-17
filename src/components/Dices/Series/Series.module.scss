@@ -1,0 +1,161 @@
+.wrapper {
+  width: 640px;
+  height: 480px;
+  padding: 24px;
+
+  border: 1px solid #000000;
+}
+
+.title {
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29.05px;
+  text-align: left;
+
+}
+
+.subTitle {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+
+}
+
+.controllWrapper {
+  display: flex;
+  gap: 24px;
+  margin: 12px 0px 0px 0px;
+}
+
+.listWrapper {
+  margin: 12px 0px 0px 0px;
+  padding: 6px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: 200px;
+
+  border-top: 1px solid #00000020;
+  border-bottom: 1px solid #00000020;
+  overflow-y: scroll;
+}
+
+.list {
+  padding: 3px;
+  height: 22px;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.activeList {
+  background: #09CA9B20;
+}
+
+.itemsWrapper {
+  display: flex;
+  gap: 4px;
+}
+
+.coinIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.listInfo {
+  margin: 0px 12px 0px 0px;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+
+}
+
+.infoWrapper {
+  margin: 12px 0px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoLabel {
+  margin: 0px 0px 6px;
+  width: 210px;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+}
+
+.info {
+  height: 24px;
+  display: flex;
+  font-family: serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14.52px;
+  font-style: italic;
+}
+
+.d {
+  display: block;
+  position: relative;
+  height: 16px;
+  text-align: left;
+}
+
+.dValue {
+  position: absolute;
+  font-family: serif;
+  font-style: italic;
+}
+
+.dWithoutValue {
+  display: block;
+  position: relative;
+  height: 16px;
+  text-align: left;
+}
+
+.value {
+  font-family: serif;
+  font-style: italic;
+}
+
+.sup {
+  position: absolute;
+  top: -6px;
+  left: 12px;
+  font-size: 12px;
+  font-family: serif;
+  font-style: italic;
+}
+
+.supWithoutValue {
+  width: max-content;
+  position: absolute;
+  top: -6px;
+  left: 2px;
+  font-size: 12px;
+  font-family: serif;
+  font-style: italic;
+}
+
+.sub {
+  position: absolute;
+  bottom: -2px;
+  left: 12px;
+  font-size: 12px;
+  font-family: serif;
+  font-style: italic;
+}
+
+sup {
+  vertical-align: bottom;
+  position: relative;
+  left: -7px;
+}

@@ -1,0 +1,231 @@
+
+
+.inputWraper {
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  width: 156px;
+  height: 32px;
+  position: relative;
+
+  // border: 1px solid #000;
+}
+
+.line {
+  display: block;
+  width: 6px;
+  height: 1px;
+  background-color: #000;
+}
+
+input[type=range] {
+  height: 25px;
+  -webkit-appearance: none;
+  width: 144px;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 1px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #000000;
+  border-radius: 1px;
+  border: 0px solid #000000;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #000000;
+  height: 7px;
+  width: 7px;
+  border-radius: 25px;
+  background: #000000;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -3px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #000000;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #000000;
+  border-radius: 1px;
+  border: 0px solid #000000;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #000000;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #A1D0FF;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #000000;
+  border: 0px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-fill-upper {
+  background: #000000;
+  border: 0px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #000000;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #A1D0FF;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #000000;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #000000;
+}
+
+.label {
+  position: absolute;
+  left: 0px;
+  top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 144px;
+}
+
+.labelValue {
+  font-family: Inter;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: center;
+  opacity: 0.2;
+}
+
+.labelLengthValue0 {
+  position: absolute;
+  left: 0px;
+  top: 0;
+  transform: translateX(0);
+}
+.labelLengthValue1 {
+  position: absolute;
+  left: calc(144px / 2);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelLengthValue2 {
+  position: absolute;
+  left: calc(144px - 4px);
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.labelSerialsValue0 {
+  position: absolute;
+  left: 0px;
+  top: 0;
+  transform: translateX(0);
+}
+
+.labelSerialsValue1 {
+  position: absolute;
+  left: calc(144px / 5 + 2px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelSerialsValue2 {
+  position: absolute;
+  left: calc(144px / 5 * 2 + 1px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelSerialsValue3 {
+  position: absolute;
+  left: calc(144px / 5 * 3 - 1px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelSerialsValue4 {
+  position: absolute;
+  left: calc(144px / 5 * 4 - 2px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelSerialsValue5 {
+  position: absolute;
+  left: calc(144px / 5 * 5 - 3px);
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.labelValue0 {
+  position: absolute;
+  left: 0px;
+  top: 0;
+  transform: translateX(0);
+}
+.labelValue1 {
+  position: absolute;
+  left: calc(144px / 2);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelValue2 {
+  position: absolute;
+  left: calc(144px - 4px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelValue3 {
+  position: absolute;
+  left: calc(144px / 6 * 3 - 0px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelValue4 {
+  position: absolute;
+  left: calc(144px / 6 * 4 - 2px);
+  top: 0;
+  transform: translateX(-50%);
+}
+.labelValue5 {
+  position: absolute;
+  left: calc(144px / 6 * 5 - 3px);
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.labelValue6 {
+  position: absolute;
+  left: calc(144px / 6 * 6 - 2px);
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.labelActive {
+  opacity: 1;
+}

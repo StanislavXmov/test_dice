@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import random from 'random';
+import { Length, useDiceSeries } from '../../../state/useDiceSeries';
 import { LengthRange } from './components/Range/LengthRange';
 import { SerialsRange } from './components/Range/SerialsRange';
-import { Coin, Length, useCoinSeries } from '../../../state/useCoinSeries';
 import { Button } from '../../Button/Button';
 import { EventSelect } from './components/Select/EventSelect';
 import { KSelect } from './components/Select/KSelect';
@@ -11,6 +11,7 @@ import Coin1 from '../../icons/coin_1.svg?react';
 import Coin2 from '../../icons/coin_2.svg?react';
 
 import styles from './Series.module.scss';
+import { EdgeSelect } from './components/Select/EdgeSelect';
 
 const factorial = (n: number): number => {
   if (n < 0) {
@@ -27,44 +28,47 @@ const calc = (k: number, n: Length) => {
   return c * Math.pow(0.5, k) * Math.pow(0.5, n - k);
 }
 
-const match = (event: Coin, k: number, list: Coin[]) => {
-  let count = 0;
-  list.forEach(c => {
-    if (c === event) {
-      count++;
-    }
-  });
+// const match = (event: Coin, k: number, list: Coin[]) => {
+//   let count = 0;
+//   list.forEach(c => {
+//     if (c === event) {
+//       count++;
+//     }
+//   });
 
-  if (count === k) {
-    return true;
-  } else {
-    return false;
-  }
-}
+//   if (count === k) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
-export const CoinSeries = () => {
+const match = () => true;
+
+export const DiceSeries = () => {
   const [disabled, setDisabled] = useState(false);
-  const length = useCoinSeries(s => s.length);
-  const seriesN = useCoinSeries(s => s.seriesN);
-  const event = useCoinSeries(s => s.event);
-  const k = useCoinSeries(s => s.k);
-  const series = useCoinSeries(s => s.series);
-  const setSeries = useCoinSeries(s => s.setSeries);
+  const edge = useDiceSeries(s => s.edge);
+  const length = useDiceSeries(s => s.length);
+  const seriesN = useDiceSeries(s => s.seriesN);
+  const event = useDiceSeries(s => s.event);
+  const k = useDiceSeries(s => s.k);
+  const series = useDiceSeries(s => s.series);
+  const setSeries = useDiceSeries(s => s.setSeries);
 
   console.log(series);
   
 
   const startHandler = () => {
-    const seriesList: Coin[][] = [];
+    const seriesList: number[][] = [];
     for (let i = 0; i < seriesN; i++) {
-      const list: Coin[] = [];
+      const list: number[] = [];
       for (let j = 0; j < length; j++) {
-        const n = random.int(0, 1);
-        if (n === 1) {
-          list.push('OREL');
-        } else {
-          list.push('5');
-        }
+        // const n = random.int(0, 1);
+        // if (n === 1) {
+        //   list.push('OREL');
+        // } else {
+        //   list.push('5');
+        // }
       }
       seriesList.push(list);
     }
@@ -79,18 +83,19 @@ export const CoinSeries = () => {
   const findedMatch = () => {
     let counter = 0;
     series.forEach(s => {
-      if (match(event, k, s)) {
-        counter++;
-      }
+      // if (match(event, k, s)) {
+      //   counter++;
+      // }
     });
     return counter;
   }
 
   return (
     <div className={styles.wrapper}>
-      {/* {`length: ${length}, seriesN: ${seriesN}, event: ${event}, k: ${k}`} */}
-      <h2 className={styles.title}>Серии бросков монеты</h2>
+      {`edge: ${edge},length: ${length}, seriesN: ${seriesN}, event: ${event}, k: ${k}`}
+      <h2 className={styles.title}>Серии бросков кубика</h2>
       <div className={styles.controllWrapper}>
+        <EdgeSelect />
         <div>
           <h3 className={styles.subTitle}>Длина серии n</h3>
           <LengthRange />
@@ -117,15 +122,15 @@ export const CoinSeries = () => {
       </div>
       <div className={styles.listWrapper}>
         {series.map((s, i) => (
-          <div key={i} className={`${styles.list} ${match(event, k, s) ? styles.activeList : ''}`}>
+          <div key={i} className={`${styles.list} ${match() ? styles.activeList : ''}`}>
             <div className={styles.itemsWrapper}>
               {s.map((c, i) => (
                 <div key={i}>
-                  {c === 'OREL' ? <Coin1 className={styles.coinIcon} /> : <Coin2 className={styles.coinIcon} />}
+                  {/* {c === 'OREL' ? <Coin1 className={styles.coinIcon} /> : <Coin2 className={styles.coinIcon} />} */}
                 </div>
               ))}
             </div>
-            {match(event, k, s) && <span className={styles.listInfo}>успешная серия</span>}
+            {/* {match(event, k, s) && <span className={styles.listInfo}>успешная серия</span>} */}
           </div>
         ))}
       </div>
