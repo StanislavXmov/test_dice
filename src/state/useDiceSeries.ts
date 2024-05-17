@@ -20,6 +20,8 @@ interface DiceSeriesState {
   setEvent: (v: EventDice) => void;
   k: number;
   setK: (v: number) => void;
+  point: number;
+  setPoint: (v: number) => void;
 }
 
 
@@ -38,4 +40,6 @@ export const useDiceSeries = create<DiceSeriesState>()(subscribeWithSelector(set
   setEvent: (v) => set(() => ({event: v})),
   k: 1,
   setK: (v) => set(() => ({k: v})),
+  point: 1,
+  setPoint: (v) => set(() => ({point: v})),
 })));

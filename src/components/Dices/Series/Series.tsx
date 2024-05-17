@@ -12,6 +12,7 @@ import Coin2 from '../../icons/coin_2.svg?react';
 
 import styles from './Series.module.scss';
 import { EdgeSelect } from './components/Select/EdgeSelect';
+import { PointSelect } from './components/Select/PointSelect';
 
 const factorial = (n: number): number => {
   if (n < 0) {
@@ -52,6 +53,7 @@ export const DiceSeries = () => {
   const seriesN = useDiceSeries(s => s.seriesN);
   const event = useDiceSeries(s => s.event);
   const k = useDiceSeries(s => s.k);
+  const point = useDiceSeries(s => s.point);
   const series = useDiceSeries(s => s.series);
   const setSeries = useDiceSeries(s => s.setSeries);
 
@@ -92,7 +94,7 @@ export const DiceSeries = () => {
 
   return (
     <div className={styles.wrapper}>
-      {`edge: ${edge},length: ${length}, seriesN: ${seriesN}, event: ${event}, k: ${k}`}
+      {`edge: ${edge},length: ${length}, seriesN: ${seriesN}, event: ${event},point ${point}, k: ${k}`}
       <h2 className={styles.title}>Серии бросков кубика</h2>
       <div className={styles.controllWrapper}>
         <EdgeSelect />
@@ -115,6 +117,9 @@ export const DiceSeries = () => {
       <div className={styles.controllWrapper}>
         <div>
           <EventSelect />
+        </div>
+        <div>
+          <PointSelect />
         </div>
         <div>
           <KSelect />
