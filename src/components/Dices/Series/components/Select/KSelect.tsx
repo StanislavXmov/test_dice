@@ -1,20 +1,20 @@
 import { ChangeEvent } from 'react';
-import { useCoinSeries } from '../../../../../state/useCoinSeries';
+import { useDiceSeries } from '../../../../../state/useDiceSeries';
 
 import styles from './Select.module.scss'
 
 export const KSelect = () => {
-  const setK = useCoinSeries(s => s.setK);
-  const length = useCoinSeries(s => s.length);
+  const setK = useDiceSeries(s => s.setK);
+  const length = useDiceSeries(s => s.length);
 
   const selectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     setK(Number(e.target.value));
   }
   return (
-    <label className={styles.label} htmlFor="KSelect">
-      {`выпала:`}
+    <label className={styles.label} htmlFor="KSelectDice">
+      {`выпало:`}
       <select
-        id='KSelect'
+        id='KSelectDice'
         className={styles.select}
         onChange={selectHandler}
         defaultValue={1}

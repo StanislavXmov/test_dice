@@ -1,24 +1,25 @@
 import { ChangeEvent } from 'react';
-import { Coin, useCoinSeries } from '../../../../../state/useCoinSeries';
+import {EventDice, useDiceSeries } from '../../../../../state/useDiceSeries';
 
 import styles from './Select.module.scss'
 
 export const EventSelect = () => {
-  const setEvent = useCoinSeries(s => s.setEvent);
+  const setEvent = useDiceSeries(s => s.setEvent);
   const selectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    setEvent(e.target.value as Coin);
+    setEvent(e.target.value as EventDice);
   }
   return (
-    <label className={styles.label} htmlFor="EventSelect">
+    <label className={styles.label} htmlFor="EventSelectDice">
       Событие:
       <select
-        id='EventSelect'
+        id='EventSelectDice'
         className={styles.select}
         onChange={selectHandler}
-        defaultValue={'5'}
+        defaultValue={'='}
       >
-        <option value={'OREL'}>Орёл</option>
-        <option value={'5'}>Решка</option>
+        <option value={'='}>ровно</option>
+        <option value={'>'}>больше</option>
+        <option value={'<'}>меньше</option>
       </select>
     </label>
   );

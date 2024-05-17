@@ -10,7 +10,7 @@ export const EdgeSelect = () => {
     setEdge(Number(e.target.value) as Edge);
   }
   return (
-    <label className={styles.edgeLabel} htmlFor="KSelect">
+    <label className={styles.edgeLabel} htmlFor="EdgeSelect">
       {`Граней`}
       <select
         id='EdgeSelect'

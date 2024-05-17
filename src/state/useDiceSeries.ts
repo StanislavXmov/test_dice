@@ -5,6 +5,8 @@ import { subscribeWithSelector } from "zustand/middleware";
 export type Edge = 6 | 8 | 12;
 export type Length = 5 | 10 | 15;
 
+export type EventDice = '=' | '>' | '<';
+
 interface DiceSeriesState {
   edge: Edge;
   setEdge: (v: Edge) => void;
@@ -14,8 +16,8 @@ interface DiceSeriesState {
   setLength: (v: Length) => void;
   seriesN: number;
   setSeriesN: (v: number) => void;
-  event: number;
-  setEvent: (v: number) => void;
+  event: EventDice;
+  setEvent: (v: EventDice) => void;
   k: number;
   setK: (v: number) => void;
 }
@@ -32,7 +34,7 @@ export const useDiceSeries = create<DiceSeriesState>()(subscribeWithSelector(set
   setLength: (v) => set(() => ({length: v})),
   seriesN: 2,
   setSeriesN: (v) => set(() => ({seriesN: v})),
-  event: 1,
+  event: "=",
   setEvent: (v) => set(() => ({event: v})),
   k: 1,
   setK: (v) => set(() => ({k: v})),
