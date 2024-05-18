@@ -20,7 +20,7 @@ function App() {
         {/* <DiceLayer1 /> */}
         {/* <DiceLayer2 /> */}
         {/* <TableLayer /> */}
-        {/* <CoinSeries /> */}
+        <CoinSeries />
         <DiceSeries />
       </div>
     </>

@@ -191,7 +191,7 @@ export const DiceSeries = () => {
 
   return (
     <div className={styles.wrapper}>
-      {`edge: ${edge},length: ${length}, seriesN: ${seriesN}, event: ${event},point ${point}, k: ${k}`}
+      {/* {`edge: ${edge},length: ${length}, seriesN: ${seriesN}, event: ${event},point ${point}, k: ${k}`} */}
       <h2 className={styles.title}>Серии бросков кубика</h2>
       <div className={styles.controllWrapper}>
         <EdgeSelect />
