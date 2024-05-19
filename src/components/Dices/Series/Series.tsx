@@ -1,6 +1,6 @@
 import { Key, useState } from 'react';
 import random from 'random';
-import { EventDice, Length, useDiceSeries } from '../../../state/useDiceSeries';
+import { Edge, EventDice, Length, useDiceSeries } from '../../../state/useDiceSeries';
 import { LengthRange } from './components/Range/LengthRange';
 import { SerialsRange } from './components/Range/SerialsRange';
 import { Button } from '../../Button/Button';
@@ -91,9 +91,21 @@ const factorial = (n: number): number => {
   }
 }
 
-const calc = (k: number, n: Length) => {
+const calc = (k: number, n: Length, edge: Edge) => {
+  let n1 = 1;
+  let n2 = 1;
+  if (edge === 6) {
+    n1 = 0.167;
+    n2 = 0.833;
+  } else if (edge === 8) {
+    n1 = 0.125;
+    n2 = 0.875;
+  } else if (edge === 12) {
+    n1 = 0.083;
+    n2 = 0.916;
+  }
   const c = factorial(n) / (factorial(k) * factorial(n - k));
-  return c * Math.pow(0.5, k) * Math.pow(0.5, n - k);
+  return c * Math.pow(n1, k) * Math.pow(n2, n - k);
 }
 
 const match = (event: EventDice, k: number, point: number, list: number[]) => {
@@ -267,16 +279,20 @@ export const DiceSeries = () => {
               <span className={styles.sup}>{k}</span>
               <span className={styles.sub}>{length}</span>
             </span>
-            <span className={styles.value}>0.5</span>
+            {edge === 6 && <span className={styles.value}>0.167</span>}
+            {edge === 8 && <span className={styles.value}>0.125</span>}
+            {edge === 12 && <span className={styles.value}>0.083</span>}
             <span className={styles.dWithoutValue} style={{width: k >= 10 ? '16px' : '12px'}}>
               <span className={styles.supWithoutValue}>{k}</span>
             </span>
-            <span className={styles.value}>0.5</span>
+            {edge === 6 && <span className={styles.value}>0.833</span>}
+            {edge === 8 && <span className={styles.value}>0.875</span>}
+            {edge === 12 && <span className={styles.value}>0.916</span>}
             <span className={styles.dWithoutValue} style={{width: k >= 10 ? '16px' : '12px'}}>
               <span className={styles.supWithoutValue}>{`${length} - ${k}`}</span>
             </span>
             <span style={{width: (k >= 10 || length >= 10) ? '28px' : '22px', textAlign: 'right', marginRight: '4px'}}>≈</span>
-            <span className={styles.value}>{calc(k, length).toFixed(2)}</span>
+            <span className={styles.value}>{calc(k, length, edge).toFixed(2)}</span>
           </div>
         </div>
         <div>
