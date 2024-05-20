@@ -7,9 +7,10 @@ import { TableLayer } from './components/Table/TableLayer';
 import { CoinLayer2 } from './components/Coins/Layers/CoinLayer2';
 import { DiceLayer2 } from './components/Dices/Layers/DiceLayer2';
 import { CoinSeries } from './components/Coins/Series/Series';
+import { DiceSeries } from './components/Dices/Series/Series';
+import { TableLayerType2 } from './components/Table/TableLayerType2';
 
 import styles from './App.module.scss';
-import { DiceSeries } from './components/Dices/Series/Series';
 
 function App() {  
   return (
@@ -20,8 +21,9 @@ function App() {
         {/* <DiceLayer1 /> */}
         {/* <DiceLayer2 /> */}
         {/* <TableLayer /> */}
-        <CoinSeries />
-        <DiceSeries />
+        <TableLayerType2 />
+        {/* <CoinSeries /> */}
+        {/* <DiceSeries /> */}
       </div>
     </>
   );

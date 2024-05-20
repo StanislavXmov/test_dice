@@ -238,3 +238,21 @@
 .checkWrapperMarginType3 {
   margin: 16px 0px 0px 0px;
 }
+
+.infoColorFrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.yellow {
+  background: #FFF4BD;
+}
+
+.blue {
+  background: #B2DFFF;
+}
+
+.green {
+  background: #B2D5BD;
+}
