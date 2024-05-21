@@ -3,13 +3,11 @@ import { subscribeWithSelector } from "zustand/middleware";
 
 export type Coin = 'OREL' | '5';
 
-export type Length = 5 | 10 | 15;
-
 interface CoinSeriesState {
   series: Coin[][];
   setSeries: (v: Coin[][]) => void;
-  length: Length;
-  setLength: (v: Length) => void;
+  length: number;
+  setLength: (v: number) => void;
   seriesN: number;
   setSeriesN: (v: number) => void;
   event: Coin;

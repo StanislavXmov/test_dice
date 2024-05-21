@@ -2,7 +2,7 @@ import { useState } from 'react';
 import random from 'random';
 import { LengthRange } from './components/Range/LengthRange';
 import { SerialsRange } from './components/Range/SerialsRange';
-import { Coin, Length, useCoinSeries } from '../../../state/useCoinSeries';
+import { Coin, useCoinSeries } from '../../../state/useCoinSeries';
 import { Button } from '../../Button/Button';
 import { EventSelect } from './components/Select/EventSelect';
 import { KSelect } from './components/Select/KSelect';
@@ -22,7 +22,7 @@ const factorial = (n: number): number => {
   }
 }
 
-const calc = (k: number, n: Length) => {
+const calc = (k: number, n: number) => {
   const c = factorial(n) / (factorial(k) * factorial(n - k));
   return c * Math.pow(0.5, k) * Math.pow(0.5, n - k);
 }
@@ -92,12 +92,12 @@ export const CoinSeries = () => {
       <h2 className={styles.title}>Серии бросков монеты</h2>
       <div className={styles.controllWrapper}>
         <div>
-          <h3 className={styles.subTitle}>Длина серии n</h3>
-          <LengthRange />
+          <h3 className={styles.subTitle}>Длина серии n: {length}</h3>
+          <LengthRange max={20} min={5} />
         </div>
         <div>
-          <h3 className={styles.subTitle}>Количество серий</h3>
-          <SerialsRange />
+          <h3 className={styles.subTitle}>Количество серий: {seriesN}</h3>
+          <SerialsRange max={100} min={2} />
         </div>
         <Button
           title={`Запустить`}
