@@ -3,7 +3,6 @@ import { subscribeWithSelector } from "zustand/middleware";
 
 
 export type Edge = 6 | 8 | 12;
-export type Length = 5 | 10 | 15;
 
 export type EventDice = '=' | '>' | '<';
 
@@ -12,8 +11,8 @@ interface DiceSeriesState {
   setEdge: (v: Edge) => void;
   series: number[][];
   setSeries: (v: number[][]) => void;
-  length: Length;
-  setLength: (v: Length) => void;
+  length: number;
+  setLength: (v: number) => void;
   seriesN: number;
   setSeriesN: (v: number) => void;
   event: EventDice;

@@ -1,6 +1,6 @@
 import { Key, useState } from 'react';
 import random from 'random';
-import { Edge, EventDice, Length, useDiceSeries } from '../../../state/useDiceSeries';
+import { Edge, EventDice, useDiceSeries } from '../../../state/useDiceSeries';
 import { LengthRange } from './components/Range/LengthRange';
 import { SerialsRange } from './components/Range/SerialsRange';
 import { Button } from '../../Button/Button';
@@ -91,7 +91,7 @@ const factorial = (n: number): number => {
   }
 }
 
-const calc = (k: number, n: Length, edge: Edge) => {
+const calc = (k: number, n: number, edge: Edge) => {
   let n1 = 1;
   let n2 = 1;
   if (edge === 6) {
@@ -208,12 +208,12 @@ export const DiceSeries = () => {
       <div className={styles.controllWrapper}>
         <EdgeSelect />
         <div>
-          <h3 className={styles.subTitle}>Длина серии n</h3>
-          <LengthRange />
+          <h3 className={styles.subTitle}>Длина серии n: {length}</h3>
+          <LengthRange max={20} min={5} />
         </div>
         <div>
-          <h3 className={styles.subTitle}>Количество серий</h3>
-          <SerialsRange />
+          <h3 className={styles.subTitle}>Количество серий: {seriesN}</h3>
+          <SerialsRange max={100} min={2} />
         </div>
         <Button
           title={`Запустить`}
