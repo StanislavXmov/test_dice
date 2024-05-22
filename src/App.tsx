@@ -21,9 +21,9 @@ function App() {
         {/* <DiceLayer1 /> */}
         {/* <DiceLayer2 /> */}
         {/* <TableLayer /> */}
-        {/* <TableLayerType2 /> */}
-        <CoinSeries />
-        <DiceSeries />
+        <TableLayerType2 />
+        {/* <CoinSeries /> */}
+        {/* <DiceSeries /> */}
       </div>
     </>
   );

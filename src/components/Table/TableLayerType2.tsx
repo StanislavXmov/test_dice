@@ -1,4 +1,4 @@
-import { ChangeEvent, Key, useState } from 'react';
+import { ChangeEvent, Key, MouseEvent, useRef, useState } from 'react';
 import { Cell, Edge, useTable } from '../../state/useTable';
 import { Button } from '../Button/Button';
 
@@ -138,10 +138,19 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
   const selected = useTable(s => s.selected);
   const add = useTable(s => s.add);
   const addMore = useTable(s => s.addMore);
-  const removeIds = useTable(s => s.removeIds); 
+  const removeIds = useTable(s => s.removeIds);
 
-  const horizontalLabelHandler = (k: Type1Edge, idx: number) => {
-    console.log('horizontalLabelHandler');
+  const timeout = useRef<number | null>(null);
+
+  const horizontalLabelHandler = (e: MouseEvent, k: Type1Edge, idx: number) => {
+    e.preventDefault();
+    if (timeout.current === null) {
+      timeout.current = setTimeout(() => {
+        timeout.current = null;
+        console.log('horizontalLabelHandler');
+      }, 300);
+    }
+    
     
     // if (findedAllY(selected, idx, 6)) {
     //   const ids: number[] = [];
@@ -168,7 +177,10 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
     // addMore(cells);
   }
 
-  const horizontalLabelDoubleHandler = (k: Type1Edge, idx: number) => {
+  const horizontalLabelDoubleHandler = (e: MouseEvent, k: Type1Edge, idx: number) => {
+    e.preventDefault();
+    clearTimeout(timeout.current);
+    timeout.current = null;
     console.log('horizontalLabelDoubleHandler');
   }
 
@@ -213,8 +225,8 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
       <div className={styles.horizontalLabelType1}>
         {type1Array.map((k, i) => <div
         key={k}
-        onClick={() => horizontalLabelHandler(k, i)}
-        onDoubleClick={() => horizontalLabelDoubleHandler(k, i)}
+        onClick={(e) => horizontalLabelHandler(e, k, i)}
+        onDoubleClick={(e) => horizontalLabelDoubleHandler(e, k, i)}
         >
           {dicesTable[k](k)}
         </div>
