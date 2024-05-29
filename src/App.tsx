@@ -18,8 +18,8 @@ function App() {
       <div className={styles.testWrapper}>
         {/* <CoinLayer1 /> */}
         {/* <CoinLayer2 /> */}
-        <DiceLayer1 />
-        {/* <DiceLayer2 /> */}
+        {/* <DiceLayer1 /> */}
+        <DiceLayer2 />
         {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}
         {/* <CoinSeries /> */}
