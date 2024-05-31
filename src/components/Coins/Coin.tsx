@@ -75,6 +75,7 @@ export const Coin = () => {
     <>
       <Light />
       <Physics
+        gravity={[0, -20, 0]}
         // debug
       >
         <CuboidCollider args={[9, 0.5, 9]} position={[0, -0.5, 0]} />
