@@ -14,6 +14,7 @@ const randomInteger = (min: number, max:number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 const setRandomRotate = () => (randomInteger(0, 360) * Math.PI) / 180;
+const setRotate = (n: number) => (n * Math.PI) / 180;
 
 interface Model3d extends GLTF {
   nodes: any;
@@ -99,10 +100,13 @@ export const Coin = () => {
         <RigidBody
           ref={body}
           type='dynamic'
+          // type='fixed'
           position={position}
-          rotation={[setRandomRotate(), setRandomRotate(), setRandomRotate()]}
-          linearVelocity={[0,-10,0]}
-          angularVelocity={[0,10,0]}
+          // position={[0, 2, 0]}
+          // rotation={[setRandomRotate(), setRandomRotate(), setRandomRotate()]}
+          rotation={[Math.PI / 2, setRandomRotate(), setRandomRotate()]}
+          // linearVelocity={[0,-10,0]}
+          angularVelocity={[15,0,0]}
           colliders="trimesh"
           mass={500}
         >
