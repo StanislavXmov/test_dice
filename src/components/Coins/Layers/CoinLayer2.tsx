@@ -1,16 +1,16 @@
 import { useState } from 'react';
+import { Vector3 } from 'three';
 
 import { CoinScene } from '../CoinScene';
 import { CoinsGraph } from '../CoinsGraph/CoinsGraph';
 import { Coin, useCoinValue } from '../../../state/useCoinValue';
-
-import styles from './Layers.module.scss';
 import { useCoinPosition } from '../../../state/useCoinPosition';
 import { useRoleCoinButton } from '../../../state/useRoleCoinButton';
-import { Vector3 } from 'three';
+
 import { Button } from '../../Button/Button';
 import { CounterType, Range } from '../../Range/Range';
 
+import styles from './Layers.module.scss';
 
 const toCaseCount = (arg: number) => {
   let titles = ['бросок', 'броска', 'бросков'];
@@ -35,7 +35,8 @@ const RightSide = () => {
 
 
 const CoinControll = () => {
-  const [counter, setCounter] = useState<CounterType>(1); 
+  const [counter, setCounter] = useState<CounterType>(1);
+  const [counterView, setCounterView] = useState(false);
   const setPosition = useCoinPosition(s => s.setPosition);
   const setValue = useCoinValue(s => s.setValue);
   const setValues = useCoinValue(s => s.setValues);
@@ -46,7 +47,11 @@ const CoinControll = () => {
   const handler = () => {
     if (counter !== 1) {
       setActive(false);
-      setDisabled(false);
+      setCounterView(true);
+      // setDisabled(false);
+      setTimeout(() => {
+        setCounterView(false);
+      }, 1000);
     } else {
       setActive(true);
     }
@@ -72,12 +77,13 @@ const CoinControll = () => {
 
   return (
     <div className={styles.coinControllWrapper}>
+      <div className={`${styles.counter} ${counterView ? styles.counterVisible : ''}`}>× {counter}</div>
       <Button
         title={`Бросить ${counter} раз`}
         cb={handler}
         disabled={disabled}
         setDisabled={setDisabled}
-        timeout={5000}
+        timeout={counter === 1 ? 5000 : 1000}
       />
       <Range setCounter={setCounter} />
     </div>

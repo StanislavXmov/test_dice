@@ -16,10 +16,10 @@ function App() {
   return (
     <>
       <div className={styles.testWrapper}>
-        <CoinLayer1 />
-        {/* <CoinLayer2 /> */}
+        {/* <CoinLayer1 /> */}
+        <CoinLayer2 />
         {/* <DiceLayer1 /> */}
-        {/* <DiceLayer2 /> */}
+        <DiceLayer2 />
         {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}
         {/* <CoinSeries /> */}
