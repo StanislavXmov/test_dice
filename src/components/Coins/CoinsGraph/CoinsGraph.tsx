@@ -145,7 +145,7 @@ export const CoinsGraph = () => {
     <div className={styles.wrapper}>
       <div className={styles.side}>
         <span className={styles.sideLabelDefault}>Количество раз для каждого исхода</span>
-        <span className={styles.sideLabelValues}>Доля выпадения </span>
+        <span className={styles.sideLabelValues}>Доля </span>
       </div>
       <div className={styles.graphWrapper}>
         <div className={styles.graphValues}>
