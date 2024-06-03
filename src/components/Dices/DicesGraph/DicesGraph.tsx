@@ -159,7 +159,7 @@ export const DicesGraph = () => {
     <div className={styles.wrapper}>
       <div className={styles.side}>
         <span className={styles.sideLabelDefault}>Кол-во раз</span>
-        <span className={styles.sideLabelValues}>Доля ≈</span>
+        <span className={styles.sideLabelValues}>Доля </span>
       </div>
       <div className={styles.graphWrapper}>
         <div className={styles.graphValues}>

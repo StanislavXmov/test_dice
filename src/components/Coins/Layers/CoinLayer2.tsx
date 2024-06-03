@@ -90,6 +90,15 @@ const CoinControll = () => {
   );
 }
 
+const ValuesCounter = () => {
+  const values = useCoinValue(s => s.values);
+  const counter = values.length;
+
+  return (
+    <div className={styles.subTitle}>Что выпало{counter > 0 ? ` за ${counter} ${toCaseCount(counter)}` : ''}</div>
+  );
+}
+
 export const CoinLayer2 = () => {
   return (
     <div className={styles.layer}>
@@ -104,10 +113,7 @@ export const CoinLayer2 = () => {
           </div>
         </div>
         <div className={styles.sideRight}>
-          <div className={styles.subTitleWrapper}>
-            <div className={styles.subTitle}>Выпавшие значения</div>
-            <div className={styles.subTitle}>на графике</div>
-          </div>
+          <ValuesCounter />
           <RightSide />
         </div>
       </div>

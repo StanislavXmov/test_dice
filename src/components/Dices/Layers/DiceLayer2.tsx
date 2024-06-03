@@ -95,6 +95,15 @@ const DiceControll = () => {
   );
 }
 
+const ValuesCounter = () => {
+  const values = useDiceValue(s => s.values);
+  const counter = values.length;
+
+  return (
+    <div className={styles.subTitle}>Что выпало{counter > 0 ? ` за ${counter} ${toCaseCount(counter)}` : ''}</div>
+  );
+}
+
 export const DiceLayer2 = () => {
   return (
     <div className={styles.layer}>
@@ -109,10 +118,7 @@ export const DiceLayer2 = () => {
           </div>
         </div>
         <div className={styles.sideRight}>
-          <div className={styles.subTitleWrapper}>
-            <div className={styles.subTitle}>Выпавшие значения</div>
-            <div className={styles.subTitle}>на графике</div>
-          </div>
+          <ValuesCounter />
           <RightSide />
         </div>
       </div>
