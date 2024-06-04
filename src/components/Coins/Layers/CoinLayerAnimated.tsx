@@ -114,6 +114,7 @@ export const CoinLayerAnimated = () => {
   const [coinType, setCoinType] = useState(0);
   const [springs, api] = useSpring(() => ({
     from: { y: -100, opacity: 0, },
+    config: config.stiff
   }));
 
   const handleClick = () => {
