@@ -3,6 +3,7 @@ import { Coin, useCoinValue } from '../../../state/useCoinValue';
 
 import Coin1 from '../../icons/coin_1.svg?react';
 import Coin2 from '../../icons/coin_2.svg?react';
+import Axis from '../../icons/axis.svg?react';
 
 import styles from './CoinsGraph.module.scss';
 
@@ -143,6 +144,7 @@ export const CoinsGraph = () => {
   
   return (
     <div className={styles.wrapper}>
+      <Axis className={styles.axis} />
       <div className={styles.side}>
         <span className={styles.sideLabelDefault}>Кол-во раз</span>
         <span className={styles.sideLabelValues}>Доля </span>

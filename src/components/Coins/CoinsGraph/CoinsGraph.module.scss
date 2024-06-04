@@ -1,4 +1,5 @@
 .wrapper {
+  position: relative;
   width: 200px;
   height: 300px;
   display: grid;
@@ -89,4 +90,10 @@
   text-align: center;
 
   opacity: 0.5;
+}
+
+.axis {
+  position: absolute;
+  bottom: 55px;
+  left: -14px;
 }
