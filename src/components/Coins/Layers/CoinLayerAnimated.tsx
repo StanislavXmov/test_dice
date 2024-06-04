@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Vector3 } from 'three';
+import { useSpring, animated, config, SpringValue} from '@react-spring/web';
 
 import { CoinScene } from '../CoinScene';
 import { CoinsGraph } from '../CoinsGraph/CoinsGraph';
@@ -9,6 +10,9 @@ import { useRoleCoinButton } from '../../../state/useRoleCoinButton';
 
 import { Button } from '../../Button/Button';
 import { CounterType, Range } from '../../Range/Range';
+
+import OrelImage from '../../images/coin/orel.png';
+import FiveImage from '../../images/coin/5.png';
 
 import styles from './Layers.module.scss';
 
@@ -34,7 +38,7 @@ const RightSide = () => {
 
 
 
-const CoinControll = () => {
+const CoinControll = ({handleClick, setCoinType}: {handleClick: () => void; setCoinType: (n: number) => void;}) => {
   const [counter, setCounter] = useState<CounterType>(1);
   const [counterView, setCounterView] = useState(false);
   const setPosition = useCoinPosition(s => s.setPosition);
@@ -45,34 +49,32 @@ const CoinControll = () => {
   const setDisabled = useRoleCoinButton(s => s.setDisabled);
 
   const handler = () => {
-    if (counter !== 1) {
-      setActive(false);
-      setCounterView(true);
-      // setDisabled(false);
-      setTimeout(() => {
-        setCounterView(false);
-      }, 1000);
-    } else {
-      setActive(true);
-    }
+
     
-    setPosition(new Vector3(0, 7, 0));
-    setValue('?');
+    setCounterView(true);
+    setTimeout(() => {
+      setCounterView(false);
+      setDisabled(false);
+    }, 1000);
 
     const values: Coin[] = [];
 
-    if (counter !== 1) {
-      for (let i = 0; i < counter; i++) {
-        const r = randomNumber(0, 1);
-        if (r === 0) {
-          values.push('OREL');
-        } else {
-          values.push('5');
-        }
+    
+    for (let i = 0; i < counter; i++) {
+      const r = randomNumber(0, 1);
+      if (i === 0) {
+        setCoinType(r);
       }
-
-      setValues(values);
+      if (r === 0) {
+        values.push('OREL');
+      } else {
+        values.push('5');
+      }
     }
+
+    handleClick();
+    setValues(values);
+    
   }
 
   return (
@@ -90,9 +92,11 @@ const CoinControll = () => {
   );
 }
 
-const CoinAnimated = () => {
+const CoinAnimated = ({springs, coinType}: {springs: {y: SpringValue<number>}; coinType: number}) => {
   return (
-    <h2>CoinAnimated</h2>
+    <animated.div className={styles.coinWrapper} style={{...springs}}>
+      <img className={styles.coinImage} src={coinType === 0 ? OrelImage : FiveImage} alt="coin"  />
+    </animated.div>
   );
 }
 
@@ -106,16 +110,35 @@ const ValuesCounter = () => {
 }
 
 export const CoinLayerAnimated = () => {
+
+  const [coinType, setCoinType] = useState(0);
+  const [springs, api] = useSpring(() => ({
+    from: { y: -100, opacity: 0, },
+  }));
+
+  const handleClick = () => {
+    api.start({
+      from: {
+        y: -120,
+        opacity: 0,
+      },
+      to: {
+        y: 0,
+        opacity: 1
+      },
+    });
+  }
+
   return (
     <div className={styles.layer}>
       <h2 className={styles.title}>Бросок монеты</h2>
       <div className={styles.wrapper}>
         <div className={styles.sideLeft}>
           <div className={styles.scene}>
-            <CoinAnimated />
+            <CoinAnimated coinType={coinType} springs={springs} />
           </div>
           <div className={styles.buttonsWrapper}>
-            <CoinControll />
+            <CoinControll handleClick={handleClick} setCoinType={setCoinType} />
           </div>
         </div>
         <div className={styles.sideRight}>
