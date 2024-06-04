@@ -1,5 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { useRoleDiceButton } from '../../state/useRoleDiceButton';
+import { useRef } from 'react';
 
 import styles from './Button.module.scss';
 

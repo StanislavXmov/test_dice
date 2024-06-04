@@ -1,25 +1,22 @@
 .wrapper {
   margin: 0px 0px 12px;
   display: flex;
+  gap: 4px;
 }
 
-.button {padding: 2px 6px;
-  background: none;
-  border: 1px solid #000000;
+.button {
+  padding: 4px 8px;
+  background: #F4F8FA;
+  border: none;
+  outline: none;
+  border-radius: 10px;
 
   cursor: pointer;
+  font-family: 'SB Sand Display';
 
-  &:first-child {
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border-right: none;
-  }
-  &:last-child {
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-  }
 }
 
 .active {
   font-weight: bold;
+  background: #DEF0FF;
 }

@@ -3,6 +3,24 @@
   src: url(../public/fonts/Inter-Regular.ttf);
 }
 
+@font-face {
+  font-family: 'SB Sand Display';
+  font-weight: bold;
+  src: url(../public/fonts/SBSansDisplay-Bold.otf);
+}
+
+@font-face {
+  font-family: 'SB Sand Display';
+  font-weight: normal;
+  src: url(../public/fonts/SBSansDisplay-Regular.otf);
+}
+
+@font-face {
+  font-family: 'SB Sand Display';
+  font-weight: bolder;
+  src: url(../public/fonts/SBSansDisplay-SemiBold.otf);
+}
+
 * {
   margin: 0;
   padding: 0;

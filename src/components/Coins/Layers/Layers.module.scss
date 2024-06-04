@@ -3,14 +3,16 @@
   width: 640px;
   height: 480px;
 
-  border: 1px solid black;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0px 0px 19px 3px #34E9E940;
 }
 
 .title {
   margin: 0px 0px 18px;
-  font-family: Inter;
+  font-family: 'SB Sand Display';
   font-size: 24px;
-  font-weight: 400;
+  font-weight: normal;
   line-height: 29.05px;
   text-align: left;
 }
@@ -48,7 +50,7 @@
 
 .subTitle {
   margin: 0px 0px 4px;
-  font-family: Inter;
+  font-family: 'SB Sand Display';
   font-size: 16px;
   font-weight: 400;
   line-height: 19.36px;

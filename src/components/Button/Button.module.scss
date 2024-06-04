@@ -1,12 +1,16 @@
 .button {
   margin: 8px 0;
-  min-width: 112px;
-  padding: 12px;
-  border-radius: 20px;
-  background: #00DFA9;
+  padding: 4px 0px 0px;
+  min-width: 170px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background: hsl(165, 100%, 44%);
   color: #FFFFFF;
   border: none;
-  font-family: Inter;
+  font-family: 'SB Sand Display';
   font-size: 16px;
   font-weight: 600;
   line-height: 19.36px;

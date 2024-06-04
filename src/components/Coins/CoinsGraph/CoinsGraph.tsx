@@ -144,7 +144,7 @@ export const CoinsGraph = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.side}>
-        <span className={styles.sideLabelDefault}>Количество раз для каждого исхода</span>
+        <span className={styles.sideLabelDefault}>Кол-во раз</span>
         <span className={styles.sideLabelValues}>Доля </span>
       </div>
       <div className={styles.graphWrapper}>
@@ -163,11 +163,11 @@ export const CoinsGraph = () => {
         <div className={styles.graphLabel}>
           <div className={styles.label}>
             <Coin1 className={styles.icon} />
-            <div className={styles.value} >{valuesObject['OREL'] > 0 ? (valuesObject['OREL'] / length).toFixed(4): '0.0000'}</div>
+            <div className={styles.value} >{valuesObject['OREL'] > 0 ? (valuesObject['OREL'] / length).toFixed(3): '0.000'}</div>
           </div>
           <div className={styles.label}>
             <Coin2 className={styles.icon} />
-            <div className={styles.value} >{valuesObject['5'] > 0 ? (valuesObject['5'] / length).toFixed(4): '0.0000'}</div>
+            <div className={styles.value} >{valuesObject['5'] > 0 ? (valuesObject['5'] / length).toFixed(3): '0.000'}</div>
           </div>
         </div>
       </div>
