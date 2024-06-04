@@ -7,6 +7,7 @@ import { CoinsGraph } from '../CoinsGraph/CoinsGraph';
 import { useCoinValue } from '../../../state/useCoinValue';
 
 import styles from './Layers.module.scss';
+import { ResetButton } from '../../ResetButton/ResetButton';
 
 
 const toCaseCount = (arg: number) => {
@@ -42,8 +43,13 @@ const ValuesCounter = () => {
 }
 
 export const CoinLayer1 = () => {
+  const reset = useCoinValue(s => s.reset);
+  const resetHandler = () => {
+    reset();
+  }
   return (
     <div className={styles.layer}>
+      <ResetButton cb={resetHandler} />
       <h2 className={styles.title}>Бросок монеты</h2>
       <div className={styles.wrapper}>
         <div className={styles.sideLeft}>
