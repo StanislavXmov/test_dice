@@ -10,11 +10,13 @@ import { useRoleCoinButton } from '../../../state/useRoleCoinButton';
 import { ResetButton } from '../../ResetButton/ResetButton';
 import { Button } from '../../Button/Button';
 import { CounterType, Range } from '../../Range/Range';
+import { CoinsGraphSeries } from '../CoinsGraph/CoinGraphSeries';
 
 import OrelImage from '../../images/coin/orel.png';
 import FiveImage from '../../images/coin/5.png';
 
 import styles from './Layers.module.scss';
+
 
 const toCaseCount = (arg: number) => {
   let titles = ['бросок', 'броска', 'бросков'];
@@ -31,7 +33,7 @@ const RightSide = () => {
 
   return (
     <div className={styles.graphMargin}>
-      <CoinsGraph />
+      <CoinsGraphSeries />
     </div>
   );
 }
@@ -140,7 +142,7 @@ export const CoinLayerAnimated = () => {
   return (
     <div className={styles.layer}>
       <ResetButton cb={resetHandler} />
-      <h2 className={styles.title}>Бросок монеты</h2>
+      <h2 className={styles.titleLayer2}>Бросок монеты</h2>
       <div className={styles.wrapper}>
         <div className={styles.sideLeft}>
           <div className={styles.scene}>

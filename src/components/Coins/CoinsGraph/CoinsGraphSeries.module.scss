@@ -1,0 +1,127 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  // display: grid;
+  // gap: 22px; 
+  // grid-template-columns: 82px 96px;
+  // grid-template-rows: 300px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.graphWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.graphValues {
+  height: 16px;
+  display: flex;
+  gap: 16px;
+}
+
+.graphValue {
+  width: 40px;
+  font-family: 'SB Sand Display Normal';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: center;
+}
+
+.graphValuePosition {
+  position: absolute;
+}
+
+.sideLabelDefault {
+  font-family: 'SB Sand Display Normal';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+  opacity: 0.5;
+}
+
+.sideLabelAbsolute {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  font-family: 'SB Sand Display Normal';
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 14.52px;
+  text-align: left;
+  opacity: 0.5;
+}
+
+.sideLabelValues {
+  font-family: 'SB Sand Display Normal';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+
+  opacity: 0.5;
+}
+
+.sideLabelValuesAbsolute {
+  position: absolute;
+  bottom: 2px;
+  left: -46px;
+  font-family: 'SB Sand Display Normal';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+
+  opacity: 0.5;
+}
+
+.icon {
+  width: 30px;
+}
+
+.graph {
+  height: 244px;
+  position: relative;
+}
+
+.graphLabel {
+  position: relative;
+  margin: 6px 0 0 0;
+  display: flex;
+  gap: 16px;
+  height: 50px;
+}
+
+.label {
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.value {
+  font-family: 'SB Sand Display Normal';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: center;
+
+  opacity: 0.5;
+}
+
+.axis {
+  position: absolute;
+  bottom: 58px;
+  left: -14px;
+}

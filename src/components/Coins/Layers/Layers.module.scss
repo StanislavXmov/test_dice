@@ -18,6 +18,15 @@
   text-align: left;
 }
 
+.titleLayer2 {
+  margin: 0px 0px 6px;
+  font-family: 'SB Sand Display';
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 29.05px;
+  text-align: left;
+}
+
 .wrapper {
   height: 380px;
   display: grid;
@@ -58,7 +67,7 @@
 }
 
 .subTitle {
-  margin: 0px 0px 4px;
+  margin: 0px 0px 12px;
   font-family: 'SB Sand Display';
   font-size: 16px;
   font-weight: 400;
@@ -113,5 +122,5 @@
 }
 
 .graphMargin {
-  margin: 26px 0px 0px;
+  margin: 0px;
 }
