@@ -11,6 +11,7 @@ import { Button } from '../../Button/Button';
 import { useDicePosition } from '../../../state/useDicePosition';
 import { useRoleDiceButton } from '../../../state/useRoleDiceButton';
 import { ResetButton } from '../../ResetButton/ResetButton';
+import { DicesGraphSeries } from '../DicesGraph/DiceGraphSeries';
 
 import Dice1Image from '../../images/dice/1.png';
 import Dice2Image from '../../images/dice/2.png';
@@ -20,7 +21,6 @@ import Dice5Image from '../../images/dice/5.png';
 import Dice6Image from '../../images/dice/6.png';
 
 import styles from './Layers.module.scss';
-
 
 
 const toCaseCount = (arg: number) => {
@@ -36,7 +36,7 @@ const randomNumber = (min: number, max: number) => {
 const RightSide = () => {
   return (
     <div className={styles.graphMargin}> 
-      <DicesGraph />
+      <DicesGraphSeries />
     </div>
   );
 }
@@ -113,6 +113,9 @@ const ValuesCounter = () => {
 
 const DiceAnimated = ({springs, diceType}: {springs: {y: SpringValue<number>}; diceType: number}) => {
   let src = '';
+  if (diceType === null) {
+    return;
+  }
   if (diceType === 0) {
     src = Dice1Image;
   } else if (diceType === 1) {
@@ -135,7 +138,7 @@ const DiceAnimated = ({springs, diceType}: {springs: {y: SpringValue<number>}; d
 
 export const DiceLayerAnimated = () => {
   const reset = useDiceValue(s => s.reset);
-  const [diceType, setDiceType] = useState(0);
+  const [diceType, setDiceType] = useState<null | number>(0);
   const [springs, api] = useSpring(() => ({
     from: { y: -100, opacity: 0, },
     config: {
@@ -158,15 +161,17 @@ export const DiceLayerAnimated = () => {
   }
   
   const resetHandler = () => {
+    setDiceType(null);
     reset();
   }
   return (
     <div className={styles.layer}>
       <ResetButton cb={resetHandler} />
-      <h2 className={styles.title}>Бросок кубика</h2>
+      <h2 className={styles.titleLayer2}>Бросок кубика</h2>
       <div className={styles.wrapper}>
         <div className={styles.sideLeft}>
           <div className={styles.scene}>
+            <div className={styles.wall}></div>
             <DiceAnimated diceType={diceType} springs={springs} />
           </div>
           <div className={`${styles.buttonsWrapper} ${styles.buttonsWrapperwithoutMargin}`}>
