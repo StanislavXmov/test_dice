@@ -7,6 +7,7 @@ import { DicesGraph } from '../DicesGraph/DicesGraph';
 import { useDiceValue } from '../../../state/useDiceValue';
 
 import styles from './Layers.module.scss';
+import { ResetButton } from '../../ResetButton/ResetButton';
 
 const toCaseCount = (arg: number) => {
   let titles = ['бросок', 'броска', 'бросков'];
@@ -41,8 +42,13 @@ const ValuesCounter = () => {
 }
 
 export const DiceLayer1 = () => {
+  const reset = useDiceValue(s => s.reset);
+  const resetHandler = () => {
+    reset();
+  }
   return (
     <div className={styles.layer}>
+      <ResetButton cb={resetHandler} />
       <h2 className={styles.title}>Бросок кубика</h2>
       <div className={styles.wrapper}>
         <div className={styles.sideLeft}>
@@ -53,7 +59,7 @@ export const DiceLayer1 = () => {
             <DiceControll />
           </div>
         </div>
-        <div className={styles.sideRight}>
+        <div className={`${styles.sideRight} ${styles.sideRightMargin}`}>
           <ValuesCounter />
           <RightSide />
         </div>
