@@ -4,14 +4,14 @@ import styles from './Range.module.scss';
 
 const labes = [
   {inputValue: 0, id: 0, labelValue: 1},
-  {inputValue: 1, id: 1, labelValue: 5},
-  {inputValue: 2, id: 2, labelValue: 10},
-  {inputValue: 3, id: 3, labelValue: 50},
-  {inputValue: 4, id: 4, labelValue: 100},
-  {inputValue: 5, id: 5, labelValue: 500},
-  {inputValue: 6, id: 6, labelValue: 1000},
-  {inputValue: 7, id: 7, labelValue: 5000},
-  {inputValue: 8, id: 8, labelValue: 10000},
+  {inputValue: 1, id: 1, labelValue: 10},
+  {inputValue: 2, id: 2, labelValue: 100},
+  {inputValue: 3, id: 3, labelValue: 500},
+  {inputValue: 4, id: 4, labelValue: 1000},
+  {inputValue: 5, id: 5, labelValue: 5000},
+  {inputValue: 6, id: 6, labelValue: 10000},
+  // {inputValue: 7, id: 7, labelValue: 5000},
+  // {inputValue: 8, id: 8, labelValue: 10000},
 ];
 
 export type CounterType = 1|5|10|50|100|500|1000|5000|10000;
@@ -32,7 +32,7 @@ export const Range = ({setCounter}: {setCounter: (v: CounterType) => void}) => {
         type="range"
         value={value}
         min={0}
-        max={8}
+        max={6}
         step={1}
         onChange={handler}
       />

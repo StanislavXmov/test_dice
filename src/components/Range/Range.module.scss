@@ -119,8 +119,8 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .labelValue {
-  font-family: Inter;
-  font-size: 11px;
+  font-family: 'SB Sand Display';
+  font-size: 14px;
   font-weight: 400;
   line-height: 14.52px;
   text-align: center;
@@ -131,51 +131,51 @@ input[type=range]:focus::-ms-fill-upper {
 .labelValue0 {
   position: absolute;
   left: 3px;
-  top: 0;
+  top: 1px;
   transform: translateX(-50%);
 }
 .labelValue1 {
   position: absolute;
-  left: calc(254px / 8 + 2px);
-  top: 0;
+  left: calc(254px / 6 + 2px);
+  top: 1px;
   transform: translateX(-50%);
 }
 .labelValue2 {
   position: absolute;
-  left: calc(254px / 8 * 2 + 1px);
-  top: 0;
+  left: calc(254px / 6 * 2 + 1px);
+  top: 1px;
   transform: translateX(-50%);
 }
 .labelValue3 {
   position: absolute;
-  left: calc(254px / 8 * 3 - 0px);
-  top: 0;
+  left: calc(254px / 6 * 3 - 0px);
+  top: 1px;
   transform: translateX(-50%);
 }
 .labelValue4 {
   position: absolute;
-  left: calc(254px / 8 * 4 - 2px);
-  top: 0;
+  left: calc(254px / 6 * 4 - 2px);
+  top: 1px;
   transform: translateX(-50%);
 }
 .labelValue5 {
   position: absolute;
-  left: calc(254px / 8 * 5 - 3px);
-  top: 0;
+  left: calc(254px / 6 * 5 - 3px);
+  top: 1px;
   transform: translateX(-50%);
 }
 
 .labelValue6 {
   position: absolute;
-  left: calc(254px / 8 * 6 - 2px);
-  top: 0;
+  left: calc(254px / 6 * 6 - 2px);
+  top: 1px;
   transform: translateX(-50%);
 }
 
 .labelValue7 {
   position: absolute;
-  left: calc(254px / 8 * 7 - 2px);
-  top: 0;
+  left: calc(254px / 6 * 7 - 2px);
+  top: 1px;
   transform: translateX(-50%);
 }
 
