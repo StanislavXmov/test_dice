@@ -1,4 +1,5 @@
 .wrapper {
+  position: relative;
   width: 266px;
   height: 300px;
   display: grid;
@@ -27,7 +28,7 @@
 
 .graphValue {
   width: 30px;
-  font-family: Inter;
+  font-family: 'SB Sand Display';
   font-size: 12px;
   font-weight: 400;
   line-height: 14.52px;
@@ -39,7 +40,7 @@
 }
 
 .sideLabelDefault {
-  font-family: Inter;
+  font-family: 'SB Sand Display';
   font-size: 12px;
   font-weight: 400;
   line-height: 14.52px;
@@ -47,7 +48,7 @@
 }
 
 .sideLabelValues {
-  font-family: Inter;
+  font-family: 'SB Sand Display';
   font-size: 12px;
   font-weight: 400;
   line-height: 14.52px;
@@ -81,11 +82,17 @@
 }
 
 .value {
-  font-family: Inter;
+  font-family: 'SB Sand Display';
   font-size: 12px;
   font-weight: 400;
   line-height: 14.52px;
   text-align: center;
 
   opacity: 0.5;
+}
+
+.axis {
+  position: absolute;
+  bottom: 55px;
+  left: -14px;
 }

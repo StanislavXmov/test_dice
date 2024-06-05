@@ -10,6 +10,7 @@ import { CoinSeries } from './components/Coins/Series/Series';
 import { DiceSeries } from './components/Dices/Series/Series';
 import { TableLayerType2 } from './components/Table/TableLayerType2';
 import { CoinLayerAnimated } from './components/Coins/Layers/CoinLayerAnimated';
+import { DiceLayerAnimated } from './components/Dices/Layers/DiceLayerAnimated';
 
 import styles from './App.module.scss';
 
@@ -17,11 +18,12 @@ function App() {
   return (
     <>
       <div className={styles.testWrapper}>
-        <CoinLayer1 />
+        {/* <CoinLayer1 /> */}
         {/* <CoinLayer2 /> */}
-        {/* <CoinLayerAnimated /> */}
+        <CoinLayerAnimated />
         {/* <DiceLayer1 /> */}
         {/* <DiceLayer2 /> */}
+        <DiceLayerAnimated />
         {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}
         {/* <CoinSeries /> */}

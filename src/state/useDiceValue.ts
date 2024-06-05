@@ -10,6 +10,7 @@ interface ValueState {
   setValue: (v: Dice) => void;
   setValues: (v: Dice[]) => void;
   values: Dice[];
+  reset : () => void;
 }
 
 const values: Dice[] = [];
@@ -29,4 +30,5 @@ export const useDiceValue = create<ValueState>()(subscribeWithSelector(set => ({
     return {values: [...s.values, ...v]};
   })),
   setActive: (v) => set(() => ({isActive: v})),
+  reset: () => set(() => ({values: []})),
 })));

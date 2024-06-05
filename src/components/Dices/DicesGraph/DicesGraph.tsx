@@ -7,6 +7,7 @@ import Dice3 from '../../icons/dice_3.svg?react';
 import Dice4 from '../../icons/dice_4.svg?react';
 import Dice5 from '../../icons/dice_5.svg?react';
 import Dice6 from '../../icons/dice_6.svg?react';
+import Axis from '../../icons/axis.svg?react';
 
 import styles from './DicesGraph.module.scss';
 
@@ -157,6 +158,7 @@ export const DicesGraph = () => {
   
   return (
     <div className={styles.wrapper}>
+      <Axis className={styles.axis} />
       <div className={styles.side}>
         <span className={styles.sideLabelDefault}>Кол-во раз</span>
         <span className={styles.sideLabelValues}>Доля </span>
