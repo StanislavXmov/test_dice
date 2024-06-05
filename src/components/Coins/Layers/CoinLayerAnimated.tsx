@@ -7,7 +7,7 @@ import { CoinsGraph } from '../CoinsGraph/CoinsGraph';
 import { Coin, useCoinValue } from '../../../state/useCoinValue';
 import { useCoinPosition } from '../../../state/useCoinPosition';
 import { useRoleCoinButton } from '../../../state/useRoleCoinButton';
-
+import { ResetButton } from '../../ResetButton/ResetButton';
 import { Button } from '../../Button/Button';
 import { CounterType, Range } from '../../Range/Range';
 
@@ -30,7 +30,7 @@ const randomNumber = (min: number, max: number) => {
 const RightSide = () => {
 
   return (
-    <div>
+    <div className={styles.graphMargin}>
       <CoinsGraph />
     </div>
   );
@@ -110,7 +110,7 @@ const ValuesCounter = () => {
 }
 
 export const CoinLayerAnimated = () => {
-
+  const reset = useCoinValue(s => s.reset);
   const [coinType, setCoinType] = useState(0);
   const [springs, api] = useSpring(() => ({
     from: { y: -100, opacity: 0, },
@@ -132,9 +132,14 @@ export const CoinLayerAnimated = () => {
       },
     });
   }
+  
+  const resetHandler = () => {
+    reset();
+  }
 
   return (
     <div className={styles.layer}>
+      <ResetButton cb={resetHandler} />
       <h2 className={styles.title}>Бросок монеты</h2>
       <div className={styles.wrapper}>
         <div className={styles.sideLeft}>
