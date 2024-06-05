@@ -153,6 +153,7 @@ export const CoinLayerAnimated = () => {
       <div className={styles.wrapper}>
         <div className={styles.sideLeft}>
           <div className={styles.scene}>
+            <div className={styles.wall}></div>
             <CoinAnimated coinType={coinType} springs={springs} />
           </div>
           <div className={`${styles.buttonsWrapper} ${styles.buttonsWrapperwithoutMargin}`}>
