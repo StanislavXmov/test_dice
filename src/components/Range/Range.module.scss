@@ -20,7 +20,7 @@
 }
 
 input[type=range] {
-  height: 25px;
+  height: 32px;
   -webkit-appearance: none;
   // width: 144px;
   width: 254px;
@@ -125,6 +125,7 @@ input[type=range]:focus::-ms-fill-upper {
   line-height: 14.52px;
   text-align: center;
   opacity: 0.2;
+  pointer-events: none;
 }
 
 .labelValue0 {

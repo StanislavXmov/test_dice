@@ -80,6 +80,7 @@ const CoinControll = ({handleClick, setCoinType}: {handleClick: () => void; setC
   return (
     <div className={styles.coinControllWrapper}>
       <div className={`${styles.counter} ${counterView ? styles.counterVisible : ''}`}>× {counter}</div>
+      <Range setCounter={setCounter} />
       <Button
         title={`Бросить ${counter} раз`}
         cb={handler}
@@ -87,7 +88,6 @@ const CoinControll = ({handleClick, setCoinType}: {handleClick: () => void; setC
         setDisabled={setDisabled}
         timeout={counter === 1 ? 5000 : 1000}
       />
-      <Range setCounter={setCounter} />
     </div>
   );
 }
@@ -146,7 +146,7 @@ export const CoinLayerAnimated = () => {
           <div className={styles.scene}>
             <CoinAnimated coinType={coinType} springs={springs} />
           </div>
-          <div className={styles.buttonsWrapper}>
+          <div className={`${styles.buttonsWrapper} ${styles.buttonsWrapperwithoutMargin}`}>
             <CoinControll handleClick={handleClick} setCoinType={setCoinType} />
           </div>
         </div>

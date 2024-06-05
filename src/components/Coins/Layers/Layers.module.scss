@@ -39,9 +39,13 @@
 }
 
 .buttonsWrapper {
-  margin: 12px 0 0;
+  margin: 12px 0px 0px;
   display: flex;
   justify-content: center;
+}
+
+.buttonsWrapperwithoutMargin {
+  margin: 0px;
 }
 
 .sideRight {
