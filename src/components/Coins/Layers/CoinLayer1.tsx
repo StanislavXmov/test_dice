@@ -60,7 +60,7 @@ export const CoinLayer1 = () => {
             <CoinControll />
           </div>
         </div>
-        <div className={styles.sideRight}>
+        <div className={`${styles.sideRight} ${styles.sideRightMargin}`}>
           <ValuesCounter />
           <RightSide />
         </div>
