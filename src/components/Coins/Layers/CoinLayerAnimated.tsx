@@ -43,10 +43,7 @@ const RightSide = () => {
 const CoinControll = ({handleClick, setCoinType}: {handleClick: () => void; setCoinType: (n: number) => void;}) => {
   const [counter, setCounter] = useState<CounterType>(1);
   const [counterView, setCounterView] = useState(false);
-  const setPosition = useCoinPosition(s => s.setPosition);
-  const setValue = useCoinValue(s => s.setValue);
   const setValues = useCoinValue(s => s.setValues);
-  const setActive = useCoinValue(s => s.setActive);
   const disabled = useRoleCoinButton(s => s.disabled);
   const setDisabled = useRoleCoinButton(s => s.setDisabled);
 
@@ -95,9 +92,18 @@ const CoinControll = ({handleClick, setCoinType}: {handleClick: () => void; setC
 }
 
 const CoinAnimated = ({springs, coinType}: {springs: {y: SpringValue<number>}; coinType: number}) => {
+  let src: string = '';
+  if (coinType === null) {
+    return;
+  }
+  if (coinType === 0) {
+    src = OrelImage;
+  } else if (coinType === 1) {
+    src = FiveImage;
+  }
   return (
     <animated.div className={styles.coinWrapper} style={{...springs}}>
-      <img className={styles.coinImage} src={coinType === 0 ? OrelImage : FiveImage} alt="coin"  />
+      <img className={styles.coinImage} src={src} alt="coin"  />
     </animated.div>
   );
 }
@@ -113,7 +119,7 @@ const ValuesCounter = () => {
 
 export const CoinLayerAnimated = () => {
   const reset = useCoinValue(s => s.reset);
-  const [coinType, setCoinType] = useState(0);
+  const [coinType, setCoinType] = useState<null | number>(null);
   const [springs, api] = useSpring(() => ({
     from: { y: -100, opacity: 0, },
     config: {
@@ -136,6 +142,7 @@ export const CoinLayerAnimated = () => {
   }
   
   const resetHandler = () => {
+    setCoinType(null);
     reset();
   }
 

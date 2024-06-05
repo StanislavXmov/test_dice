@@ -71,7 +71,7 @@ const GraphType1 = ({valuesObject}: {valuesObject: Record<Coin, number> }) => {
           className={`${styles.graphValue} ${styles.graphValuePosition}`}
           style={{top: `${height - rectHeight * (valuesObject.OREL) - valuesObject.OREL - 13}px`}}
         >
-          {valuesObject.OREL}
+          {valuesObject.OREL || ''}
         </div>
         <div
           className={`${styles.graphValue} ${styles.graphValuePosition}`}
@@ -80,7 +80,7 @@ const GraphType1 = ({valuesObject}: {valuesObject: Record<Coin, number> }) => {
             left: '56px',
           }}
         >
-          {valuesObject[5]}
+          {valuesObject[5] || ''}
         </div>
         <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} fill="none" xmlns="http://www.w3.org/2000/svg">
           {new Array(valuesObject.OREL).fill(null).map((_, i) => 
