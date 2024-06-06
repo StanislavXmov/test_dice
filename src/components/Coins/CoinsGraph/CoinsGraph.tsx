@@ -3,7 +3,7 @@ import { Coin, useCoinValue } from '../../../state/useCoinValue';
 
 import Coin1 from '../../icons/coin_1.svg?react';
 import Coin2 from '../../icons/coin_2.svg?react';
-import Axis from '../../icons/axis.svg?react';
+import Axis from '../../icons/axisCoin.svg?react';
 
 import styles from './CoinsGraph.module.scss';
 
@@ -39,12 +39,12 @@ const getMappedValues = (values: Coin[]) => {
   return o;
 }
 
-const height = 226;
+const height = 207;
 const width = 96;
 const padding1 = 5;
 const rectHeight = 10;
 const rectWidth = 30;
-const maxH = 20;
+const maxH = 19;
 
 const Rect = ({x, y}: {x: number, y: number}) => {
   return (
@@ -71,7 +71,7 @@ const GraphType1 = ({valuesObject}: {valuesObject: Record<Coin, number> }) => {
           className={`${styles.graphValue} ${styles.graphValuePosition}`}
           style={{top: `${height - rectHeight * (valuesObject.OREL) - valuesObject.OREL - 13}px`}}
         >
-          {valuesObject.OREL}
+          {valuesObject.OREL || ''}
         </div>
         <div
           className={`${styles.graphValue} ${styles.graphValuePosition}`}
@@ -80,7 +80,7 @@ const GraphType1 = ({valuesObject}: {valuesObject: Record<Coin, number> }) => {
             left: '56px',
           }}
         >
-          {valuesObject[5]}
+          {valuesObject[5] || ''}
         </div>
         <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} fill="none" xmlns="http://www.w3.org/2000/svg">
           {new Array(valuesObject.OREL).fill(null).map((_, i) => 
@@ -145,10 +145,7 @@ export const CoinsGraph = () => {
   return (
     <div className={styles.wrapper}>
       <Axis className={styles.axis} />
-      <div className={styles.side}>
-        <span className={styles.sideLabelDefault}>Кол-во раз</span>
-        <span className={styles.sideLabelValues}>Доля </span>
-      </div>
+      <span className={styles.sideLabelAbsolute}>Кол-во раз</span>
       <div className={styles.graphWrapper}>
         <div className={styles.graphValues}>
           {graphType && (
@@ -163,6 +160,7 @@ export const CoinsGraph = () => {
           {graphType && (<GraphType2 valuesObject={valuesObject} />)}
         </div>
         <div className={styles.graphLabel}>
+          <span className={styles.sideLabelValuesAbsolute}>Доля </span>
           <div className={styles.label}>
             <Coin1 className={styles.icon} />
             <div className={styles.value} >{valuesObject['OREL'] > 0 ? (valuesObject['OREL'] / length).toFixed(3): '0.000'}</div>

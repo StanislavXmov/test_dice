@@ -14,7 +14,27 @@ interface ValueState {
 }
 
 const test_values: Coin[] = [
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
+  '5',
   
+
 ];
 
 export const useCoinValue = create<ValueState>()(subscribeWithSelector(set => ({
