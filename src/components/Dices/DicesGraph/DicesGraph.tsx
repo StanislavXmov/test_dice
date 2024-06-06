@@ -168,12 +168,12 @@ export const DicesGraph = () => {
         <div className={styles.graphValues}>
           {graphType && (
             <>
-              <div className={styles.graphValue} >{valuesObject[1] || ''}</div>
-              <div className={styles.graphValue} >{valuesObject[2] || ''}</div>
-              <div className={styles.graphValue} >{valuesObject[3] || ''}</div>
-              <div className={styles.graphValue} >{valuesObject[4] || ''}</div>
-              <div className={styles.graphValue} >{valuesObject[5] || ''}</div>
-              <div className={styles.graphValue} >{valuesObject[6] || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject[1] || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject[2] || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject[3] || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject[4] || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject[5] || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject[6] || ''}</div>
             </>
           )}
         </div>
@@ -184,27 +184,27 @@ export const DicesGraph = () => {
         <div className={styles.graphLabel}>
           <div className={styles.label}>
             <Dice1 className={styles.icon} />
-            <div className={styles.value} >{valuesObject[1] > 0 ? (valuesObject[1] / length).toFixed(2).replace('.', ','): '0,00'}</div>
+            <div className={styles.value} >{valuesObject[1] > 0 ? (valuesObject[1] / length).toFixed(3).replace('.', ','): '0,000'}</div>
           </div>
           <div className={styles.label}>
             <Dice2 className={styles.icon} />
-            <div className={styles.value} >{valuesObject[2] > 0 ? (valuesObject[2] / length).toFixed(2).replace('.', ','): '0,00'}</div>
+            <div className={styles.value} >{valuesObject[2] > 0 ? (valuesObject[2] / length).toFixed(3).replace('.', ','): '0,000'}</div>
           </div>
           <div className={styles.label}>
             <Dice3 className={styles.icon} />
-            <div className={styles.value} >{valuesObject[3] > 0 ? (valuesObject[3] / length).toFixed(2).replace('.', ','): '0,00'}</div>
+            <div className={styles.value} >{valuesObject[3] > 0 ? (valuesObject[3] / length).toFixed(3).replace('.', ','): '0,000'}</div>
           </div>
           <div className={styles.label}>
             <Dice4 className={styles.icon} />
-            <div className={styles.value} >{valuesObject[4] > 0 ? (valuesObject[4] / length).toFixed(2).replace('.', ','): '0,00'}</div>
+            <div className={styles.value} >{valuesObject[4] > 0 ? (valuesObject[4] / length).toFixed(3).replace('.', ','): '0,000'}</div>
           </div>
           <div className={styles.label}>
             <Dice5 className={styles.icon} />
-            <div className={styles.value} >{valuesObject[5] > 0 ? (valuesObject[5] / length).toFixed(2).replace('.', ','): '0,00'}</div>
+            <div className={styles.value} >{valuesObject[5] > 0 ? (valuesObject[5] / length).toFixed(3).replace('.', ','): '0,000'}</div>
           </div>
           <div className={styles.label}>
             <Dice6 className={styles.icon} />
-            <div className={styles.value} >{valuesObject[6] > 0 ? (valuesObject[6] / length).toFixed(2).replace('.', ','): '0,00'}</div>
+            <div className={styles.value} >{valuesObject[6] > 0 ? (valuesObject[6] / length).toFixed(3).replace('.', ','): '0,000'}</div>
           </div>
         </div>
       </div>
