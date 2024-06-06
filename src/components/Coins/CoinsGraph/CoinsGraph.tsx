@@ -39,7 +39,7 @@ const getMappedValues = (values: Coin[]) => {
   return o;
 }
 
-const height = 207;
+const height = 208;
 const width = 96;
 const padding1 = 5;
 const rectHeight = 10;
