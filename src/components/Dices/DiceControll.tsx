@@ -52,13 +52,15 @@ export const DiceControll = () => {
   }
 
   return (
-    <Button
-      title='Бросить'
-      cb={handler}
-      disabled={disabled}
-      setDisabled={setDisabled}
-      timeout={3000}
-    />
+    <div className={styles.buttonMargin}>
+      <Button
+        title='Бросить'
+        cb={handler}
+        disabled={disabled}
+        setDisabled={setDisabled}
+        timeout={3000}
+      />
+    </div>
   );
 }
 
