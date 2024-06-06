@@ -1,7 +1,8 @@
 .wrapper {
+  padding: 14px 0px 0px;
   position: relative;
   width: 100%;
-  height: 320px;
+  height: 334px;
   display: flex;
   justify-content: center;
   // display: grid;
@@ -90,7 +91,7 @@
 }
 
 .graph {
-  height: 244px;
+  height: 237px;
   position: relative;
 }
 
@@ -122,6 +123,6 @@
 
 .axis {
   position: absolute;
-  bottom: 58px;
+  bottom: 65px;
   left: -14px;
 }

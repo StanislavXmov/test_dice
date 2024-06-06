@@ -3,7 +3,7 @@ import { Coin, useCoinValue } from '../../../state/useCoinValue';
 
 import Coin1 from '../../icons/coin_1.svg?react';
 import Coin2 from '../../icons/coin_2.svg?react';
-import Axis from '../../icons/axisCoinSeries.svg?react';
+import Axis from '../../icons/axisCoinSeries2.svg?react';
 
 import styles from './CoinsGraphSeries.module.scss';
 
@@ -39,7 +39,7 @@ const getMappedValues = (values: Coin[]) => {
   return o;
 }
 
-const height = 244;
+const height = 236;
 const width = 96;
 const padding1 = 5;
 const rectHeight = 10;
@@ -145,7 +145,7 @@ export const CoinsGraphSeries = () => {
   return (
     <div className={styles.wrapper}>
       <Axis className={styles.axis} />
-      <span className={styles.sideLabelAbsolute}>Кол-во раз</span>
+      <span className={styles.sideLabelAbsolute}>Количество раз</span>
       {/* <div className={styles.side}>
         <span className={styles.sideLabelDefault}>Кол-во раз</span>
         <span className={styles.sideLabelValues}>Доля </span>

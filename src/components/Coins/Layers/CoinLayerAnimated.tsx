@@ -112,8 +112,13 @@ const ValuesCounter = () => {
   const values = useCoinValue(s => s.values);
   const counter = values.length;
 
+  let counterValue = counter.toString();
+  if (counter > 10000) {
+    counterValue = `${(counter / 1000).toFixed(1).replace('.', ',')}К`;
+  }
+
   return (
-    <div className={styles.subTitle}>Что выпало{counter > 0 ? ` за ${counter} ${toCaseCount(counter)}` : ''}</div>
+    <div className={styles.subTitle}>Что выпало{counter > 0 ? ` за ${counterValue} ${toCaseCount(counter)}` : ''}</div>
   );
 }
 
@@ -126,6 +131,9 @@ export const CoinLayerAnimated = () => {
       tension: 720,
       friction: 80
     }
+    // config: {
+    //   duration: 2000,
+    // }
   }));
 
   const handleClick = () => {
