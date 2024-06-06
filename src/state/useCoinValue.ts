@@ -17,6 +17,8 @@ const test_values: Coin[] = [
   
 ];
 
+// const test_values: Coin[] = [...new Array(20000).fill('5'), ...new Array(20).fill('OREL')];
+
 export const useCoinValue = create<ValueState>()(subscribeWithSelector(set => ({
   isActive: true,
   values: test_values,

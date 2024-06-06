@@ -145,13 +145,13 @@ export const CoinsGraph = () => {
   return (
     <div className={styles.wrapper}>
       <Axis className={styles.axis} />
-      <span className={styles.sideLabelAbsolute}>Кол-во раз</span>
+      <span className={styles.sideLabelAbsolute}>Количество раз</span>
       <div className={styles.graphWrapper}>
         <div className={styles.graphValues}>
           {graphType && (
             <>
-              <div className={styles.graphValue} >{valuesObject.OREL}</div>
-              <div className={styles.graphValue} >{valuesObject[5]}</div>
+              <div className={styles.graphValue} >{valuesObject.OREL || ''}</div>
+              <div className={styles.graphValue} >{valuesObject[5] || ''}</div>
             </>
           )}
         </div>
