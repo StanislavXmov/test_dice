@@ -35,13 +35,15 @@ export const CoinControll = () => {
   }
 
   return (
-    <Button
-      title='Бросить'
-      cb={handler}
-      disabled={disabled}
-      setDisabled={setDisabled}
-      timeout={5000}
-    />
+    <div className={styles.buttonMargin}>
+      <Button
+        title='Бросить'
+        cb={handler}
+        disabled={disabled}
+        setDisabled={setDisabled}
+        timeout={5000}
+      />
+    </div>
   );
 }
 

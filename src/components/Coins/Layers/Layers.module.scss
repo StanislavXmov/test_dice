@@ -1,6 +1,6 @@
 .layer {
   position: relative;
-  padding: 26px;
+  padding: 26px 40px;
   width: 640px;
   height: 480px;
 
@@ -30,7 +30,7 @@
 .wrapper {
   height: 380px;
   display: grid;
-  gap: 40px;
+  gap: 26px;
   grid-template-columns: 294px 1fr;
   grid-template-rows: 1fr;
 }
