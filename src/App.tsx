@@ -21,9 +21,9 @@ function App() {
         <CoinLayer1 />
         {/* <CoinLayer2 /> */}
         {/* <CoinLayerAnimated /> */}
-        <DiceLayer1 />
+        {/* <DiceLayer1 /> */}
         {/* <DiceLayer2 /> */}
-        {/* <DiceLayerAnimated /> */}
+        <DiceLayerAnimated />
         {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}
         {/* <CoinSeries /> */}
