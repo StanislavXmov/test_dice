@@ -2,10 +2,12 @@
   position: relative;
   width: 266px;
   height: 300px;
-  display: grid;
-  gap: 4px; 
-  grid-template-columns: 42px 220px;
-  grid-template-rows: 300px;
+  display: flex;
+
+  // display: grid;
+  // gap: 4px; 
+  // grid-template-columns: 42px 220px;
+  // grid-template-rows: 300px;
 }
 
 .side {
@@ -15,6 +17,7 @@
 }
 
 .graphWrapper {
+  padding: 12px 0px 0px;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -31,7 +34,7 @@
   font-family: 'SB Sand Display Normal';
   font-size: 12px;
   font-weight: 400;
-  line-height: 14.52px;
+  line-height: 20px;
   text-align: center;
 }
 
@@ -48,7 +51,32 @@
   opacity: 0.5;
 }
 
+.sideLabelAbsolute {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  font-family: 'SB Sand Display Normal';
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 14.52px;
+  text-align: left;
+  opacity: 0.5;
+}
+
 .sideLabelValues {
+  font-family: 'SB Sand Display Normal';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+
+  opacity: 0.5;
+}
+
+.sideLabelValuesAbsolute {
+  position: absolute;
+  bottom: 2px;
+  left: -34px;
   font-family: 'SB Sand Display Normal';
   font-size: 12px;
   font-weight: 400;
@@ -63,7 +91,7 @@
 }
 
 .graph {
-  height: 226px;
+  height: 197px;
   position: relative;
 }
 
@@ -94,6 +122,6 @@
 
 .axis {
   position: absolute;
-  bottom: 55px;
+  bottom: 73px;
   left: -14px;
 }

@@ -1,13 +1,14 @@
 import { useState } from 'react';
-
+import { Vector3 } from 'three';
 import { DiceScene } from '../DiceScene';
 import { DiceControll, DiceTableValue } from '../DiceControll';
 import { Switch, SwitchType } from '../../Switch/Switch';
 import { DicesGraph } from '../DicesGraph/DicesGraph';
 import { useDiceValue } from '../../../state/useDiceValue';
+import { ResetButton } from '../../ResetButton/ResetButton';
+import { useDicePosition } from '../../../state/useDicePosition';
 
 import styles from './Layers.module.scss';
-import { ResetButton } from '../../ResetButton/ResetButton';
 
 const toCaseCount = (arg: number) => {
   let titles = ['бросок', 'броска', 'бросков'];
@@ -37,17 +38,23 @@ const ValuesCounter = () => {
   const counter = values.length;
 
   return (
-    <div className={styles.subTitle}>Что выпало{counter > 0 ? ` за ${counter} ${toCaseCount(counter)}` : ''}</div>
+    <div className={styles.subTitleLayer1}>Что выпало{counter > 0 ? ` за ${counter} ${toCaseCount(counter)}` : ''}</div>
   );
 }
 
 export const DiceLayer1 = () => {
   const reset = useDiceValue(s => s.reset);
+  const setValue = useDiceValue(s => s.setValue);
+  const setPosition = useDicePosition(s => s.setPosition);
+
   const resetHandler = () => {
     reset();
+    setPosition(new Vector3(0, 7, 0));
+    setValue('?');
   }
+
   return (
-    <div className={styles.layer}>
+    <div className={styles.layer1}>
       <ResetButton cb={resetHandler} />
       <h2 className={styles.title}>Бросок кубика</h2>
       <div className={styles.wrapper}>
@@ -59,7 +66,7 @@ export const DiceLayer1 = () => {
             <DiceControll />
           </div>
         </div>
-        <div className={`${styles.sideRight} ${styles.sideRightMargin}`}>
+        <div className={styles.sideRightLayer1}>
           <ValuesCounter />
           <RightSide />
         </div>

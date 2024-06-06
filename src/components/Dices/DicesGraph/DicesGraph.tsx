@@ -7,7 +7,7 @@ import Dice3 from '../../icons/dice_3.svg?react';
 import Dice4 from '../../icons/dice_4.svg?react';
 import Dice5 from '../../icons/dice_5.svg?react';
 import Dice6 from '../../icons/dice_6.svg?react';
-import Axis from '../../icons/axis.svg?react';
+import Axis from '../../icons/axisDice.svg?react';
 
 import styles from './DicesGraph.module.scss';
 
@@ -61,12 +61,12 @@ const findMaxCounter = (valuesObject: DiceValues) => {
   return values[0][0] as DiceString;
 }
 
-const height = 226;
-const width = 320;
+const height = 196;
+const width = 220;
 const padding1 = 0;
 const rectHeight = 10;
 const rectWidth = 30;
-const maxH = 20;
+const maxH = 18;
 const gap = 8;
 
 const Rect = ({x, y}: {x: number, y: number}) => {
@@ -101,7 +101,7 @@ const GraphType1 = ({valuesObject}: {valuesObject: DiceValues }) => {
               left: `${(rectWidth + gap) * i}px`,
             }}
           >
-            {valuesObject[k]}
+            {valuesObject[k] || ''}
           </div>
         ))}
         <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -159,20 +159,21 @@ export const DicesGraph = () => {
   return (
     <div className={styles.wrapper}>
       <Axis className={styles.axis} />
-      <div className={styles.side}>
-        <span className={styles.sideLabelDefault}>Кол-во раз</span>
+      <span className={styles.sideLabelAbsolute}>Количество раз</span>
+      {/* <div className={styles.side}>
+        <span className={styles.sideLabelDefault}>Количество раз</span>
         <span className={styles.sideLabelValues}>Доля </span>
-      </div>
+      </div> */}
       <div className={styles.graphWrapper}>
         <div className={styles.graphValues}>
           {graphType && (
             <>
-              <div className={styles.graphValue} >{valuesObject[1]}</div>
-              <div className={styles.graphValue} >{valuesObject[2]}</div>
-              <div className={styles.graphValue} >{valuesObject[3]}</div>
-              <div className={styles.graphValue} >{valuesObject[4]}</div>
-              <div className={styles.graphValue} >{valuesObject[5]}</div>
-              <div className={styles.graphValue} >{valuesObject[6]}</div>
+              <div className={styles.graphValue} >{valuesObject[1] || ''}</div>
+              <div className={styles.graphValue} >{valuesObject[2] || ''}</div>
+              <div className={styles.graphValue} >{valuesObject[3] || ''}</div>
+              <div className={styles.graphValue} >{valuesObject[4] || ''}</div>
+              <div className={styles.graphValue} >{valuesObject[5] || ''}</div>
+              <div className={styles.graphValue} >{valuesObject[6] || ''}</div>
             </>
           )}
         </div>

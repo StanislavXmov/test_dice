@@ -9,6 +9,17 @@
   box-shadow: 0px 0px 19px 3px #CDEEEC;
 }
 
+.layer1 {
+  position: relative;
+  padding: 26px 32px;
+  width: 640px;
+  height: 480px;
+
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0px 0px 19px 3px #CDEEEC;
+}
+
 .title {
   margin: 0px 0px 18px;
   font-family: 'SB Sand Display';
@@ -62,12 +73,28 @@
   flex-direction: column;
 }
 
+.sideRightLayer1 {
+  padding: 0px 0px 0px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
 .sideRightMargin {
   margin-top: -10px;
 }
 
 .subTitle {
   margin: 0px 0px 12px 24px;
+  font-family: 'SB Sand Display';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: left;
+
+}
+
+.subTitleLayer1 {
+  margin: 0px 0px 6px 0px;
   font-family: 'SB Sand Display';
   font-size: 16px;
   font-weight: 400;
