@@ -14,7 +14,7 @@ interface ValueState {
 }
 
 const values: Dice[] = [];
-// const values: Dice[] = new Array(18).fill('2');
+// const values: Dice[] = new Array(36).fill('2');
 
 export const useDiceValue = create<ValueState>()(subscribeWithSelector(set => ({
   isActive: true,
