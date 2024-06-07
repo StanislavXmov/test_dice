@@ -63,7 +63,7 @@
   width: 294px;
   height: 294px;
 
-  border: 1px solid #0000001A;
+  border: 1px solid hsla(0, 0%, 0%, 0.4);
 }
 
 .buttonsWrapper {
@@ -160,8 +160,9 @@
 }
 
 .diceImage {
-  width: 64px;
-  height: 64px;
+  margin: 12px 0px 0px;
+  width: 84px;
+  height: 84px;
 }
 
 .graphMargin {
