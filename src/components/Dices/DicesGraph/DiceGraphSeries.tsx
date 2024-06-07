@@ -168,12 +168,12 @@ export const DicesGraphSeries = () => {
         <div className={styles.graphValues}>
           {graphType && (
             <>
-              <div className={styles.graphValue} >{valuesObject[1]}</div>
-              <div className={styles.graphValue} >{valuesObject[2]}</div>
-              <div className={styles.graphValue} >{valuesObject[3]}</div>
-              <div className={styles.graphValue} >{valuesObject[4]}</div>
-              <div className={styles.graphValue} >{valuesObject[5]}</div>
-              <div className={styles.graphValue} >{valuesObject[6]}</div>
+              <div className={styles.graphValueRect} >{valuesObject[1] || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject[2] || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject[3] || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject[4] || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject[5] || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject[6] || ''}</div>
             </>
           )}
         </div>

@@ -3,7 +3,7 @@
   width: 100%;
   height: 320px;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   // display: grid;
   // gap: 4px; 
   // grid-template-columns: 42px 220px;
@@ -38,6 +38,15 @@
   text-align: center;
 }
 
+.graphValueRect {
+  width: 30px;
+  font-family: 'SB Sand Display Normal';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+}
+
 .graphValuePosition {
   position: absolute;
 }
@@ -53,7 +62,7 @@
 
 .sideLabelAbsolute {
   position: absolute;
-  left: 24px;
+  left: 0px;
   top: 2px;
   font-family: 'SB Sand Display Normal';
   font-size: 12px;
@@ -124,5 +133,5 @@
 .axis {
   position: absolute;
   bottom: 57px;
-  left: 9px;
+  left: -14px;
 }

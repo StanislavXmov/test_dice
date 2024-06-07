@@ -154,8 +154,8 @@ export const CoinsGraphSeries = () => {
         <div className={styles.graphValues}>
           {graphType && (
             <>
-              <div className={styles.graphValue} >{valuesObject.OREL}</div>
-              <div className={styles.graphValue} >{valuesObject[5]}</div>
+              <div className={styles.graphValueRect} >{valuesObject.OREL || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject[5] || ''}</div>
             </>
           )}
         </div>

@@ -112,7 +112,7 @@ const ValuesCounter = () => {
   }
 
   return (
-    <div className={styles.subTitle}>Что выпало{counter > 0 ? ` за ${counterValue} ${toCaseCount(counter)}` : ''}</div>
+    <div className={styles.subTitleLayer2}>Что выпало{counter > 0 ? ` за ${counterValue} ${toCaseCount(counter)}` : ''}</div>
   );
 }
 
@@ -183,7 +183,7 @@ export const DiceLayerAnimated = () => {
             <DiceControll handleClick={handleClick} setDiceType={setDiceType} />
           </div>
         </div>
-        <div className={styles.sideRight}>
+        <div className={styles.sideRightLayer1}>
           <ValuesCounter />
           <RightSide />
         </div>
