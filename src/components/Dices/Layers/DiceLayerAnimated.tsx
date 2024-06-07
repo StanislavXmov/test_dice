@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Vector3 } from 'three';
 import random from 'random';
-import { SpringValue, useSpring, animated } from '@react-spring/web';
+import { SpringValue, useSpring, animated, easings } from '@react-spring/web';
 
 import { DiceScene } from '../DiceScene';
 import { DicesGraph } from '../DicesGraph/DicesGraph';
@@ -145,17 +145,21 @@ export const DiceLayerAnimated = () => {
   const reset = useDiceValue(s => s.reset);
   const [diceType, setDiceType] = useState<null | number>(0);
   const [springs, api] = useSpring(() => ({
-    from: { y: -100, opacity: 0, },
+    from: { y: 0, opacity: 0, },
+    // config: {
+    //   tension: 720,
+    //   friction: 80
+    // },
     config: {
-      tension: 720,
-      friction: 80
-    }
+      duration: 500,
+      easing: easings.easeInOutCubic,
+    },
   }));
 
   const handleClick = () => {
     api.start({
       from: {
-        y: -120,
+        y: 0,
         opacity: 0,
       },
       to: {
