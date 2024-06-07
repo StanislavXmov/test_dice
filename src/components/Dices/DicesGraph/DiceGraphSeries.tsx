@@ -147,6 +147,17 @@ const GraphType2 = ({valuesObject, maxDiceVarian}: {valuesObject: DiceValues, ma
   );
 }
 
+const getValue = (v: number) => {
+  let counterValue = v.toString();
+  if (v === 0) {
+    return '';
+  }
+  if (v > 10000) {
+    counterValue = `${(v / 1000).toFixed(1).replace('.', ',')}К`;
+  }
+  return counterValue;
+}
+
 export const DicesGraphSeries = () => {
   const values = useDiceValue(s => s.values);
   const length = values.length;
@@ -168,12 +179,12 @@ export const DicesGraphSeries = () => {
         <div className={styles.graphValues}>
           {graphType && (
             <>
-              <div className={styles.graphValueRect} >{valuesObject[1] || ''}</div>
-              <div className={styles.graphValueRect} >{valuesObject[2] || ''}</div>
-              <div className={styles.graphValueRect} >{valuesObject[3] || ''}</div>
-              <div className={styles.graphValueRect} >{valuesObject[4] || ''}</div>
-              <div className={styles.graphValueRect} >{valuesObject[5] || ''}</div>
-              <div className={styles.graphValueRect} >{valuesObject[6] || ''}</div>
+              <div className={styles.graphValueRect} >{getValue(valuesObject[1])}</div>
+              <div className={styles.graphValueRect} >{getValue(valuesObject[2])}</div>
+              <div className={styles.graphValueRect} >{getValue(valuesObject[3])}</div>
+              <div className={styles.graphValueRect} >{getValue(valuesObject[4])}</div>
+              <div className={styles.graphValueRect} >{getValue(valuesObject[5])}</div>
+              <div className={styles.graphValueRect} >{getValue(valuesObject[6])}</div>
             </>
           )}
         </div>

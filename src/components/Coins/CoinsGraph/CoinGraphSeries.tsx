@@ -134,6 +134,17 @@ const GraphType2 = ({valuesObject}: {valuesObject: Record<Coin, number> }) => {
   );
 }
 
+const getValue = (v: number) => {
+  let counterValue = v.toString();
+  if (v === 0) {
+    return '';
+  }
+  if (v > 10000) {
+    counterValue = `${(v / 1000).toFixed(1).replace('.', ',')}К`;
+  }
+  return counterValue;
+}
+
 export const CoinsGraphSeries = () => {
   const values = useCoinValue(s => s.values);
   const length = values.length;
@@ -154,8 +165,8 @@ export const CoinsGraphSeries = () => {
         <div className={styles.graphValues}>
           {graphType && (
             <>
-              <div className={styles.graphValueRect} >{valuesObject.OREL || ''}</div>
-              <div className={styles.graphValueRect} >{valuesObject[5] || ''}</div>
+              <div className={styles.graphValueRect} >{getValue(valuesObject.OREL)}</div>
+              <div className={styles.graphValueRect} >{getValue(valuesObject[5])}</div>
             </>
           )}
         </div>
