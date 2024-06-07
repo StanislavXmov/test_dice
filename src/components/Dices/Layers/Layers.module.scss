@@ -11,7 +11,7 @@
 
 .layer1 {
   position: relative;
-  padding: 26px 32px;
+  padding: 26px 40px;
   width: 640px;
   height: 480px;
 
@@ -42,6 +42,14 @@
   height: 380px;
   display: grid;
   gap: 6px;
+  grid-template-columns: 294px 1fr;
+  grid-template-rows: 1fr;
+}
+
+.wrapper1 {
+  height: 380px;
+  display: grid;
+  gap: 8px;
   grid-template-columns: 294px 1fr;
   grid-template-rows: 1fr;
 }

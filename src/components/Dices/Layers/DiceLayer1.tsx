@@ -57,7 +57,7 @@ export const DiceLayer1 = () => {
     <div className={styles.layer1}>
       <ResetButton cb={resetHandler} />
       <h2 className={styles.title}>Бросок кубика</h2>
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper1}>
         <div className={styles.sideLeft}>
           <div className={styles.scene}>
             <DiceScene />
