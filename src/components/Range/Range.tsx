@@ -16,6 +16,10 @@ const labes = [
 
 export type CounterType = 1|5|10|50|100|500|1000|5000|10000;
 
+const getValueString = (n: number) => {
+  return n >= 10000 ? n.toLocaleString().replace(',', ' ') : n.toString();
+}
+
 export const Range = ({setCounter}: {setCounter: (v: CounterType) => void}) => {
   const [value, setValue] = useState(0);
 
@@ -43,7 +47,7 @@ export const Range = ({setCounter}: {setCounter: (v: CounterType) => void}) => {
           key={id}
           className={`${styles.labelValue} ${styles[`labelValue${id}`]} ${ value === inputValue ? styles.lavelActive : ''}`}
           >
-            {labelValue.toLocaleString().replace(',', ' ')}
+            {getValueString(labelValue)}
           </span>
           ))}
       </div>

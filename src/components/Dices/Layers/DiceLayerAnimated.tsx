@@ -87,12 +87,14 @@ const DiceControll = ({handleClick, setDiceType}: {handleClick: () => void; setD
   
   }
 
+  const counterValue = counter >= 10000 ? counter.toLocaleString().replace(',', ' ') : counter;
+
   return (
     <div className={styles.coinControllWrapper}>
-      <div className={`${styles.counter} ${counterView ? styles.counterVisible : ''}`}>× {counter}</div>
+      <div className={`${styles.counter} ${counterView ? styles.counterVisible : ''}`}>× {counterValue}</div>
       <Range setCounter={setCounter} />
       <Button
-        title={`Бросить ${counter.toLocaleString().replace(',', ' ')} раз`}
+        title={`Бросить ${counterValue} раз`}
         cb={handler}
         disabled={disabled}
         setDisabled={setDisabled}
