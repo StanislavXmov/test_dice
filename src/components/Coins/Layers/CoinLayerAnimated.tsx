@@ -81,7 +81,7 @@ const CoinControll = ({handleClick, setCoinType}: {handleClick: () => void; setC
       <div className={`${styles.counter} ${counterView ? styles.counterVisible : ''}`}>× {counter}</div>
       <Range setCounter={setCounter} />
       <Button
-        title={`Бросить ${counter} раз`}
+        title={`Бросить ${counter.toLocaleString().replace(',', ' ')} раз`}
         cb={handler}
         disabled={disabled}
         setDisabled={setDisabled}

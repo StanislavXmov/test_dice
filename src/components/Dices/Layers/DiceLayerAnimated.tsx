@@ -92,7 +92,7 @@ const DiceControll = ({handleClick, setDiceType}: {handleClick: () => void; setD
       <div className={`${styles.counter} ${counterView ? styles.counterVisible : ''}`}>× {counter}</div>
       <Range setCounter={setCounter} />
       <Button
-        title={`Бросить ${counter} раз`}
+        title={`Бросить ${counter.toLocaleString().replace(',', ' ')} раз`}
         cb={handler}
         disabled={disabled}
         setDisabled={setDisabled}

@@ -43,7 +43,7 @@ export const Range = ({setCounter}: {setCounter: (v: CounterType) => void}) => {
           key={id}
           className={`${styles.labelValue} ${styles[`labelValue${id}`]} ${ value === inputValue ? styles.lavelActive : ''}`}
           >
-            {labelValue}
+            {labelValue.toLocaleString().replace(',', ' ')}
           </span>
           ))}
       </div>

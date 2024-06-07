@@ -122,12 +122,13 @@ input[type=range]:focus::-ms-fill-upper {
 .labelValue {
   top: -22px;
   font-family: 'SB Sand Display Normal';
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   line-height: 14.52px;
   text-align: center;
   opacity: 1;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .labelValue0 {
