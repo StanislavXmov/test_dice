@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Vector3 } from 'three';
-import { useSpring, animated, config, SpringValue} from '@react-spring/web';
+import { useSpring, animated, config, SpringValue, easings, useTransition} from '@react-spring/web';
 
 import { CoinScene } from '../CoinScene';
 import { CoinsGraph } from '../CoinsGraph/CoinsGraph';
@@ -126,20 +126,22 @@ export const CoinLayerAnimated = () => {
   const reset = useCoinValue(s => s.reset);
   const [coinType, setCoinType] = useState<null | number>(null);
   const [springs, api] = useSpring(() => ({
-    from: { y: -100, opacity: 0, },
-    config: {
-      tension: 720,
-      friction: 80
-    }
+    from: { y: 0, opacity: 0, },
     // config: {
-    //   duration: 2000,
-    // }
+    //   tension: 720,
+    //   friction: 80
+    // },
+    config: {
+      duration: 500,
+      easing: easings.easeInOutCubic,
+    },
   }));
+
 
   const handleClick = () => {
     api.start({
       from: {
-        y: -120,
+        y: 0,
         opacity: 0,
       },
       to: {
