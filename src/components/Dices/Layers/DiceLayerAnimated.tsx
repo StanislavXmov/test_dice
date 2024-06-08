@@ -114,7 +114,7 @@ const ValuesCounter = () => {
   }
 
   return (
-    <div className={styles.subTitleLayer2}>Что выпало{counter > 0 ? ` за ${counterValue} ${toCaseCount(counter)}` : ''}</div>
+    <div className={styles.subTitleLayer1}>Что выпало{counter > 0 ? ` за ${counterValue} ${toCaseCount(counter)}` : ''}</div>
   );
 }
 

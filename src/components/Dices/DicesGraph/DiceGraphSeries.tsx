@@ -7,7 +7,7 @@ import Dice3 from '../../icons/dice_3.svg?react';
 import Dice4 from '../../icons/dice_4.svg?react';
 import Dice5 from '../../icons/dice_5.svg?react';
 import Dice6 from '../../icons/dice_6.svg?react';
-import Axis from '../../icons/axisCoinSeries.svg?react';
+import Axis from '../../icons/axisCoinSeries2.svg?react';
 
 import styles from './DiceGraphSeries.module.scss';
 
@@ -61,7 +61,7 @@ const findMaxCounter = (valuesObject: DiceValues) => {
   return values[0][0] as DiceString;
 }
 
-const height = 226;
+const height = 236;
 const width = 220;
 const padding1 = 0;
 const rectHeight = 10;

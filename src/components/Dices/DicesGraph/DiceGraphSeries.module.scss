@@ -1,7 +1,8 @@
 .wrapper {
+  padding: 14px 0px 0px;
   position: relative;
   width: 100%;
-  height: 320px;
+  height: 334px;
   display: flex;
   // justify-content: center;
   // display: grid;
@@ -17,7 +18,6 @@
 }
 
 .graphWrapper {
-  padding: 18px 0px 0px;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -63,7 +63,7 @@
 .sideLabelAbsolute {
   position: absolute;
   left: 0px;
-  top: 2px;
+  top: 0px;
   font-family: 'SB Sand Display Normal';
   font-size: 12px;
   font-weight: normal;
@@ -100,7 +100,7 @@
 }
 
 .graph {
-  height: 226px;
+  height: 237px;
   position: relative;
 }
 
@@ -132,6 +132,6 @@
 
 .axis {
   position: absolute;
-  bottom: 57px;
+  bottom: 65px;
   left: -14px;
 }
