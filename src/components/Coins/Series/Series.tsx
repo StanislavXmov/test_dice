@@ -12,6 +12,7 @@ import Coin1 from '../../icons/coin_1.svg?react';
 import Coin2 from '../../icons/coin_2.svg?react';
 
 import styles from './Series.module.scss';
+import { KaTeX } from '../../Katex/Katex';
 
 const factorial = (n: number): number => {
   if (n < 0) {
@@ -41,6 +42,11 @@ const match = (event: Coin, k: number, list: Coin[]) => {
   } else {
     return false;
   }
+}
+
+const getTextExpression = (k: number, n: number) => {  
+  const x = calc(k, n).toFixed(2).replace('.', '{{\\char\`,}}');
+  return `P{k \\atop n} = P{${k} \\atop ${n}} = C {${k} \\atop ${n}}{0{{\\char\`,}}5^${k}}\\space{0{{\\char\`,}}5^${n - k}} \\approx ${x}`;
 }
 
 export const CoinSeries = () => {
@@ -100,12 +106,24 @@ export const CoinSeries = () => {
           <KRange />
         </div>
       </div>
-      {/* <div>
-        <KaTeX
-          texExpression="P{k \atop n} = P{2 \atop 10} = C {2 \atop 10}{0{{\char`,}}167^2}\space{0{{\char`,}}833^2} \approx 0{{\char`,}}29"
-          className={''}
-        />
-      </div> */}
+      <div className={styles.calcWrapper}>
+        <div className={styles.calcTitle}>Теория</div>
+        <div className={styles.formulaWrapper}>
+          <div className={styles.formulaTitle}>
+            Вероятность <span className={styles.active}>события</span> по формуле Бернулли:
+          </div>
+          <KaTeX
+            texExpression={getTextExpression(k, length)}
+            className={''}
+          />
+        </div>
+        <div className={styles.calcData}>
+          <KaTeX
+            texExpression={calc(k, length).toFixed(3).replace('.', '{{\\char\`,}}')}
+            className={''}
+          />
+        </div>
+      </div>
       {/* <div className={styles.controllWrapper}>
         <div>
           <h3 className={styles.subTitle}>Длина серии n: {length}</h3>
