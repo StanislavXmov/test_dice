@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
-import katex from "katex";
+import { useState } from 'react';
 import random from 'random';
 import { LengthRange } from './components/Range/LengthRange';
 import { SerialsRange } from './components/Range/SerialsRange';
@@ -12,7 +11,6 @@ import { KRange } from './components/Range/KRange';
 import Coin1 from '../../icons/coin_1.svg?react';
 import Coin2 from '../../icons/coin_2.svg?react';
 
-import "katex/dist/katex.min.css";
 import styles from './Series.module.scss';
 
 const factorial = (n: number): number => {
@@ -43,16 +41,6 @@ const match = (event: Coin, k: number, list: Coin[]) => {
   } else {
     return false;
   }
-}
-
-function KaTeX({ texExpression, className }: { texExpression: string, className: string }) {
-  const containerRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    katex.render(texExpression, containerRef.current as HTMLInputElement);
-  }, [texExpression]);
-
-  return <div ref={containerRef} className={className} />;
 }
 
 export const CoinSeries = () => {

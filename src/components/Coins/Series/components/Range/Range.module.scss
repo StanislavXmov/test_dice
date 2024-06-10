@@ -243,6 +243,10 @@ input[type=range]:focus::-ms-fill-upper {
   flex-direction: column;
 }
 
+.width {
+  width: 130px;
+}
+
 .labelWrapper {
   padding: 4px 0px 0px;
   display: flex;
@@ -274,4 +278,8 @@ input[type=range]:focus::-ms-fill-upper {
 
 .inputLength {
   width: 120px;
+}
+
+.func {
+  margin: -4px 4px 0px 0px;
 }

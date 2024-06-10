@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
 import { useCoinSeries } from '../../../../../state/useCoinSeries';
+import { KaTeX } from '../../../../Katex/Katex';
 
 import styles from './Range.module.scss';
 
@@ -32,8 +33,13 @@ export const KRange = () => {
   return (
     <div className={styles.controlWrapper}>
       <div className={styles.labelWrapper}>
-        <span className={styles.symbol}>k</span>
-        <span className={styles.text}>= {value} {toCaseCount(value)}</span>
+        {/* <span className={styles.symbol}>k</span> */}
+        {/* <span className={styles.text}>= {value} {toCaseCount(value)}</span> */}
+        <KaTeX
+          texExpression={`k = ${value}`}
+          className={styles.func}
+        />
+        <span className={styles.text}>{toCaseCount(value)}</span>
       </div>
       <input
         className={`${styles.inputControll} ${styles.inputLength}`}
