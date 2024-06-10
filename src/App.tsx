@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <div className={styles.testWrapper}>
-        {/* <CoinLayer1 /> */}
+        <CoinLayer1 />
         {/* <CoinLayer2 /> */}
         {/* <CoinLayerAnimated /> */}
         {/* <DiceLayer1 /> */}
@@ -26,7 +26,7 @@ function App() {
         {/* <DiceLayerAnimated /> */}
         {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}
-        <CoinSeries />
+        {/* <CoinSeries /> */}
         {/* <DiceSeries /> */}
       </div>
     </>
