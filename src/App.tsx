@@ -20,13 +20,13 @@ function App() {
       <div className={styles.testWrapper}>
         {/* <CoinLayer1 /> */}
         {/* <CoinLayer2 /> */}
-        <CoinLayerAnimated />
+        {/* <CoinLayerAnimated /> */}
         {/* <DiceLayer1 /> */}
         {/* <DiceLayer2 /> */}
-        <DiceLayerAnimated />
+        {/* <DiceLayerAnimated /> */}
         {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}
-        {/* <CoinSeries /> */}
+        <CoinSeries />
         {/* <DiceSeries /> */}
       </div>
     </>

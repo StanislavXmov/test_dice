@@ -4,19 +4,19 @@
 }
 
 @font-face {
-  font-family: 'SB Sand Display';
+  font-family: 'SB Sans Display';
   font-weight: bold;
   src: url(../public/fonts/SBSansDisplay-Bold.otf);
 }
 
 @font-face {
-  font-family: 'SB Sand Display Normal';
+  font-family: 'SB Sans Display Normal';
   font-weight: normal;
   src: url(../public/fonts/SBSansDisplay-Regular.otf);
 }
 
 @font-face {
-  font-family: 'SB Sand Display';
+  font-family: 'SB Sans Display Semi';
   font-weight: bolder;
   src: url(../public/fonts/SBSansDisplay-SemiBold.otf);
 }
@@ -25,5 +25,4 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter';
 }
