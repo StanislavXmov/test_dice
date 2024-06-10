@@ -49,6 +49,13 @@ const getTextExpression = (k: number, n: number) => {
   return `P{k \\atop n} = P{${k} \\atop ${n}} = C {${k} \\atop ${n}}{0{{\\char\`,}}5^${k}}\\space{0{{\\char\`,}}5^${n - k}} \\approx ${x}`;
 }
 
+const getTextExpressionExp = (v: number, k: number) => {
+  if (v === 0) {
+    return `P{\\atop \\text{эксп}} = 0`;
+  }
+  return `P{\\atop \\text{эксп}} = {\\frac{${v}}{${k}}} = ${(v / k).toFixed(2).replace('.', '{{\\char\`,}}')}`;
+}
+
 export const CoinSeries = () => {
   const [disabled, setDisabled] = useState(false);
   const length = useCoinSeries(s => s.length);
@@ -84,13 +91,14 @@ export const CoinSeries = () => {
   }
 
   const findedMatch = () => {
-    let counter = 0;
-    series.forEach(s => {
-      if (match(event, k, s)) {
-        counter++;
-      }
-    });
-    return counter;
+    // let counter = 0;
+    // series.forEach(s => {
+    //   if (match(event, k, s)) {
+    //     counter++;
+    //   }
+    // });
+    // return counter;
+    return 2
   }
 
   return (
@@ -120,6 +128,27 @@ export const CoinSeries = () => {
         <div className={styles.calcData}>
           <KaTeX
             texExpression={calc(k, length).toFixed(3).replace('.', '{{\\char\`,}}')}
+            className={''}
+          />
+        </div>
+      </div>
+      <div className={styles.calcWrapper}>
+        <div className={styles.calcTitle}>
+          <div>Эксперимент</div>
+          <SerialsRange max={500} min={2} />
+        </div>
+        <div className={styles.formulaWrapper}>
+          <div className={styles.formulaTitle}>
+            Частота <span className={styles.active}>события</span> в эксперименте:
+          </div>
+          <KaTeX
+            texExpression={getTextExpressionExp(findedMatch(), seriesN)}
+            className={''}
+          />
+        </div>
+        <div className={styles.calcData}>
+          <KaTeX
+            texExpression={(findedMatch() / seriesN).toFixed(3).replace('.', '{{\\char\`,}}')}
             className={''}
           />
         </div>

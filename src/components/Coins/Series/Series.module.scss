@@ -35,9 +35,11 @@
 }
 
 .calcWrapper {
-  padding: 8px 0px 0px;
+  padding: 8px 0px 20px;
   display: grid;
   grid-template-columns: 120px 380px 84px;
+  gap: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .eventTitle {
@@ -66,6 +68,8 @@
 }
 
 .calcTitle {
+  display: flex;
+  flex-direction: column;
   font-family: 'SB Sans Display Semi';
   font-size: 16px;
   font-weight: 600;

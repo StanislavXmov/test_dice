@@ -23,10 +23,10 @@ function App() {
         {/* <CoinLayerAnimated /> */}
         {/* <DiceLayer1 /> */}
         {/* <DiceLayer2 /> */}
-        <DiceLayerAnimated />
+        {/* <DiceLayerAnimated /> */}
         {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}
-        {/* <CoinSeries /> */}
+        <CoinSeries />
         {/* <DiceSeries /> */}
       </div>
     </>
