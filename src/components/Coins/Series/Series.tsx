@@ -7,6 +7,7 @@ import { Coin, useCoinSeries } from '../../../state/useCoinSeries';
 import { Button } from '../../Button/Button';
 import { EventSelect } from './components/Select/EventSelect';
 import { KSelect } from './components/Select/KSelect';
+import { KRange } from './components/Range/KRange';
 
 import Coin1 from '../../icons/coin_1.svg?react';
 import Coin2 from '../../icons/coin_2.svg?react';
@@ -102,6 +103,15 @@ export const CoinSeries = () => {
     <div className={styles.wrapper}>
       {/* {`length: ${length}, seriesN: ${seriesN}, event: ${event}, k: ${k}`} */}
       <h2 className={styles.title}>Серии бросков монеты и формула Бернулли</h2>
+      <div className={styles.controllWrapper}>
+        <div className={styles.eventTitle}>Событие:</div>
+        <div className={styles.series}>
+          <span className={styles.text}>в серии из</span>
+          <LengthRange max={20} min={5} />
+          <EventSelect />
+          <KRange />
+        </div>
+      </div>
       {/* <div>
         <KaTeX
           texExpression="P{k \atop n} = P{2 \atop 10} = C {2 \atop 10}{0{{\char`,}}167^2}\space{0{{\char`,}}833^2} \approx 0{{\char`,}}29"

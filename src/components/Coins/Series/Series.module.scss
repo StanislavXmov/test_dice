@@ -28,9 +28,38 @@
 
 .controllWrapper {
   display: flex;
-  gap: 24px;
-  margin: 12px 0px 0px 0px;
+  gap: 0px;
+  margin: 0px 0px 0px;
 }
+
+.eventTitle {
+  height: 26px;
+  padding: 4px 4px 2px;
+  font-family: 'SB Sans Display Semi';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20.53px;
+  text-align: left;
+  background: rgba(9, 202, 155, 0.2);
+}
+
+.text {
+  height: 26px;
+  padding: 4px 4px 2px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20.53px;
+  text-align: left;
+}
+
+.series {
+  display: flex;
+}
+
+
+
+
 
 .listWrapper {
   margin: 12px 0px 0px 0px;

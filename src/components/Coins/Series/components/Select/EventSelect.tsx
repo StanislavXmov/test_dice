@@ -10,15 +10,14 @@ export const EventSelect = () => {
   }
   return (
     <label className={styles.label} htmlFor="EventSelect">
-      Событие:
       <select
         id='EventSelect'
         className={styles.select}
         onChange={selectHandler}
         defaultValue={'5'}
       >
-        <option value={'OREL'}>Орёл</option>
-        <option value={'5'}>Решка</option>
+        <option value={'OREL'}>орёл выпал</option>
+        <option value={'5'}>решка выпала</option>
       </select>
     </label>
   );
