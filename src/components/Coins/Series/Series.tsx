@@ -64,7 +64,7 @@ export const CoinSeries = () => {
   const series = useCoinSeries(s => s.series);
   const setSeries = useCoinSeries(s => s.setSeries);
 
-  console.log(series);
+  console.log(series, length, seriesN, event, k);
   
 
   const startHandler = () => {

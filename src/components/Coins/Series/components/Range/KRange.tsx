@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import { useCoinSeries } from '../../../../../state/useCoinSeries';
 
@@ -20,11 +20,20 @@ export const KRange = () => {
     setK(Number(e.target.value));
   }
 
+  useEffect(() => {
+    console.log(length);
+    if (value > length) {
+      setValue(length);
+      setK(length);
+    }
+    
+  }, [length]);
+
   return (
     <div className={styles.controlWrapper}>
       <div className={styles.labelWrapper}>
         <span className={styles.symbol}>k</span>
-        <span className={styles.text}>═ {value} {toCaseCount(value)}</span>
+        <span className={styles.text}>= {value} {toCaseCount(value)}</span>
       </div>
       <input
         className={`${styles.inputControll} ${styles.inputLength}`}
