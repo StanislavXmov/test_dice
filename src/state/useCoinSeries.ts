@@ -1,3 +1,4 @@
+import random from "random";
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 
@@ -16,10 +17,30 @@ interface CoinSeriesState {
   setK: (v: number) => void;
 }
 
+const getCoinSeries = (seriesN: number, length: number) => {
+  const seriesList: Coin[][] = [];
+  for (let i = 0; i < seriesN; i++) {
+    const list: Coin[] = [];
+    for (let j = 0; j < length; j++) {
+      const n = random.int(0, 1);
+      if (n === 1) {
+        list.push('OREL');
+      } else {
+        list.push('5');
+      }
+    }
+    seriesList.push(list);
+  }
+
+  console.log(seriesList);
+  
+  return seriesList;
+}
+
 
 
 export const useCoinSeries = create<CoinSeriesState>()(subscribeWithSelector(set => ({
-  series: [],
+  series: getCoinSeries(50, 5),
   // setSeries: (v) => set((s) => ({series: [...s.series, ...v]})),
   setSeries: (v) => set((s) => ({series: [...v]})),
   length: 5,
