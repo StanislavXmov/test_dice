@@ -15,6 +15,7 @@ interface CoinSeriesState {
   setEvent: (v: Coin) => void;
   k: number;
   setK: (v: number) => void;
+  calcSeries: () => void;
 }
 
 const getCoinSeries = (seriesN: number, length: number) => {
@@ -35,11 +36,11 @@ const getCoinSeries = (seriesN: number, length: number) => {
   return seriesList;
 }
 
-
+const maxSeriesN = 500;
+const maxLength = 20;
 
 export const useCoinSeries = create<CoinSeriesState>()(subscribeWithSelector(set => ({
-  series: getCoinSeries(50, 5),
-  // setSeries: (v) => set((s) => ({series: [...s.series, ...v]})),
+  series: [],
   setSeries: (v) => set((s) => ({series: [...v]})),
   length: 5,
   setLength: (v) => set(() => ({length: v})),
@@ -49,4 +50,8 @@ export const useCoinSeries = create<CoinSeriesState>()(subscribeWithSelector(set
   setEvent: (v) => set(() => ({event: v})),
   k: 0,
   setK: (v) => set(() => ({k: v})),
+  calcSeries: () => set((s) => {
+    const series = getCoinSeries(maxSeriesN, maxLength);
+    return {series};
+  })
 })));

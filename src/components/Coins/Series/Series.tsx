@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import random from 'random';
 import { LengthRange } from './components/Range/LengthRange';
 import { SerialsRange } from './components/Range/SerialsRange';
@@ -63,38 +63,12 @@ export const CoinSeries = () => {
   const event = useCoinSeries(s => s.event);
   const k = useCoinSeries(s => s.k);
   const series = useCoinSeries(s => s.series);
-  const setSeries = useCoinSeries(s => s.setSeries);
+  const calcSeries = useCoinSeries(s => s.calcSeries);
 
-  // console.log(series, length, seriesN, event, k);
-  
-
-  // const startHandler = () => {
-  //   const seriesList: Coin[][] = [];
-  //   for (let i = 0; i < seriesN; i++) {
-  //     const list: Coin[] = [];
-  //     for (let j = 0; j < length; j++) {
-  //       const n = random.int(0, 1);
-  //       if (n === 1) {
-  //         list.push('OREL');
-  //       } else {
-  //         list.push('5');
-  //       }
-  //     }
-  //     seriesList.push(list);
-  //   }
-
-  //   setSeries([]);
-
-  //   setTimeout(() => {
-  //     setSeries(seriesList);
-  //   }, 500);
-  // }
-
-  // startHandler();
-
-  const findedMatch = () => {
+  const findedMatch = (seriesN: number, length: number) => {
+    const s = [...series].splice(0, seriesN).map(_s => [..._s].splice(0, length));
     let counter = 0;
-    series.forEach(s => {
+    s.forEach(s => {
       if (match(event, k, s)) {
         counter++;
       }
@@ -103,8 +77,12 @@ export const CoinSeries = () => {
   }
 
   const resetHandler = () => {
-    console.log('resetHandler');
+    calcSeries();
   }
+
+  useEffect(() => {
+    calcSeries();
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -147,28 +125,28 @@ export const CoinSeries = () => {
             Частота <span className={styles.active}>события</span> в эксперименте:
           </div>
           <KaTeX
-            texExpression={getTextExpressionExp(findedMatch(), seriesN)}
+            texExpression={getTextExpressionExp(findedMatch(seriesN, length), seriesN)}
             className={''}
           />
         </div>
         <div className={styles.calcData}>
           <KaTeX
-            texExpression={(findedMatch() / seriesN).toFixed(3).replace('.', '{{\\char\`,}}')}
+            texExpression={(findedMatch(seriesN, length) / seriesN).toFixed(3).replace('.', '{{\\char\`,}}')}
             className={''}
           />
         </div>
       </div>
       <div className={styles.listWrapper}>
-        {series.map((s, i) => (
-          <div key={i} className={`${styles.list} ${match(event, k, s) ? styles.activeList : ''}`}>
+        {[...series].splice(0, seriesN).map((s, i) => (
+          <div key={i} className={`${styles.list} ${match(event, k, [...s].splice(0, length)) ? styles.activeList : ''}`}>
             <div className={styles.itemsWrapper}>
-              {s.map((c, i) => (
+              {[...s].splice(0, length).map((c, i) => (
                 <div key={i}>
                   {c === 'OREL' ? <Coin1 className={styles.coinIcon} /> : <Coin2 className={styles.coinIcon} />}
                 </div>
               ))}
             </div>
-            {match(event, k, s) && <span className={styles.listInfo}>✓ событие</span>}
+            {match(event, k, [...s].splice(0, length)) && <span className={styles.listInfo}>✓ событие</span>}
           </div>
         ))}
       </div>
