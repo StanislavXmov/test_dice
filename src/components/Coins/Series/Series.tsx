@@ -137,18 +137,21 @@ export const CoinSeries = () => {
         </div>
       </div>
       <div className={styles.listWrapper}>
-        {[...series].splice(0, seriesN).map((s, i) => (
-          <div key={i} className={`${styles.list} ${match(event, k, [...s].splice(0, length)) ? styles.activeList : ''}`}>
+        {[...series].splice(0, seriesN).map((s, i) => {
+          const _s = [...s].splice(0, length);
+          const isMatch = match(event, k, _s);
+          return (
+          <div key={i} className={`${styles.list} ${isMatch ? styles.activeList : ''}`}>
             <div className={styles.itemsWrapper}>
-              {[...s].splice(0, length).map((c, i) => (
+              {_s.map((c, i) => (
                 <div key={i}>
                   {c === 'OREL' ? <Coin1 className={styles.coinIcon} /> : <Coin2 className={styles.coinIcon} />}
                 </div>
               ))}
             </div>
-            {match(event, k, [...s].splice(0, length)) && <span className={styles.listInfo}>✓ событие</span>}
+            {isMatch && <span className={styles.listInfo}>✓{_s.length > 16 ? '' :` событие`}</span>}
           </div>
-        ))}
+        )})}
       </div>
     </div>
   )
