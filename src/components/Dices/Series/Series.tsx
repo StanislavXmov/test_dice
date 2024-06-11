@@ -39,6 +39,8 @@ import Dice3_11 from '../../icons/dice12_11.svg?react';
 import Dice3_12 from '../../icons/dice12_12.svg?react';
 
 import styles from './Series.module.scss';
+import { ResetButton } from '../../ResetButton/ResetButton';
+import { KRange } from './components/Range/KRange';
 
 const dices6 = {
   1: (key: Key) => <Dice1 className={styles.coinIcon} key={key} />,
@@ -201,12 +203,33 @@ export const DiceSeries = () => {
     return counter;
   }
 
+  const resetHandler = () => {
+    // calcSeries();
+  }
+
   return (
     <div className={styles.wrapper}>
-      {/* {`edge: ${edge},length: ${length}, seriesN: ${seriesN}, event: ${event},point ${point}, k: ${k}`} */}
-      <h2 className={styles.title}>Серии бросков кубика</h2>
+      <ResetButton cb={resetHandler} />
+      <h2 className={styles.title}>Серии бросков кубика и формула Бернулли</h2>
       <div className={styles.controllWrapper}>
-        <EdgeSelect />
+        <div className={styles.eventWrapper}>
+          <div className={styles.eventTitle}>Событие:</div>
+          <img src="" alt="dice" className={styles.eventImage} />
+        </div>
+        <div className={styles.series}>
+          <div className={styles.seriesControll}>
+            <EdgeSelect />
+            <span className={styles.text}>в серии из</span>
+            <LengthRange max={20} min={5} />
+          </div>
+          <div className={styles.seriesControll}>
+            <EventSelect />
+            <PointSelect />
+            <span className={styles.text}>выпало</span>
+            <KRange />
+          </div>
+        </div>
+        {/* 
         <div>
           <h3 className={styles.subTitle}>Длина серии n: {length}</h3>
           <LengthRange max={20} min={5} />
@@ -214,16 +237,9 @@ export const DiceSeries = () => {
         <div>
           <h3 className={styles.subTitle}>Количество серий: {seriesN}</h3>
           <SerialsRange max={100} min={2} />
-        </div>
-        <Button
-          title={`Запустить`}
-          disabled={disabled}
-          cb={startHandler}
-          setDisabled={setDisabled}
-          timeout={500}
-        />
+        </div> */}
       </div>
-      <div className={styles.controllWrapper}>
+      {/* <div className={styles.controllWrapper}>
         <div>
           <EventSelect />
         </div>
@@ -313,7 +329,7 @@ export const DiceSeries = () => {
             )}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

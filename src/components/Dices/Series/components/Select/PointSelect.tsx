@@ -29,7 +29,7 @@ export const PointSelect = () => {
     <label className={styles.label} htmlFor="PointSelect">
       <select
         id='PointSelect'
-        className={styles.pointSelect}
+        className={styles.select}
         onChange={selectHandler}
         defaultValue={1}
       >

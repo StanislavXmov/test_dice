@@ -10,7 +10,6 @@ export const EventSelect = () => {
   }
   return (
     <label className={styles.label} htmlFor="EventSelectDice">
-      Событие:
       <select
         id='EventSelectDice'
         className={styles.select}

@@ -21,7 +21,7 @@
 input[type=range] {
   height: 25px;
   -webkit-appearance: none;
-  width: 140px;
+  // width: 140px;
 }
 input[type=range]:focus {
   outline: none;
@@ -236,4 +236,58 @@ input[type=range]:focus::-ms-fill-upper {
 
 .labelActive {
   opacity: 1;
+}
+
+.labelActive {
+  opacity: 1;
+}
+
+.controlWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.width {
+  width: 130px;
+}
+
+.labelWrapper {
+  padding: 4px 0px 0px;
+  display: flex;
+}
+
+.symbol {
+  margin: 0px 4px 0px 0px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20.53px;
+  text-align: left;
+  font-style: italic;
+}
+
+.text {
+  height: 26px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20.53px;
+  text-align: left;
+}
+
+.inputControll {
+  margin: -16px 0px 0px;
+  background: none;
+}
+
+.inputLength {
+  width: 120px;
+}
+
+.inputMinLength {
+  width: 100px;
+}
+
+.func {
+  margin: -4px 4px 0px 0px;
 }

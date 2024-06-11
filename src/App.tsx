@@ -26,8 +26,9 @@ function App() {
         {/* <DiceLayerAnimated /> */}
         {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}
+        <DiceSeries />
         <CoinSeries />
-        {/* <DiceSeries /> */}
+        
       </div>
     </>
   );
