@@ -22,12 +22,10 @@ export const KRange = () => {
   }
 
   useEffect(() => {
-    console.log(length);
     if (value > length) {
       setValue(length);
       setK(length);
     }
-    
   }, [length]);
 
   return (

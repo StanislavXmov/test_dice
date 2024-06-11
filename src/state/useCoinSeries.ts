@@ -31,8 +31,6 @@ const getCoinSeries = (seriesN: number, length: number) => {
     }
     seriesList.push(list);
   }
-
-  console.log(seriesList);
   
   return seriesList;
 }
