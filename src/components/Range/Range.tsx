@@ -17,7 +17,7 @@ const labes = [
 export type CounterType = 1|5|10|50|100|500|1000|5000|10000;
 
 const getValueString = (n: number) => {
-  return n >= 10000 ? n.toLocaleString().replace(',', ' ') : n.toString();
+  return n >= 10000 ? n.toLocaleString().replace(',', ' ').replace(' ', '\u2009') : n.toString();
 }
 
 export const Range = ({setCounter}: {setCounter: (v: CounterType) => void}) => {

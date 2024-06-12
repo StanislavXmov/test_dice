@@ -81,7 +81,7 @@ const DiceControll = ({handleClick, setDiceType}: {handleClick: () => void; setD
   
   }
 
-  const counterValue = counter >= 10000 ? counter.toLocaleString().replace(',', ' ') : counter;
+  const counterValue = counter >= 10000 ? counter.toLocaleString().replace(',', ' ').replace(' ', '\u2009') : counter;
 
   return (
     <div className={styles.coinControllWrapper}>
