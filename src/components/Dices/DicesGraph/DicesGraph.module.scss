@@ -83,8 +83,8 @@
 
 .sideLabelValuesAbsolute {
   position: absolute;
-  bottom: 2px;
-  left: -34px;
+  bottom: -14px;
+  left: 0px;
   font-family: 'SB Sans Display Normal';
   font-size: 12px;
   font-weight: 400;
@@ -104,6 +104,7 @@
 }
 
 .graphLabel {
+  position: relative;
   margin: 6px 0 0 0;
   display: flex;
   gap: 8px;

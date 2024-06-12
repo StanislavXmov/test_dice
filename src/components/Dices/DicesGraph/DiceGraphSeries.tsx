@@ -171,10 +171,6 @@ export const DicesGraphSeries = () => {
     <div className={styles.wrapper}>
       <Axis className={styles.axis} />
       <span className={styles.sideLabelAbsolute}>Количество раз</span>
-      {/* <div className={styles.side}>
-        <span className={styles.sideLabelDefault}>Кол-во раз</span>
-        <span className={styles.sideLabelValues}>Доля </span>
-      </div> */}
       <div className={styles.graphWrapper}>
         <div className={styles.graphValues}>
           {graphType && (
@@ -193,7 +189,7 @@ export const DicesGraphSeries = () => {
           {graphType && (<GraphType2 valuesObject={valuesObject} maxDiceVarian={maxDiceVarian} />)}
         </div>
         <div className={styles.graphLabel}>
-          {/* <span className={styles.sideLabelValuesAbsolute}>Доля</span> */}
+          <span className={styles.sideLabelValuesAbsolute}>Доля</span>
           <div className={styles.label}>
             <Dice1 className={styles.icon} />
             <div className={styles.value} >{valuesObject[1] > 0 ? (valuesObject[1] / length).toFixed(3).replace('.', ','): '0,000'}</div>
