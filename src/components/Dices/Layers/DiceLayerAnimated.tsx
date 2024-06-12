@@ -1,15 +1,12 @@
 import { useState } from 'react';
-import { Vector3 } from 'three';
 import random from 'random';
 import { SpringValue, useSpring, animated, easings } from '@react-spring/web';
 
-import { DiceScene } from '../DiceScene';
-import { DicesGraph } from '../DicesGraph/DicesGraph';
-import { Dice, useDiceValue } from '../../../state/useDiceValue';
+
+import { Dice, useDiceSeriesValue } from '../../../state/useDiceValue';
 import { CounterType, Range } from '../../Range/Range';
 import { Button } from '../../Button/Button';
-import { useDicePosition } from '../../../state/useDicePosition';
-import { useRoleDiceButton } from '../../../state/useRoleDiceButton';
+import { useRoleDiceSeriesButton } from '../../../state/useRoleDiceButton';
 import { ResetButton } from '../../ResetButton/ResetButton';
 import { DicesGraphSeries } from '../DicesGraph/DiceGraphSeries';
 
@@ -44,12 +41,9 @@ const RightSide = () => {
 const DiceControll = ({handleClick, setDiceType}: {handleClick: () => void; setDiceType: (n: number) => void;}) => {
   const [counter, setCounter] = useState<CounterType>(1);
   const [counterView, setCounterView] = useState(false);
-  const setPosition = useDicePosition(s => s.setPosition);
-  const setValue = useDiceValue(s => s.setValue);
-  const setValues = useDiceValue(s => s.setValues);
-  const setActive = useDiceValue(s => s.setActive);
-  const disabled = useRoleDiceButton(s => s.disabled);
-  const setDisabled = useRoleDiceButton(s => s.setDisabled);
+  const setValues = useDiceSeriesValue(s => s.setValues);
+  const disabled = useRoleDiceSeriesButton(s => s.disabled);
+  const setDisabled = useRoleDiceSeriesButton(s => s.setDisabled);
 
   const handler = () => {
     
@@ -98,14 +92,14 @@ const DiceControll = ({handleClick, setDiceType}: {handleClick: () => void; setD
         cb={handler}
         disabled={disabled}
         setDisabled={setDisabled}
-        timeout={counter === 1 ? 5000 : 1000}
+        timeout={200}
       />
     </div>
   );
 }
 
 const ValuesCounter = () => {
-  const values = useDiceValue(s => s.values);
+  const values = useDiceSeriesValue(s => s.values);
   const counter = values.length;
 
   let counterValue = counter.toString();
@@ -144,7 +138,7 @@ const DiceAnimated = ({springs, diceType}: {springs: {y: SpringValue<number>}; d
 }
 
 export const DiceLayerAnimated = () => {
-  const reset = useDiceValue(s => s.reset);
+  const reset = useDiceSeriesValue(s => s.reset);
   const [diceType, setDiceType] = useState<null | number>(0);
   const [springs, api] = useSpring(() => ({
     from: { y: 0, opacity: 0, },

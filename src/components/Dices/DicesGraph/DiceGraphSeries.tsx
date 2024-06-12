@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { Dice, useDiceValue } from '../../../state/useDiceValue';
+import { Dice, useDiceSeriesValue } from '../../../state/useDiceValue';
 
 import Dice1 from '../../icons/dice_1.svg?react';
 import Dice2 from '../../icons/dice_2.svg?react';
@@ -159,7 +159,7 @@ const getValue = (v: number) => {
 }
 
 export const DicesGraphSeries = () => {
-  const values = useDiceValue(s => s.values);
+  const values = useDiceSeriesValue(s => s.values);
   const length = values.length;
   const sortedValues = sortValues(values);
   const valuesObject = getMappedValues(sortedValues);

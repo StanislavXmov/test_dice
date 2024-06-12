@@ -10,3 +10,8 @@ export const useRoleDiceButton = create<RoleDiceButtonState>()(subscribeWithSele
   disabled: false,
   setDisabled: (v) => set((() => ({disabled: v}))),
 })));
+
+export const useRoleDiceSeriesButton = create<RoleDiceButtonState>()(subscribeWithSelector(set => ({
+  disabled: false,
+  setDisabled: (v) => set((() => ({disabled: v}))),
+})));

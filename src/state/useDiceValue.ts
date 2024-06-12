@@ -33,3 +33,21 @@ export const useDiceValue = create<ValueState>()(subscribeWithSelector(set => ({
   setActive: (v) => set(() => ({isActive: v})),
   reset: () => set(() => ({values: []})),
 })));
+
+export const useDiceSeriesValue = create<ValueState>()(subscribeWithSelector(set => ({
+  isActive: true,
+  values: values,
+  value: '?',
+  setValue: (v) => set(((s) => {
+    if (v !== '?') {
+      return {value: v, values: [...s.values, v]};
+    }
+    
+    return {value: v};
+  })),
+  setValues: (v) => set(((s) => {
+    return {values: [...s.values, ...v]};
+  })),
+  setActive: (v) => set(() => ({isActive: v})),
+  reset: () => set(() => ({values: []})),
+})));

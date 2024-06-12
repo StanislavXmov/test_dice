@@ -14,7 +14,6 @@ import { DiceLayerAnimated } from './components/Dices/Layers/DiceLayerAnimated';
 
 import styles from './App.module.scss';
 
-// — Долю под значение забыли подписать в кубиках
 // — Уменьшить до 0.5 сек или убрать заморозку кнопки в сериях
 // — Сделать свой стор, чтобы два интерактива могли быть на одной странице
 // + Пробел в 10 000 заменить на  &thinsp;
