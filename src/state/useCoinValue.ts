@@ -17,9 +17,25 @@ const test_values: Coin[] = [
   
 ];
 
-// const test_values: Coin[] = [...new Array(20000).fill('5'), ...new Array(20).fill('OREL')];
-
 export const useCoinValue = create<ValueState>()(subscribeWithSelector(set => ({
+  isActive: true,
+  values: test_values,
+  value: '?',
+  setValue: (v) => set(((s) => {
+    if (v !== '?') {
+      return {value: v, values: [...s.values, v]};
+    }
+
+    return {value: v};
+  })),
+  setValues: (v) => set(((s) => {
+    return {values: [...s.values, ...v]};
+  })),
+  setActive: (v) => set(() => ({isActive: v})),
+  reset: () => set(() => ({values: []})),
+})));
+
+export const useCoinSeriesValue = create<ValueState>()(subscribeWithSelector(set => ({
   isActive: true,
   values: test_values,
   value: '?',

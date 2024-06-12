@@ -1,12 +1,8 @@
 import { useState } from 'react';
-import { Vector3 } from 'three';
 import { useSpring, animated, config, SpringValue, easings, useTransition} from '@react-spring/web';
 
-import { CoinScene } from '../CoinScene';
-import { CoinsGraph } from '../CoinsGraph/CoinsGraph';
-import { Coin, useCoinValue } from '../../../state/useCoinValue';
-import { useCoinPosition } from '../../../state/useCoinPosition';
-import { useRoleCoinButton } from '../../../state/useRoleCoinButton';
+import { Coin, useCoinSeriesValue } from '../../../state/useCoinValue';
+import { useRoleCoinSeriesButton } from '../../../state/useRoleCoinButton';
 import { ResetButton } from '../../ResetButton/ResetButton';
 import { Button } from '../../Button/Button';
 import { CounterType, Range } from '../../Range/Range';
@@ -43,9 +39,9 @@ const RightSide = () => {
 const CoinControll = ({handleClick, setCoinType}: {handleClick: () => void; setCoinType: (n: number) => void;}) => {
   const [counter, setCounter] = useState<CounterType>(1);
   const [counterView, setCounterView] = useState(false);
-  const setValues = useCoinValue(s => s.setValues);
-  const disabled = useRoleCoinButton(s => s.disabled);
-  const setDisabled = useRoleCoinButton(s => s.setDisabled);
+  const setValues = useCoinSeriesValue(s => s.setValues);
+  const disabled = useRoleCoinSeriesButton(s => s.disabled);
+  const setDisabled = useRoleCoinSeriesButton(s => s.setDisabled);
 
   const handler = () => {
 
@@ -87,7 +83,7 @@ const CoinControll = ({handleClick, setCoinType}: {handleClick: () => void; setC
         cb={handler}
         disabled={disabled}
         setDisabled={setDisabled}
-        timeout={counter === 1 ? 5000 : 1000}
+        timeout={200}
       />
     </div>
   );
@@ -111,7 +107,7 @@ const CoinAnimated = ({springs, coinType}: {springs: {y: SpringValue<number>}; c
 }
 
 const ValuesCounter = () => {
-  const values = useCoinValue(s => s.values);
+  const values = useCoinSeriesValue(s => s.values);
   const counter = values.length;
 
   let counterValue = counter.toString();
@@ -125,7 +121,7 @@ const ValuesCounter = () => {
 }
 
 export const CoinLayerAnimated = () => {
-  const reset = useCoinValue(s => s.reset);
+  const reset = useCoinSeriesValue(s => s.reset);
   const [coinType, setCoinType] = useState<null | number>(null);
   const [springs, api] = useSpring(() => ({
     from: { y: 0, opacity: 0, },

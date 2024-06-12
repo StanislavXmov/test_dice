@@ -10,3 +10,8 @@ export const useRoleCoinButton = create<RoleCoinButtonState>()(subscribeWithSele
   disabled: false,
   setDisabled: (v) => set((() => ({disabled: v}))),
 })));
+
+export const useRoleCoinSeriesButton = create<RoleCoinButtonState>()(subscribeWithSelector(set => ({
+  disabled: false,
+  setDisabled: (v) => set((() => ({disabled: v}))),
+})));

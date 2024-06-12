@@ -1,5 +1,5 @@
 import React from 'react'
-import { Coin, useCoinValue } from '../../../state/useCoinValue';
+import { Coin, useCoinSeriesValue } from '../../../state/useCoinValue';
 
 import Coin1 from '../../icons/coin_1.svg?react';
 import Coin2 from '../../icons/coin_2.svg?react';
@@ -146,7 +146,7 @@ const getValue = (v: number) => {
 }
 
 export const CoinsGraphSeries = () => {
-  const values = useCoinValue(s => s.values);
+  const values = useCoinSeriesValue(s => s.values);
   const length = values.length;
   const sortedValues = sortValues(values);
   const valuesObject = getMappedValues(sortedValues);
