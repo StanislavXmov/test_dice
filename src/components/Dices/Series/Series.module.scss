@@ -88,7 +88,49 @@
   display: flex;
 }
 
+.calcTitle {
+  display: flex;
+  flex-direction: column;
+  font-family: 'SB Sans Display Semi';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20.53px;
+  text-align: left;
+}
 
+.formulaWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formulaTitle {
+  // height: 26px;
+  // padding: 4px 4px 2px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20.53px;
+  text-align: left;
+  // background: rgba(9, 202, 155, 0.2);
+}
+
+.active {
+  background: rgba(9, 202, 155, 0.2);
+  outline: 2px solid rgba(9, 202, 155, 0.2);
+}
+
+.calcData {
+  margin: 4px 0px 0px;
+  width: 84px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+
+  font-size: larger;
+}
 
 
 

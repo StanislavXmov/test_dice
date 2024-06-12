@@ -8,6 +8,9 @@ import { EventSelect } from './components/Select/EventSelect';
 import { KSelect } from './components/Select/KSelect';
 import { EdgeSelect } from './components/Select/EdgeSelect';
 import { PointSelect } from './components/Select/PointSelect';
+import { ResetButton } from '../../ResetButton/ResetButton';
+import { KRange } from './components/Range/KRange';
+import { KaTeX } from '../../Katex/Katex';
 
 import Dice1 from '../../icons/dice_1.svg?react';
 import Dice2 from '../../icons/dice_2.svg?react';
@@ -39,8 +42,6 @@ import Dice3_11 from '../../icons/dice12_11.svg?react';
 import Dice3_12 from '../../icons/dice12_12.svg?react';
 
 import styles from './Series.module.scss';
-import { ResetButton } from '../../ResetButton/ResetButton';
-import { KRange } from './components/Range/KRange';
 
 const dices6 = {
   1: (key: Key) => <Dice1 className={styles.coinIcon} key={key} />,
@@ -153,6 +154,30 @@ const match = (event: EventDice, k: number, point: number, list: number[]) => {
   }
 }
 
+const getTextExpression = (k: number, n: number, edge: Edge) => {  
+  const x = calc(k, n, edge).toFixed(2).replace('.', '{{\\char\`,}}');
+  let n1: string = '';
+  let n2: string = '';
+  if (edge === 6) {
+    n1 = `{0{{\\char\`,}}167`
+    n2 = `{0{{\\char\`,}}833`
+  } else if (edge === 8) {
+    n1 = `{0{{\\char\`,}}125`
+    n2 = `{0{{\\char\`,}}875`
+  } else if (edge === 12) {
+    n1 = `{0{{\\char\`,}}083`
+    n2 = `{0{{\\char\`,}}916`
+  }
+  return `P{k \\atop n} = P{${k} \\atop ${n}} = C {${k} \\atop ${n}}${n1}^${k}}\\space${n2}^${n - k}} \\approx ${x}`;
+}
+
+const getTextExpressionExp = (v: number, k: number) => {
+  if (v === 0) {
+    return `P{\\atop \\text{эксп}} = 0`;
+  }
+  return `P{\\atop \\text{эксп}} = {\\frac{${v}}{${k}}} = ${(v / k).toFixed(2).replace('.', '{{\\char\`,}}')}`;
+}
+
 
 export const DiceSeries = () => {
   const [disabled, setDisabled] = useState(false);
@@ -214,7 +239,9 @@ export const DiceSeries = () => {
       <div className={styles.controllWrapper}>
         <div className={styles.eventWrapper}>
           <div className={styles.eventTitle}>Событие:</div>
-          <img src="" alt="dice" className={styles.eventImage} />
+          {edge === 6 && (<img src="" alt="dice6" className={styles.eventImage} />)}
+          {edge === 8 && (<img src="" alt="dice8" className={styles.eventImage} />)}
+          {edge === 12 && (<img src="" alt="dice12" className={styles.eventImage} />)}
         </div>
         <div className={styles.series}>
           <div className={styles.seriesControll}>
@@ -229,16 +256,47 @@ export const DiceSeries = () => {
             <KRange />
           </div>
         </div>
-        {/* 
-        <div>
-          <h3 className={styles.subTitle}>Длина серии n: {length}</h3>
-          <LengthRange max={20} min={5} />
-        </div>
-        <div>
-          <h3 className={styles.subTitle}>Количество серий: {seriesN}</h3>
-          <SerialsRange max={100} min={2} />
-        </div> */}
       </div>
+      <div className={styles.calcWrapper}>
+        <div className={styles.calcTitle}>Теория</div>
+        <div className={styles.formulaWrapper}>
+          <div className={styles.formulaTitle}>
+            Вероятность <span className={styles.active}>события</span> по формуле Бернулли:
+          </div>
+          <KaTeX
+            texExpression={getTextExpression(k, length, edge)}
+            className={''}
+          />
+        </div>
+        <div className={styles.calcData}>
+          <KaTeX
+            texExpression={calc(k, length, edge).toFixed(3).replace('.', '{{\\char\`,}}')}
+            className={''}
+          />
+        </div>
+      </div>
+      <div className={styles.calcWrapper}>
+        <div className={styles.calcTitle}>
+          <div>Эксперимент</div>
+          <SerialsRange max={500} min={2} />
+        </div>
+        <div className={styles.formulaWrapper}>
+          <div className={styles.formulaTitle}>
+            Частота <span className={styles.active}>события</span> в эксперименте:
+          </div>
+          <KaTeX
+            texExpression={getTextExpressionExp(findedMatch(), seriesN)}
+            className={''}
+          />
+        </div>
+        <div className={styles.calcData}>
+          <KaTeX
+            texExpression={(findedMatch() / seriesN).toFixed(3).replace('.', '{{\\char\`,}}')}
+            className={''}
+          />
+        </div>
+      </div>
+
       {/* <div className={styles.controllWrapper}>
         <div>
           <EventSelect />

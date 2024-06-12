@@ -65,7 +65,7 @@ export const CoinSeries = () => {
   const series = useCoinSeries(s => s.series);
   const calcSeries = useCoinSeries(s => s.calcSeries);
 
-  const findedMatch = (seriesN: number, length: number) => {
+  const findedMatch = () => {
     const s = [...series].splice(0, seriesN).map(_s => [..._s].splice(0, length));
     let counter = 0;
     s.forEach(s => {
@@ -125,13 +125,13 @@ export const CoinSeries = () => {
             Частота <span className={styles.active}>события</span> в эксперименте:
           </div>
           <KaTeX
-            texExpression={getTextExpressionExp(findedMatch(seriesN, length), seriesN)}
+            texExpression={getTextExpressionExp(findedMatch(), seriesN)}
             className={''}
           />
         </div>
         <div className={styles.calcData}>
           <KaTeX
-            texExpression={(findedMatch(seriesN, length) / seriesN).toFixed(3).replace('.', '{{\\char\`,}}')}
+            texExpression={(findedMatch() / seriesN).toFixed(3).replace('.', '{{\\char\`,}}')}
             className={''}
           />
         </div>

@@ -37,7 +37,7 @@ export const useDiceSeries = create<DiceSeriesState>()(subscribeWithSelector(set
   setSeriesN: (v) => set(() => ({seriesN: v})),
   event: "=",
   setEvent: (v) => set(() => ({event: v})),
-  k: 1,
+  k: 0,
   setK: (v) => set(() => ({k: v})),
   point: 1,
   setPoint: (v) => set(() => ({point: v})),
