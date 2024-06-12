@@ -1,4 +1,4 @@
-import { Key, useState } from 'react';
+import { Key, useEffect, useState } from 'react';
 import random from 'random';
 import { Edge, EventDice, useDiceSeries } from '../../../state/useDiceSeries';
 import { LengthRange } from './components/Range/LengthRange';
@@ -188,35 +188,7 @@ export const DiceSeries = () => {
   const k = useDiceSeries(s => s.k);
   const point = useDiceSeries(s => s.point);
   const series = useDiceSeries(s => s.series);
-  const setSeries = useDiceSeries(s => s.setSeries);
-
-  console.log(series);
-  
-  const startHandler = () => {
-    const seriesList: number[][] = [];
-    for (let i = 0; i < seriesN; i++) {
-      const list: number[] = [];
-      for (let j = 0; j < length; j++) {
-        if (edge === 6) {
-          const n = random.int(1, 6);
-          list.push(n);
-        } else if (edge === 8) {
-          const n = random.int(1, 8);
-          list.push(n);
-        } else if (edge === 12) {
-          const n = random.int(1, 12);
-          list.push(n);
-        }
-      }
-      seriesList.push(list);
-    }
-
-    setSeries([]);
-
-    setTimeout(() => {
-      setSeries(seriesList);
-    }, 500);
-  }
+  const calcSeries = useDiceSeries(s => s.calcSeries);
 
   const findedMatch = () => {
     const filteresSeries = [...series].splice(0, seriesN).map(_s => [..._s].splice(0, length));
@@ -230,8 +202,12 @@ export const DiceSeries = () => {
   }
 
   const resetHandler = () => {
-    // calcSeries();
+    calcSeries();
   }
+
+  useEffect(() => {
+    calcSeries();
+  }, []);
 
   return (
     <div className={styles.wrapper}>
