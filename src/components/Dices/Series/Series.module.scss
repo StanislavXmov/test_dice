@@ -145,24 +145,23 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  height: 200px;
+  height: 122px;
 
-  border-top: 1px solid #00000020;
-  border-bottom: 1px solid #00000020;
   overflow-y: scroll;
 }
 
 .list {
   padding: 3px;
-  height: 22px;
+  height: 28px;
   display: flex;
   justify-content: space-between;
   gap: 4px;
 }
 
 .activeList {
-  background: #09CA9B20;
+  background: rgba(9, 202, 155, 0.2);
 }
+
 
 .itemsWrapper {
   display: flex;
@@ -170,16 +169,16 @@
 }
 
 .coinIcon {
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
 }
 
 .listInfo {
-  margin: 0px 12px 0px 0px;
-  font-family: Inter;
-  font-size: 12px;
+  margin: 2px 12px 0px 0px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
   font-weight: 400;
-  line-height: 14.52px;
+  line-height: 20.53px;
   text-align: left;
 
 }
@@ -208,63 +207,4 @@
   font-weight: 400;
   line-height: 14.52px;
   font-style: italic;
-}
-
-.d {
-  display: block;
-  position: relative;
-  height: 16px;
-  text-align: left;
-}
-
-.dValue {
-  position: absolute;
-  font-family: serif;
-  font-style: italic;
-}
-
-.dWithoutValue {
-  display: block;
-  position: relative;
-  height: 16px;
-  text-align: left;
-}
-
-.value {
-  font-family: serif;
-  font-style: italic;
-}
-
-.sup {
-  position: absolute;
-  top: -6px;
-  left: 12px;
-  font-size: 12px;
-  font-family: serif;
-  font-style: italic;
-}
-
-.supWithoutValue {
-  width: max-content;
-  position: absolute;
-  top: -6px;
-  left: 2px;
-  font-size: 12px;
-  font-family: serif;
-  font-style: italic;
-}
-
-.sub {
-  position: absolute;
-  bottom: -2px;
-  left: 12px;
-  font-size: 12px;
-  font-family: serif;
-  font-style: italic;
-}
-
-sup {
-  vertical-align: bottom;
-  position: relative;
-  left: -7px;
 }

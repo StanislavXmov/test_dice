@@ -1,3 +1,4 @@
+import random from "random";
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 
@@ -23,12 +24,32 @@ interface DiceSeriesState {
   setPoint: (v: number) => void;
 }
 
+const getDiceSeries = (seriesN: number, length: number, edge: Edge) => {
+  const seriesList: number[][] = [];
+  for (let i = 0; i < seriesN; i++) {
+    const list: number[] = [];
+    for (let j = 0; j < length; j++) {
+      if (edge === 6) {
+        const n = random.int(1, 6);
+        list.push(n);
+      } else if (edge === 8) {
+        const n = random.int(1, 8);
+        list.push(n);
+      } else if (edge === 12) {
+        const n = random.int(1, 12);
+        list.push(n);
+      }
+    }
+    seriesList.push(list);
+  }
 
+  return seriesList;
+}
 
 export const useDiceSeries = create<DiceSeriesState>()(subscribeWithSelector(set => ({
   edge: 6,
   setEdge: (v) => set(() => ({edge: v})),
-  series: [],
+  series: getDiceSeries(30, 20, 6),
   // setSeries: (v) => set((s) => ({series: [...s.series, ...v]})),
   setSeries: (v) => set((s) => ({series: [...v]})),
   length: 5,

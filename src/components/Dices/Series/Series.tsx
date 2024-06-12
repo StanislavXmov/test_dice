@@ -219,8 +219,9 @@ export const DiceSeries = () => {
   }
 
   const findedMatch = () => {
+    const filteresSeries = [...series].splice(0, seriesN).map(_s => [..._s].splice(0, length));
     let counter = 0;
-    series.forEach(s => {
+    filteresSeries.forEach(s => {
       if (match(event, k, point, s)) {
         counter++;
       }
@@ -296,23 +297,14 @@ export const DiceSeries = () => {
           />
         </div>
       </div>
-
-      {/* <div className={styles.controllWrapper}>
-        <div>
-          <EventSelect />
-        </div>
-        <div>
-          <PointSelect />
-        </div>
-        <div>
-          <KSelect />
-        </div>
-      </div>
       <div className={styles.listWrapper}>
-        {series.map((s, i) => (
-          <div key={i} className={`${styles.list} ${match(event, k, point, s) ? styles.activeList : ''}`}>
+        {[...series].splice(0, seriesN).map((s, i) => { 
+          const _s = [...s].splice(0, length);
+          const isMatch = match(event, k, point, _s);
+          return (
+          <div key={i} className={`${styles.list} ${isMatch ? styles.activeList : ''}`}>
             <div className={styles.itemsWrapper}>
-              {s.map((c, i) => (
+              {_s.map((c, i) => (
                 <div key={i}>
                   {edge === 6 && (
                     dices6[c as Dices6Key](i)
@@ -326,68 +318,10 @@ export const DiceSeries = () => {
                 </div>
               ))}
             </div>
-            {match(event, k, point, s) && <span className={styles.listInfo}>успешная серия</span>}
+            {isMatch && <span className={styles.listInfo}>✓{_s.length > 16 ? '' :` событие`}</span>}
           </div>
-        ))}
+        )})}
       </div>
-      <div className={styles.infoWrapper}>
-        <div>
-          <div className={styles.infoLabel}>
-            Теоретическая вероятность события по формуле Бернулли
-          </div>
-          <div className={styles.info}>
-            <span className={styles.d} style={{width: '24px'}}>
-              <span className={styles.dValue}>P</span>
-              <span className={styles.sup}>k</span>
-              <span className={styles.sub}>n</span>
-            </span>
-            <span style={{width: '16px'}}>=</span>
-            <span className={styles.d} style={{width: length >= 10 ? '28px' : '24px'}}>
-              <span className={styles.dValue}>P</span>
-              <span className={styles.sup}>{k}</span>
-              <span className={styles.sub}>{length}</span>
-            </span>
-            <span style={{width: '16px'}}>=</span>
-            <span className={styles.d} style={{width: length >= 10 ? '28px' : '24px'}}>
-              <span className={styles.dValue}>C</span>
-              <span className={styles.sup}>{k}</span>
-              <span className={styles.sub}>{length}</span>
-            </span>
-            {edge === 6 && <span className={styles.value}>0.167</span>}
-            {edge === 8 && <span className={styles.value}>0.125</span>}
-            {edge === 12 && <span className={styles.value}>0.083</span>}
-            <span className={styles.dWithoutValue} style={{width: k >= 10 ? '16px' : '12px'}}>
-              <span className={styles.supWithoutValue}>{k}</span>
-            </span>
-            {edge === 6 && <span className={styles.value}>0.833</span>}
-            {edge === 8 && <span className={styles.value}>0.875</span>}
-            {edge === 12 && <span className={styles.value}>0.916</span>}
-            <span className={styles.dWithoutValue} style={{width: k >= 10 ? '16px' : '12px'}}>
-              <span className={styles.supWithoutValue}>{`${length} - ${k}`}</span>
-            </span>
-            <span style={{width: (k >= 10 || length >= 10) ? '28px' : '22px', textAlign: 'right', marginRight: '4px'}}>≈</span>
-            <span className={styles.value}>{calc(k, length, edge).toFixed(2)}</span>
-          </div>
-        </div>
-        <div>
-          <div className={styles.infoLabel}>
-            Доля успешных серий в эксперименте
-          </div>
-          <div className={styles.info}>
-            <span className={styles.d} style={{width: length >= 10 ? '28px' : '24px'}}>
-              <span className={styles.dValue}>P</span>
-              <span className={styles.sub}>{'эксп'}</span>
-            </span>
-            <span className={styles.value} style={{width: '20px', textAlign: 'right', marginRight: '4px'}}>=</span>
-            {findedMatch() > 0 && (
-              <span className={styles.value}>{findedMatch()} / {series.length} ={' '}{findedMatch() / series.length}</span>
-            )}
-            {findedMatch() === 0 && (
-              <span className={styles.value}>0</span>
-            )}
-          </div>
-        </div>
-      </div> */}
     </div>
   )
 }

@@ -66,9 +66,9 @@ export const CoinSeries = () => {
   const calcSeries = useCoinSeries(s => s.calcSeries);
 
   const findedMatch = () => {
-    const s = [...series].splice(0, seriesN).map(_s => [..._s].splice(0, length));
+    const filteresSeries = [...series].splice(0, seriesN).map(_s => [..._s].splice(0, length));
     let counter = 0;
-    s.forEach(s => {
+    filteresSeries.forEach(s => {
       if (match(event, k, s)) {
         counter++;
       }

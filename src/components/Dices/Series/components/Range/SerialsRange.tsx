@@ -12,7 +12,7 @@ const toCaseCount = (arg: number) => {
 }
 
 export const SerialsRange = ({max, min}: {max: number, min: number}) => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(2);
   const setSeriesN = useDiceSeries(s => s.setSeriesN);
 
   const handler = (e: ChangeEvent<HTMLInputElement>) => {
