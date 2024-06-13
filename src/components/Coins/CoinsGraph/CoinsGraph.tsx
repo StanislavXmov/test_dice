@@ -39,12 +39,12 @@ const getMappedValues = (values: Coin[]) => {
   return o;
 }
 
-const height = 208;
+const height = 196;
 const width = 96;
 const padding1 = 5;
 const rectHeight = 10;
 const rectWidth = 30;
-const maxH = 19;
+const maxH = 18;
 
 const Rect = ({x, y}: {x: number, y: number}) => {
   return (
@@ -150,8 +150,8 @@ export const CoinsGraph = () => {
         <div className={styles.graphValues}>
           {graphType && (
             <>
-              <div className={styles.graphValue} >{valuesObject.OREL || ''}</div>
-              <div className={styles.graphValue} >{valuesObject[5] || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject.OREL || ''}</div>
+              <div className={styles.graphValueRect} >{valuesObject[5] || ''}</div>
             </>
           )}
         </div>

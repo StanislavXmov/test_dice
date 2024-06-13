@@ -13,9 +13,7 @@ interface ValueState {
   reset : () => void;
 }
 
-const test_values: Coin[] = [
-  
-];
+const test_values: Coin[] = [];
 
 export const useCoinValue = create<ValueState>()(subscribeWithSelector(set => ({
   isActive: true,
