@@ -14,23 +14,31 @@ import { DiceLayerAnimated } from './components/Dices/Layers/DiceLayerAnimated';
 
 import styles from './App.module.scss';
 
-// + Пробел в 10 000 заменить на  &thinsp;
+// {/* <CoinLayer1 /> */}
+// {/* <CoinLayer2 /> */}
+// {/* <CoinLayerAnimated /> */}
+// {/* <DiceLayer1 /> */}
+// {/* <DiceLayer2 /> */}
+// {/* <DiceLayerAnimated /> */}
+// {/* <TableLayer /> */}
+// {/* <TableLayerType2 /> */}
+// {/* <DiceSeries /> */}
+// {/* <CoinSeries /> */}
 
 function App() {  
   return (
     <>
+      {/* <div className={styles.testWrapper}>
+        <CoinLayer1 />
+        <DiceLayer1 />
+      </div>
       <div className={styles.testWrapper}>
-        {/* <CoinLayer1 /> */}
-        {/* <CoinLayer2 /> */}
         <CoinLayerAnimated />
-        {/* <DiceLayer1 /> */}
-        {/* <DiceLayer2 /> */}
         <DiceLayerAnimated />
-        {/* <TableLayer /> */}
-        {/* <TableLayerType2 /> */}
-        {/* <DiceSeries /> */}
-        {/* <CoinSeries /> */}
-        
+      </div> */}
+      <div className={styles.testWrapper}>
+        <DiceSeries />
+        <CoinSeries />
       </div>
     </>
   );
