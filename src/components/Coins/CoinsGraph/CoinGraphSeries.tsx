@@ -175,7 +175,7 @@ export const CoinsGraphSeries = () => {
           {graphType && (<GraphType2 valuesObject={valuesObject} />)}
         </div>
         <div className={styles.graphLabel}>
-          <span className={styles.sideLabelValuesAbsolute}>Доля </span>
+          <span className={styles.sideLabelValuesAbsolute}>Частота</span>
           <div className={styles.label}>
             <Coin1 className={styles.icon} />
             <div className={styles.value} >{valuesObject['OREL'] > 0 ? (valuesObject['OREL'] / length).toFixed(3).replace('.', ','): '0,000'}</div>
