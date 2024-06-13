@@ -158,8 +158,10 @@ const match = (event: EventDice, k: number, point: number, list: number[]) => {
   }
 }
 
-const getTextExpression = (k: number, n: number, edge: Edge) => {  
-  const x = calc(k, n, edge).toFixed(2).replace('.', '{{\\char\`,}}');
+const getTextExpression = (k: number, n: number, edge: Edge) => {
+  const value = calc(k, n, edge).toFixed(3);
+  const x = value.replace('.', '{{\\char\`,}}');
+  
   let n1: string = '';
   let n2: string = '';
   if (edge === 6) {
@@ -172,14 +174,14 @@ const getTextExpression = (k: number, n: number, edge: Edge) => {
     n1 = `{0{{\\char\`,}}083`
     n2 = `{0{{\\char\`,}}916`
   }
-  return `P{k \\atop n} = P{${k} \\atop ${n}} = C {${k} \\atop ${n}}${n1}^${k}}\\space${n2}^${n - k}} \\approx ${x}`;
+  return `P{k \\atop n} = P{${k} \\atop ${n}} = C {${k} \\atop ${n}}${n1}^{${k}}}\\space${n2}^{${n - k}}} \\approx ${x}`;
 }
 
 const getTextExpressionExp = (v: number, k: number) => {
   if (v === 0) {
     return `P{\\atop \\text{эксп}} = 0`;
   }
-  return `P{\\atop \\text{эксп}} = {\\frac{${v}}{${k}}} = ${(v / k).toFixed(2).replace('.', '{{\\char\`,}}')}`;
+  return `P{\\atop \\text{эксп}} = {\\frac{${v}}{${k}}} = ${(v / k).toFixed(3).replace('.', '{{\\char\`,}}')}`;
 }
 
 

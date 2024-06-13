@@ -44,16 +44,17 @@ const match = (event: Coin, k: number, list: Coin[]) => {
   }
 }
 
-const getTextExpression = (k: number, n: number) => {  
-  const x = calc(k, n).toFixed(2).replace('.', '{{\\char\`,}}');
-  return `P{k \\atop n} = P{${k} \\atop ${n}} = C {${k} \\atop ${n}}{0{{\\char\`,}}5^${k}}\\space{0{{\\char\`,}}5^${n - k}} \\approx ${x}`;
+const getTextExpression = (k: number, n: number) => {
+  const value =  calc(k, n).toFixed(3);
+  const x = value.replace('.', '{{\\char\`,}}');
+  return `P{k \\atop n} = P{${k} \\atop ${n}} = C {${k} \\atop ${n}}{0{{\\char\`,}}5^{${k}}}\\space{0{{\\char\`,}}5^{${n - k}}} \\approx ${x}`;
 }
 
 const getTextExpressionExp = (v: number, k: number) => {
   if (v === 0) {
     return `P{\\atop \\text{эксп}} = 0`;
   }
-  return `P{\\atop \\text{эксп}} = {\\frac{${v}}{${k}}} = ${(v / k).toFixed(2).replace('.', '{{\\char\`,}}')}`;
+  return `P{\\atop \\text{эксп}} = {\\frac{${v}}{${k}}} = ${(v / k).toFixed(3).replace('.', '{{\\char\`,}}')}`;
 }
 
 export const CoinSeries = () => {
