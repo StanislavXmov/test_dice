@@ -44,7 +44,7 @@ export const useCoinSeries = create<CoinSeriesState>()(subscribeWithSelector(set
   setSeries: (v) => set((s) => ({series: [...v]})),
   length: 5,
   setLength: (v) => set(() => ({length: v})),
-  seriesN: 2,
+  seriesN: 10,
   setSeriesN: (v) => set(() => ({seriesN: v})),
   event: "5",
   setEvent: (v) => set(() => ({event: v})),
