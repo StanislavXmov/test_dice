@@ -32,14 +32,14 @@ function App() {
         <CoinLayer1 />
         <DiceLayer1 />
       </div>
-      {/* <div className={styles.testWrapper}>
+      <div className={styles.testWrapper}>
         <CoinLayerAnimated />
         <DiceLayerAnimated />
-      </div> */}
-      {/* <div className={styles.testWrapper}>
+      </div>
+      <div className={styles.testWrapper}>
         <DiceSeries />
         <CoinSeries />
-      </div> */}
+      </div>
     </>
   );
 }
