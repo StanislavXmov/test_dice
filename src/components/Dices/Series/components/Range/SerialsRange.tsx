@@ -11,24 +11,33 @@ const toCaseCount = (arg: number) => {
   return titles[(arg % 100 > 4 && arg % 100 < 20) ? 2 : cases[Math.min(arg % 10, 5)]];
 }
 
-export const SerialsRange = ({max, min}: {max: number, min: number}) => {
-  const [value, setValue] = useState(2);
+export const SerialsRange = () => {
+  const min = 10;
+  const max = 580;
+  const [value, setValue] = useState(90);
   const setSeriesN = useDiceSeries(s => s.setSeriesN);
 
   const handler = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(Number(e.target.value));
-    setSeriesN(Number(e.target.value));
+    const v = Number(e.target.value);
+    if (v > 80) {
+      setValue(Number(v));
+      setSeriesN(Number(v - 80));
+    } else {
+      setValue(Number(v));
+      setSeriesN(Number(v / 10 + 1));
+    }
   }
   return (
     <div className={styles.controlWrapper}>
-      <span className={styles.text}>{`из ${value} ${toCaseCount(value)}`}</span>
+      {value > 80 && <span className={styles.text}>{`из ${value - 80} ${toCaseCount(value - 80)}`}</span>}
+      {value <= 80 && <span className={styles.text}>{`из ${value / 10 + 1} ${toCaseCount(value / 10 + 1)}`}</span>}
       <input
         className={`${styles.inputControll} ${styles.inputLength}`}
         type="range"
         value={value}
         min={min}
         max={max}
-        step={1}
+        step={10}
         onChange={handler}
       />
     </div>

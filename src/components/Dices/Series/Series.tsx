@@ -259,7 +259,7 @@ export const DiceSeries = () => {
       <div className={styles.calcWrapper}>
         <div className={styles.calcTitle}>
           <div>Эксперимент</div>
-          <SerialsRange max={500} min={2} />
+          <SerialsRange />
         </div>
         <div className={styles.formulaWrapper}>
           <div className={styles.formulaTitle}>
