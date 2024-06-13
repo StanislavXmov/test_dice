@@ -41,6 +41,10 @@ import Dice3_10 from '../../icons/dice12_10.svg?react';
 import Dice3_11 from '../../icons/dice12_11.svg?react';
 import Dice3_12 from '../../icons/dice12_12.svg?react';
 
+import Dice6Image from '../../images/dice/6-cube.png';
+import Dice8Image from '../../images/dice/8-cube.png';
+import Dice12Image from '../../images/dice/12-cube.png';
+
 import styles from './Series.module.scss';
 
 const dices6 = {
@@ -216,9 +220,9 @@ export const DiceSeries = () => {
       <div className={styles.controllWrapper}>
         <div className={styles.eventWrapper}>
           <div className={styles.eventTitle}>Событие:</div>
-          {edge === 6 && (<img src="" alt="dice6" className={styles.eventImage} />)}
-          {edge === 8 && (<img src="" alt="dice8" className={styles.eventImage} />)}
-          {edge === 12 && (<img src="" alt="dice12" className={styles.eventImage} />)}
+          {edge === 6 && (<img src={Dice6Image} alt="dice6" className={styles.eventImage} />)}
+          {edge === 8 && (<img src={Dice8Image} alt="dice8" className={styles.eventImage} />)}
+          {edge === 12 && (<img src={Dice12Image} alt="dice12" className={styles.eventImage} />)}
         </div>
         <div className={styles.series}>
           <div className={styles.seriesControll}>

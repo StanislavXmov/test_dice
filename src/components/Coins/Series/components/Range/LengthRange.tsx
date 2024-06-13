@@ -22,8 +22,6 @@ export const LengthRange = ({max, min}: {max: number, min: number}) => {
   return (
     <div className={`${styles.controlWrapper} ${styles.width}`}>
       <div className={styles.labelWrapper}>
-        {/* <span className={styles.symbol}>n</span> */}
-        {/* <span className={styles.text}>= {value} {toCaseCount(value)}</span> */}
         <KaTeX
           texExpression={`n = ${value}`}
           className={styles.func}

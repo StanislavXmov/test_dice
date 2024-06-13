@@ -18,15 +18,15 @@
   background-color: #000;
 }
 
-input[type=range] {
+.inputControll {
   height: 25px;
   -webkit-appearance: none;
   // width: 140px;
 }
-input[type=range]:focus {
+.inputControll:focus {
   outline: none;
 }
-input[type=range]::-webkit-slider-runnable-track {
+.inputControll::-webkit-slider-runnable-track {
   width: 100%;
   height: 1px;
   cursor: pointer;
@@ -36,7 +36,7 @@ input[type=range]::-webkit-slider-runnable-track {
   border-radius: 1px;
   border: 0px solid #000000;
 }
-input[type=range]::-webkit-slider-thumb {
+.inputControll::-webkit-slider-thumb {
   box-shadow: 0px 0px 0px #000000;
   border: 1px solid #000000;
   height: 7px;
@@ -47,10 +47,10 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   margin-top: -3px;
 }
-input[type=range]:focus::-webkit-slider-runnable-track {
+.inputControll:focus::-webkit-slider-runnable-track {
   background: #000000;
 }
-input[type=range]::-moz-range-track {
+.inputControll::-moz-range-track {
   width: 100%;
   height: 5px;
   cursor: pointer;
@@ -60,7 +60,7 @@ input[type=range]::-moz-range-track {
   border-radius: 1px;
   border: 0px solid #000000;
 }
-input[type=range]::-moz-range-thumb {
+.inputControll::-moz-range-thumb {
   box-shadow: 0px 0px 0px #000000;
   border: 1px solid #000000;
   height: 18px;
@@ -69,7 +69,7 @@ input[type=range]::-moz-range-thumb {
   background: #A1D0FF;
   cursor: pointer;
 }
-input[type=range]::-ms-track {
+.inputControll::-ms-track {
   width: 100%;
   height: 5px;
   cursor: pointer;
@@ -78,19 +78,19 @@ input[type=range]::-ms-track {
   border-color: transparent;
   color: transparent;
 }
-input[type=range]::-ms-fill-lower {
+.inputControll::-ms-fill-lower {
   background: #000000;
   border: 0px solid #000000;
   border-radius: 2px;
   box-shadow: 0px 0px 0px #000000;
 }
-input[type=range]::-ms-fill-upper {
+.inputControll::-ms-fill-upper {
   background: #000000;
   border: 0px solid #000000;
   border-radius: 2px;
   box-shadow: 0px 0px 0px #000000;
 }
-input[type=range]::-ms-thumb {
+.inputControll::-ms-thumb {
   margin-top: 1px;
   box-shadow: 0px 0px 0px #000000;
   border: 1px solid #000000;
@@ -100,10 +100,10 @@ input[type=range]::-ms-thumb {
   background: #A1D0FF;
   cursor: pointer;
 }
-input[type=range]:focus::-ms-fill-lower {
+.inputControll:focus::-ms-fill-lower {
   background: #000000;
 }
-input[type=range]:focus::-ms-fill-upper {
+.inputControll:focus::-ms-fill-upper {
   background: #000000;
 }
 
