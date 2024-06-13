@@ -37,8 +37,8 @@ function App() {
         <DiceLayerAnimated />
       </div> */}
       <div className={styles.testWrapper}>
-        <DiceSeries />
-        {/* <CoinSeries /> */}
+        {/* <DiceSeries /> */}
+        <CoinSeries />
       </div>
     </>
   );
