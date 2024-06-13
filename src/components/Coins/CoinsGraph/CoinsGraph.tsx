@@ -160,14 +160,14 @@ export const CoinsGraph = () => {
           {graphType && (<GraphType2 valuesObject={valuesObject} />)}
         </div>
         <div className={styles.graphLabel}>
-          <span className={styles.sideLabelValuesAbsolute}>Доля </span>
+          {/* <span className={styles.sideLabelValuesAbsolute}>Доля </span> */}
           <div className={styles.label}>
             <Coin1 className={styles.icon} />
-            <div className={styles.value} >{valuesObject['OREL'] > 0 ? (valuesObject['OREL'] / length).toFixed(3).replace('.', ','): '0,000'}</div>
+            {/* <div className={styles.value} >{valuesObject['OREL'] > 0 ? (valuesObject['OREL'] / length).toFixed(3).replace('.', ','): '0,000'}</div> */}
           </div>
           <div className={styles.label}>
             <Coin2 className={styles.icon} />
-            <div className={styles.value} >{valuesObject['5'] > 0 ? (valuesObject['5'] / length).toFixed(3).replace('.', ','): '0,000'}</div>
+            {/* <div className={styles.value} >{valuesObject['5'] > 0 ? (valuesObject['5'] / length).toFixed(3).replace('.', ','): '0,000'}</div> */}
           </div>
         </div>
       </div>
