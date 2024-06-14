@@ -12,13 +12,15 @@ export const EventSelect = () => {
     <label className={styles.label} htmlFor="EventSelectDice">
       <select
         id='EventSelectDice'
-        className={styles.select}
+        className={styles.selectEvent}
         onChange={selectHandler}
         defaultValue={'='}
       >
-        <option value={'='}>ровно</option>
-        <option value={'>'}>больше</option>
-        <option value={'<'}>меньше</option>
+        <option value={'='}>{'='}</option>
+        <option value={'>'}>{'>'}</option>
+        <option value={'<'}>{'<'}</option>
+        <option value={'>='}>{'≥'}</option>
+        <option value={'<='}>{'≤'}</option>
       </select>
     </label>
   );

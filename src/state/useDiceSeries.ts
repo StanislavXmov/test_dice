@@ -5,7 +5,7 @@ import { subscribeWithSelector } from "zustand/middleware";
 
 export type Edge = 6 | 8 | 12;
 
-export type EventDice = '=' | '>' | '<';
+export type EventDice = '=' | '>' | '<' | '>=' | '<=';
 
 interface DiceSeriesState {
   edge: Edge;
