@@ -47,7 +47,8 @@ const match = (event: Coin, k: number, list: Coin[]) => {
 const getTextExpression = (k: number, n: number) => {
   const value =  calc(k, n).toFixed(3);
   const x = value.replace('.', '{{\\char\`,}}');
-  return `P{k \\atop n} = P{${k} \\atop ${n}} = C {${k} \\atop ${n}}{0{{\\char\`,}}5^{${k}}}\\space{0{{\\char\`,}}5^{${n - k}}} \\approx ${x}`;
+  // return `P{k \\atop n} = P{${k} \\atop ${n}} = C {${k} \\atop ${n}}{0{{\\char\`,}}5^{${k}}}\\space{0{{\\char\`,}}5^{${n - k}}} \\approx ${x}`;
+  return `P{k \\atop n} = P{${k} \\atop ${n}} = C {${k} \\atop ${n}}{({\\frac{${1}}{${2}}})^{${k}}}\\space{({\\frac{${1}}{${2}}})^{${n - k}}} \\approx ${x}`;
 }
 
 const getTextExpressionExp = (v: number, k: number) => {

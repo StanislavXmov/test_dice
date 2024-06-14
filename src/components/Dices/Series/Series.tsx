@@ -98,19 +98,66 @@ const factorial = (n: number): number => {
   }
 }
 
-const calc = (k: number, n: number, edge: Edge) => {
+const calc = (k: number, n: number, edge: Edge, event: EventDice, point: number) => {
   let n1 = 1;
   let n2 = 1;
-  if (edge === 6) {
-    n1 = 0.167;
-    n2 = 0.833;
-  } else if (edge === 8) {
-    n1 = 0.125;
-    n2 = 0.875;
-  } else if (edge === 12) {
-    n1 = 0.083;
-    n2 = 0.916;
+  if (event === '=') {
+    if (edge === 6) {
+      n1 = 1 / 6;
+      n2 = 5 / 6;
+    } else if (edge === 8) {
+      n1 = 1 / 8;
+      n2 = 7 / 8;
+    } else if (edge === 12) {
+      n1 = 1 / 12;
+      n2 = 11 / 12;
+    }
+  } else if (event === '>') {
+    if (edge === 6) {
+      n1 = (6 - point) / 6;
+      n2 = point / 6;
+    } else if (edge === 8) {
+      n1 = (8 - point) / 8;
+      n2 = point / 8;
+    } else if (edge === 12) {
+      n1 = (12 - point) / 12;
+      n2 = point / 12;
+    }
+  } else if (event === '<') {
+    if (edge === 6) {
+      n1 = (point - 1) / 6;
+      n2 = (6 - point + 1) / 6;
+    } else if (edge === 8) {
+      n1 = (point - 1) / 8;
+      n2 = (8 - point + 1) / 8;
+    } else if (edge === 12) {
+      n1 = (point - 1) / 12;
+      n2 = (12 - point + 1) / 12;
+    }
+  } else if (event === '>=') {
+    if (edge === 6) {
+      n1 = (6 - point + 1) / 6;
+      n2 = (point - 1) / 6;
+    } else if (edge === 8) {
+      n1 = (8 - point + 1) / 8;
+      n2 = (point - 1) / 8;
+    } else if (edge === 12) {
+      n1 = (12 - point + 1) / 12;
+      n2 = (point - 1) / 12;
+    }
+  } else if (event === '<=') {
+    if (edge === 6) {
+      n1 = point / 6;
+      n2 = (6 - point) / 6;
+    } else if (edge === 8) {
+      n1 = point / 8;
+      n2 = (8 - point) / 8;
+    } else if (edge === 12) {
+      n1 = point / 12;
+      n2 = (12 - point) / 12;
+    }
   }
+  
   const c = factorial(n) / (factorial(k) * factorial(n - k));
   return c * Math.pow(n1, k) * Math.pow(n2, n - k);
 }
@@ -158,23 +205,70 @@ const match = (event: EventDice, k: number, point: number, list: number[]) => {
   }
 }
 
-const getTextExpression = (k: number, n: number, edge: Edge) => {
-  const value = calc(k, n, edge).toFixed(3);
+const getTextExpression = (k: number, n: number, edge: Edge, event: EventDice, point: number) => {
+  const value = calc(k, n, edge, event, point).toFixed(3);
   const x = value.replace('.', '{{\\char\`,}}');
   
   let n1: string = '';
   let n2: string = '';
-  if (edge === 6) {
-    n1 = `{0{{\\char\`,}}167`
-    n2 = `{0{{\\char\`,}}833`
-  } else if (edge === 8) {
-    n1 = `{0{{\\char\`,}}125`
-    n2 = `{0{{\\char\`,}}875`
-  } else if (edge === 12) {
-    n1 = `{0{{\\char\`,}}083`
-    n2 = `{0{{\\char\`,}}916`
+  if (event === '=') {
+    if (edge === 6) {
+      n1 = `({\\frac{1}{6}})`
+      n2 = `({\\frac{5}{6}})`
+    } else if (edge === 8) {
+      n1 = `({\\frac{1}{8}})`
+      n2 = `({\\frac{7}{8}})`
+    } else if (edge === 12) {
+      n1 = `({\\frac{1}{12}})`
+      n2 = `({\\frac{11}{12}})`
+    }
+  } else if (event === '>') {
+    if (edge === 6) {
+      n1 = `({\\frac{6-${point}}{6}})`
+      n2 = `({\\frac{${point}}{6}})`
+    } else if (edge === 8) {
+      n1 = `({\\frac{8-${point}}{8}})`
+      n2 = `({\\frac{${point}}{8}})`
+    } else if (edge === 12) {
+      n1 = `({\\frac{12-${point}}{12}})`
+      n2 = `({\\frac{${point}}{12}})`
+    }
+  } else if (event === '<') {
+    if (edge === 6) {
+      n1 = `({\\frac{${point}-1}{6}})`
+      n2 = `({\\frac{6-${point}+1}{6}})`
+    } else if (edge === 8) {
+      n1 = `({\\frac{${point}-1}{8}})`
+      n2 = `({\\frac{8-${point}+1}{8}})`
+    } else if (edge === 12) {
+      n1 = `({\\frac{${point}-1}{12}})`
+      n2 = `({\\frac{12-${point}+1}{12}})`
+    }
+  } else if (event === '>=') {
+    if (edge === 6) {
+      n1 = `({\\frac{6-${point}+1}{6}})`
+      n2 = `({\\frac{${point}-1}{6}})`
+    } else if (edge === 8) {
+      n1 = `({\\frac{8-${point}+1}{8}})`
+      n2 = `({\\frac{${point}-1}{8}})`
+    } else if (edge === 12) {
+      n1 = `({\\frac{12-${point}+1}{12}})`
+      n2 = `({\\frac{${point}-1}{12}})`
+    }
+  } else if (event === '<=') {
+    if (edge === 6) {
+      n1 = `({\\frac{${point}}{6}})`
+      n2 = `({\\frac{6-${point}}{6}})`
+    } else if (edge === 8) {
+      n1 = `({\\frac{${point}}{8}})`
+      n2 = `({\\frac{6-${point}}{8}})`
+    } else if (edge === 12) {
+      n1 = `({\\frac{${point}}{12}})`
+      n2 = `({\\frac{6-${point}}{12}})`
+    }
   }
-  return `P{k \\atop n} = P{${k} \\atop ${n}} = C {${k} \\atop ${n}}${n1}^{${k}}}\\space${n2}^{${n - k}}} \\approx ${x}`;
+  
+  return `P{k \\atop n} = P{${k} \\atop ${n}} = C {${k} \\atop ${n}}{${n1}}^{${k}}\\space{${n2}}^{${n - k}} \\approx ${x}`;
 }
 
 const getTextExpressionExp = (v: number, k: number) => {
@@ -186,7 +280,6 @@ const getTextExpressionExp = (v: number, k: number) => {
 
 
 export const DiceSeries = () => {
-  const [disabled, setDisabled] = useState(false);
   const edge = useDiceSeries(s => s.edge);
   const length = useDiceSeries(s => s.length);
   const seriesN = useDiceSeries(s => s.seriesN);
@@ -247,13 +340,13 @@ export const DiceSeries = () => {
             Вероятность <span className={styles.active}>события</span> по формуле Бернулли:
           </div>
           <KaTeX
-            texExpression={getTextExpression(k, length, edge)}
+            texExpression={getTextExpression(k, length, edge, event, point)}
             className={''}
           />
         </div>
         <div className={styles.calcData}>
           <KaTeX
-            texExpression={calc(k, length, edge).toFixed(3).replace('.', '{{\\char\`,}}')}
+            texExpression={calc(k, length, edge, event, point).toFixed(3).replace('.', '{{\\char\`,}}')}
             className={''}
           />
         </div>
