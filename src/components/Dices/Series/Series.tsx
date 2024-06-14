@@ -275,7 +275,13 @@ const getTextExpressionExp = (v: number, k: number) => {
   if (v === 0) {
     return `P{\\atop \\text{эксп}} = 0`;
   }
-  return `P{\\atop \\text{эксп}} = {\\frac{${v}}{${k}}} = ${(v / k).toFixed(3).replace('.', '{{\\char\`,}}')}`;
+  const value = (v / k);
+  let symbol = '=';
+  if (Number(value.toFixed(3)) * 10000 - (value * 10000) !== 0) {
+    symbol = '\\approx';
+  }
+  
+  return `P{\\atop \\text{эксп}} = {\\frac{${v}}{${k}}} ${symbol} ${(value).toFixed(3).replace('.', '{{\\char\`,}}')}`;
 }
 
 
