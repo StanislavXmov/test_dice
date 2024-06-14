@@ -16,7 +16,7 @@ export const EventSelect = () => {
         onChange={selectHandler}
         defaultValue={'='}
       >
-        <option value={'='}>{'='}</option>
+        <option value={'='}>{'ровно'}</option>
         <option value={'>'}>{'>'}</option>
         <option value={'<'}>{'<'}</option>
         <option value={'>='}>{'≥'}</option>
