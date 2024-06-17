@@ -514,7 +514,7 @@ const Table = () => {
               <option value={'sum'}>суммы</option>
             </select>
           </label>
-          <div>
+          {/* <div>
             {selected.length === 0 && (
               <span className={styles.selectedInfo}>
                 В таблице не выбрано ячеек.
@@ -525,7 +525,7 @@ const Table = () => {
                 {`В таблице  выбрана ${selected.length} ${toCaseCount(selected.length)} из ${type * type}.`}
               </span>
               )}
-          </div>
+          </div> */}
         </div>
       </div>
       <div className={`${styles.checkWrapper} ${type === 8 ? styles.checkWrapperMarginType2 : ''} ${type === 12 ? styles.checkWrapperMarginType3 : ''}`}>
