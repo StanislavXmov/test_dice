@@ -1,6 +1,7 @@
 import { ChangeEvent, Key, useState } from 'react';
 import { Cell, Edge, useTableType1 } from '../../state/useTable';
 import { Button } from '../Button/Button';
+import { ResetButton } from '../ResetButton/ResetButton';
 
 import styles from './Table.module.scss';
 
@@ -490,27 +491,27 @@ const Table = () => {
         <div className={
           `${styles.controllWrapper} ${type === 8 ? styles.controllMarginType2 : ''} ${type === 12 ? styles.controllMarginType3 : ''}`
           }>
-          <label className={styles.label} htmlFor="selectType">
-            Кол-во граней
+          <label className={styles.label} htmlFor="selectType1">
+            <span className={styles.labelTitle}>Кубик</span>
             <select
-              id='selectType'
+              id='selectType1'
               className={styles.select}
               onChange={selectHandler}
             >
-              <option>6</option>
-              <option>8</option>
-              <option>12</option>
+              <option value={6}>6-гранный</option>
+              <option value={8}>8-гранный</option>
+              <option value={12}>12-гранный</option>
             </select>
           </label>
-          <label className={styles.label} htmlFor="tableView">
-            В таблице показаны
+          <label className={styles.label} htmlFor="tableView1">
+            <span className={styles.labelTitle}>В таблице</span>
             <select
-              id='tableView'
+              id='tableView1'
               className={styles.tableViewSelect}
               onChange={selectTableViewHandler}
             >
-              <option value={'values'}>выпавшие значения</option>
-              <option value={'sum'}>суммы ячеек</option>
+              <option value={'values'}>значения</option>
+              <option value={'sum'}>суммы</option>
             </select>
           </label>
           <div>
@@ -553,12 +554,18 @@ const TableDesc = () => {
 }
 
 export const TableLayer = () => {
+  const clear = useTableType1(s => s.clear);
+  const resetHandler = () => {
+    clear();
+  }
+
   return (
     <div className={styles.layer}>
+      <ResetButton cb={resetHandler} />
       <h2 className={styles.title}>Задача</h2>
       <TableDesc />
       <h2 className={styles.title}>Таблица исходов</h2>
-      <div>
+      <div className={styles.tablwWrapper}>
         <Table />
       </div>
     </div>
