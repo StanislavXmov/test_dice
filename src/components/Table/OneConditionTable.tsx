@@ -16,6 +16,15 @@ import Dice6 from '../icons/dice_6.svg?react';
 
 import ResetIcon from '../icons/reset2.svg?react';
 
+const dicesTable = {
+  1: (key: Key) => <Dice1 className={styles.diceIconTable} key={key} />,
+  2: (key: Key) => <Dice2 className={styles.diceIconTable} key={key} />,
+  3: (key: Key) => <Dice3 className={styles.diceIconTable} key={key} />,
+  4: (key: Key) => <Dice4 className={styles.diceIconTable} key={key} />,
+  5: (key: Key) => <Dice5 className={styles.diceIconTable} key={key} />,
+  6: (key: Key) => <Dice6 className={styles.diceIconTable} key={key} />,
+}
+
 interface ButtonProps {
   cb: () => void;
 }
@@ -54,6 +63,185 @@ const getTask = () => {
 
 type ViewTable = 'values' | 'sum';
 
+type Type1Edge = 1|2|3|4|5|6;
+const type1Array: Type1Edge[] = [1,2,3,4,5,6];
+const cells1Array: Cell[] = new Array(type1Array.length * type1Array.length).fill(null).map<Cell>((_, i) => {
+  let x = (i + 1) % 6;
+  if (x === 0) {
+    x = 6;
+  }
+  const y = Math.floor(i / 6) + 1;
+  
+  return ({
+    id: i,
+    x: x,
+    y: y,
+  })
+});
+
+const findedAllY = (cells: Cell[], idx: number, typeCount: number) => {
+  let allFinded = true;
+
+  for (let i = 0; i < typeCount; i++) {
+    const id = (i * typeCount) + idx;
+    const findes = cells.find(f => f.id === id);
+    if (!findes) {
+      allFinded = false;
+    }
+  }
+  
+  return allFinded;
+}
+
+const findedAllX = (cells: Cell[], idx: number, typeCount: number) => {
+  let allFinded = true;
+
+  for (let i = 0; i < typeCount; i++) {
+    const id = (idx * typeCount) + i;
+    const findes = cells.find(f => f.id === id);
+    if (!findes) {
+      allFinded = false;
+    }
+  }
+  
+  return allFinded;
+}
+
+const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
+  const selected = useTableType1(s => s.selected);
+  const add = useTableType1(s => s.add);
+  const addMore = useTableType1(s => s.addMore);
+  const removeIds = useTableType1(s => s.removeIds); 
+
+  const horizontalLabelHandler = (k: Type1Edge, idx: number) => {
+    if (findedAllY(selected, idx, 6)) {
+      const ids: number[] = [];
+      for (let i = 0; i < type1Array.length; i++) {
+        const id = (i * 6) + idx;
+        ids.push(id);
+      }
+      removeIds(ids);
+      return;
+    }
+    
+    const cells: Cell[] = [];
+    for (let i = 0; i < type1Array.length; i++) {
+      const id = (i * 6) + idx;
+      const finded = selected.find(f => f.id === id);
+      if (!finded) {
+        cells.push({
+          id,
+          x: k,
+          y: i + 1,
+        });
+      }
+    }
+    addMore(cells);
+  }
+
+  const verticalLabelHandler = (k: Type1Edge, idx: number) => {
+    if (findedAllX(selected, idx, 6)) {
+      const ids: number[] = [];
+      for (let i = 0; i < type1Array.length; i++) {
+        const id = (idx * 6) + i;
+        ids.push(id);
+      }
+      removeIds(ids);
+      return;
+    }
+    
+    const cells: Cell[] = [];
+    
+    for (let i = 0; i < type1Array.length; i++) {
+      const id = (idx * 6) + i;
+      const finded = selected.find(f => f.id === id);
+      if (!finded) {
+        cells.push({
+          id,
+          x: i + 1,
+          y: k,
+        });
+      }
+    }
+    addMore(cells);
+  }
+
+  const includes = (c: Cell) => {
+    const finded = selected.find(f => f.id === c.id);
+    if (finded) {
+      return true;
+    } else {
+      return false
+    }
+  }
+
+  return (
+    <div className={styles.tableType1}>
+      <div className={styles.horizontalLabelType1}>
+        {type1Array.map((k, i) => <div key={k} onClick={() => horizontalLabelHandler(k, i)}>{dicesTable[k](k)}</div>)}
+      </div>
+      <div className={styles.verticalLabelType1}>
+        {type1Array.map((k, i) => <div key={k} onClick={() => verticalLabelHandler(k, i)} className={styles.diceIconWrapper}>{dicesTable[k](k)}</div>)}
+      </div>
+      <div className={styles.tableWrapperType1}>
+        {cells1Array.map((c, i) => (
+          <div
+            key={i}
+            className={`${styles.cellType1} ${includes(c) ? styles.active : ''}`}
+            onClick={() => add(c)}
+          >
+            {tableView === 'values' ? `${c.y},${c.x}` : `${c.y + c.x}`}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const Table = ({tableView}: {tableView: ViewTable }) => {
+  const [valueAnswer, setValueAnswer] = useState(false);
+
+  const type = useTableType1(s => s.type);
+  const setType = useTableType1(s => s.setType);
+  const selected = useTableType1(s => s.selected);
+  const clear = useTableType1(s => s.clear);
+  // console.log(selected);
+
+  const checkHandler = () => {
+    // let finded = true;
+    // const answerList = answer[type];
+
+    // if (answerList.length !== selected.length) {
+    //   finded = false;
+    //   setValueAnswer(finded);
+    //   return;
+    // }
+
+    // for (let i = 0; i < answerList.length; i++) {
+    //   const id = answerList[i];
+    //   if (selected.find(c => c.id === id)) {
+    //     continue;
+    //   } else {
+    //     finded = false;
+    //     break;
+    //   } 
+    // }
+
+    // setValueAnswer(finded);
+  }
+
+  return (
+    <>
+      <div className={styles.wrapper}>
+        <TableType1 tableView={tableView} />
+        <div className={styles.controllWrapper}>
+          
+        </div>
+      </div>
+    </>
+  );
+}
+
 export const OneConditionTable = () => {
   const [task, setTask] = useState<Task>(getTask());
   const [tableView, setTableView] = useState<ViewTable>('values');
@@ -84,9 +272,8 @@ export const OneConditionTable = () => {
           <option value={'sum'}>с суммами</option>
         </select>
       </div>
-      
       <div className={styles.tablwWrapper}>
-        {/* <Table /> */}
+        <Table tableView={tableView} />
       </div>
     </div>
   );

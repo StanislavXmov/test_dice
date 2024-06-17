@@ -28,7 +28,7 @@ function App() {
       </div> */}
       <div className={styles.testWrapper}>
         <OneConditionTable />
-        <TableLayer />
+        {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}
       </div>
     </>
