@@ -1,6 +1,7 @@
 import { ChangeEvent, Key, MouseEvent, useRef, useState } from 'react';
 import { Cell, Edge, useTableType2 } from '../../state/useTable';
 import { Button } from '../Button/Button';
+import { ResetButton } from '../ResetButton/ResetButton';
 
 import styles from './TableType2.module.scss';
 
@@ -522,16 +523,16 @@ const Table = () => {
         <div className={
           `${styles.controllWrapper} ${type === 8 ? styles.controllMarginType2 : ''} ${type === 12 ? styles.controllMarginType3 : ''}`
           }>
-          <label className={styles.label} htmlFor="selectType">
-            Кол-во граней
+          <label className={styles.label} htmlFor="selectType2">
+            <span className={styles.labelTitle}>Кубик</span>
             <select
-              id='selectType'
+              id='selectType2'
               className={styles.select}
               onChange={selectHandler}
             >
-              <option>6</option>
-              <option>8</option>
-              <option>12</option>
+              <option value={6}>6-гранный</option>
+              <option value={8}>8-гранный</option>
+              <option value={12}>12-гранный</option>
             </select>
           </label>
           <label className={styles.label} htmlFor="tableView">
@@ -601,8 +602,13 @@ const TableDesc = () => {
 }
 
 export const TableLayerType2 = () => {
+  const clear = useTableType2(s => s.clear);
+  const resetHandler = () => {
+    clear();
+  }
   return (
     <div className={styles.layer}>
+      <ResetButton cb={resetHandler} />
       <h2 className={styles.title}>Задача</h2>
       <TableDesc />
       <h2 className={styles.title}>Таблица исходов</h2>

@@ -6,6 +6,7 @@ import { DiceSeries } from './components/Dices/Series/Series';
 import { TableLayerType2 } from './components/Table/TableLayerType2';
 import { CoinLayerAnimated } from './components/Coins/Layers/CoinLayerAnimated';
 import { DiceLayerAnimated } from './components/Dices/Layers/DiceLayerAnimated';
+import { OneConditionTable } from './components/Table/OneConditionTable';
 
 import styles from './App.module.scss';
 
@@ -26,8 +27,9 @@ function App() {
         <CoinSeries />
       </div> */}
       <div className={styles.testWrapper}>
+        <OneConditionTable />
         <TableLayer />
-        <TableLayerType2 />
+        {/* <TableLayerType2 /> */}
       </div>
     </>
   );
