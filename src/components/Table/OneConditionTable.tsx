@@ -1,6 +1,6 @@
-import { ChangeEvent, Key, useState } from 'react';
+import { ChangeEvent, Key, useEffect, useState } from 'react';
 import random from 'random';
-import { Cell, Edge, useTableType1 } from '../../state/useTable';
+import { Cell, useOneConditionTable } from '../../state/useTable';
 import { Button } from '../Button/Button';
 
 import tasks from './tasks1.json';
@@ -29,7 +29,7 @@ interface ButtonProps {
   cb: () => void;
 }
 
-export const ResetButton = ({cb}: ButtonProps) => {
+export const ResetButton = ({ cb }: ButtonProps) => {
   return (
     <button
       className={styles.button}
@@ -46,8 +46,7 @@ type Task = {
   reductable: "yes" | "no";
 }
 
-const TableDesc = ({task}: {task: Task}) => {
-  const type = useTableType1(s => s.type);
+const TableDesc = ({ task }: { task: Task }) => {
   return (
     <div className={styles.desc}>
       {task.task}
@@ -63,15 +62,15 @@ const getTask = () => {
 
 type ViewTable = 'values' | 'sum';
 
-type Type1Edge = 1|2|3|4|5|6;
-const type1Array: Type1Edge[] = [1,2,3,4,5,6];
+type Type1Edge = 1 | 2 | 3 | 4 | 5 | 6;
+const type1Array: Type1Edge[] = [1, 2, 3, 4, 5, 6];
 const cells1Array: Cell[] = new Array(type1Array.length * type1Array.length).fill(null).map<Cell>((_, i) => {
   let x = (i + 1) % 6;
   if (x === 0) {
     x = 6;
   }
   const y = Math.floor(i / 6) + 1;
-  
+
   return ({
     id: i,
     x: x,
@@ -89,7 +88,7 @@ const findedAllY = (cells: Cell[], idx: number, typeCount: number) => {
       allFinded = false;
     }
   }
-  
+
   return allFinded;
 }
 
@@ -103,15 +102,15 @@ const findedAllX = (cells: Cell[], idx: number, typeCount: number) => {
       allFinded = false;
     }
   }
-  
+
   return allFinded;
 }
 
-const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
-  const selected = useTableType1(s => s.selected);
-  const add = useTableType1(s => s.add);
-  const addMore = useTableType1(s => s.addMore);
-  const removeIds = useTableType1(s => s.removeIds); 
+const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
+  const selected = useOneConditionTable(s => s.selected);
+  const add = useOneConditionTable(s => s.add);
+  const addMore = useOneConditionTable(s => s.addMore);
+  const removeIds = useOneConditionTable(s => s.removeIds);
 
   const horizontalLabelHandler = (k: Type1Edge, idx: number) => {
     if (findedAllY(selected, idx, 6)) {
@@ -123,7 +122,7 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
       removeIds(ids);
       return;
     }
-    
+
     const cells: Cell[] = [];
     for (let i = 0; i < type1Array.length; i++) {
       const id = (i * 6) + idx;
@@ -149,9 +148,9 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
       removeIds(ids);
       return;
     }
-    
+
     const cells: Cell[] = [];
-    
+
     for (let i = 0; i < type1Array.length; i++) {
       const id = (idx * 6) + i;
       const finded = selected.find(f => f.id === id);
@@ -194,41 +193,60 @@ const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
           </div>
         ))}
       </div>
-    </div>
+    </div> 
   );
 }
 
-const Table = ({tableView}: {tableView: ViewTable }) => {
-  const [valueAnswer, setValueAnswer] = useState(false);
-
-  const type = useTableType1(s => s.type);
-  const setType = useTableType1(s => s.setType);
-  const selected = useTableType1(s => s.selected);
-  const clear = useTableType1(s => s.clear);
-  // console.log(selected);
+const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
+  tableView: ViewTable;
+  task: Task;
+  setErrorHandler: (v: boolean, type: 'error' | 'answer') => void;
+  error: boolean;
+  answer: boolean;
+  isNewTask: boolean;
+}) => {
+  const [n, setN] = useState('');
+  const [a, setA] = useState('');
+  const [b, setB] = useState('');
 
   const checkHandler = () => {
-    // let finded = true;
-    // const answerList = answer[type];
-
-    // if (answerList.length !== selected.length) {
-    //   finded = false;
-    //   setValueAnswer(finded);
-    //   return;
-    // }
-
-    // for (let i = 0; i < answerList.length; i++) {
-    //   const id = answerList[i];
-    //   if (selected.find(c => c.id === id)) {
-    //     continue;
-    //   } else {
-    //     finded = false;
-    //     break;
-    //   } 
-    // }
-
-    // setValueAnswer(finded);
+    if (task.reductable === 'no') {
+      const v = task.answer === `${n}/36`;
+      if (v) {
+        setErrorHandler(true, 'answer');
+        setErrorHandler(false, 'error');
+      } else {
+        setErrorHandler(true, 'error');
+      }
+    } else {
+      const v = task.answer === `${a}/${b}`;
+      if (v) {
+        setErrorHandler(true, 'answer');
+        setErrorHandler(false, 'error');
+      } else {
+        setErrorHandler(true, 'error');
+      }
+    }
   }
+
+  const formulaNInput = (e: ChangeEvent<HTMLInputElement>, type: 'n' | 'a' | 'b') => {
+    if (type === 'n') {
+      setN(e.target.value);
+    } else if (type === 'a') {
+      setA(e.target.value);
+    } else if (type === 'b') {
+      setB(e.target.value);
+    }
+  }
+
+  useEffect(() => {
+    if (isNewTask) {
+      setN('');
+      setA('');
+      setB('');
+    }
+    
+  }, [isNewTask])
 
   return (
     <>
@@ -237,21 +255,66 @@ const Table = ({tableView}: {tableView: ViewTable }) => {
         <div className={styles.controllWrapper}>
           <div className={styles.label}>
             <div className={styles.labelTitle}>Вероятность</div>
-            <div className={styles.calcWrapper}>
-              <span className={styles.formulaText}>P =</span>
-              <div className={styles.formulaWrapper}>
-                <input
-                  type="number"
-                  name="probability"
-                  id="probability"
-                  className={styles.formulaInput}
-                />
-                <div className={styles.formulaBorder}></div>
-                <div className={styles.formulaText}>36</div>
+            <div className={styles.calc}>
+              <div className={styles.calcWrapper}>
+                <span className={styles.formulaText}>P =</span>
+                <div className={styles.formulaWrapper}>
+                  <input
+                    type="number"
+                    name="probabilityN"
+                    id="probabilityN"
+                    className={`
+                      ${styles.formulaInput} ${task.reductable === 'no' && error ? styles.errorColor : ''}  ${task.reductable === 'no' && answer ? styles.answerColor : ''}`}
+                    onChange={(e) => formulaNInput(e, 'n')}
+                    value={n}
+                  />
+                  <div className={styles.formulaBorder}></div>
+                  <div className={styles.formulaText}>36</div>
+                </div>
               </div>
+              {task.reductable === 'yes' && (
+                <div className={styles.calcWrapper}>
+                  <span className={styles.formulaText}>&nbsp;=</span>
+                  <div className={styles.formulaWrapper}>
+                    <input
+                      type="number"
+                      name="probabilityA"
+                      id="probabilityA"
+                      className={`${styles.formulaInput} ${error ? styles.errorColor : ''} ${answer ? styles.answerColor : ''}`}
+                      onChange={(e) => formulaNInput(e, 'a')}
+                      value={a}
+                    />
+                    <div className={styles.formulaBorder}></div>
+                    <input
+                      type="number"
+                      name="probabilityB"
+                      id="probabilityB"
+                      className={
+                        `${styles.formulaInput} ${error ? styles.errorColor : ''} ${answer ? styles.answerColor : ''}`}
+                      onChange={(e) => formulaNInput(e, 'b')}
+                      value={b}
+                    />
+                  </div>
+                </div>
+              )}
+              {error && (
+                <div className={styles.calcWrapper}>
+                  <span className={styles.errorMessage}>× Ошибка</span>
+                </div>
+              )}
+              {answer && (
+                <div className={styles.calcWrapper}>
+                  <span className={styles.answerMessage}>✓ Верно</span>
+                </div>
+              )}
             </div>
           </div>
-          <button className={styles.submitButton}>Проверить</button>
+          <button
+            className={styles.submitButton}
+            onClick={checkHandler}
+          >
+            Проверить
+          </button>
         </div>
       </div>
     </>
@@ -260,12 +323,31 @@ const Table = ({tableView}: {tableView: ViewTable }) => {
 
 export const OneConditionTable = () => {
   const [task, setTask] = useState<Task>(getTask());
+  const [error, setError] = useState(false);
+  const [answer, setAnswer] = useState(false);
+  const [isNewTask, setIsNewTask] = useState(false);
+  console.log(task);
+
   const [tableView, setTableView] = useState<ViewTable>('values');
-  const clear = useTableType1(s => s.clear);
+  const clear = useOneConditionTable(s => s.clear);
 
   const resetHandler = () => {
     clear();
     setTask(getTask());
+    setError(false);
+    setAnswer(false);
+    setIsNewTask(true);
+    setTimeout(() => {
+      setIsNewTask(false);
+    }, 500);
+  }
+
+  const setErrorHandler = (v: boolean, type: 'error' | 'answer') => {
+    if (type === 'error') {
+      setError(v);
+    } else if (type === 'answer') {
+      setAnswer(v);
+    }
   }
 
   const selectTableViewHandler = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -289,7 +371,13 @@ export const OneConditionTable = () => {
         </select>
       </div>
       <div className={styles.tablwWrapper}>
-        <Table tableView={tableView} />
+        <Table
+          tableView={tableView}
+          task={task} answer={answer}
+          error={error}
+          setErrorHandler={setErrorHandler}
+          isNewTask={isNewTask}
+        />
       </div>
     </div>
   );
