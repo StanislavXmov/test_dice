@@ -42,10 +42,11 @@
 }
 
 .controllWrapper {
-  margin: 0px 0px 0px 26px;
+  margin: 0px 0px 0px 42px;
   width: 208px;
   display: flex;
   flex-direction: column;
+  justify-content: end;
   gap: 18px;
 }
 
@@ -64,7 +65,7 @@
 }
 
 .labelTitle {
-  margin: 0px 0px 0px 8px;
+  margin: 0px 0px 8px 0px;
   font-family: 'SB Sans Display Semi';
   font-size: 16px;
   font-weight: 600;
@@ -182,6 +183,39 @@
   background: #B2D5BD;
 }
 
+.calcWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.formulaText {
+  font-size: 20px;
+  font-style: italic;
+} 
+
+.formulaWrapper {
+  margin: -4px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.formulaBorder {
+  width: 58px;
+  height: 1px;
+  background: #000000;
+}
+
+.formulaInput {
+  font-family: 'SB Sans Display Normal';
+  margin: 0px;
+  padding: 4px 2px 2px;
+  width: 58px;
+}
+
 //
 
 .button {
@@ -193,6 +227,29 @@
   background: none;
   border-radius: 50%;
 
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.submitButton {
+  width: 212px;
+  height: 56px;
+  padding: 20px 16px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0087CD;
+
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+
+
+  border-radius: 16px;
   border: none;
   outline: none;
   cursor: pointer;

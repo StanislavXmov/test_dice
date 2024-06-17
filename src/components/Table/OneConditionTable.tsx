@@ -235,7 +235,23 @@ const Table = ({tableView}: {tableView: ViewTable }) => {
       <div className={styles.wrapper}>
         <TableType1 tableView={tableView} />
         <div className={styles.controllWrapper}>
-          
+          <div className={styles.label}>
+            <div className={styles.labelTitle}>Вероятность</div>
+            <div className={styles.calcWrapper}>
+              <span className={styles.formulaText}>P =</span>
+              <div className={styles.formulaWrapper}>
+                <input
+                  type="number"
+                  name="probability"
+                  id="probability"
+                  className={styles.formulaInput}
+                />
+                <div className={styles.formulaBorder}></div>
+                <div className={styles.formulaText}>36</div>
+              </div>
+            </div>
+          </div>
+          <button className={styles.submitButton}>Проверить</button>
         </div>
       </div>
     </>
