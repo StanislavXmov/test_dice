@@ -1,5 +1,5 @@
 import { ChangeEvent, Key, useState } from 'react';
-import { Cell, Edge, useTable } from '../../state/useTable';
+import { Cell, Edge, useTableType1 } from '../../state/useTable';
 import { Button } from '../Button/Button';
 
 import styles from './Table.module.scss';
@@ -133,10 +133,10 @@ const findedAllX = (cells: Cell[], idx: number, typeCount: number) => {
 }
 
 const TableType1 = ({ tableView }: {tableView: ViewTable}) => {
-  const selected = useTable(s => s.selected);
-  const add = useTable(s => s.add);
-  const addMore = useTable(s => s.addMore);
-  const removeIds = useTable(s => s.removeIds); 
+  const selected = useTableType1(s => s.selected);
+  const add = useTableType1(s => s.add);
+  const addMore = useTableType1(s => s.addMore);
+  const removeIds = useTableType1(s => s.removeIds); 
 
   const horizontalLabelHandler = (k: Type1Edge, idx: number) => {
     if (findedAllY(selected, idx, 6)) {
@@ -240,10 +240,10 @@ const cells2Array = new Array(type2Array.length * type2Array.length).fill(null).
 });
 
 const TableType2 = ({ tableView }: {tableView: ViewTable}) => {
-  const selected = useTable(s => s.selected);
-  const add = useTable(s => s.add);
-  const addMore = useTable(s => s.addMore);
-  const removeIds = useTable(s => s.removeIds);
+  const selected = useTableType1(s => s.selected);
+  const add = useTableType1(s => s.add);
+  const addMore = useTableType1(s => s.addMore);
+  const removeIds = useTableType1(s => s.removeIds);
 
   const horizontalLabelHandler = (k: Type2Edge, idx: number) => {
     if (findedAllY(selected, idx, 8)) {
@@ -347,10 +347,10 @@ const cells3Array = new Array(type3Array.length * type3Array.length).fill(null).
 });
 
 const TableType3 = ({ tableView }: {tableView: ViewTable}) => {
-  const selected = useTable(s => s.selected);
-  const add = useTable(s => s.add);
-  const addMore = useTable(s => s.addMore);
-  const removeIds = useTable(s => s.removeIds);
+  const selected = useTableType1(s => s.selected);
+  const add = useTableType1(s => s.add);
+  const addMore = useTableType1(s => s.addMore);
+  const removeIds = useTableType1(s => s.removeIds);
 
   const horizontalLabelHandler = (k: Type3Edge, idx: number) => {
     if (findedAllY(selected, idx, 12)) {
@@ -443,10 +443,10 @@ const Table = () => {
 
   const [valueAnswer, setValueAnswer] = useState(false);
 
-  const type = useTable(s => s.type);
-  const setType = useTable(s => s.setType);
-  const selected = useTable(s => s.selected);
-  const clear = useTable(s => s.clear);
+  const type = useTableType1(s => s.type);
+  const setType = useTableType1(s => s.setType);
+  const selected = useTableType1(s => s.selected);
+  const clear = useTableType1(s => s.clear);
   // console.log(selected);
   
   const selectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -542,7 +542,7 @@ const Table = () => {
 }
 
 const TableDesc = () => {
-  const type = useTable(s => s.type);
+  const type = useTableType1(s => s.type);
   return (
     <div className={styles.desc}>
       {type === 6 && information[6]}

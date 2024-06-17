@@ -1,0 +1,258 @@
+.layer {
+  padding: 26px;
+  width: 640px;
+  height: 640px;
+
+  border: 1px solid black;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.title {
+  margin: 0px 0px 18px;
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29.05px;
+  text-align: left;
+}
+
+.desc {
+  margin: 0px 0px 22px;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: left;
+}
+
+.controllWrapper {
+  margin: 0px 0px 0px 26px;
+  width: 208px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.controllMarginType2 {
+  margin: 0px 0px 0px 44px;
+}
+
+.controllMarginType3 {
+  margin: 0px 0px 0px 20px;
+}
+
+.label {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+}
+
+.selectedInfo {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+}
+
+.select {
+  margin: 0px 0px 0px 12px;
+  padding: 2px 2px;
+}
+
+.tableViewSelect {
+  margin: 4px 0px 0px 0px;
+  padding: 2px 2px;
+}
+
+.diceIconTable {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.dice2IconTable {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.dice3IconTable {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.tableType1 {
+  width: 352px;
+  display: grid;
+  grid-template-columns: 40px 290px;
+  grid-template-rows: 40px 290px;
+  gap: 22px;
+}
+
+.diceIconWrapper {
+  width: 40px;
+  height: 40px;
+}
+
+.horizontalLabelType1 {
+  grid-column: 2 / -1;
+  display: flex;
+  gap: 10px;
+}
+
+.verticalLabelType1 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tableWrapperType1 {
+  display: grid;
+  grid-template-columns: repeat(6, 40px);
+  grid-template-rows: repeat(6, 40px);
+  gap: 10px;
+}
+
+.cellType1 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #F2F2F2;
+  cursor: pointer;
+}
+
+.tableType2 {
+  width: 334px;
+  display: grid;
+  grid-template-columns: 30px 296px;
+  grid-template-rows: 30px 296px;
+  gap: 4px 8px;
+}
+
+.horizontalLabelType2 {
+  grid-column: 2 / -1;
+  display: flex;
+  gap: 8px;
+}
+
+.verticalLabelType2 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.verticalIcon2 {
+  width: 30px;
+  height: 30px;
+  transform: translateY(4px);
+}
+
+.tableWrapperType2 {
+  display: grid;
+  grid-template-columns: repeat(8, 30px);
+  grid-template-rows: repeat(8, 30px);
+  gap: 8px;
+}
+
+.cellType2 {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #F2F2F2;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tableType3 {
+  width: 358px;
+  display: grid;
+  grid-template-columns: 22px 330px;
+  grid-template-rows: 22px 330px;
+  gap: 6px;
+}
+
+.horizontalLabelType3 {
+  grid-column: 2 / -1;
+  display: flex;
+  gap: 6px;
+}
+
+.verticalLabelType3 {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.verticalIcon3 {
+  width: 22px;
+  height: 22px;
+  transform: translateY(1px);
+}
+
+.tableWrapperType3 {
+  display: grid;
+  grid-template-columns: repeat(12, 22px);
+  grid-template-rows: repeat(12, 22px);
+  gap: 6px;
+}
+
+.cellType3 {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #F2F2F2;
+  cursor: pointer;
+
+  font-size: 9px;
+}
+
+.active {
+  background: #FFF4BD;
+  border: 1px solid #BFB165
+}
+
+.checkWrapper {
+  width: 352px;
+  margin: 22px 0px 0px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.checkWrapperMarginType2 {
+  margin: 44px 0px 0px 0px;
+}
+.checkWrapperMarginType3 {
+  margin: 16px 0px 0px 0px;
+}
+
+.infoColorFrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.yellow {
+  background: #FFF4BD;
+}
+
+.blue {
+  background: #B2DFFF;
+}
+
+.green {
+  background: #B2D5BD;
+}
