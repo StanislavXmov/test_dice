@@ -36,9 +36,13 @@ function App() {
         <CoinLayerAnimated />
         <DiceLayerAnimated />
       </div> */}
-      <div className={styles.testWrapper}>
+      {/* <div className={styles.testWrapper}>
         <DiceSeries />
         <CoinSeries />
+      </div> */}
+      <div className={styles.testWrapper}>
+        <TableLayer />
+        <TableLayerType2 />
       </div>
     </>
   );
