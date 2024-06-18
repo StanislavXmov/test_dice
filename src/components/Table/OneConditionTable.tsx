@@ -1,11 +1,11 @@
 import { ChangeEvent, Key, useEffect, useState } from 'react';
 import random from 'random';
 import { Cell, useOneConditionTable } from '../../state/useTable';
-import { Button } from '../Button/Button';
 
 import tasks from './tasks1.json';
 
 import styles from './OneConditionTable.module.scss';
+import "katex/dist/katex.min.css";
 
 import Dice1 from '../icons/dice_1.svg?react';
 import Dice2 from '../icons/dice_2.svg?react';
