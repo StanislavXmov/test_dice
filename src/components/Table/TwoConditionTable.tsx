@@ -111,6 +111,7 @@ const findedAllX = (cells: TwoConditionCell[], idx: number, typeCount: number) =
 
 const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
   const selected = useTwoConditionTable(s => s.selected);
+  const type = useTwoConditionTable(s => s.type);
   const add = useTwoConditionTable(s => s.add);
   const addMore = useTwoConditionTable(s => s.addMore);
   const removeIds = useTwoConditionTable(s => s.removeIds);
@@ -185,15 +186,26 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
     }
   }
 
-  const getType = (c: TwoConditionCell) => {
-    if (c.type3) {
-      return styles.activeTape3;
-    } else if (c.type1) {
-      return styles.activeTape1;
-    } else if (c.type2) {
-      return styles.activeTape2;
+  const getType = (c: TwoConditionCell, type: Type) => {
+    if (type === 'Type1') {
+      if (c.type1) {
+        return styles.activeTape1;
+      } else {
+        return '';
+      }
+    } else if (type === 'Type2') {
+      if (c.type2) {
+        return styles.activeTape2;
+      } else {
+        return '';
+      }
+    } else if (type === 'Type3') {
+      if (c.type3) {
+        return styles.activeTape3;
+      } else {
+        return '';
+      }
     }
-    return '';
   }
 
   return (
@@ -208,7 +220,7 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
         {cells1Array.map((c, i) => (
           <div
             key={i}
-            className={`${styles.cellType1} ${includes(c) ? getType(c) : ''}`}
+            className={`${styles.cellType1} ${includes(c) ? getType(c, type) : ''}`}
             onClick={() => add(c)}
           >
             {tableView === 'values' ? `${c.y},${c.x}` : `${c.y + c.x}`}

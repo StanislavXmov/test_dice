@@ -72,27 +72,61 @@ export const useTwoConditionTable = create<TwoConditionState>()(subscribeWithSel
     if (type === 'Type3') {
       return {};
     }
+
     const finded = s.selected.find(f => f.id === v.id);
     if (finded) {
-      return {selected: s.selected.filter(c => c.id !== v.id)};
-    }
-    if (type === "Type1") {
-      if (v.type2) {
-        v.type1 = true;
-        v.type3 = true;
-      } else {
-        v.type1 = true;
+      if (type === "Type1") {
+        if (finded.type2) {
+          if (finded.type1) {
+            finded.type1 = false;
+            if (finded.type3) {
+              finded.type3 = false;
+            }
+          } else {
+            finded.type1 = true;
+            finded.type3 = true;
+          }
+          return {selected: [...s.selected]};
+        } else {
+          finded.type1 = false;
+          return {selected: s.selected.filter(c => c.id !== v.id)};
+        }
+      } else if (type === "Type2") {
+        if (finded.type1) {
+          if (finded.type2) {
+            finded.type2 = false;
+            if (finded.type3) {
+              finded.type3 = false;
+            }
+          } else {
+            finded.type2 = true;
+            finded.type3 = true;
+          }
+          return {selected: [...s.selected]};
+        } else {
+          finded.type2 = false;
+          return {selected: s.selected.filter(c => c.id !== v.id)};
+        }
       }
-    } else if (type === "Type2") {
-      if (v.type1) {
-        v.type2 = true;
-        v.type3 = true;
-      } else {
-        v.type2 = true;
+    } else {
+      if (type === "Type1") {
+        if (v.type2) {
+          v.type1 = true;
+          v.type3 = true;
+        } else {
+          v.type1 = true;
+        }
+      } else if (type === "Type2") {
+        if (v.type1) {
+          v.type2 = true;
+          v.type3 = true;
+        } else {
+          v.type2 = true;
+        }
       }
+  
+      return {selected: [...s.selected, v]};
     }
-
-    return {selected: [...s.selected, v]};
   })),
   addMore: (v) => set(((s) => {
     return {selected: [...s.selected, ...v]};
