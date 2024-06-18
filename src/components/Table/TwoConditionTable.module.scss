@@ -146,9 +146,17 @@
   line-height: 16px;
 }
 
-.active {
+.activeTape1 {
   background: #FFF4BD;
-  border: 1px solid #BFB165
+  border: 1px solid rgb(255, 244, 189);
+}
+.activeTape2 {
+  background: rgb(133, 204, 255);
+  border: 1px solid rgb(85, 146, 189);
+}
+.activeTape3 {
+  background: rgb(178, 213, 189);
+  border: 1px solid rgb(73, 136, 93);
 }
 
 .checkWrapper {

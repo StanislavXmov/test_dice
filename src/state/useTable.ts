@@ -50,21 +50,48 @@ export const useOneConditionTable = create<OneConditionState>()(subscribeWithSel
   clear: () => set(() => ({selected: []}))
 })));
 
+export type Type = 'Type1' | 'Type2' | 'Type3';
+
+export type TwoConditionCell = Cell & {type1: boolean, type2: boolean, type3: boolean};
+
 interface TwoConditionState {
-  selected: Cell[];
-  add: (v: Cell) => void;
-  addMore: (v: Cell[]) => void;
+  selected: TwoConditionCell[];
+  add: (v: TwoConditionCell) => void;
+  addMore: (v: TwoConditionCell[]) => void;
   removeIds: (ids: number[]) => void;
   clear: () => void;
+  type: Type;
+  setType: (v: Type) => void;
 }
 
 export const useTwoConditionTable = create<TwoConditionState>()(subscribeWithSelector(set => ({
   selected: [],
+  type: 'Type1',
   add: (v) => set(((s) => {
+    const type = s.type;
+    if (type === 'Type3') {
+      return {};
+    }
     const finded = s.selected.find(f => f.id === v.id);
     if (finded) {
       return {selected: s.selected.filter(c => c.id !== v.id)};
     }
+    if (type === "Type1") {
+      if (v.type2) {
+        v.type1 = true;
+        v.type3 = true;
+      } else {
+        v.type1 = true;
+      }
+    } else if (type === "Type2") {
+      if (v.type1) {
+        v.type2 = true;
+        v.type3 = true;
+      } else {
+        v.type2 = true;
+      }
+    }
+
     return {selected: [...s.selected, v]};
   })),
   addMore: (v) => set(((s) => {
@@ -78,7 +105,8 @@ export const useTwoConditionTable = create<TwoConditionState>()(subscribeWithSel
     }
     return {selected: list};
   })),
-  clear: () => set(() => ({selected: []}))
+  clear: () => set(() => ({selected: []})),
+  setType: (v) => set(() => ({type: v})),
 })));
 
 export const useTableType1 = create<ValueState>()(subscribeWithSelector(set => ({

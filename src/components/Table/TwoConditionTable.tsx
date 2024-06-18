@@ -1,6 +1,6 @@
 import { ChangeEvent, Key, useEffect, useState } from 'react';
 import random from 'random';
-import { Cell, useTwoConditionTable } from '../../state/useTable';
+import { TwoConditionCell, Type, useTwoConditionTable } from '../../state/useTable';
 
 import tasks from './tasks1.json';
 
@@ -64,7 +64,7 @@ type ViewTable = 'values' | 'sum';
 
 type Type1Edge = 1 | 2 | 3 | 4 | 5 | 6;
 const type1Array: Type1Edge[] = [1, 2, 3, 4, 5, 6];
-const cells1Array: Cell[] = new Array(type1Array.length * type1Array.length).fill(null).map<Cell>((_, i) => {
+const cells1Array: TwoConditionCell[] = new Array(type1Array.length * type1Array.length).fill(null).map<TwoConditionCell>((_, i) => {
   let x = (i + 1) % 6;
   if (x === 0) {
     x = 6;
@@ -75,10 +75,13 @@ const cells1Array: Cell[] = new Array(type1Array.length * type1Array.length).fil
     id: i,
     x: x,
     y: y,
+    type1: false,
+    type2: false,
+    type3: false,
   })
 });
 
-const findedAllY = (cells: Cell[], idx: number, typeCount: number) => {
+const findedAllY = (cells: TwoConditionCell[], idx: number, typeCount: number) => {
   let allFinded = true;
 
   for (let i = 0; i < typeCount; i++) {
@@ -92,7 +95,7 @@ const findedAllY = (cells: Cell[], idx: number, typeCount: number) => {
   return allFinded;
 }
 
-const findedAllX = (cells: Cell[], idx: number, typeCount: number) => {
+const findedAllX = (cells: TwoConditionCell[], idx: number, typeCount: number) => {
   let allFinded = true;
 
   for (let i = 0; i < typeCount; i++) {
@@ -111,6 +114,8 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
   const add = useTwoConditionTable(s => s.add);
   const addMore = useTwoConditionTable(s => s.addMore);
   const removeIds = useTwoConditionTable(s => s.removeIds);
+  console.log(selected);
+  
 
   const horizontalLabelHandler = (k: Type1Edge, idx: number) => {
     if (findedAllY(selected, idx, 6)) {
@@ -123,7 +128,7 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
       return;
     }
 
-    const cells: Cell[] = [];
+    const cells: TwoConditionCell[] = [];
     for (let i = 0; i < type1Array.length; i++) {
       const id = (i * 6) + idx;
       const finded = selected.find(f => f.id === id);
@@ -132,6 +137,9 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
           id,
           x: k,
           y: i + 1,
+          type1: false,
+          type2: false,
+          type3: false,
         });
       }
     }
@@ -149,7 +157,7 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
       return;
     }
 
-    const cells: Cell[] = [];
+    const cells: TwoConditionCell[] = [];
 
     for (let i = 0; i < type1Array.length; i++) {
       const id = (idx * 6) + i;
@@ -159,19 +167,33 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
           id,
           x: i + 1,
           y: k,
+          type1: false,
+          type2: false,
+          type3: false,
         });
       }
     }
     addMore(cells);
   }
 
-  const includes = (c: Cell) => {
+  const includes = (c: TwoConditionCell) => {
     const finded = selected.find(f => f.id === c.id);
     if (finded) {
       return true;
     } else {
       return false
     }
+  }
+
+  const getType = (c: TwoConditionCell) => {
+    if (c.type3) {
+      return styles.activeTape3;
+    } else if (c.type1) {
+      return styles.activeTape1;
+    } else if (c.type2) {
+      return styles.activeTape2;
+    }
+    return '';
   }
 
   return (
@@ -186,7 +208,7 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
         {cells1Array.map((c, i) => (
           <div
             key={i}
-            className={`${styles.cellType1} ${includes(c) ? styles.active : ''}`}
+            className={`${styles.cellType1} ${includes(c) ? getType(c) : ''}`}
             onClick={() => add(c)}
           >
             {tableView === 'values' ? `${c.y},${c.x}` : `${c.y + c.x}`}
@@ -322,10 +344,12 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
 }
 
 const EventControll = () => {
-  const [activeType, setActiveType] = useState<'Type1' | 'Type2' | 'Type3'>('Type1');
+  const [activeType, setActiveType] = useState<Type>('Type1');
+  const setType = useTwoConditionTable(s => s.setType);
 
-  const setActiveTypeHandler = (type: 'Type1' | 'Type2' | 'Type3') => {
+  const setActiveTypeHandler = (type: Type) => {
     setActiveType(type);
+    setType(type);
   }
 
   return (
@@ -357,7 +381,6 @@ export const TwoConditionTable = () => {
   const [error, setError] = useState(false);
   const [answer, setAnswer] = useState(false);
   const [isNewTask, setIsNewTask] = useState(false);
-  console.log(task);
 
   const [tableView, setTableView] = useState<ViewTable>('values');
   const clear = useTwoConditionTable(s => s.clear);
