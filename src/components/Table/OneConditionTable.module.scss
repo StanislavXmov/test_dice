@@ -185,6 +185,7 @@
 
 .calc {
   display: flex;
+  height: 68px;
 }
 
 .calcWrapper {
@@ -232,7 +233,6 @@
 }
 
 .formulaWrapper {
-  height: 65px;
   margin: 0px 0px 0px 0px;
   display: flex;
   flex-direction: column;
