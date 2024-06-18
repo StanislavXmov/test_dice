@@ -260,7 +260,7 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
                 <span className={styles.formulaText}>P =</span>
                 <div className={styles.formulaWrapper}>
                   <input
-                    type="number"
+                    type="text"
                     name="probabilityN"
                     id="probabilityN"
                     className={`
@@ -269,7 +269,7 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
                     value={n}
                   />
                   <div className={styles.formulaBorder}></div>
-                  <div className={styles.formulaText}>36</div>
+                  <div className={styles.formulaNumber}>36</div>
                 </div>
               </div>
               {task.reductable === 'yes' && (
@@ -277,7 +277,7 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
                   <span className={styles.formulaText}>&nbsp;=</span>
                   <div className={styles.formulaWrapper}>
                     <input
-                      type="number"
+                      type="text"
                       name="probabilityA"
                       id="probabilityA"
                       className={`${styles.formulaInput} ${error ? styles.errorColor : ''} ${answer ? styles.answerColor : ''}`}
@@ -286,7 +286,7 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
                     />
                     <div className={styles.formulaBorder}></div>
                     <input
-                      type="number"
+                      type="text"
                       name="probabilityB"
                       id="probabilityB"
                       className={
