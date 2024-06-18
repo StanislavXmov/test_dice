@@ -9,6 +9,7 @@ import { DiceLayerAnimated } from './components/Dices/Layers/DiceLayerAnimated';
 import { OneConditionTable } from './components/Table/OneConditionTable';
 
 import styles from './App.module.scss';
+import { TwoConditionTable } from './components/Table/TwoConditionTable';
 
 function App() {  
   return (
@@ -27,6 +28,7 @@ function App() {
         <CoinSeries />
       </div> */}
       <div className={styles.testWrapper}>
+        <TwoConditionTable />
         <OneConditionTable />
         {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}

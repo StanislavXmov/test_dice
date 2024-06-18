@@ -1,0 +1,367 @@
+.layer {
+  position: relative;
+  padding: 42px 50px;
+  width: 800px;
+  height: 640px;
+
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0px 0px 19px 3px #34E9E940;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.title {
+  margin: 0px;
+  font-family: 'SB Sans Display Semi';
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 30.79px;
+  text-align: left;
+}
+
+.desc {
+  width: 95%;
+  margin: 0px 0px 22px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: left;
+}
+
+.tableTitleWrapper {
+  display: flex;
+  margin: 0px 0px 10px;
+}
+
+.tablwWrapper {
+  margin: 8px 0px 0px 0px;
+}
+
+.controllWrapper {
+  margin: 0px 0px 0px 42px;
+  width: 288px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 18px;
+}
+
+.controllMarginType2 {
+  margin: 0px 0px 0px 44px;
+}
+
+.controllMarginType3 {
+  margin: 0px 0px 0px 20px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.labelTitle {
+  margin: 0px 0px 8px 0px;
+  font-family: 'SB Sans Display Semi';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20.53px;
+  text-align: left;
+}
+
+.selectedInfo {
+  font-family: 'SB Sans Display Normal';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+}
+
+.select {
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  margin: 0px 0px 0px 8px;
+  padding: 3px 2px 1px;
+  width: 170px;
+}
+
+.tableViewSelect {
+  font-family: 'SB Sans Display Normal';
+  margin: 0px;
+  padding: 4px 2px 2px;
+  width: 170px;
+}
+
+.diceIconTable {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.tableType1 {
+  width: 352px;
+  display: grid;
+  grid-template-columns: 40px 290px;
+  grid-template-rows: 40px 290px;
+  gap: 10px;
+}
+
+.diceIconWrapper {
+  width: 40px;
+  height: 40px;
+}
+
+.horizontalLabelType1 {
+  grid-column: 2 / -1;
+  display: flex;
+  gap: 10px;
+}
+
+.verticalLabelType1 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tableWrapperType1 {
+  display: grid;
+  grid-template-columns: repeat(6, 40px);
+  grid-template-rows: repeat(6, 40px);
+  gap: 10px;
+}
+
+.cellType1 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #F2F2F2;
+  cursor: pointer;
+  font-family: 'SB Sans Display Normal';
+  line-height: 16px;
+}
+
+.active {
+  background: #FFF4BD;
+  border: 1px solid #BFB165
+}
+
+.checkWrapper {
+  width: 352px;
+  margin: 22px 0px 0px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.checkWrapperMarginType2 {
+  margin: 44px 0px 0px 0px;
+}
+.checkWrapperMarginType3 {
+  margin: 16px 0px 0px 0px;
+}
+
+.infoColorFrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.yellow {
+  background: #FFF4BD;
+}
+
+.blue {
+  background: #B2DFFF;
+}
+
+.green {
+  background: #B2D5BD;
+}
+
+.calc {
+  display: flex;
+  height: 68px;
+}
+
+.calcWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.formulaText {
+  font-size: 20px;
+  font-family: 'KaTeX_Math';
+}
+
+.formulaNumber {
+  font-family: 'KaTeX_Main';
+  font-size: 20px;
+}
+
+.errorColor {
+  color: #EA3539;
+}
+
+.answerColor {
+  color: #209F6D;
+}
+
+.errorMessage {
+  margin: 0px 0px 0px 16px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.53px;
+  text-align: center;
+  color: #EA3539;
+}
+
+.answerMessage {
+  margin: 0px 0px 0px 16px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.53px;
+  text-align: center;
+  color: #209F6D;
+}
+
+.formulaWrapper {
+  margin: 0px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 6px;
+}
+
+.formulaBorder {
+  width: 58px;
+  height: 1px;
+  background: #000000;
+}
+
+.formulaInput {
+  font-family: 'SB Sans Display Normal';
+  margin: 0px;
+  padding: 4px 2px 2px;
+  width: 58px;
+  text-align: center;
+}
+
+//
+
+.button {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border-radius: 50%;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.submitButton {
+  width: 212px;
+  height: 56px;
+  padding: 20px 16px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0087CD;
+
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+
+
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.eventControllWrapper {
+  margin: 0px 0px 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.eventButtonType1 {
+  padding: 2px 0px 0px;
+  width: 120px;
+  height: 30px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: rgba(255, 244, 189, 0.3);
+}
+
+.eventButtonType1Active {
+  font-weight: 600;
+  background: rgb(255, 244, 189);
+}
+
+.eventButtonType2 {
+  padding: 2px 0px 0px;
+  width: 120px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: rgba(133, 204, 255, 0.3);
+}
+
+.eventButtonType2Active {
+  font-weight: 600;
+  background: rgb(133, 204, 255);
+}
+
+.eventButtonType3 {
+  padding: 2px 0px 0px;
+  width: 120px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: rgba(178, 213, 189, 0.3);
+}
+
+.eventButtonType3Active {
+  font-weight: 600;
+  background: rgb(178, 213, 189);
+}
