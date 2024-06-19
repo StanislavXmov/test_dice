@@ -81,29 +81,51 @@ const cells1Array: TwoConditionCell[] = new Array(type1Array.length * type1Array
   })
 });
 
-const findedAllY = (cells: TwoConditionCell[], idx: number, typeCount: number) => {
+const findedAllY = (cells: TwoConditionCell[], idx: number, typeCount: number, type: Type) => {
   let allFinded = true;
 
   for (let i = 0; i < typeCount; i++) {
     const id = (i * typeCount) + idx;
-    const findes = cells.find(f => f.id === id);
-    if (!findes) {
-      allFinded = false;
+    if (type === 'Type1') {
+      const findes = cells.find(f => f.id === id && f.type1);
+      if (!findes) {
+        allFinded = false;
+      }
+    } else if (type === 'Type2') {
+      const findes = cells.find(f => f.id === id && f.type2);
+      if (!findes) {
+        allFinded = false;
+      }
     }
+    // const findes = cells.find(f => f.id === id);
+    // if (!findes) {
+    //   allFinded = false;
+    // }
   }
 
   return allFinded;
 }
 
-const findedAllX = (cells: TwoConditionCell[], idx: number, typeCount: number) => {
+const findedAllX = (cells: TwoConditionCell[], idx: number, typeCount: number, type: Type) => {
   let allFinded = true;
 
   for (let i = 0; i < typeCount; i++) {
     const id = (idx * typeCount) + i;
-    const findes = cells.find(f => f.id === id);
-    if (!findes) {
-      allFinded = false;
+    if (type === 'Type1') {
+      const findes = cells.find(f => f.id === id && f.type1);
+      if (!findes) {
+        allFinded = false;
+      }
+    } else if (type === 'Type2') {
+      const findes = cells.find(f => f.id === id && f.type2);
+      if (!findes) {
+        allFinded = false;
+      }
     }
+    // const findes = cells.find(f => f.id === id);
+    // if (!findes) {
+    //   allFinded = false;
+    // }
   }
 
   return allFinded;
@@ -119,11 +141,35 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
   
 
   const horizontalLabelHandler = (k: Type1Edge, idx: number) => {
-    if (findedAllY(selected, idx, 6)) {
+    if (type === 'Type3') {
+      return;
+    }
+    
+    if (findedAllY(selected, idx, 6, type)) {
       const ids: number[] = [];
       for (let i = 0; i < type1Array.length; i++) {
         const id = (i * 6) + idx;
-        ids.push(id);
+        if (type === 'Type1') {
+          const findes = selected.find(f => f.id === id);
+          if (!findes.type2) {
+            ids.push(id);
+          } else {
+            findes.type1 = false;
+            if (findes.type3) {
+              findes.type3 = false;
+            }
+          }
+        } else if (type === 'Type2') {
+          const findes = selected.find(f => f.id === id);
+          if (!findes.type1) {
+            ids.push(id);
+          } else {
+            findes.type2 = false;
+            if (findes.type3) {
+              findes.type3 = false;
+            }
+          }
+        }
       }
       removeIds(ids);
       return;
@@ -134,25 +180,64 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
       const id = (i * 6) + idx;
       const finded = selected.find(f => f.id === id);
       if (!finded) {
-        cells.push({
-          id,
-          x: k,
-          y: i + 1,
-          type1: false,
-          type2: false,
-          type3: false,
-        });
+        const c = cells1Array.find(f => f.id === id);
+        if (type === 'Type1') {
+          c.type1 = true;
+        } else if (type === 'Type2') {
+          c.type2 = true;
+        }
+        cells.push(c);
+        // cells.push({
+        //   id,
+        //   x: k,
+        //   y: i + 1,
+        //   type1: type === 'Type1' ? true : false,
+        //   type2: type === 'Type2' ? true : false,
+        //   type3: false,
+        // });
+      } else {
+        if (type === 'Type1') {
+          if (finded.type2) {
+            finded.type1 = true;
+            finded.type3 = true;
+          }
+        } else if (type === 'Type2') {
+          if (finded.type1) {
+            finded.type2 = true;
+            finded.type3 = true;
+          }
+        }
       }
     }
     addMore(cells);
   }
 
   const verticalLabelHandler = (k: Type1Edge, idx: number) => {
-    if (findedAllX(selected, idx, 6)) {
+    if (findedAllX(selected, idx, 6, type)) {
       const ids: number[] = [];
       for (let i = 0; i < type1Array.length; i++) {
         const id = (idx * 6) + i;
-        ids.push(id);
+        if (type === 'Type1') {
+          const findes = selected.find(f => f.id === id);
+          if (!findes.type2) {
+            ids.push(id);
+          } else {
+            findes.type1 = false;
+            if (findes.type3) {
+              findes.type3 = false;
+            }
+          }
+        } else if (type === 'Type2') {
+          const findes = selected.find(f => f.id === id);
+          if (!findes.type1) {
+            ids.push(id);
+          } else {
+            findes.type2 = false;
+            if (findes.type3) {
+              findes.type3 = false;
+            }
+          }
+        }
       }
       removeIds(ids);
       return;
@@ -164,14 +249,33 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
       const id = (idx * 6) + i;
       const finded = selected.find(f => f.id === id);
       if (!finded) {
-        cells.push({
-          id,
-          x: i + 1,
-          y: k,
-          type1: false,
-          type2: false,
-          type3: false,
-        });
+        const c = cells1Array.find(f => f.id === id);
+        if (type === 'Type1') {
+          c.type1 = true;
+        } else if (type === 'Type2') {
+          c.type2 = true;
+        }
+        cells.push(c);
+        // cells.push({
+        //   id,
+        //   x: i + 1,
+        //   y: k,
+        //   type1: false,
+        //   type2: false,
+        //   type3: false,
+        // });
+      } else {
+        if (type === 'Type1') {
+          if (finded.type2) {
+            finded.type1 = true;
+            finded.type3 = true;
+          }
+        } else if (type === 'Type2') {
+          if (finded.type1) {
+            finded.type2 = true;
+            finded.type3 = true;
+          }
+        }
       }
     }
     addMore(cells);

@@ -129,6 +129,10 @@ export const useTwoConditionTable = create<TwoConditionState>()(subscribeWithSel
     }
   })),
   addMore: (v) => set(((s) => {
+    const type = s.type;
+    if (type === "Type1") {
+      v.forEach(p => {p.type1 = true;})
+    }
     return {selected: [...s.selected, ...v]};
   })),
   removeIds: (ids) => set(((s) => {
