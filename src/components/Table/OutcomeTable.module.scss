@@ -1,6 +1,6 @@
 .layer {
   position: relative;
-  padding: 42px 50px;
+  padding: 48px 50px;
   width: 800px;
   height: 640px;
 
@@ -37,5 +37,89 @@
 }
 
 .headerWrapper {
+  margin: 0px 0px 18px 0px;
   display: flex;
+}
+
+.selectType {
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  margin: 0px 0px 0px 8px;
+  padding: 3px 2px 1px;
+  width: 220px;
+}
+
+.select {
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  margin: 0px 0px 0px 8px;
+  padding: 3px 2px 1px;
+  width: 170px;
+}
+
+.eventControllWrapper {
+  margin: 0px 0px 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.eventButtonType1 {
+  padding: 2px 0px 0px;
+  width: 120px;
+  height: 30px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: rgba(255, 244, 189, 0.3);
+}
+
+.eventButtonType1Active {
+  font-weight: 600;
+  background: rgb(255, 244, 189);
+}
+
+.eventButtonType2 {
+  padding: 2px 0px 0px;
+  width: 120px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: rgba(133, 204, 255, 0.3);
+}
+
+.eventButtonType2Active {
+  font-weight: 600;
+  background: rgb(133, 204, 255);
+}
+
+.eventButtonType3 {
+  padding: 2px 0px 0px;
+  width: 120px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: rgba(178, 213, 189, 0.3);
+}
+
+.eventButtonType3Active {
+  font-weight: 600;
+  background: rgb(178, 213, 189);
 }

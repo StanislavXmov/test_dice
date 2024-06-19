@@ -32,7 +32,7 @@ function App() {
         <OutcomeTable />
         <TwoConditionTable />
         <OneConditionTable />
-        {/* <TableLayer /> */}
+        <TableLayer />
         {/* <TableLayerType2 /> */}
       </div>
     </>
