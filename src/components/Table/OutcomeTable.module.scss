@@ -1,0 +1,41 @@
+.layer {
+  position: relative;
+  padding: 42px 50px;
+  width: 800px;
+  height: 640px;
+
+  background: #ffffff;
+  border: none;
+  border-radius: 30px;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.title {
+  margin: 0px;
+  font-family: 'SB Sans Display Semi';
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 30.79px;
+  text-align: left;
+}
+
+.button {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border-radius: 50%;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.headerWrapper {
+  display: flex;
+}

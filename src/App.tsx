@@ -10,6 +10,7 @@ import { OneConditionTable } from './components/Table/OneConditionTable';
 
 import styles from './App.module.scss';
 import { TwoConditionTable } from './components/Table/TwoConditionTable';
+import { OutcomeTable } from './components/Table/OutcomeTable';
 
 function App() {  
   return (
@@ -28,6 +29,7 @@ function App() {
         <CoinSeries />
       </div> */}
       <div className={styles.testWrapper}>
+        <OutcomeTable />
         <TwoConditionTable />
         <OneConditionTable />
         {/* <TableLayer /> */}
