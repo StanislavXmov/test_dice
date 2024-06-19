@@ -123,3 +123,73 @@
   font-weight: 600;
   background: rgb(178, 213, 189);
 }
+
+.tableWrapper {
+  margin: 8px 0px 0px 0px;
+}
+
+// tableType1
+
+.diceIconTable {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.tableType1 {
+  width: 352px;
+  display: grid;
+  grid-template-columns: 40px 290px;
+  grid-template-rows: 40px 290px;
+  gap: 10px;
+}
+
+.diceIconWrapper {
+  width: 40px;
+  height: 40px;
+}
+
+.horizontalLabelType1 {
+  grid-column: 2 / -1;
+  display: flex;
+  gap: 10px;
+}
+
+.verticalLabelType1 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tableWrapperType1 {
+  display: grid;
+  grid-template-columns: repeat(6, 40px);
+  grid-template-rows: repeat(6, 40px);
+  gap: 10px;
+}
+
+.cellType1 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #F2F2F2;
+  cursor: pointer;
+  font-family: 'SB Sans Display Normal';
+  line-height: 16px;
+}
+
+.activeTape1 {
+  background: #FFF4BD;
+  border: 1px solid rgb(255, 244, 189);
+}
+.activeTape2 {
+  background: rgb(133, 204, 255);
+  border: 1px solid rgb(85, 146, 189);
+}
+.activeTape3 {
+  background: rgb(178, 213, 189);
+  border: 1px solid rgb(73, 136, 93);
+}

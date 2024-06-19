@@ -4,6 +4,7 @@ import { Edge, Type, useOutcomeTable } from '../../state/useTable';
 import styles from './OutcomeTable.module.scss';
 
 import ResetIcon from '../icons/reset2.svg?react';
+import { TableType1 } from './TableType1';
 
 interface ButtonProps {
   cb: () => void;
@@ -19,6 +20,23 @@ export const ResetButton = ({ cb }: ButtonProps) => {
     >
       <ResetIcon className={styles.icon} />
     </button>
+  );
+}
+
+const Table = ({tableView}: {tableView: ViewTable}) => {
+  const type = useOutcomeTable(s => s.type);
+
+  return (
+    <>
+      <div className={styles.wrapper}>
+        {/* {type === 6 && <TableType1 tableView={tableView} />}
+        {type === 8 && <TableType2 tableView={tableView} />}
+        {type === 12 && <TableType3 tableView={tableView} />} */}
+        {type === 6 && <TableType1 tableView={tableView} />}
+        {type === 8 && '<TableType2 tableView={tableView} />'}
+        {type === 12 && '<TableType3 tableView={tableView} />'}
+      </div>
+    </>
   );
 }
 
@@ -101,6 +119,9 @@ export const OutcomeTable = () => {
         </div>
       </div>
       <EventControll />
+      <div className={styles.tableWrapper}>
+        <Table tableView={tableView} />
+      </div>
     </div>
   )
 }

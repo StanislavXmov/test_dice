@@ -187,14 +187,6 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
           c.type2 = true;
         }
         cells.push(c);
-        // cells.push({
-        //   id,
-        //   x: k,
-        //   y: i + 1,
-        //   type1: type === 'Type1' ? true : false,
-        //   type2: type === 'Type2' ? true : false,
-        //   type3: false,
-        // });
       } else {
         if (type === 'Type1') {
           if (finded.type2) {
@@ -256,14 +248,6 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
           c.type2 = true;
         }
         cells.push(c);
-        // cells.push({
-        //   id,
-        //   x: i + 1,
-        //   y: k,
-        //   type1: false,
-        //   type2: false,
-        //   type3: false,
-        // });
       } else {
         if (type === 'Type1') {
           if (finded.type2) {
