@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react'
 import { Edge, Type, useOutcomeTable } from '../../state/useTable';
 import { TableType1 } from './outcomeTables/TableType1';
 import { TableType2 } from './outcomeTables/TableType2';
+import { TableType3 } from './outcomeTables/TableType3';
 
 import styles from './OutcomeTable.module.scss';
 
@@ -32,7 +33,7 @@ const Table = ({tableView}: {tableView: ViewTable}) => {
       <div className={styles.wrapper}>
         {type === 6 && <TableType1 tableView={tableView} />}
         {type === 8 && <TableType2 tableView={tableView} />}
-        {type === 12 && '<TableType3 tableView={tableView} />'}
+        {type === 12 && <TableType3 tableView={tableView} />}
       </div>
     </>
   );

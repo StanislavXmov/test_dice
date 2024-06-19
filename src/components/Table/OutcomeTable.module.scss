@@ -2,7 +2,7 @@
   position: relative;
   padding: 48px 50px;
   width: 800px;
-  height: 640px;
+  height: 540px;
 
   background: #ffffff;
   border: none;
@@ -235,6 +235,59 @@
   cursor: pointer;
 }
 
+.dice3IconTable {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.tableType3 {
+  width: 358px;
+  display: grid;
+  grid-template-columns: 22px 330px;
+  grid-template-rows: 22px 330px;
+  gap: 6px;
+}
+
+.horizontalLabelType3 {
+  grid-column: 2 / -1;
+  display: flex;
+  gap: 6px;
+}
+
+.verticalLabelType3 {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.verticalIcon3 {
+  width: 22px;
+  height: 22px;
+  transform: translateY(1px);
+}
+
+.tableWrapperType3 {
+  display: grid;
+  grid-template-columns: repeat(12, 22px);
+  grid-template-rows: repeat(12, 22px);
+  gap: 6px;
+}
+
+.cellType3 {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #F2F2F2;
+  cursor: pointer;
+
+  font-size: 9px;
+  font-family: 'SB Sans Display Normal';
+}
+
 
 
 .activeTape1 {
@@ -253,7 +306,7 @@
 .infoWrapper {
   position: absolute;
   right: 52px;
-  bottom: 144px;
+  bottom: 52px;
   width: 248px;
   display: flex;
   flex-direction: column;
