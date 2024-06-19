@@ -71,9 +71,16 @@ const EventControll = () => {
   );
 }
 
+const toCaseCount = (arg: number) => {
+  let titles = ['ячейка', 'ячейки', 'ячеек'];
+  let cases = [2, 0, 1, 1, 1, 2];
+  return titles[(arg % 100 > 4 && arg % 100 < 20) ? 2 : cases[Math.min(arg % 10, 5)]];
+}
+
 export const OutcomeTable = () => {
   const [tableView, setTableView] = useState<ViewTable>('values');
   const setType = useOutcomeTable(s => s.setType);
+  const selected = useOutcomeTable(s => s.selected);
   const clear = useOutcomeTable(s => s.clear);
 
   const resetHandler = () => {
@@ -87,6 +94,18 @@ export const OutcomeTable = () => {
 
   const selectTableViewHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     setTableView(e.target.value as ViewTable);
+  }
+
+  const getCellsCount = (type: Type) => {
+    let cells = [];
+    if (type === 'Type1') {
+      cells = selected.filter(c => c.type1)
+    } else if (type === 'Type2') {
+      cells = selected.filter(c => c.type2)
+    } else if (type === 'Type3') {
+      cells = selected.filter(c => c.type3)
+    }
+    return `${cells.length} ${toCaseCount(cells.length)}`;
   }
 
   return (
@@ -119,6 +138,18 @@ export const OutcomeTable = () => {
       <EventControll />
       <div className={styles.tableWrapper}>
         <Table tableView={tableView} />
+      </div>
+      <div  className={styles.infoWrapper}>
+        <span className={styles.labelTitle}>Выбрано</span>
+        <div className={styles.eventType1Info}>
+          <span className={styles.infoText}>событие А — </span><span className={styles.infoText}>{getCellsCount('Type1')}</span>
+        </div>
+        <div className={styles.eventType2Info}>
+          <span className={styles.infoText}>событие Б — </span><span className={styles.infoText}>{getCellsCount('Type2')}</span>
+        </div>
+        <div className={styles.eventType3Info}>
+          <span className={styles.infoText}>A ∩ B — </span><span className={styles.infoText}>{getCellsCount('Type3')}</span>
+        </div>
       </div>
     </div>
   )
