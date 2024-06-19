@@ -153,6 +153,8 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
           const findes = selected.find(f => f.id === id);
           if (!findes.type2) {
             ids.push(id);
+            const f = cells1Array.find(f => f.id === id);
+            f.type1 = false;
           } else {
             findes.type1 = false;
             if (findes.type3) {
@@ -163,6 +165,8 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
           const findes = selected.find(f => f.id === id);
           if (!findes.type1) {
             ids.push(id);
+            const f = cells1Array.find(f => f.id === id);
+            f.type2 = false;
           } else {
             findes.type2 = false;
             if (findes.type3) {
@@ -213,6 +217,8 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
           const findes = selected.find(f => f.id === id);
           if (!findes.type2) {
             ids.push(id);
+            const f = cells1Array.find(f => f.id === id);
+            f.type1 = false;
           } else {
             findes.type1 = false;
             if (findes.type3) {
@@ -223,6 +229,8 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
           const findes = selected.find(f => f.id === id);
           if (!findes.type1) {
             ids.push(id);
+            const f = cells1Array.find(f => f.id === id);
+            f.type2 = false;
           } else {
             findes.type2 = false;
             if (findes.type3) {
