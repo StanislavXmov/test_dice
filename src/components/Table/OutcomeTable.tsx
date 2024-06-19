@@ -1,10 +1,11 @@
 import { ChangeEvent, useState } from 'react'
 import { Edge, Type, useOutcomeTable } from '../../state/useTable';
+import { TableType1 } from './outcomeTables/TableType1';
+import { TableType2 } from './outcomeTables/TableType2';
 
 import styles from './OutcomeTable.module.scss';
 
 import ResetIcon from '../icons/reset2.svg?react';
-import { TableType1 } from './TableType1';
 
 interface ButtonProps {
   cb: () => void;
@@ -29,11 +30,8 @@ const Table = ({tableView}: {tableView: ViewTable}) => {
   return (
     <>
       <div className={styles.wrapper}>
-        {/* {type === 6 && <TableType1 tableView={tableView} />}
-        {type === 8 && <TableType2 tableView={tableView} />}
-        {type === 12 && <TableType3 tableView={tableView} />} */}
         {type === 6 && <TableType1 tableView={tableView} />}
-        {type === 8 && '<TableType2 tableView={tableView} />'}
+        {type === 8 && <TableType2 tableView={tableView} />}
         {type === 12 && '<TableType3 tableView={tableView} />'}
       </div>
     </>

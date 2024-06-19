@@ -1,35 +1,40 @@
-import { ChangeEvent, Key, useState } from 'react'
-import { Edge, TwoConditionCell, Type, useOutcomeTable } from '../../state/useTable';
+import { Key } from 'react';
+import { TwoConditionCell, Type, useOutcomeTable } from '../../../state/useTable';
+import { findedAllX, findedAllY } from './TableType1';
 
-import styles from './OutcomeTable.module.scss';
+import styles from '../OutcomeTable.module.scss';
 
-import Dice1 from '../icons/dice_1.svg?react';
-import Dice2 from '../icons/dice_2.svg?react';
-import Dice3 from '../icons/dice_3.svg?react';
-import Dice4 from '../icons/dice_4.svg?react';
-import Dice5 from '../icons/dice_5.svg?react';
-import Dice6 from '../icons/dice_6.svg?react';
+import Dice2_1 from '../../icons/dice8_1.svg?react';
+import Dice2_2 from '../../icons/dice8_2.svg?react';
+import Dice2_3 from '../../icons/dice8_3.svg?react';
+import Dice2_4 from '../../icons/dice8_4.svg?react';
+import Dice2_5 from '../../icons/dice8_5.svg?react';
+import Dice2_6 from '../../icons/dice8_6.svg?react';
+import Dice2_7 from '../../icons/dice8_7.svg?react';
+import Dice2_8 from '../../icons/dice8_8.svg?react';
 
-const dicesTable = {
-  1: (key: Key) => <Dice1 className={styles.diceIconTable} key={key} />,
-  2: (key: Key) => <Dice2 className={styles.diceIconTable} key={key} />,
-  3: (key: Key) => <Dice3 className={styles.diceIconTable} key={key} />,
-  4: (key: Key) => <Dice4 className={styles.diceIconTable} key={key} />,
-  5: (key: Key) => <Dice5 className={styles.diceIconTable} key={key} />,
-  6: (key: Key) => <Dice6 className={styles.diceIconTable} key={key} />,
+const dices2Table = {
+  1: (key: Key) => <Dice2_1 className={styles.dice2IconTable} key={key} />,
+  2: (key: Key) => <Dice2_2 className={styles.dice2IconTable} key={key} />,
+  3: (key: Key) => <Dice2_3 className={styles.dice2IconTable} key={key} />,
+  4: (key: Key) => <Dice2_4 className={styles.dice2IconTable} key={key} />,
+  5: (key: Key) => <Dice2_5 className={styles.dice2IconTable} key={key} />,
+  6: (key: Key) => <Dice2_6 className={styles.dice2IconTable} key={key} />,
+  7: (key: Key) => <Dice2_7 className={styles.dice2IconTable} key={key} />,
+  8: (key: Key) => <Dice2_8 className={styles.dice2IconTable} key={key} />,
 }
 
 type ViewTable = 'values' | 'sum';
 
-type Type1Edge = 1 | 2 | 3 | 4 | 5 | 6;
-const type1Array: Type1Edge[] = [1, 2, 3, 4, 5, 6];
-const cells1Array: TwoConditionCell[] = new Array(type1Array.length * type1Array.length).fill(null).map<TwoConditionCell>((_, i) => {
-  let x = (i + 1) % 6;
+type Type2Edge = 1|2|3|4|5|6|7|8;
+const type2Array: Type2Edge[] = [1,2,3,4,5,6,7,8];
+const cells2Array = new Array(type2Array.length * type2Array.length).fill(null).map<TwoConditionCell>((_, i) => {
+  let x = (i + 1) % 8;
   if (x === 0) {
-    x = 6;
+    x = 8;
   }
-  const y = Math.floor(i / 6) + 1;
-
+  const y = Math.floor(i / 8) + 1;
+  
   return ({
     id: i,
     x: x,
@@ -37,74 +42,26 @@ const cells1Array: TwoConditionCell[] = new Array(type1Array.length * type1Array
     type1: false,
     type2: false,
     type3: false,
-  })
+  });
 });
 
-const findedAllY = (cells: TwoConditionCell[], idx: number, typeCount: number, type: Type) => {
-  let allFinded = true;
-
-  for (let i = 0; i < typeCount; i++) {
-    const id = (i * typeCount) + idx;
-    if (type === 'Type1') {
-      const findes = cells.find(f => f.id === id && f.type1);
-      if (!findes) {
-        allFinded = false;
-      }
-    } else if (type === 'Type2') {
-      const findes = cells.find(f => f.id === id && f.type2);
-      if (!findes) {
-        allFinded = false;
-      }
-    }
-  }
-
-  return allFinded;
-}
-
-const findedAllX = (cells: TwoConditionCell[], idx: number, typeCount: number, type: Type) => {
-  let allFinded = true;
-
-  for (let i = 0; i < typeCount; i++) {
-    const id = (idx * typeCount) + i;
-    if (type === 'Type1') {
-      const findes = cells.find(f => f.id === id && f.type1);
-      if (!findes) {
-        allFinded = false;
-      }
-    } else if (type === 'Type2') {
-      const findes = cells.find(f => f.id === id && f.type2);
-      if (!findes) {
-        allFinded = false;
-      }
-    }
-  }
-
-  return allFinded;
-}
-
-export const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
+export const TableType2 = ({ tableView }: {tableView: ViewTable}) => {
   const selected = useOutcomeTable(s => s.selected);
   const type = useOutcomeTable(s => s.cellType);
   const add = useOutcomeTable(s => s.add);
   const addMore = useOutcomeTable(s => s.addMore);
   const removeIds = useOutcomeTable(s => s.removeIds);
-  console.log(selected);
-  
 
-  const horizontalLabelHandler = (k: Type1Edge, idx: number) => {
-    if (type === 'Type3') {
-      return;
-    }
-    
-    if (findedAllY(selected, idx, 6, type)) {
+  const horizontalLabelHandler = (k: Type2Edge, idx: number) => {
+    if (findedAllY(selected, idx, 8, type)) {
       const ids: number[] = [];
-      for (let i = 0; i < type1Array.length; i++) {
-        const id = (i * 6) + idx;
+      for (let i = 0; i < type2Array.length; i++) {
+        const id = (i * 8) + idx;
         if (type === 'Type1') {
           const findes = selected.find(f => f.id === id);
           if (!findes.type2) {
             ids.push(id);
-            const f = cells1Array.find(f => f.id === id);
+            const f = cells2Array.find(f => f.id === id);
             f.type1 = false;
           } else {
             findes.type1 = false;
@@ -116,7 +73,7 @@ export const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
           const findes = selected.find(f => f.id === id);
           if (!findes.type1) {
             ids.push(id);
-            const f = cells1Array.find(f => f.id === id);
+            const f = cells2Array.find(f => f.id === id);
             f.type2 = false;
           } else {
             findes.type2 = false;
@@ -129,13 +86,13 @@ export const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
       removeIds(ids);
       return;
     }
-
+    
     const cells: TwoConditionCell[] = [];
-    for (let i = 0; i < type1Array.length; i++) {
-      const id = (i * 6) + idx;
+    for (let i = 0; i < type2Array.length; i++) {
+      const id = (i * 8) + idx;
       const finded = selected.find(f => f.id === id);
       if (!finded) {
-        const c = cells1Array.find(f => f.id === id);
+        const c = cells2Array.find(f => f.id === id);
         if (type === 'Type1') {
           c.type1 = true;
         } else if (type === 'Type2') {
@@ -159,16 +116,16 @@ export const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
     addMore(cells);
   }
 
-  const verticalLabelHandler = (k: Type1Edge, idx: number) => {
-    if (findedAllX(selected, idx, 6, type)) {
+  const verticalLabelHandler = (k: Type2Edge, idx: number) => {
+    if (findedAllX(selected, idx, 8, type)) {
       const ids: number[] = [];
-      for (let i = 0; i < type1Array.length; i++) {
-        const id = (idx * 6) + i;
+      for (let i = 0; i < type2Array.length; i++) {
+        const id = (idx * 8) + i;
         if (type === 'Type1') {
           const findes = selected.find(f => f.id === id);
           if (!findes.type2) {
             ids.push(id);
-            const f = cells1Array.find(f => f.id === id);
+            const f = cells2Array.find(f => f.id === id);
             f.type1 = false;
           } else {
             findes.type1 = false;
@@ -180,7 +137,7 @@ export const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
           const findes = selected.find(f => f.id === id);
           if (!findes.type1) {
             ids.push(id);
-            const f = cells1Array.find(f => f.id === id);
+            const f = cells2Array.find(f => f.id === id);
             f.type2 = false;
           } else {
             findes.type2 = false;
@@ -193,14 +150,14 @@ export const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
       removeIds(ids);
       return;
     }
-
+    
     const cells: TwoConditionCell[] = [];
-
-    for (let i = 0; i < type1Array.length; i++) {
-      const id = (idx * 6) + i;
+    
+    for (let i = 0; i < type2Array.length; i++) {
+      const id = (idx * 8) + i;
       const finded = selected.find(f => f.id === id);
       if (!finded) {
-        const c = cells1Array.find(f => f.id === id);
+        const c = cells2Array.find(f => f.id === id);
         if (type === 'Type1') {
           c.type1 = true;
         } else if (type === 'Type2') {
@@ -260,24 +217,24 @@ export const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
   }
 
   return (
-    <div className={styles.tableType1}>
-      <div className={styles.horizontalLabelType1}>
-        {type1Array.map((k, i) => <div key={k} onClick={() => horizontalLabelHandler(k, i)}>{dicesTable[k](k)}</div>)}
+    <div className={styles.tableType2}>
+      <div className={styles.horizontalLabelType2}>
+        {type2Array.map((k, i) => <div key={k} onClick={() => horizontalLabelHandler(k, i)}>{dices2Table[k](k)}</div>)}
       </div>
-      <div className={styles.verticalLabelType1}>
-        {type1Array.map((k, i) => <div key={k} onClick={() => verticalLabelHandler(k, i)} className={styles.diceIconWrapper}>{dicesTable[k](k)}</div>)}
+      <div className={styles.verticalLabelType2}>
+        {type2Array.map((k, i) => (<div key={k} onClick={() => verticalLabelHandler(k, i)} className={styles.verticalIcon2}>{dices2Table[k](k)}</div>))}
       </div>
-      <div className={styles.tableWrapperType1}>
-        {cells1Array.map((c, i) => (
+      <div className={styles.tableWrapperType2}>
+      {cells2Array.map((c, i) => (
           <div
             key={i}
-            className={`${styles.cellType1} ${includes(c) ? getType(c, type) : ''}`}
+            className={`${styles.cellType2} ${includes(c) ? getType(c, type) : ''}`}
             onClick={() => add(c)}
           >
             {tableView === 'values' ? `${c.y};${c.x}` : `${c.y + c.x}`}
           </div>
         ))}
       </div>
-    </div> 
+    </div>
   );
 }
