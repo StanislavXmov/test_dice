@@ -331,7 +331,7 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
             className={`${styles.cellType1} ${includes(c) ? getType(c, type) : ''}`}
             onClick={() => add(c)}
           >
-            {tableView === 'values' ? `${c.y},${c.x}` : `${c.y + c.x}`}
+            {tableView === 'values' ? `${c.y};${c.x}` : `${c.y + c.x}`}
           </div>
         ))}
       </div>
