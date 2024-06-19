@@ -202,6 +202,10 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
     } else if (type === 'Type3') {
       if (c.type3) {
         return styles.activeTape3;
+      } else if (c.type2) {
+        return styles.activeTape2;
+      } else if (c.type1) {
+        return styles.activeTape1;
       } else {
         return '';
       }
