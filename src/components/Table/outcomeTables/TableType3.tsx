@@ -36,24 +36,8 @@ type ViewTable = 'values' | 'sum';
 
 type Type3Edge = 1|2|3|4|5|6|7|8|9|10|11|12;
 const type3Array: Type3Edge[] = [1,2,3,4,5,6,7,8,9,10,11,12];
-const cells3Array = new Array(type3Array.length * type3Array.length).fill(null).map<TwoConditionCell>((_, i) => {
-  let x = (i + 1) % 12;
-  if (x === 0) {
-    x = 12;
-  }
-  const y = Math.floor(i / 12) + 1;
-  
-  return ({
-    id: i,
-    x: x,
-    y: y,
-    type1: false,
-    type2: false,
-    type3: false,
-  });
-});
 
-export const TableType3 = ({ tableView }: {tableView: ViewTable}) => {
+export const TableType3 = ({ tableView, cells3Array }: {tableView: ViewTable; cells3Array: TwoConditionCell[]}) => {
   const selected = useOutcomeTable(s => s.selected);
   const type = useOutcomeTable(s => s.cellType);
   const add = useOutcomeTable(s => s.add);

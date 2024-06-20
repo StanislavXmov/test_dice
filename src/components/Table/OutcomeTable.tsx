@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { Edge, Type, useOutcomeTable } from '../../state/useTable';
+import { Edge, TwoConditionCell, Type, useOutcomeTable } from '../../state/useTable';
 import { TableType1 } from './outcomeTables/TableType1';
 import { TableType2 } from './outcomeTables/TableType2';
 import { TableType3 } from './outcomeTables/TableType3';
@@ -13,6 +13,63 @@ interface ButtonProps {
 }
 
 type ViewTable = 'values' | 'sum';
+
+type Type1Edge = 1 | 2 | 3 | 4 | 5 | 6;
+const type1Array: Type1Edge[] = [1, 2, 3, 4, 5, 6];
+const cells1Array: TwoConditionCell[] = new Array(type1Array.length * type1Array.length).fill(null).map<TwoConditionCell>((_, i) => {
+  let x = (i + 1) % 6;
+  if (x === 0) {
+    x = 6;
+  }
+  const y = Math.floor(i / 6) + 1;
+
+  return ({
+    id: i,
+    x: x,
+    y: y,
+    type1: false,
+    type2: false,
+    type3: false,
+  })
+});
+
+type Type2Edge = 1|2|3|4|5|6|7|8;
+const type2Array: Type2Edge[] = [1,2,3,4,5,6,7,8];
+const cells2Array = new Array(type2Array.length * type2Array.length).fill(null).map<TwoConditionCell>((_, i) => {
+  let x = (i + 1) % 8;
+  if (x === 0) {
+    x = 8;
+  }
+  const y = Math.floor(i / 8) + 1;
+  
+  return ({
+    id: i,
+    x: x,
+    y: y,
+    type1: false,
+    type2: false,
+    type3: false,
+  });
+});
+
+type Type3Edge = 1|2|3|4|5|6|7|8|9|10|11|12;
+const type3Array: Type3Edge[] = [1,2,3,4,5,6,7,8,9,10,11,12];
+const cells3Array = new Array(type3Array.length * type3Array.length).fill(null).map<TwoConditionCell>((_, i) => {
+  let x = (i + 1) % 12;
+  if (x === 0) {
+    x = 12;
+  }
+  const y = Math.floor(i / 12) + 1;
+  
+  return ({
+    id: i,
+    x: x,
+    y: y,
+    type1: false,
+    type2: false,
+    type3: false,
+  });
+});
 
 export const ResetButton = ({ cb }: ButtonProps) => {
   return (
@@ -31,9 +88,9 @@ const Table = ({tableView}: {tableView: ViewTable}) => {
   return (
     <>
       <div className={styles.wrapper}>
-        {type === 6 && <TableType1 tableView={tableView} />}
-        {type === 8 && <TableType2 tableView={tableView} />}
-        {type === 12 && <TableType3 tableView={tableView} />}
+        {type === 6 && <TableType1 tableView={tableView} cells1Array={cells1Array} />}
+        {type === 8 && <TableType2 tableView={tableView} cells2Array={cells2Array} />}
+        {type === 12 && <TableType3 tableView={tableView} cells3Array={cells3Array} />}
       </div>
     </>
   );
@@ -86,6 +143,21 @@ export const OutcomeTable = () => {
 
   const resetHandler = () => {
     clear();
+    cells1Array.forEach(c => {
+      c.type1 = false;
+      c.type2 = false;
+      c.type3 = false;
+    });
+    cells2Array.forEach(c => {
+      c.type1 = false;
+      c.type2 = false;
+      c.type3 = false;
+    });
+    cells3Array.forEach(c => {
+      c.type1 = false;
+      c.type2 = false;
+      c.type3 = false;
+    });
   }
 
   const selectHandler = (e: ChangeEvent<HTMLSelectElement>) => {

@@ -23,22 +23,6 @@ type ViewTable = 'values' | 'sum';
 
 type Type1Edge = 1 | 2 | 3 | 4 | 5 | 6;
 const type1Array: Type1Edge[] = [1, 2, 3, 4, 5, 6];
-const cells1Array: TwoConditionCell[] = new Array(type1Array.length * type1Array.length).fill(null).map<TwoConditionCell>((_, i) => {
-  let x = (i + 1) % 6;
-  if (x === 0) {
-    x = 6;
-  }
-  const y = Math.floor(i / 6) + 1;
-
-  return ({
-    id: i,
-    x: x,
-    y: y,
-    type1: false,
-    type2: false,
-    type3: false,
-  })
-});
 
 export const findedAllY = (cells: TwoConditionCell[], idx: number, typeCount: number, type: Type) => {
   let allFinded = true;
@@ -82,7 +66,7 @@ export const findedAllX = (cells: TwoConditionCell[], idx: number, typeCount: nu
   return allFinded;
 }
 
-export const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
+export const TableType1 = ({ tableView, cells1Array }: { tableView: ViewTable; cells1Array: TwoConditionCell[] }) => {
   const selected = useOutcomeTable(s => s.selected);
   const type = useOutcomeTable(s => s.cellType);
   const add = useOutcomeTable(s => s.add);

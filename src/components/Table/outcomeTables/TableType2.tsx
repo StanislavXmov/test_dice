@@ -28,24 +28,8 @@ type ViewTable = 'values' | 'sum';
 
 type Type2Edge = 1|2|3|4|5|6|7|8;
 const type2Array: Type2Edge[] = [1,2,3,4,5,6,7,8];
-const cells2Array = new Array(type2Array.length * type2Array.length).fill(null).map<TwoConditionCell>((_, i) => {
-  let x = (i + 1) % 8;
-  if (x === 0) {
-    x = 8;
-  }
-  const y = Math.floor(i / 8) + 1;
-  
-  return ({
-    id: i,
-    x: x,
-    y: y,
-    type1: false,
-    type2: false,
-    type3: false,
-  });
-});
 
-export const TableType2 = ({ tableView }: {tableView: ViewTable}) => {
+export const TableType2 = ({ tableView, cells2Array }: {tableView: ViewTable; cells2Array: TwoConditionCell[]}) => {
   const selected = useOutcomeTable(s => s.selected);
   const type = useOutcomeTable(s => s.cellType);
   const add = useOutcomeTable(s => s.add);

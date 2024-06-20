@@ -137,7 +137,7 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
   const add = useTwoConditionTable(s => s.add);
   const addMore = useTwoConditionTable(s => s.addMore);
   const removeIds = useTwoConditionTable(s => s.removeIds);
-  console.log(selected);
+  console.log(selected, cells1Array);
   
 
   const horizontalLabelHandler = (k: Type1Edge, idx: number) => {
@@ -503,6 +503,11 @@ export const TwoConditionTable = () => {
     setError(false);
     setAnswer(false);
     setIsNewTask(true);
+    cells1Array.forEach(c => {
+      c.type1 = false;
+      c.type2 = false;
+      c.type3 = false;
+    });
     setTimeout(() => {
       setIsNewTask(false);
     }, 500);

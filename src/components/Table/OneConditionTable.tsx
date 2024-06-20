@@ -326,7 +326,6 @@ export const OneConditionTable = () => {
   const [error, setError] = useState(false);
   const [answer, setAnswer] = useState(false);
   const [isNewTask, setIsNewTask] = useState(false);
-  console.log(task);
 
   const [tableView, setTableView] = useState<ViewTable>('values');
   const clear = useOneConditionTable(s => s.clear);
