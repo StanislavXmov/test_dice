@@ -150,6 +150,106 @@ export const useTwoConditionTable = create<TwoConditionState>()(subscribeWithSel
   setType: (v) => set(() => ({type: v})),
 })));
 
+interface SolutionTableState {
+  selected: TwoConditionCell[];
+  add: (v: TwoConditionCell) => void;
+  addMore: (v: TwoConditionCell[]) => void;
+  removeIds: (ids: number[]) => void;
+  clear: () => void;
+  type: Type;
+  setType: (v: Type) => void;
+  step: number;
+  setStep: (s: number) => void;
+}
+
+export const useSolutionTable = create<SolutionTableState>()(subscribeWithSelector(set => ({
+  selected: [],
+  type: 'Type1',
+  step: 0,
+  add: (v) => set(((s) => {
+    const type = s.type;
+    if (type === 'Type3') {
+      return {};
+    }
+
+    const finded = s.selected.find(f => f.id === v.id);
+    if (finded) {
+      if (type === "Type1") {
+        if (finded.type2) {
+          if (finded.type1) {
+            finded.type1 = false;
+            if (finded.type3) {
+              finded.type3 = false;
+            }
+          } else {
+            finded.type1 = true;
+            finded.type3 = true;
+          }
+          return {selected: [...s.selected]};
+        } else {
+          finded.type1 = false;
+          return {selected: s.selected.filter(c => c.id !== v.id)};
+        }
+      } else if (type === "Type2") {
+        if (finded.type1) {
+          if (finded.type2) {
+            finded.type2 = false;
+            if (finded.type3) {
+              finded.type3 = false;
+            }
+          } else {
+            finded.type2 = true;
+            finded.type3 = true;
+          }
+          return {selected: [...s.selected]};
+        } else {
+          finded.type2 = false;
+          return {selected: s.selected.filter(c => c.id !== v.id)};
+        }
+      }
+    } else {
+      if (type === "Type1") {
+        if (v.type2) {
+          v.type1 = true;
+          v.type3 = true;
+        } else {
+          v.type1 = true;
+        }
+      } else if (type === "Type2") {
+        if (v.type1) {
+          v.type2 = true;
+          v.type3 = true;
+        } else {
+          v.type2 = true;
+        }
+      }
+  
+      return {selected: [...s.selected, v]};
+    }
+  })),
+  addMore: (v) => set(((s) => {
+    const type = s.type;
+    if (type === "Type1") {
+      v.forEach(p => {p.type1 = true;})
+    }
+    if (type === "Type2") {
+      v.forEach(p => {p.type2 = true;})
+    }
+    return {selected: [...s.selected, ...v]};
+  })),
+  removeIds: (ids) => set(((s) => {
+    let list = [...s.selected];
+    for (let i = 0; i < ids.length; i++) {
+      const id = ids[i];
+      list = list.filter(c => c.id !== id);
+    }
+    return {selected: list};
+  })),
+  clear: () => set(() => ({selected: []})),
+  setType: (v) => set(() => ({type: v})),
+  setStep: (s) => set(() => ({step: s})),
+})));
+
 type OutcomeTableState = {
   cellType: Type;
   setCellType: (v: Type) => void;
