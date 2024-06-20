@@ -319,6 +319,7 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
   }
 
   const resetCellsHandler = () => {
+    const ids: number[] = [];
     selected.forEach(c => {
       if (type === 'Type1') {
         c.type1 = false;
@@ -335,7 +336,11 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
         c.type1 = false;
         c.type2 = false;
       }
+      if (!c.type1 && !c.type2 && !c.type3) {
+        ids.push(c.id);
+      }
     });
+
     cells1Array.forEach(c => {
       if (type === 'Type1') {
         c.type1 = false;
@@ -353,7 +358,11 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
         c.type2 = false;
       }
     });
-    addMore([]);
+    if (ids.length > 0) {
+      removeIds(ids);
+    } else {
+      addMore([]);
+    }
   }
 
   return (
