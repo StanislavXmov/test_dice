@@ -30,8 +30,8 @@ function App() {
       </div> */}
       <div className={styles.testWrapper}>
         {/* <OutcomeTable /> */}
-        <TwoConditionTable />
-        {/* <OneConditionTable /> */}
+        {/* <TwoConditionTable /> */}
+        <OneConditionTable />
         {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}
       </div>
