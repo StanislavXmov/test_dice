@@ -16,6 +16,7 @@ import Dice3_9 from '../../icons/dice12_9.svg?react';
 import Dice3_10 from '../../icons/dice12_10.svg?react';
 import Dice3_11 from '../../icons/dice12_11.svg?react';
 import Dice3_12 from '../../icons/dice12_12.svg?react';
+import ResetIcon from '../../icons/close.svg?react';
 
 const dices3Table = {
   1: (key: Key) => <Dice3_1 className={styles.dice3IconTable} key={key} />,
@@ -208,8 +209,53 @@ export const TableType3 = ({ tableView, cells3Array }: {tableView: ViewTable; ce
     }
   }
 
+  const getTypeClass = (type: Type) => {
+    if (type === 'Type1') {
+      return styles.cellsResetButtonType1;
+    } else if (type === 'Type2') {
+      return styles.cellsResetButtonType2;
+    } else if (type === 'Type3') {
+      return styles.cellsResetButtonType3;
+    }
+    return '';
+  }
+
+  const resetCellsHandler = () => {
+    selected.forEach(c => {
+      if (type === 'Type1') {
+        c.type1 = false;
+      } else if (type === 'Type2') {
+        c.type2 = false;
+      } else if (type === 'Type3') {
+        c.type3 = false;
+        c.type1 = false;
+        c.type2 = false;
+      }
+    });
+    cells3Array.forEach(c => {
+      if (type === 'Type1') {
+        c.type1 = false;
+      } else if (type === 'Type2') {
+        c.type2 = false;
+      } else if (type === 'Type3') {
+        c.type3 = false;
+        c.type1 = false;
+        c.type2 = false;
+      }
+    });
+    addMore([]);
+  }
+
   return (
     <div className={styles.tableType3}>
+      <div className={styles.cellsResetWrapper}>
+        <button
+          onClick={resetCellsHandler}
+          className={`${styles.cellsResetButton} ${getTypeClass(type)}`}
+        >
+          <ResetIcon />
+        </button>
+      </div>
       <div className={styles.horizontalLabelType3}>
         {type3Array.map((k, i) => <div key={k} onClick={() => horizontalLabelHandler(k, i)}>{dices3Table[k](k)}</div>)}
       </div>

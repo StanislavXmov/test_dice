@@ -137,8 +137,6 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
   const add = useTwoConditionTable(s => s.add);
   const addMore = useTwoConditionTable(s => s.addMore);
   const removeIds = useTwoConditionTable(s => s.removeIds);
-  console.log(selected, cells1Array);
-  
 
   const horizontalLabelHandler = (k: Type1Edge, idx: number) => {
     if (type === 'Type3') {
