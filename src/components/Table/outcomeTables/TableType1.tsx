@@ -259,8 +259,14 @@ export const TableType1 = ({ tableView, cells1Array }: { tableView: ViewTable; c
     selected.forEach(c => {
       if (type === 'Type1') {
         c.type1 = false;
+        if (c.type3) {
+          c.type3 = false;
+        }
       } else if (type === 'Type2') {
         c.type2 = false;
+        if (c.type3) {
+          c.type3 = false;
+        }
       } else if (type === 'Type3') {
         c.type3 = false;
         c.type1 = false;
@@ -270,8 +276,14 @@ export const TableType1 = ({ tableView, cells1Array }: { tableView: ViewTable; c
     cells1Array.forEach(c => {
       if (type === 'Type1') {
         c.type1 = false;
+        if (c.type3) {
+          c.type3 = false;
+        }
       } else if (type === 'Type2') {
         c.type2 = false;
+        if (c.type3) {
+          c.type3 = false;
+        }
       } else if (type === 'Type3') {
         c.type3 = false;
         c.type1 = false;

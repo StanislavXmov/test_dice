@@ -299,3 +299,23 @@
   width: 24px;
   height: 24px;
 }
+
+.cellsResetWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cellsResetButton {
+  width: 24px;
+  height: 24px;
+  border: none;
+  outline: none;
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.cellsResetButtonType1 {
+  background: #FFF4BD;
+}

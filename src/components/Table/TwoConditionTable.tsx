@@ -15,6 +15,7 @@ import Dice5 from '../icons/dice_5.svg?react';
 import Dice6 from '../icons/dice_6.svg?react';
 
 import ResetIcon from '../icons/reset2.svg?react';
+import ResetCellsIcon from '../icons/close.svg?react';
 
 const dicesTable = {
   1: (key: Key) => <Dice1 className={styles.diceIconTable} key={key} />,
@@ -306,8 +307,65 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
     }
   }
 
+  const getTypeClass = (type: Type) => {
+    if (type === 'Type1') {
+      return styles.cellsResetButtonType1;
+    } else if (type === 'Type2') {
+      return styles.cellsResetButtonType2;
+    } else if (type === 'Type3') {
+      return styles.cellsResetButtonType3;
+    }
+    return '';
+  }
+
+  const resetCellsHandler = () => {
+    selected.forEach(c => {
+      if (type === 'Type1') {
+        c.type1 = false;
+        if (c.type3) {
+          c.type3 = false;
+        }
+      } else if (type === 'Type2') {
+        c.type2 = false;
+        if (c.type3) {
+          c.type3 = false;
+        }
+      } else if (type === 'Type3') {
+        c.type3 = false;
+        c.type1 = false;
+        c.type2 = false;
+      }
+    });
+    cells1Array.forEach(c => {
+      if (type === 'Type1') {
+        c.type1 = false;
+        if (c.type3) {
+          c.type3 = false;
+        }
+      } else if (type === 'Type2') {
+        c.type2 = false;
+        if (c.type3) {
+          c.type3 = false;
+        }
+      } else if (type === 'Type3') {
+        c.type3 = false;
+        c.type1 = false;
+        c.type2 = false;
+      }
+    });
+    addMore([]);
+  }
+
   return (
     <div className={styles.tableType1}>
+      <div className={styles.cellsResetWrapper}>
+        <button
+          onClick={resetCellsHandler}
+          className={`${styles.cellsResetButton} ${getTypeClass(type)}`}
+        >
+          <ResetCellsIcon />
+        </button>
+      </div>
       <div className={styles.horizontalLabelType1}>
         {type1Array.map((k, i) => <div key={k} onClick={() => horizontalLabelHandler(k, i)}>{dicesTable[k](k)}</div>)}
       </div>

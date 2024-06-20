@@ -15,6 +15,7 @@ import Dice5 from '../icons/dice_5.svg?react';
 import Dice6 from '../icons/dice_6.svg?react';
 
 import ResetIcon from '../icons/reset2.svg?react';
+import ResetCellsIcon from '../icons/close.svg?react';
 
 const dicesTable = {
   1: (key: Key) => <Dice1 className={styles.diceIconTable} key={key} />,
@@ -174,8 +175,21 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
     }
   }
 
+  const resetCellsHandler = () => {
+    const ids = selected.map(c => c.id);
+    removeIds(ids);
+  }
+
   return (
     <div className={styles.tableType1}>
+      <div className={styles.cellsResetWrapper}>
+        <button
+          onClick={resetCellsHandler}
+          className={`${styles.cellsResetButton} ${styles.cellsResetButtonType1}`}
+        >
+          <ResetCellsIcon />
+        </button>
+      </div>
       <div className={styles.horizontalLabelType1}>
         {type1Array.map((k, i) => <div key={k} onClick={() => horizontalLabelHandler(k, i)}>{dicesTable[k](k)}</div>)}
       </div>
