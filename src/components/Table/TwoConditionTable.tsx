@@ -2,7 +2,7 @@ import { ChangeEvent, Key, useEffect, useState } from 'react';
 import random from 'random';
 import { TwoConditionCell, Type, useTwoConditionTable } from '../../state/useTable';
 
-import tasks from './tasks1.json';
+import tasks from './tasks2.json';
 
 import styles from './TwoConditionTable.module.scss';
 import "katex/dist/katex.min.css";
