@@ -29,8 +29,8 @@ function App() {
         <CoinSeries />
       </div> */}
       <div className={styles.testWrapper}>
-        <OutcomeTable />
-        <TwoConditionTable />
+        {/* <OutcomeTable /> */}
+        {/* <TwoConditionTable /> */}
         <OneConditionTable />
         {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}
