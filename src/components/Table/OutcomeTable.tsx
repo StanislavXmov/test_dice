@@ -97,11 +97,10 @@ const Table = ({tableView}: {tableView: ViewTable}) => {
 }
 
 const EventControll = () => {
-  const [activeType, setActiveType] = useState<Type>('Type1');
+  const activeType = useOutcomeTable(s => s.cellType);
   const setCellType = useOutcomeTable(s => s.setCellType);
 
   const setActiveTypeHandler = (type: Type) => {
-    setActiveType(type);
     setCellType(type);
   }
 
@@ -138,6 +137,7 @@ const toCaseCount = (arg: number) => {
 export const OutcomeTable = () => {
   const [tableView, setTableView] = useState<ViewTable>('values');
   const setType = useOutcomeTable(s => s.setType);
+  const setCellType = useOutcomeTable(s => s.setCellType);
   const selected = useOutcomeTable(s => s.selected);
   const clear = useOutcomeTable(s => s.clear);
 
@@ -158,6 +158,7 @@ export const OutcomeTable = () => {
       c.type2 = false;
       c.type3 = false;
     });
+    setCellType('Type1');
   }
 
   const selectHandler = (e: ChangeEvent<HTMLSelectElement>) => {

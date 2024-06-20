@@ -521,11 +521,10 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
 }
 
 const EventControll = () => {
-  const [activeType, setActiveType] = useState<Type>('Type1');
   const setType = useTwoConditionTable(s => s.setType);
+  const activeType = useTwoConditionTable(s => s.type);
 
   const setActiveTypeHandler = (type: Type) => {
-    setActiveType(type);
     setType(type);
   }
 
@@ -561,6 +560,7 @@ export const TwoConditionTable = () => {
 
   const [tableView, setTableView] = useState<ViewTable>('values');
   const clear = useTwoConditionTable(s => s.clear);
+  const setType = useTwoConditionTable(s => s.setType);
 
   const resetHandler = () => {
     clear();
@@ -573,6 +573,7 @@ export const TwoConditionTable = () => {
       c.type2 = false;
       c.type3 = false;
     });
+    setType('Type1');
     setTimeout(() => {
       setIsNewTask(false);
     }, 500);
