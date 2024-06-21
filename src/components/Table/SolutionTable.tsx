@@ -407,6 +407,22 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
   );
 }
 
+const Error = () => {
+  return (
+    <div className={styles.calcWrapper}>
+      <span className={styles.errorMessage}>× Ошибка</span>
+    </div>
+  );
+}
+
+const Answer = () => {
+  return (
+    <div className={styles.calcWrapper}>
+      <span className={styles.answerMessage}>✓ Верно</span>
+    </div>
+  );
+}
+
 const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
   tableView: ViewTable;
   task: Task;
@@ -415,20 +431,45 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
   answer: boolean;
   isNewTask: boolean;
 }) => {
-  const [n, setN] = useState('');
   const [a, setA] = useState('');
   const [b, setB] = useState('');
   const setStep = useSolutionTable(s => s.setStep);
   const setType = useSolutionTable(s => s.setType);
   const step = useSolutionTable(s => s.step);
+  // console.log({step, a, b});
 
   const checkHandler = () => {
-    if (step + 1 === 2) {
-      setType('Type2');
-    } else if (step + 1 === 3) {
-      setType('Type3');
+    if (step === 0) {
+      setStep(step + 1);
+    } else if (step === 1) {
+      if (a === task.answers[step - 1]) {
+        setErrorHandler(true, 'answer');
+        setErrorHandler(false, 'error');
+        setTimeout(() => {
+          setErrorHandler(false, 'answer');
+          setType('Type2');
+          setStep(step + 1);
+          setA('');
+        }, 1000);
+      } else {
+        setErrorHandler(true, 'error');
+      }
+    } else if (step === 2) {
+      if (a === task.answers[step - 1]) {
+        setErrorHandler(false, 'answer');
+        setErrorHandler(true, 'answer');
+        setErrorHandler(false, 'error');
+        setTimeout(() => {
+          setType('Type3');
+          setStep(step + 1);
+          setA('');
+        }, 1000);
+      } else {
+        setErrorHandler(true, 'error');
+      }
     }
-    setStep(step + 1);
+    
+    
     // if (task.reductable === 'no') {
     //   const v = task.answer === `${n}/36`;
     //   if (v) {
@@ -448,10 +489,8 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
     // }
   }
 
-  const formulaNInput = (e: ChangeEvent<HTMLInputElement>, type: 'n' | 'a' | 'b') => {
-    if (type === 'n') {
-      setN(e.target.value);
-    } else if (type === 'a') {
+  const formulaInput = (e: ChangeEvent<HTMLInputElement>, type: 'a' | 'b') => {
+    if (type === 'a') {
       setA(e.target.value);
     } else if (type === 'b') {
       setB(e.target.value);
@@ -460,7 +499,6 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
 
   useEffect(() => {
     if (isNewTask) {
-      setN('');
       setA('');
       setB('');
     }
@@ -472,7 +510,14 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
       <div className={styles.wrapper}>
         <TableType1 tableView={tableView} />
         <div className={styles.controllWrapper}>
-          {step}
+          <div>
+            {step > 0 && (
+              <div className={styles.eventDesc}>
+                <span>{task.eventTitles.a}</span>
+                <span>{task.eventTitles.b}</span>
+              </div>
+            )}
+          </div>
           {/* <div className={styles.label}>
             <div className={styles.labelTitle}>Вероятность</div>
             <div className={styles.calc}>
@@ -529,13 +574,35 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
               )}
             </div>
           </div> */}
-          <button
-            className={styles.submitButton}
-            onClick={checkHandler}
-          >
-            <span className={styles.submitButtonLabel}>Далее</span>
-            <ArrowIcon />
-          </button>
+          <div className={styles.solutionWrapper}>
+            <div>
+              {(step === 1 || step === 2)  && (
+                <div>
+                  <div className={styles.labelTitle}>Количество отмеченных ячеек</div>
+                  <div className={styles.inputDefaultWrapper}>
+                    <input
+                      type="text"
+                      name="step1"
+                      id="step1"
+                      value={a}
+                      className={`${styles.formulaInput} ${error ? styles.errorColor : ''} ${answer ? styles.answerColor : ''}`}
+                      onChange={(e) => formulaInput(e, 'a')}
+                    />
+                    {error && <Error />}
+                    {answer && <Answer />}
+                  </div>
+                </div>
+              )}
+            </div>
+            
+            <button
+              className={styles.submitButton}
+              onClick={checkHandler}
+            >
+              <span className={styles.submitButtonLabel}>Далее</span>
+              <ArrowIcon />
+            </button>
+          </div>
         </div>
       </div>
     </>

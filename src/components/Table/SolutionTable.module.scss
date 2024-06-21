@@ -51,7 +51,7 @@
   width: 288px;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: space-between;
   gap: 18px;
 }
 
@@ -227,7 +227,7 @@
 }
 
 .errorMessage {
-  margin: 0px 0px 0px 16px;
+  margin: 5px 0px 0px 16px;
   font-family: 'SB Sans Display Normal';
   font-size: 16px;
   font-weight: 400;
@@ -237,7 +237,7 @@
 }
 
 .answerMessage {
-  margin: 0px 0px 0px 16px;
+  margin: 5px 0px 0px 16px;
   font-family: 'SB Sans Display Normal';
   font-size: 16px;
   font-weight: 400;
@@ -420,4 +420,27 @@
 }
 .cellsResetButtonType3 {
   background: #B2D5BD;
+}
+
+.eventDesc {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.53px;
+  text-align: left;
+
+}
+
+.solutionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.inputDefaultWrapper {
+  display: flex;
+  align-items: center;
 }
