@@ -533,13 +533,13 @@ const EventControll = () => {
         onClick={() => setActiveTypeHandler('Type1')}
         className={`${styles.eventButtonType1} ${activeType === 'Type1' ? styles.eventButtonType1Active : ''}`}
       >
-        Событие А
+        Событие A
       </button>
       <button
         onClick={() => setActiveTypeHandler('Type2')}
         className={`${styles.eventButtonType2} ${activeType === 'Type2' ? styles.eventButtonType2Active : ''}`}
       >
-        Событие Б
+        Событие B
       </button>
       <button
         onClick={() => setActiveTypeHandler('Type3')}
