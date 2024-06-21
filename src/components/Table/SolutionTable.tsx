@@ -499,8 +499,8 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
         setErrorHandler(true, 'answer');
         setErrorHandler(false, 'error');
         setTimeout(() => {
-          setErrorHandler(false, 'answer');
-          setType('Type3');
+          // setErrorHandler(false, 'answer');
+          // setType('Type3');
           // setStep(step + 1);
           // setA('');
           // setB('');
@@ -721,6 +721,7 @@ export const SolutionTable = () => {
   const clear = useSolutionTable(s => s.clear);
   const setType = useSolutionTable(s => s.setType);
   const step = useSolutionTable(s => s.step);
+  const setStep = useSolutionTable(s => s.setStep);
 
   const resetHandler = () => {
     clear();
@@ -733,6 +734,7 @@ export const SolutionTable = () => {
       c.type3 = false;
     });
     setType('Type1');
+    setStep(0);
     setTimeout(() => {
       setIsNewTask(false);
     }, 500);
