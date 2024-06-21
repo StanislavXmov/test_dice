@@ -30,10 +30,10 @@ function App() {
         <CoinSeries />
       </div> */}
       <div className={styles.testWrapper}>
-        <SolutionTable />
+        {/* <SolutionTable /> */}
         {/* <OutcomeTable /> */}
-        <TwoConditionTable />
-        {/* <OneConditionTable /> */}
+        {/* <TwoConditionTable /> */}
+        <OneConditionTable />
         {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}
       </div>
