@@ -18,19 +18,36 @@ import ResetCellsIcon from '../icons/close.svg?react';
 import ArrowIcon from '../icons/arrow.svg?react';
 
 type Task = {
-  task: string;
-  answer: string;
-  reductable: "yes" | "no";
+  titles: string[];
+  answers: string[];
+  eventTitles: {
+    a: string;
+    b: string;
+  }
+}
+
+const task: Task = {
+  titles: [
+    'Пусть событие А — «за два броска игральной кости 3 очка не выпало ни разу», а событие В — «сумма очков после двух бросков не превосходит 9».',
+    'Отметь в таблице все ячейки для элементарных исходов, благоприятствующих событию А.',
+    'Отметь в таблице все ячейки для элементарных исходов, благоприятствующих событию B.',
+    'Найди вероятность того, что события А и В наступят одновременно.',
+    'Найди вероятность того, что произойдёт событие А, при условии, что произошло событие В. Подумай, каким в этом случае будет пространство всех исходов.',
+    'Найди вероятность того, что произойдёт событие В, при условии, что произошло событие А. Что на этот раз будет в знаменателе?',
+  ],
+  answers: [
+    '25', '30', '19', '19/30', '19/25'
+  ],
+  eventTitles: {
+    a: 'Cобытие А — «за два броска игральной кости 3 очка не выпало ни разу»',
+    b: 'Cобытие В — «сумма очков после двух бросков не превосходит 9»'
+  }
 }
 
 type ViewTable = 'values' | 'sum';
 
-const getTask = () => {
-  return {
-    task: "Пусть событие А — «за два броска игральной кости 3 очка не выпало ни разу», а событие В — «сумма очков после двух бросков не превосходит 9».",
-    answer: "11/36",
-    reductable: "no"
-  } as Task;
+const getTask = (step: number) => {
+  return task.titles[step];
 }
 
 const dicesTable = {
@@ -76,10 +93,10 @@ export const ResetButton = ({ cb }: ButtonProps) => {
   );
 }
 
-const TableDesc = ({ task }: { task: Task }) => {
+const TableDesc = ({ taskTitle }: { taskTitle: string }) => {
   return (
     <div className={styles.desc}>
-      {task.task}
+      {taskTitle}
     </div>
   );
 }
@@ -561,7 +578,6 @@ const EventControll = () => {
 }
 
 export const SolutionTable = () => {
-  const [task, setTask] = useState<Task>(getTask());
   const [error, setError] = useState(false);
   const [answer, setAnswer] = useState(false);
   const [isNewTask, setIsNewTask] = useState(false);
@@ -569,10 +585,10 @@ export const SolutionTable = () => {
   const [tableView, setTableView] = useState<ViewTable>('values');
   const clear = useSolutionTable(s => s.clear);
   const setType = useSolutionTable(s => s.setType);
+  const step = useSolutionTable(s => s.step);
 
   const resetHandler = () => {
     clear();
-    setTask(getTask());
     setError(false);
     setAnswer(false);
     setIsNewTask(true);
@@ -603,7 +619,7 @@ export const SolutionTable = () => {
     <div className={styles.layer}>
       <ResetButton cb={resetHandler} />
       <h2 className={styles.title}>Решение задач на условную вероятность</h2>
-      <TableDesc task={task} />
+      <TableDesc taskTitle={getTask(step)} />
       <div className={styles.tableTitleWrapper}>
         <h2 className={styles.title}>Таблица исходов</h2>
         <select
