@@ -390,6 +390,11 @@
   background: rgb(178, 213, 189);
 }
 
+.eventButtonDisabled {
+  background: #ADADAD;
+  opacity: 0.2;
+}
+
 .cellsResetWrapper {
   display: flex;
   align-items: center;

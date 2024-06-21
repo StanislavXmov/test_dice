@@ -402,9 +402,15 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
   const [a, setA] = useState('');
   const [b, setB] = useState('');
   const setStep = useSolutionTable(s => s.setStep);
+  const setType = useSolutionTable(s => s.setType);
   const step = useSolutionTable(s => s.step);
 
   const checkHandler = () => {
+    if (step + 1 === 2) {
+      setType('Type2');
+    } else if (step + 1 === 3) {
+      setType('Type3');
+    }
     setStep(step + 1);
     // if (task.reductable === 'no') {
     //   const v = task.answer === `${n}/36`;
@@ -522,6 +528,7 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
 const EventControll = () => {
   const setType = useSolutionTable(s => s.setType);
   const activeType = useSolutionTable(s => s.type);
+  const step = useSolutionTable(s => s.step);
 
   const setActiveTypeHandler = (type: Type) => {
     setType(type);
@@ -536,14 +543,16 @@ const EventControll = () => {
         Событие A
       </button>
       <button
+        disabled={step < 2}
         onClick={() => setActiveTypeHandler('Type2')}
-        className={`${styles.eventButtonType2} ${activeType === 'Type2' ? styles.eventButtonType2Active : ''}`}
+        className={`${styles.eventButtonType2} ${activeType === 'Type2' ? styles.eventButtonType2Active : ''} ${step < 2 ? styles.eventButtonDisabled : ''}`}
       >
         Событие B
       </button>
       <button
+        disabled={step < 3}
         onClick={() => setActiveTypeHandler('Type3')}
-        className={`${styles.eventButtonType3} ${activeType === 'Type3' ? styles.eventButtonType3Active : ''}`}
+        className={`${styles.eventButtonType3} ${activeType === 'Type3' ? styles.eventButtonType3Active : ''}  ${step < 3 ? styles.eventButtonDisabled : ''}`}
       >
         всё вместе
       </button>
