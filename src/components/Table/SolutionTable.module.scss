@@ -70,7 +70,7 @@
 }
 
 .labelTitle {
-  margin: 0px 0px 8px 0px;
+  margin: 0px 0px 0px 0px;
   font-family: 'SB Sans Display Semi';
   font-size: 16px;
   font-weight: 600;
@@ -205,12 +205,13 @@
 .calcWrapper {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0px;
 }
 
 .formulaText {
   font-size: 20px;
   font-family: 'KaTeX_Math';
+  font-weight: 400;
 }
 
 .formulaNumber {
@@ -247,7 +248,7 @@
 }
 
 .formulaWrapper {
-  margin: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 10px;
   display: flex;
   flex-direction: column;
   justify-content: start;
