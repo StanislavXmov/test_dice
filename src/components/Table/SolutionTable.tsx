@@ -480,6 +480,36 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
       } else {
         setErrorHandler(true, 'error');
       }
+    } else if (step === 4) {
+      if (`${a}/${b}` === task.answers[step - 1]) {
+        setErrorHandler(true, 'answer');
+        setErrorHandler(false, 'error');
+        setTimeout(() => {
+          setErrorHandler(false, 'answer');
+          setType('Type3');
+          setStep(step + 1);
+          setA('');
+          setB('');
+        }, 1000);
+      } else {
+        setErrorHandler(true, 'error');
+      }
+    } else if (step === 5) {
+      if (`${a}/${b}` === task.answers[step - 1]) {
+        setErrorHandler(true, 'answer');
+        setErrorHandler(false, 'error');
+        setTimeout(() => {
+          setErrorHandler(false, 'answer');
+          setType('Type3');
+          // setStep(step + 1);
+          // setA('');
+          // setB('');
+          console.log('END');
+          
+        }, 1000);
+      } else {
+        setErrorHandler(true, 'error');
+      }
     }
   }
 
@@ -512,62 +542,6 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
               </div>
             )}
           </div>
-          {/* <div className={styles.label}>
-            <div className={styles.labelTitle}>Вероятность</div>
-            <div className={styles.calc}>
-              <div className={styles.calcWrapper}>
-                <span className={styles.formulaText}>P =</span>
-                <div className={styles.formulaWrapper}>
-                  <input
-                    type="text"
-                    name="probabilityN"
-                    id="probabilityN"
-                    className={`
-                      ${styles.formulaInput} ${task.reductable === 'no' && error ? styles.errorColor : ''}  ${task.reductable === 'no' && answer ? styles.answerColor : ''}`}
-                    onChange={(e) => formulaNInput(e, 'n')}
-                    value={n}
-                  />
-                  <div className={styles.formulaBorder}></div>
-                  <div className={styles.formulaNumber}>36</div>
-                </div>
-              </div>
-              {task.reductable === 'yes' && (
-                <div className={styles.calcWrapper}>
-                  <span className={styles.formulaText}>&nbsp;=</span>
-                  <div className={styles.formulaWrapper}>
-                    <input
-                      type="text"
-                      name="probabilityA"
-                      id="probabilityA"
-                      className={`${styles.formulaInput} ${error ? styles.errorColor : ''} ${answer ? styles.answerColor : ''}`}
-                      onChange={(e) => formulaNInput(e, 'a')}
-                      value={a}
-                    />
-                    <div className={styles.formulaBorder}></div>
-                    <input
-                      type="text"
-                      name="probabilityB"
-                      id="probabilityB"
-                      className={
-                        `${styles.formulaInput} ${error ? styles.errorColor : ''} ${answer ? styles.answerColor : ''}`}
-                      onChange={(e) => formulaNInput(e, 'b')}
-                      value={b}
-                    />
-                  </div>
-                </div>
-              )}
-              {error && (
-                <div className={styles.calcWrapper}>
-                  <span className={styles.errorMessage}>× Ошибка</span>
-                </div>
-              )}
-              {answer && (
-                <div className={styles.calcWrapper}>
-                  <span className={styles.answerMessage}>✓ Верно</span>
-                </div>
-              )}
-            </div>
-          </div> */}
           <div className={styles.solutionWrapper}>
             <div>
               {(step === 1 || step === 2)  && (
@@ -596,8 +570,8 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
                       <div className={styles.formulaWrapper}>
                         <input
                           type="text"
-                          name="probabilityN"
-                          id="probabilityN"
+                          name="step3"
+                          id="step3"
                           className={`
                             ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
                           onChange={(e) => formulaInput(e, 'a')}
@@ -612,14 +586,90 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
                   </div>
                 </div>
               )}
+              {step === 4 && (
+                <div>
+                  <div className={styles.labelTitle}>Вероятность пересечения событий <span className={styles.formulaText}>A</span> и <span className={styles.formulaText}>B</span></div>
+                  <div className={styles.calc}>
+                    <div className={styles.calcWrapper}>
+                      <span className={styles.formulaText}>P (A | B) =</span>
+                      <div className={styles.formulaWrapper}>
+                        <input
+                          type="text"
+                          name="step4"
+                          id="step4"
+                          className={`
+                            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
+                          onChange={(e) => formulaInput(e, 'a')}
+                          value={a}
+                        />
+                        <div className={styles.formulaBorder}></div>
+                        <input
+                          type="text"
+                          name="step4_2"
+                          id="step4_2"
+                          className={`
+                            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
+                          onChange={(e) => formulaInput(e, 'b')}
+                          value={b}
+                        />
+                      </div>
+                      {error && <Error />}
+                      {answer && <Answer />}
+                    </div>
+                  </div>
+                </div>
+              )}
+              {step === 5 && (
+                <div>
+                  <div className={styles.labelTitle}>Вероятность пересечения событий <span className={styles.formulaText}>A</span> и <span className={styles.formulaText}>B</span></div>
+                  <div className={styles.calc}>
+                    <div className={styles.calcWrapper}>
+                      <span className={styles.formulaText}>P (B | A) =</span>
+                      <div className={styles.formulaWrapper}>
+                        <input
+                          type="text"
+                          name="step5"
+                          id="step5"
+                          className={`
+                            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
+                          onChange={(e) => formulaInput(e, 'a')}
+                          value={a}
+                        />
+                        <div className={styles.formulaBorder}></div>
+                        <input
+                          type="text"
+                          name="step5_2"
+                          id="step5_2"
+                          className={`
+                            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
+                          onChange={(e) => formulaInput(e, 'b')}
+                          value={b}
+                        />
+                      </div>
+                      {error && <Error />}
+                      {answer && <Answer />}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-            <button
-              className={styles.submitButton}
-              onClick={checkHandler}
-            >
-              <span className={styles.submitButtonLabel}>Далее</span>
-              <ArrowIcon />
-            </button>
+            {step < 5 && (
+              <button
+                className={styles.submitButton}
+                onClick={checkHandler}
+              >
+                <span className={styles.submitButtonLabel}>Далее</span>
+                <ArrowIcon />
+              </button>
+            )}
+            {step === 5 && (
+              <button
+                className={styles.submitButton}
+                onClick={checkHandler}
+              >
+                <span className={styles.submitButtonLabel}>Проверить</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
