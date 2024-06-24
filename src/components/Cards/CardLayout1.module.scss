@@ -1,0 +1,87 @@
+.layer {
+  position: relative;
+  padding: 42px 50px;
+  width: 800px;
+  height: 640px;
+
+  background: #ffffff;
+  border: none;
+  border-radius: 30px;
+}
+
+.title {
+  margin: 0px;
+  font-family: 'SB Sans Display Semi';
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 30.79px;
+  text-align: left;
+}
+
+.desc {
+  width: 95%;
+  margin: 0px 0px 22px;
+  padding: 0px 0px 12px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: left;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+// buttons
+
+.button {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border-radius: 50%;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.submitButton {
+  width: 212px;
+  height: 56px;
+  padding: 16px 16px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: #0087CD;
+
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+
+
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.submitButtonLabel {
+  margin: 2px 0px 0px 0px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
