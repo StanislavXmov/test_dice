@@ -53,7 +53,12 @@ const TableDesc = ({ taskTitle }: { taskTitle: string }) => {
 
 const Card = ({type}: {type: CardsType}) => {
   const setDrop1Card = useCardsLyaout1(s => s.setDrop1Card);
+  const drop1Values = useCardsLyaout1(s => s.drop1Values);
+  console.log(drop1Values);
+  
+
   const target = useRef(null);
+  
   const [{
     x,
     y,
@@ -78,9 +83,14 @@ const Card = ({type}: {type: CardsType}) => {
         const el = elements.find(e => (e as HTMLElement).dataset.receive);
         if (el) {
           const receiveType = (el as HTMLElement).dataset.receive;
-          console.log('RECEIVE_TYPE', receiveType);
+          // console.log('RECEIVE_TYPE', receiveType);
           if (Number(receiveType) === 1) {
-            setDrop1Card(type);
+            if (drop1Values.includes(type)) {
+              api.start({x: 0, y: 0, z: 13 });
+              return;
+            } else {
+              setDrop1Card(type);
+            }
           } else if (Number(receiveType) === 2) {
             
           } else if (Number(receiveType) === 3) {
@@ -116,6 +126,7 @@ const Card = ({type}: {type: CardsType}) => {
 const CartDrop1 = ({type}: {type: number}) => {
   const drop1Card = useCardsLyaout1(s => s.drop1Card);
   const drop1PrevCard = useCardsLyaout1(s => s.drop1PrevCard);
+  const drop1IsActive = useCardsLyaout1(s => s.drop1IsActive);
 
   const [{x ,y , visibility}, api] = useSpring<{x: number, y: number, visibility: "initial" | "visible" | "hidden"}>(
     () => ({
@@ -188,7 +199,7 @@ const CartDrop1 = ({type}: {type: number}) => {
   return (
     <animated.div
       data-receive={type}
-      className={`${styles.cardDrop1} ${styles.cardDropActive}`}
+      className={`${styles.cardDrop1} ${drop1IsActive ? styles.cardDropActive : ''}`}
     >
       <div className={styles.dropCardsWrapper}>
         {(drop1PrevCard && drop1PrevCard === 1) && (
