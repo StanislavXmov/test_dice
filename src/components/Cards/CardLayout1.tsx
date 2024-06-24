@@ -3,9 +3,11 @@ import React from 'react';
 import styles from './CardLayout1.module.scss';
 
 import ResetIcon from '../icons/reset2.svg?react';
+import CardBG from '../images/cards/cards.png';
+import Card1 from '../images/cards/card1.png';
 
 const task = {
-  taskTitle: 'Сколькими способами можно выбрать карту из 5 колод для каждого пустого места  в тройке карт? Перекладывайте карты и впишите ответ, когда поймёте закономерность.'
+  taskTitle: 'Сколькими способами можно выбрать карту из 5 колод для каждого пустого места в тройке карт? Перекладывайте карты и впишите ответ, когда поймёте закономерность.'
 }
 
 interface ButtonProps {
@@ -31,6 +33,32 @@ const TableDesc = ({ taskTitle }: { taskTitle: string }) => {
   );
 }
 
+const Cards = () => {
+  return (
+    <div className={styles.cardWrapper}>
+      <div className={styles.card}>
+        <img src={CardBG} className={styles.cardBg} draggable={false} />
+        <img src={Card1} className={styles.cardItem} />
+      </div>
+      <div className={styles.card}>
+        <img src={CardBG} className={styles.cardBg} draggable={false} />
+      </div>
+      <div className={styles.card}>
+        <img src={CardBG} className={styles.cardBg} draggable={false} />
+      </div>
+      <div className={styles.card}>
+        <img src={CardBG} className={styles.cardBg} draggable={false} />
+      </div>
+      <div className={styles.card}>
+        <img src={CardBG} className={styles.cardBg} draggable={false} />
+      </div>
+      <div className={`${styles.cardDrop1} ${styles.cardDropActive}`}></div>
+      <div className={`${styles.cardDrop2}`}></div>
+      <div className={`${styles.cardDrop3}`}></div>
+    </div>
+  );
+}
+
 export const CardLayout1 = () => {
 
   const resetHandler = () => {
@@ -42,6 +70,7 @@ export const CardLayout1 = () => {
       <ResetButton cb={resetHandler} />
       <h2 className={styles.title}>Размещения с повторениями</h2>
       <TableDesc taskTitle={task.taskTitle} />
+      <Cards />
     </div>
   );
 }

@@ -85,3 +85,52 @@
   width: 24px;
   height: 24px;
 }
+
+
+.cardWrapper {
+  display: grid;
+  grid-template-rows: 126px 126px;
+  grid-template-columns: repeat(5, 90px);
+  row-gap: 20px;
+  column-gap: 30px;
+  justify-content: center;
+}
+
+.card {
+  position: relative;
+  border: 1px dashed #000000;
+}
+
+.cardBg {
+  position: absolute;
+  transform: translate(0px, -10px);
+  z-index: 0;
+  user-select: none;
+}
+
+.cardItem {
+  position: relative;
+  z-index: 10;
+}
+
+.cardDrop1 {
+  border-radius: 20px;
+  border: 1px dashed #000000;
+  grid-column: 2 / 3;
+}
+
+.cardDrop2 {
+  border-radius: 20px;
+  border: 1px dashed #000000;
+  grid-column: 3 / 4;
+}
+
+.cardDrop3 {
+  border-radius: 20px;
+  border: 1px dashed #000000;
+  grid-column: 4 / 5;
+}
+
+.cardDropActive {
+  border: 2px solid #4098FF;
+}

@@ -32,7 +32,7 @@ function App() {
       </div> */}
       <div className={styles.testWrapper}>
         <CardLayout1 />
-        <SolutionTable />
+        {/* <SolutionTable /> */}
         {/* <OutcomeTable /> */}
         {/* <TwoConditionTable /> */}
         {/* <OneConditionTable /> */}
