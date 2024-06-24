@@ -81,6 +81,10 @@ const Card = ({type}: {type: CardsType}) => {
           console.log('RECEIVE_TYPE', receiveType);
           if (Number(receiveType) === 1) {
             setDrop1Card(type);
+          } else if (Number(receiveType) === 2) {
+            
+          } else if (Number(receiveType) === 3) {
+            
           }
 
           api.start({x: 0, y: 0, visibility: 'hidden', z: 13 });
@@ -113,15 +117,39 @@ const CartDrop1 = ({type}: {type: number}) => {
   const drop1Card = useCardsLyaout1(s => s.drop1Card);
   const drop1PrevCard = useCardsLyaout1(s => s.drop1PrevCard);
 
-  const [{
-    x,
-    y,
-    visibility
-  }, api] = useSpring<{x: number, y: number, visibility: "initial" | "visible" | "hidden"}>(
+  const [{x ,y , visibility}, api] = useSpring<{x: number, y: number, visibility: "initial" | "visible" | "hidden"}>(
     () => ({
       x: 0,
       y: 0,
       visibility: 'hidden',
+    })
+  );
+  const [{x2, y2, visibility2}, api2] = useSpring<{x2: number, y2: number, visibility2: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x2: 0,
+      y2: 0,
+      visibility2: 'hidden',
+    })
+  );
+  const [{x3, y3, visibility3}, api3] = useSpring<{x3: number, y3: number, visibility3: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x3: 0,
+      y3: 0,
+      visibility3: 'hidden',
+    })
+  );
+  const [{x4, y4, visibility4}, api4] = useSpring<{x4: number, y4: number, visibility4: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x4: 0,
+      y4: 0,
+      visibility4: 'hidden',
+    })
+  );
+  const [{x5, y5, visibility5}, api5] = useSpring<{x5: number, y5: number, visibility5: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x5: 0,
+      y5: 0,
+      visibility5: 'hidden',
     })
   );
   
@@ -133,9 +161,24 @@ const CartDrop1 = ({type}: {type: number}) => {
           api.start({x: 0, y: 0, visibility: 'hidden'});
         }, 1000);
       } else if (drop1PrevCard === 2) {
-        api.start({x: 0, y: - 126 - 20, visibility: 'visible'});
+        api2.start({x2: 0, y2: - 126 - 20, visibility2: 'visible'});
         setTimeout(() => {
-          api.start({x: 0, y: 0, visibility: 'hidden'});
+          api2.start({x2: 0, y2: 0, visibility2: 'hidden'});
+        }, 1000);
+      } else if (drop1PrevCard === 3) {
+        api3.start({x3: 90 + 30, y3: - 126 - 20, visibility3: 'visible'});
+        setTimeout(() => {
+          api3.start({x3: 0, y3: 0, visibility3: 'hidden'});
+        }, 1000);
+      } else if (drop1PrevCard === 4) {
+        api4.start({x4: 90 + 30 + 90 + 30, y4: - 126 - 20, visibility4: 'visible'});
+        setTimeout(() => {
+          api4.start({x4: 0, y4: 0, visibility4: 'hidden'});
+        }, 1000);
+      } else if (drop1PrevCard === 5) {
+        api5.start({x5: 90 + 30 + 90 + 30 + 90 + 30, y5: - 126 - 20, visibility5: 'visible'});
+        setTimeout(() => {
+          api5.start({x5: 0, y5: 0, visibility5: 'hidden'});
         }, 1000);
       }
       
@@ -161,7 +204,31 @@ const CartDrop1 = ({type}: {type: number}) => {
             src={Card2}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x, y, visibility}}
+            style={{x: x2, y: y2, visibility: visibility2}}
+          />
+        )}
+        {(drop1PrevCard && drop1PrevCard === 3) && (
+          <animated.img
+            src={Card3}
+            className={styles.cardItemAnimateDrop}
+            draggable={false}
+            style={{x: x3, y: y3, visibility: visibility3}}
+          />
+        )}
+        {(drop1PrevCard && drop1PrevCard === 4) && (
+          <animated.img
+            src={Card4}
+            className={styles.cardItemAnimateDrop}
+            draggable={false}
+            style={{x: x4, y: y4, visibility: visibility4}}
+          />
+        )}
+        {(drop1PrevCard && drop1PrevCard === 5) && (
+          <animated.img
+            src={Card5}
+            className={styles.cardItemAnimateDrop}
+            draggable={false}
+            style={{x: x5, y: y5, visibility: visibility5}}
           />
         )}
 
@@ -170,6 +237,15 @@ const CartDrop1 = ({type}: {type: number}) => {
         )}
         {(drop1Card && drop1Card === 2) && (
           <img src={Card2} className={styles.cardItemDrop} draggable={false} />
+        )}
+        {(drop1Card && drop1Card === 3) && (
+          <img src={Card3} className={styles.cardItemDrop} draggable={false} />
+        )}
+        {(drop1Card && drop1Card === 4) && (
+          <img src={Card4} className={styles.cardItemDrop} draggable={false} />
+        )}
+        {(drop1Card && drop1Card === 5) && (
+          <img src={Card5} className={styles.cardItemDrop} draggable={false} />
         )}
       </div>
     </animated.div>
@@ -191,12 +267,18 @@ const Cards = () => {
       </div>
       <div className={styles.card}>
         <img src={CardBG} className={styles.cardBg} draggable={false} />
+        <img src={Card3} className={styles.cardItemDefault} draggable={false} />
+        <Card type={3} />
       </div>
       <div className={styles.card}>
         <img src={CardBG} className={styles.cardBg} draggable={false} />
+        <img src={Card4} className={styles.cardItemDefault} draggable={false} />
+        <Card type={4} />
       </div>
       <div className={styles.card}>
         <img src={CardBG} className={styles.cardBg} draggable={false} />
+        <img src={Card5} className={styles.cardItemDefault} draggable={false} />
+        <Card type={5} />
       </div>
       <CartDrop1 type={1} />
       <div className={`${styles.cardDrop2}`}></div>
