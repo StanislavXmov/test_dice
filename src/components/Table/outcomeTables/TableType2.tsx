@@ -259,16 +259,40 @@ export const TableType2 = ({ tableView, cells2Array }: {tableView: ViewTable; ce
     }
   }
 
+  const getCellsCount = (type: Type) => {
+    let cells = [];
+    if (type === 'Type1') {
+      cells = selected.filter(c => c.type1)
+    } else if (type === 'Type2') {
+      cells = selected.filter(c => c.type2)
+    } else if (type === 'Type3') {
+      cells = selected.filter(c => c.type3)
+    }
+    return cells.length;
+  }
+
   return (
     <div className={styles.tableType2}>
-      <div className={styles.cellsResetWrapper}>
-        <button
-          onClick={resetCellsHandler}
-          className={`${styles.cellsResetButton} ${getTypeClass(type)}`}
-        >
-          <ResetIcon />
-        </button>
-      </div>
+      {(type === 'Type1' && getCellsCount('Type1') > 0) && (
+        <div className={styles.cellsResetWrapper}>
+          <button
+            onClick={resetCellsHandler}
+            className={`${styles.cellsResetButton} ${getTypeClass(type)}`}
+          >
+            <ResetIcon />
+          </button>
+        </div>
+      )}
+      {(type === 'Type2' && getCellsCount('Type2') > 0) && (
+        <div className={styles.cellsResetWrapper}>
+          <button
+            onClick={resetCellsHandler}
+            className={`${styles.cellsResetButton} ${getTypeClass(type)}`}
+          >
+            <ResetIcon />
+          </button>
+        </div>
+      )}
       <div className={styles.horizontalLabelType2}>
         {type2Array.map((k, i) => <div key={k} onClick={() => horizontalLabelHandler(k, i)}>{dices2Table[k](k)}</div>)}
       </div>

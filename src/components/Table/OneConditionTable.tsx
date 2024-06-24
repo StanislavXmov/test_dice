@@ -182,14 +182,14 @@ const TableType1 = ({ tableView }: { tableView: ViewTable }) => {
 
   return (
     <div className={styles.tableType1}>
-      <div className={styles.cellsResetWrapper}>
+      {selected.length > 0 && (<div className={styles.cellsResetWrapper}>
         <button
           onClick={resetCellsHandler}
           className={`${styles.cellsResetButton} ${styles.cellsResetButtonType1}`}
         >
           <ResetCellsIcon />
         </button>
-      </div>
+      </div>)}
       <div className={styles.horizontalLabelType1}>
         {type1Array.map((k, i) => <div key={k} onClick={() => horizontalLabelHandler(k, i)}>{dicesTable[k](k)}</div>)}
       </div>
