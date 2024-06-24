@@ -98,7 +98,6 @@
 
 .card {
   position: relative;
-  border: 1px dashed #000000;
 }
 
 .cardBg {
@@ -108,9 +107,50 @@
   user-select: none;
 }
 
+.cardAnim {
+  position: relative;
+  z-index: 13;
+  touch-action: none;
+  user-select: none;
+  will-change: transform;
+  cursor: grab;
+}
+
+.cardItemDefault {
+  position: absolute;
+  z-index: 10;
+  touch-action: none;
+  user-select: none;
+}
+
+.dropCardsWrapper {
+  position: relative;
+  height: 126px;
+}
+
+.cardItemDrop {
+  left: -2px;
+  top: -2px;
+  position: absolute;
+  z-index: 12;
+  touch-action: none;
+  user-select: none;
+}
+
+.cardItemAnimateDrop {
+  left: -2px;
+  top: -2px;
+  position: absolute;
+  z-index: 11;
+  touch-action: none;
+  user-select: none;
+}
+
 .cardItem {
   position: relative;
   z-index: 10;
+  touch-action: none;
+  user-select: none;
 }
 
 .cardDrop1 {
