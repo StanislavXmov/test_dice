@@ -1,4 +1,4 @@
-import { DragEvent, useEffect, useRef } from 'react';
+import { DragEvent, useEffect, useRef, useState } from 'react';
 import { useGesture } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
 import { CardsType, useCardsLyaout1 } from '../../state/useCards';
@@ -51,7 +51,11 @@ const TableDesc = ({ taskTitle }: { taskTitle: string }) => {
   );
 }
 
-const Card = ({type}: {type: CardsType}) => {
+const Card = ({type, z, setZIndex}: {
+  type: CardsType,
+  z: number,
+  setZIndex: (id: number) => void,
+}) => {
   const setDrop1Card = useCardsLyaout1(s => s.setDrop1Card);
   const drop1Values = useCardsLyaout1(s => s.drop1Values);
   const setDrop2Card = useCardsLyaout1(s => s.setDrop2Card);
@@ -69,21 +73,23 @@ const Card = ({type}: {type: CardsType}) => {
   const [{
     x,
     y,
-    z,
     visibility,
   }, api] = useSpring<{x: number, y: number, z: number, visibility: "initial" | "visible" | "hidden"}>(
     () => ({
       x: 0,
       y: 0,
       visibility: 'visible',
-      z: 13,
     })
   );
 
   useGesture(
     {
       onDrag: ({ movement: [x, y] }) => {
-        api.start({ x, y, z: 30 });
+        // api.start({ x, y, z: 30 });
+        api.start({ x, y });
+      },
+      onDragStart: () => {
+        setZIndex(type);
       },
       onDragEnd: ({ xy }) => {
         const elements = document.elementsFromPoint(xy[0], xy[1]);
@@ -93,45 +99,53 @@ const Card = ({type}: {type: CardsType}) => {
           // console.log('RECEIVE_TYPE', receiveType);
           if (Number(receiveType) === 1) {
             if (!drop1IsActive) {
-              api.start({x: 0, y: 0, z: 13 });
+              // api.start({x: 0, y: 0, z: 13 });
+              api.start({x: 0, y: 0 });
               return;
             }
             if (drop1Values.includes(type)) {
-              api.start({x: 0, y: 0, z: 13 });
+              // api.start({x: 0, y: 0, z: 13 });
+              api.start({x: 0, y: 0 });
               return;
             } else {
               setDrop1Card(type);
             }
           } else if (Number(receiveType) === 2) {
             if (!drop2IsActive) {
-              api.start({x: 0, y: 0, z: 13 });
+              // api.start({x: 0, y: 0, z: 13 });
+              api.start({x: 0, y: 0 });
               return;
             }
             if (drop2Values.includes(type)) {
-              api.start({x: 0, y: 0, z: 13 });
+              // api.start({x: 0, y: 0, z: 13 });
+              api.start({x: 0, y: 0 });
               return;
             } else {
               setDrop2Card(type);
             }
           } else if (Number(receiveType) === 3) {
             if (!drop3IsActive) {
-              api.start({x: 0, y: 0, z: 13 });
+              // api.start({x: 0, y: 0, z: 13 });
+              api.start({x: 0, y: 0 });
               return;
             }
             if (drop3Values.includes(type)) {
-              api.start({x: 0, y: 0, z: 13 });
+              // api.start({x: 0, y: 0, z: 13 });
+              api.start({x: 0, y: 0 });
               return;
             } else {
               setDrop3Card(type);
             }
           }
 
-          api.start({x: 0, y: 0, visibility: 'hidden', z: 13 });
+          // api.start({x: 0, y: 0, visibility: 'hidden', z: 13 });
+          api.start({x: 0, y: 0, visibility: 'hidden'});
           setTimeout(() => {
             api.start({x: 0, y: 0, visibility: 'visible'});
           }, 1000);
         } else {
-          api.start({x: 0, y: 0, z: 13 });
+          // api.start({x: 0, y: 0, z: 13 });
+          api.start({x: 0, y: 0});
         }
       }
     }, {
@@ -142,7 +156,7 @@ const Card = ({type}: {type: CardsType}) => {
   return (
     <animated.div
       ref={target}
-      style={{x, y, visibility, zIndex: z}}
+      style={{x, y, visibility, zIndex: z + 20}}
       className={styles.cardAnim}
     >
       <animated.div>
@@ -157,7 +171,7 @@ const CartDrop1 = ({type}: {type: number}) => {
   const drop1PrevCard = useCardsLyaout1(s => s.drop1PrevCard);
   const drop1IsActive = useCardsLyaout1(s => s.drop1IsActive);
 
-  const [{x ,y , visibility}, api] = useSpring<{x: number, y: number, visibility: "initial" | "visible" | "hidden"}>(
+  const [{x, y, visibility}, api] = useSpring<{x: number, y: number, visibility: "initial" | "visible" | "hidden"}>(
     () => ({
       x: 0,
       y: 0,
@@ -573,32 +587,42 @@ const CartDrop3 = ({type}: {type: number}) => {
 }
 
 const Cards = () => {
+  const [idxs, setIdxs] = useState<number[]>([1,2,3,4,5]);
+
+  const setZIndex = (id: number) => {
+    const a = [...idxs];
+    const i = a.indexOf(id);
+    const el = a.splice(i, 1);
+    a.push(el[0]);
+    setIdxs(a);
+  }
+
   return (
     <div className={styles.cardWrapper}>
       <div className={styles.card}>
         <img src={CardBG} className={styles.cardBg} draggable={false} />
         <img src={Card1} className={styles.cardItemDefault} draggable={false} />
-        <Card type={1} />
+        <Card type={1} z={idxs.indexOf(1)} setZIndex={setZIndex} />
       </div>
       <div className={styles.card}>
         <img src={CardBG} className={styles.cardBg} draggable={false} />
         <img src={Card2} className={styles.cardItemDefault} draggable={false} />
-        <Card type={2} />
+        <Card type={2} z={idxs.indexOf(2)} setZIndex={setZIndex} />
       </div>
       <div className={styles.card}>
         <img src={CardBG} className={styles.cardBg} draggable={false} />
         <img src={Card3} className={styles.cardItemDefault} draggable={false} />
-        <Card type={3} />
+        <Card type={3} z={idxs.indexOf(3)} setZIndex={setZIndex} />
       </div>
       <div className={styles.card}>
         <img src={CardBG} className={styles.cardBg} draggable={false} />
         <img src={Card4} className={styles.cardItemDefault} draggable={false} />
-        <Card type={4} />
+        <Card type={4} z={idxs.indexOf(4)} setZIndex={setZIndex} />
       </div>
       <div className={styles.card}>
         <img src={CardBG} className={styles.cardBg} draggable={false} />
         <img src={Card5} className={styles.cardItemDefault} draggable={false} />
-        <Card type={5} />
+        <Card type={5} z={idxs.indexOf(5)} setZIndex={setZIndex} />
       </div>
       <CartDrop1 type={1} />
       <CartDrop2 type={2} />
