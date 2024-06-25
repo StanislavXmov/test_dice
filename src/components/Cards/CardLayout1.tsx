@@ -298,6 +298,65 @@ const Cards = () => {
   );
 }
 
+const InputControlls = () => {
+  const drop1Values = useCardsLyaout1(s => s.drop1Values);
+  const error = false;
+  const answer = false;
+  return (
+    <div className={styles.inputControllsWrapper}>
+      <div className={styles.controllsLabel}>Количество способов:</div>
+      <div className={styles.inputWrapper}>
+        <input
+          type="text"
+          name="drop1"
+          id="drop1"
+          className={`
+            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
+          onChange={(e) => {}}
+          disabled
+          value={drop1Values.length}
+        />
+      </div>
+      <div className={styles.inputWrapper}>
+        <input
+          type="text"
+          name="drop2"
+          id="drop2"
+          className={`
+            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
+          onChange={(e) => {}}
+          disabled
+          // value={a}
+        />
+      </div>
+      <div className={styles.inputWrapper}>
+        <input
+          type="text"
+          name="drop3"
+          id="drop3"
+          className={`
+            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
+          onChange={(e) => {}}
+          disabled
+          // value={a}
+        />
+      </div>
+      <div className={styles.inputWrapper}>
+        {error && (
+          <div className={styles.calcWrapper}>
+            <span className={styles.errorMessage}>× Ошибка</span>
+          </div>
+        )}
+        {answer && (
+          <div className={styles.calcWrapper}>
+            <span className={styles.answerMessage}>✓ Верно</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export const CardLayout1 = () => {
 
   const resetHandler = () => {
@@ -310,6 +369,7 @@ export const CardLayout1 = () => {
       <h2 className={styles.title}>Размещения с повторениями</h2>
       <TableDesc taskTitle={task.taskTitle} />
       <Cards />
+      <InputControlls />
     </div>
   );
 }

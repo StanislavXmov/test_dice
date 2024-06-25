@@ -88,6 +88,7 @@
 
 
 .cardWrapper {
+  margin: 0px 0px 16px 0px;
   display: grid;
   grid-template-rows: 126px 126px;
   grid-template-columns: repeat(5, 90px);
@@ -173,4 +174,69 @@
 
 .cardDropActive {
   border: 2px solid #4098FF;
+}
+
+// InputControlls
+
+.inputControllsWrapper {
+  display: grid;
+  grid-template-columns: 1fr 90px 90px 90px 1fr;
+  gap: 30px;
+}
+
+.controllsLabel {
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.53px;
+  text-align: left;
+}
+
+.formulaInput {
+  font-family: 'SB Sans Display Normal';
+  margin: 0px;
+  padding: 4px 2px 2px;
+  width: 52px;
+  height: 30px;
+  text-align: center;
+}
+
+.inputWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorColor {
+  color: #EA3539;
+}
+
+.answerColor {
+  color: #209F6D;
+}
+
+.calcWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+}
+
+.errorMessage {
+  margin: 5px 0px 0px 0px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.53px;
+  text-align: center;
+  color: #EA3539;
+}
+
+.answerMessage {
+  margin: 5px 0px 0px 0px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.53px;
+  text-align: center;
+  color: #209F6D;
 }
