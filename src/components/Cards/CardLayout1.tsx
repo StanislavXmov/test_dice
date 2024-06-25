@@ -54,7 +54,14 @@ const TableDesc = ({ taskTitle }: { taskTitle: string }) => {
 const Card = ({type}: {type: CardsType}) => {
   const setDrop1Card = useCardsLyaout1(s => s.setDrop1Card);
   const drop1Values = useCardsLyaout1(s => s.drop1Values);
-  console.log(drop1Values);
+  const setDrop2Card = useCardsLyaout1(s => s.setDrop2Card);
+  const drop2Values = useCardsLyaout1(s => s.drop2Values);
+  const setDrop3Card = useCardsLyaout1(s => s.setDrop3Card);
+  const drop3Values = useCardsLyaout1(s => s.drop3Values);
+  const drop1IsActive = useCardsLyaout1(s => s.drop1IsActive);
+  const drop2IsActive = useCardsLyaout1(s => s.drop2IsActive);
+  const drop3IsActive = useCardsLyaout1(s => s.drop3IsActive);
+  console.log(drop1Values, drop2Values, drop3Values);
   
 
   const target = useRef(null);
@@ -85,6 +92,10 @@ const Card = ({type}: {type: CardsType}) => {
           const receiveType = (el as HTMLElement).dataset.receive;
           // console.log('RECEIVE_TYPE', receiveType);
           if (Number(receiveType) === 1) {
+            if (!drop1IsActive) {
+              api.start({x: 0, y: 0, z: 13 });
+              return;
+            }
             if (drop1Values.includes(type)) {
               api.start({x: 0, y: 0, z: 13 });
               return;
@@ -92,9 +103,27 @@ const Card = ({type}: {type: CardsType}) => {
               setDrop1Card(type);
             }
           } else if (Number(receiveType) === 2) {
-            
+            if (!drop2IsActive) {
+              api.start({x: 0, y: 0, z: 13 });
+              return;
+            }
+            if (drop2Values.includes(type)) {
+              api.start({x: 0, y: 0, z: 13 });
+              return;
+            } else {
+              setDrop2Card(type);
+            }
           } else if (Number(receiveType) === 3) {
-            
+            if (!drop3IsActive) {
+              api.start({x: 0, y: 0, z: 13 });
+              return;
+            }
+            if (drop3Values.includes(type)) {
+              api.start({x: 0, y: 0, z: 13 });
+              return;
+            } else {
+              setDrop3Card(type);
+            }
           }
 
           api.start({x: 0, y: 0, visibility: 'hidden', z: 13 });
@@ -263,6 +292,286 @@ const CartDrop1 = ({type}: {type: number}) => {
   );
 }
 
+const CartDrop2 = ({type}: {type: number}) => {
+  const drop2Card = useCardsLyaout1(s => s.drop2Card);
+  const drop2PrevCard = useCardsLyaout1(s => s.drop2PrevCard);
+  const drop2IsActive = useCardsLyaout1(s => s.drop2IsActive);
+
+  const [{x ,y , visibility}, api] = useSpring<{x: number, y: number, visibility: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x: 0,
+      y: 0,
+      visibility: 'hidden',
+    })
+  );
+  const [{x2, y2, visibility2}, api2] = useSpring<{x2: number, y2: number, visibility2: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x2: 0,
+      y2: 0,
+      visibility2: 'hidden',
+    })
+  );
+  const [{x3, y3, visibility3}, api3] = useSpring<{x3: number, y3: number, visibility3: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x3: 0,
+      y3: 0,
+      visibility3: 'hidden',
+    })
+  );
+  const [{x4, y4, visibility4}, api4] = useSpring<{x4: number, y4: number, visibility4: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x4: 0,
+      y4: 0,
+      visibility4: 'hidden',
+    })
+  );
+  const [{x5, y5, visibility5}, api5] = useSpring<{x5: number, y5: number, visibility5: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x5: 0,
+      y5: 0,
+      visibility5: 'hidden',
+    })
+  );
+  
+  useEffect(() => {
+    if (drop2PrevCard && drop2Card !== drop2PrevCard) {
+      if (drop2PrevCard === 1) {
+        api.start({x: - 90 - 30 - 90 - 30, y: - 126 - 20, visibility: 'visible'});
+        setTimeout(() => {
+          api.start({x: 0, y: 0, visibility: 'hidden'});
+        }, 1000);
+      } else if (drop2PrevCard === 2) {
+        api2.start({x2: - 90 - 30, y2: - 126 - 20, visibility2: 'visible'});
+        setTimeout(() => {
+          api2.start({x2: 0, y2: 0, visibility2: 'hidden'});
+        }, 1000);
+      } else if (drop2PrevCard === 3) {
+        api3.start({x3: 0, y3: - 126 - 20, visibility3: 'visible'});
+        setTimeout(() => {
+          api3.start({x3: 0, y3: 0, visibility3: 'hidden'});
+        }, 1000);
+      } else if (drop2PrevCard === 4) {
+        api4.start({x4: 90 + 30, y4: - 126 - 20, visibility4: 'visible'});
+        setTimeout(() => {
+          api4.start({x4: 0, y4: 0, visibility4: 'hidden'});
+        }, 1000);
+      } else if (drop2PrevCard === 5) {
+        api5.start({x5: 90 + 30 + 90 + 30, y5: - 126 - 20, visibility5: 'visible'});
+        setTimeout(() => {
+          api5.start({x5: 0, y5: 0, visibility5: 'hidden'});
+        }, 1000);
+      }
+      
+    }
+  }, [drop2Card]);
+
+  return (
+    <animated.div
+      data-receive={type}
+      className={`${styles.cardDrop2} ${drop2IsActive ? styles.cardDropActive : ''}`}
+    >
+      <div className={styles.dropCardsWrapper}>
+        {(drop2PrevCard && drop2PrevCard === 1) && (
+          <animated.img
+            src={Card1}
+            className={styles.cardItemAnimateDrop}
+            draggable={false}
+            style={{x, y, visibility}}
+          />
+        )}
+        {(drop2PrevCard && drop2PrevCard === 2) && (
+          <animated.img
+            src={Card2}
+            className={styles.cardItemAnimateDrop}
+            draggable={false}
+            style={{x: x2, y: y2, visibility: visibility2}}
+          />
+        )}
+        {(drop2PrevCard && drop2PrevCard === 3) && (
+          <animated.img
+            src={Card3}
+            className={styles.cardItemAnimateDrop}
+            draggable={false}
+            style={{x: x3, y: y3, visibility: visibility3}}
+          />
+        )}
+        {(drop2PrevCard && drop2PrevCard === 4) && (
+          <animated.img
+            src={Card4}
+            className={styles.cardItemAnimateDrop}
+            draggable={false}
+            style={{x: x4, y: y4, visibility: visibility4}}
+          />
+        )}
+        {(drop2PrevCard && drop2PrevCard === 5) && (
+          <animated.img
+            src={Card5}
+            className={styles.cardItemAnimateDrop}
+            draggable={false}
+            style={{x: x5, y: y5, visibility: visibility5}}
+          />
+        )}
+
+        {(drop2Card && drop2Card === 1) && (
+          <img src={Card1} className={styles.cardItemDrop} draggable={false} />
+        )}
+        {(drop2Card && drop2Card === 2) && (
+          <img src={Card2} className={styles.cardItemDrop} draggable={false} />
+        )}
+        {(drop2Card && drop2Card === 3) && (
+          <img src={Card3} className={styles.cardItemDrop} draggable={false} />
+        )}
+        {(drop2Card && drop2Card === 4) && (
+          <img src={Card4} className={styles.cardItemDrop} draggable={false} />
+        )}
+        {(drop2Card && drop2Card === 5) && (
+          <img src={Card5} className={styles.cardItemDrop} draggable={false} />
+        )}
+      </div>
+    </animated.div>
+  );
+}
+
+const CartDrop3 = ({type}: {type: number}) => {
+  const drop3Card = useCardsLyaout1(s => s.drop3Card);
+  const drop3PrevCard = useCardsLyaout1(s => s.drop3PrevCard);
+  const drop3IsActive = useCardsLyaout1(s => s.drop3IsActive);
+
+  const [{x ,y , visibility}, api] = useSpring<{x: number, y: number, visibility: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x: 0,
+      y: 0,
+      visibility: 'hidden',
+    })
+  );
+  const [{x2, y2, visibility2}, api2] = useSpring<{x2: number, y2: number, visibility2: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x2: 0,
+      y2: 0,
+      visibility2: 'hidden',
+    })
+  );
+  const [{x3, y3, visibility3}, api3] = useSpring<{x3: number, y3: number, visibility3: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x3: 0,
+      y3: 0,
+      visibility3: 'hidden',
+    })
+  );
+  const [{x4, y4, visibility4}, api4] = useSpring<{x4: number, y4: number, visibility4: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x4: 0,
+      y4: 0,
+      visibility4: 'hidden',
+    })
+  );
+  const [{x5, y5, visibility5}, api5] = useSpring<{x5: number, y5: number, visibility5: "initial" | "visible" | "hidden"}>(
+    () => ({
+      x5: 0,
+      y5: 0,
+      visibility5: 'hidden',
+    })
+  );
+  
+  useEffect(() => {
+    if (drop3PrevCard && drop3Card !== drop3PrevCard) {
+      if (drop3PrevCard === 1) {
+        api.start({x: - 90 - 30 - 90 - 30 - 90 - 30, y: - 126 - 20, visibility: 'visible'});
+        setTimeout(() => {
+          api.start({x: 0, y: 0, visibility: 'hidden'});
+        }, 1000);
+      } else if (drop3PrevCard === 2) {
+        api2.start({x2: - 90 - 30 - 90 - 30, y2: - 126 - 20, visibility2: 'visible'});
+        setTimeout(() => {
+          api2.start({x2: 0, y2: 0, visibility2: 'hidden'});
+        }, 1000);
+      } else if (drop3PrevCard === 3) {
+        api3.start({x3: - 90 - 30, y3: - 126 - 20, visibility3: 'visible'});
+        setTimeout(() => {
+          api3.start({x3: 0, y3: 0, visibility3: 'hidden'});
+        }, 1000);
+      } else if (drop3PrevCard === 4) {
+        api4.start({x4: 0, y4: - 126 - 20, visibility4: 'visible'});
+        setTimeout(() => {
+          api4.start({x4: 0, y4: 0, visibility4: 'hidden'});
+        }, 1000);
+      } else if (drop3PrevCard === 5) {
+        api5.start({x5: 90 + 30, y5: - 126 - 20, visibility5: 'visible'});
+        setTimeout(() => {
+          api5.start({x5: 0, y5: 0, visibility5: 'hidden'});
+        }, 1000);
+      }
+      
+    }
+  }, [drop3Card]);
+
+  return (
+    <animated.div
+      data-receive={type}
+      className={`${styles.cardDrop3} ${drop3IsActive ? styles.cardDropActive : ''}`}
+    >
+      <div className={styles.dropCardsWrapper}>
+        {(drop3PrevCard && drop3PrevCard === 1) && (
+          <animated.img
+            src={Card1}
+            className={styles.cardItemAnimateDrop}
+            draggable={false}
+            style={{x, y, visibility}}
+          />
+        )}
+        {(drop3PrevCard && drop3PrevCard === 2) && (
+          <animated.img
+            src={Card2}
+            className={styles.cardItemAnimateDrop}
+            draggable={false}
+            style={{x: x2, y: y2, visibility: visibility2}}
+          />
+        )}
+        {(drop3PrevCard && drop3PrevCard === 3) && (
+          <animated.img
+            src={Card3}
+            className={styles.cardItemAnimateDrop}
+            draggable={false}
+            style={{x: x3, y: y3, visibility: visibility3}}
+          />
+        )}
+        {(drop3PrevCard && drop3PrevCard === 4) && (
+          <animated.img
+            src={Card4}
+            className={styles.cardItemAnimateDrop}
+            draggable={false}
+            style={{x: x4, y: y4, visibility: visibility4}}
+          />
+        )}
+        {(drop3PrevCard && drop3PrevCard === 5) && (
+          <animated.img
+            src={Card5}
+            className={styles.cardItemAnimateDrop}
+            draggable={false}
+            style={{x: x5, y: y5, visibility: visibility5}}
+          />
+        )}
+
+        {(drop3Card && drop3Card === 1) && (
+          <img src={Card1} className={styles.cardItemDrop} draggable={false} />
+        )}
+        {(drop3Card && drop3Card === 2) && (
+          <img src={Card2} className={styles.cardItemDrop} draggable={false} />
+        )}
+        {(drop3Card && drop3Card === 3) && (
+          <img src={Card3} className={styles.cardItemDrop} draggable={false} />
+        )}
+        {(drop3Card && drop3Card === 4) && (
+          <img src={Card4} className={styles.cardItemDrop} draggable={false} />
+        )}
+        {(drop3Card && drop3Card === 5) && (
+          <img src={Card5} className={styles.cardItemDrop} draggable={false} />
+        )}
+      </div>
+    </animated.div>
+  );
+}
+
 const Cards = () => {
   return (
     <div className={styles.cardWrapper}>
@@ -292,14 +601,16 @@ const Cards = () => {
         <Card type={5} />
       </div>
       <CartDrop1 type={1} />
-      <div className={`${styles.cardDrop2}`}></div>
-      <div className={`${styles.cardDrop3}`}></div>
+      <CartDrop2 type={2} />
+      <CartDrop3 type={3} />
     </div>
   );
 }
 
 const InputControlls = () => {
   const drop1Values = useCardsLyaout1(s => s.drop1Values);
+  const drop2Values = useCardsLyaout1(s => s.drop2Values);
+  const drop3Values = useCardsLyaout1(s => s.drop3Values);
   const error = false;
   const answer = false;
   return (
@@ -314,7 +625,7 @@ const InputControlls = () => {
             ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
           onChange={(e) => {}}
           disabled
-          value={drop1Values.length}
+          value={drop1Values.length || ''}
         />
       </div>
       <div className={styles.inputWrapper}>
@@ -326,7 +637,7 @@ const InputControlls = () => {
             ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
           onChange={(e) => {}}
           disabled
-          // value={a}
+          value={drop2Values.length || ''}
         />
       </div>
       <div className={styles.inputWrapper}>
@@ -338,7 +649,7 @@ const InputControlls = () => {
             ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
           onChange={(e) => {}}
           disabled
-          // value={a}
+          value={drop3Values.length || ''}
         />
       </div>
       <div className={styles.inputWrapper}>
