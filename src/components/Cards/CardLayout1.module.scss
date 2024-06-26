@@ -47,10 +47,16 @@
   cursor: pointer;
 }
 
+.submitWrapper {
+  margin: 16px 0px 0px 0px;
+  display: flex;
+  justify-content: center;
+}
+
 .submitButton {
   width: 212px;
   height: 56px;
-  padding: 16px 16px 16px;
+  padding: 22px 16px 16px;
   display: flex;
   justify-content: center;
   align-items: center;

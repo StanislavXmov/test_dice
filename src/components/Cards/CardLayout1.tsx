@@ -631,12 +631,11 @@ const Cards = () => {
   );
 }
 
-const InputControlls = () => {
+const InputControlls = ({error, answer}: {error: boolean, answer: boolean}) => {
   const drop1Values = useCardsLyaout1(s => s.drop1Values);
   const drop2Values = useCardsLyaout1(s => s.drop2Values);
   const drop3Values = useCardsLyaout1(s => s.drop3Values);
-  const error = false;
-  const answer = false;
+  
   return (
     <div className={styles.inputControllsWrapper}>
       <div className={styles.controllsLabel}>Количество способов:</div>
@@ -646,9 +645,9 @@ const InputControlls = () => {
           name="drop1"
           id="drop1"
           className={`
-            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
+            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${drop1Values.length === 5 ? styles.answerColor : ''}`}
           onChange={(e) => {}}
-          disabled
+          // disabled
           value={drop1Values.length || ''}
         />
       </div>
@@ -658,9 +657,9 @@ const InputControlls = () => {
           name="drop2"
           id="drop2"
           className={`
-            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
+            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${drop2Values.length === 5 ? styles.answerColor : ''}`}
           onChange={(e) => {}}
-          disabled
+          // disabled
           value={drop2Values.length || ''}
         />
       </div>
@@ -670,9 +669,9 @@ const InputControlls = () => {
           name="drop3"
           id="drop3"
           className={`
-            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
+            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${drop3Values.length === 5 ? styles.answerColor : ''}`}
           onChange={(e) => {}}
-          disabled
+          // disabled
           value={drop3Values.length || ''}
         />
       </div>
@@ -693,9 +692,24 @@ const InputControlls = () => {
 }
 
 export const CardLayout1 = () => {
+  const [error, setError] = useState(false);
+  const [answer, setAnswer] = useState(false);
+  const drop1Values = useCardsLyaout1(s => s.drop1Values);
+  const drop2Values = useCardsLyaout1(s => s.drop2Values);
+  const drop3Values = useCardsLyaout1(s => s.drop3Values);
 
   const resetHandler = () => {
     console.log('RESET');
+  }
+
+  const checkHandler = () => {
+    if (drop1Values.length === 5 && drop2Values.length === 5 && drop3Values.length === 5) {
+      setAnswer(true);
+      setError(false);
+    } else {
+      setError(true);
+    }
+
   }
 
   return (
@@ -704,7 +718,15 @@ export const CardLayout1 = () => {
       <h2 className={styles.title}>Размещения с повторениями</h2>
       <TableDesc taskTitle={task.taskTitle} />
       <Cards />
-      <InputControlls />
+      <InputControlls answer={answer} error={error} />
+      <div className={styles.submitWrapper}>
+        <button
+          className={styles.submitButton}
+          onClick={checkHandler}
+        >
+          Проверить
+        </button>
+      </div>
     </div>
   );
 }
