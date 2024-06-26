@@ -697,9 +697,12 @@ export const CardLayout1 = () => {
   const drop1Values = useCardsLyaout1(s => s.drop1Values);
   const drop2Values = useCardsLyaout1(s => s.drop2Values);
   const drop3Values = useCardsLyaout1(s => s.drop3Values);
+  const reset = useCardsLyaout1(s => s.reset);
 
   const resetHandler = () => {
-    console.log('RESET');
+    setAnswer(false);
+    setError(false);
+    reset();
   }
 
   const checkHandler = () => {

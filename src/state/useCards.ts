@@ -25,6 +25,7 @@ interface CardsLyaout1State {
   setDrop3Card: (c: CardsType) => void;
   setDrop3Values: (c: CardsType) => void;
   setDrop3IsActive: (v: boolean) => void;
+  reset: () => void;
 }
 
 export const useCardsLyaout1 = create<CardsLyaout1State>()(subscribeWithSelector(set => ({
@@ -87,4 +88,18 @@ export const useCardsLyaout1 = create<CardsLyaout1State>()(subscribeWithSelector
   }),
   setDrop3Values: (c) => set((s) => ({drop3Values: [...s.drop3Values, c]})),
   setDrop3IsActive: (v) => set(() => ({drop3IsActive: v})),
+  reset: () => set(() => ({
+    drop1Card: null,
+    drop1PrevCard: null,
+    drop1IsActive: true,
+    drop1Values: [],
+    drop2Card: null,
+    drop2PrevCard: null,
+    drop2IsActive: false,
+    drop2Values: [],
+    drop3Card: null,
+    drop3PrevCard: null,
+    drop3IsActive: false,
+    drop3Values: [],
+  })),
 })));
