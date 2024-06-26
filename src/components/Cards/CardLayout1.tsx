@@ -65,7 +65,7 @@ const Card = ({type, z, setZIndex}: {
   const drop1IsActive = useCardsLyaout1(s => s.drop1IsActive);
   const drop2IsActive = useCardsLyaout1(s => s.drop2IsActive);
   const drop3IsActive = useCardsLyaout1(s => s.drop3IsActive);
-  console.log(drop1Values, drop2Values, drop3Values);
+  // console.log(drop1Values, drop2Values, drop3Values);
   
 
   const target = useRef(null);
@@ -166,7 +166,7 @@ const Card = ({type, z, setZIndex}: {
   );
 }
 
-const CartDrop1 = ({type}: {type: number}) => {
+const CartDrop1 = ({type, idxs}: {type: number, idxs: number[]}) => {
   const drop1Card = useCardsLyaout1(s => s.drop1Card);
   const drop1PrevCard = useCardsLyaout1(s => s.drop1PrevCard);
   const drop1IsActive = useCardsLyaout1(s => s.drop1IsActive);
@@ -250,7 +250,7 @@ const CartDrop1 = ({type}: {type: number}) => {
             src={Card1}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x, y, visibility}}
+            style={{x, y, visibility, zIndex: idxs.indexOf(drop1PrevCard) + 20}}
           />
         )}
         {(drop1PrevCard && drop1PrevCard === 2) && (
@@ -258,7 +258,7 @@ const CartDrop1 = ({type}: {type: number}) => {
             src={Card2}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x: x2, y: y2, visibility: visibility2}}
+            style={{x: x2, y: y2, visibility: visibility2, zIndex: idxs.indexOf(drop1PrevCard) + 20}}
           />
         )}
         {(drop1PrevCard && drop1PrevCard === 3) && (
@@ -266,7 +266,7 @@ const CartDrop1 = ({type}: {type: number}) => {
             src={Card3}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x: x3, y: y3, visibility: visibility3}}
+            style={{x: x3, y: y3, visibility: visibility3, zIndex: idxs.indexOf(drop1PrevCard) + 20}}
           />
         )}
         {(drop1PrevCard && drop1PrevCard === 4) && (
@@ -274,7 +274,7 @@ const CartDrop1 = ({type}: {type: number}) => {
             src={Card4}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x: x4, y: y4, visibility: visibility4}}
+            style={{x: x4, y: y4, visibility: visibility4, zIndex: idxs.indexOf(drop1PrevCard) + 20}}
           />
         )}
         {(drop1PrevCard && drop1PrevCard === 5) && (
@@ -282,7 +282,7 @@ const CartDrop1 = ({type}: {type: number}) => {
             src={Card5}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x: x5, y: y5, visibility: visibility5}}
+            style={{x: x5, y: y5, visibility: visibility5, zIndex: idxs.indexOf(drop1PrevCard) + 20}}
           />
         )}
 
@@ -595,6 +595,8 @@ const Cards = () => {
     const el = a.splice(i, 1);
     a.push(el[0]);
     setIdxs(a);
+    console.log(a);
+    
   }
 
   return (
@@ -624,7 +626,7 @@ const Cards = () => {
         <img src={Card5} className={styles.cardItemDefault} draggable={false} />
         <Card type={5} z={idxs.indexOf(5)} setZIndex={setZIndex} />
       </div>
-      <CartDrop1 type={1} />
+      <CartDrop1 type={1} idxs={idxs} />
       <CartDrop2 type={2} />
       <CartDrop3 type={3} />
     </div>
