@@ -1,0 +1,281 @@
+.layer {
+  position: relative;
+  padding: 42px 50px;
+  width: 800px;
+  height: 640px;
+
+  background: #ffffff;
+  border: none;
+  border-radius: 30px;
+}
+
+.title {
+  margin: 0px;
+  font-family: 'SB Sans Display Semi';
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 30.79px;
+  text-align: left;
+}
+
+.desc {
+  width: 95%;
+  margin: 0px 0px 32px;
+  padding: 0px 0px 12px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: left;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+// buttons
+
+.button {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border-radius: 50%;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.submitWrapper {
+  margin: 16px 0px 0px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.submitButton {
+  width: 212px;
+  height: 56px;
+  padding: 22px 16px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: #0087CD;
+
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+
+
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.submitButtonLabel {
+  margin: 2px 0px 0px 0px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+
+.cardWrapper {
+  margin: 0px 0px 16px 0px;
+  display: grid;
+  grid-template-rows: 126px 126px;
+  grid-template-columns: repeat(5, 90px);
+  row-gap: 20px;
+  column-gap: 30px;
+  justify-content: center;
+}
+
+.card {
+  position: relative;
+}
+
+.cardBg {
+  position: absolute;
+  transform: translate(0px, -10px);
+  z-index: 0;
+  user-select: none;
+}
+
+.cardAnim {
+  position: relative;
+  z-index: 13;
+  touch-action: none;
+  user-select: none;
+  will-change: transform;
+  cursor: grab;
+}
+
+.cardItemDefault {
+  position: absolute;
+  z-index: 10;
+  touch-action: none;
+  user-select: none;
+}
+
+.dropCardsWrapper {
+  position: relative;
+  height: 126px;
+}
+
+.cardItemDrop {
+  left: -2px;
+  top: -2px;
+  position: absolute;
+  z-index: 23;
+  touch-action: none;
+  user-select: none;
+}
+
+.cardItemAnimateDrop {
+  left: -2px;
+  top: -2px;
+  position: absolute;
+  z-index: 0;
+  touch-action: none;
+  user-select: none;
+}
+
+.cardItem {
+  position: relative;
+  z-index: 10;
+  touch-action: none;
+  user-select: none;
+}
+
+.cardDrop1 {
+  border-radius: 20px;
+  // border: 1px dashed #000000;
+  border: none;
+  grid-column: 2 / 3;
+}
+
+.cardDrop2 {
+  border-radius: 20px;
+  // border: 1px dashed #000000;
+  border: none;
+  grid-column: 3 / 4;
+}
+
+.cardDrop3 {
+  border-radius: 20px;
+  // border: 1px dashed #000000;
+  border: none;
+  grid-column: 4 / 5;
+}
+
+.cardDropActive {
+  border: 2px solid #4098FF;
+}
+
+// InputControlls
+
+.inputControllsWrapper {
+  display: grid;
+  grid-template-columns: 1fr 90px 90px 90px 1fr;
+  gap: 30px;
+}
+
+.controllsLabel {
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.53px;
+  text-align: left;
+}
+
+.formulaInput {
+  font-family: 'SB Sans Display Normal';
+  margin: 0px;
+  padding: 4px 2px 2px;
+  width: 52px;
+  height: 30px;
+  text-align: center;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputCalcWrapper {
+  padding: 0px 0px 0px 12px;
+  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.inputCalcLabel {
+  position: absolute;
+  top: -92px;
+  width: 130px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.53px;
+  text-align: left;
+}
+
+.inputCalcInfo {
+  position: absolute;
+  right: 6px;
+}
+
+.symbol {
+  position: absolute;
+  right: -18px;
+}
+
+.errorColor {
+  color: #EA3539;
+}
+
+.answerColor {
+  color: #209F6D;
+}
+
+.calcWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+}
+
+.errorMessage {
+  margin: 5px 0px 0px 0px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.53px;
+  text-align: center;
+  color: #EA3539;
+}
+
+.answerMessage {
+  margin: 5px 0px 0px 0px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.53px;
+  text-align: center;
+  color: #209F6D;
+}

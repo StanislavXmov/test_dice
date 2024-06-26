@@ -10,9 +10,10 @@ import { OneConditionTable } from './components/Table/OneConditionTable';
 import { TwoConditionTable } from './components/Table/TwoConditionTable';
 import { OutcomeTable } from './components/Table/OutcomeTable';
 import { SolutionTable } from './components/Table/SolutionTable';
+import { CardLayout1 } from './components/Cards/CardLayout1';
+import { CardLayout2 } from './components/Cards/CardLayout2';
 
 import styles from './App.module.scss';
-import { CardLayout1 } from './components/Cards/CardLayout1';
 
 function App() {  
   return (
@@ -31,11 +32,12 @@ function App() {
         <CoinSeries />
       </div> */}
       <div className={styles.testWrapper}>
+        <CardLayout2 />
         <CardLayout1 />
-        <SolutionTable />
-        <OutcomeTable />
-        <TwoConditionTable />
-        <OneConditionTable />
+        {/* <SolutionTable /> */}
+        {/* <OutcomeTable /> */}
+        {/* <TwoConditionTable /> */}
+        {/* <OneConditionTable /> */}
         {/* <TableLayer /> */}
         {/* <TableLayerType2 /> */}
       </div>
