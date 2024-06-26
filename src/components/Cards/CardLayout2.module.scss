@@ -136,8 +136,8 @@
 }
 
 .cardItemDrop {
-  left: -2px;
-  top: -2px;
+  left: 0px;
+  top: 0px;
   position: absolute;
   z-index: 23;
   touch-action: none;
@@ -161,28 +161,25 @@
 }
 
 .cardDrop1 {
-  border-radius: 20px;
-  // border: 1px dashed #000000;
-  border: none;
+  border-radius: 14px;
+  outline: 1px dashed #000000;
   grid-column: 2 / 3;
 }
 
 .cardDrop2 {
-  border-radius: 20px;
-  // border: 1px dashed #000000;
-  border: none;
+  border-radius: 14px;
+  outline: 1px dashed #000000;
   grid-column: 3 / 4;
 }
 
 .cardDrop3 {
-  border-radius: 20px;
-  // border: 1px dashed #000000;
-  border: none;
+  border-radius: 14px;
+  outline: 1px dashed #000000;
   grid-column: 4 / 5;
 }
 
 .cardDropActive {
-  border: 2px solid #4098FF;
+  outline: 2px solid #4098FF;
 }
 
 // InputControlls

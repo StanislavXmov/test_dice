@@ -2,7 +2,6 @@ import { ChangeEvent, DragEvent, useEffect, useRef, useState } from 'react';
 import random from 'random';
 import { useGesture } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
-import { CardsType, useCardsLyaout1 } from '../../state/useCards';
 
 import styles from './CardLayout2.module.scss';
 

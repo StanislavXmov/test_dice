@@ -25,7 +25,7 @@ const cards = {
 type CardsKey = keyof(typeof cards);
 
 const task = {
-  taskTitle: 'Сколькими способами можно выбрать карту из 5 колод для каждого пустого места в тройке карт? Перекладывайте карты и впишите ответ, когда поймёте закономерность.'
+  taskTitle: 'Сколькими способами можно выбрать карту из 5 колод для каждого пустого места в тройке карт? Посчитайте возможности для первого места, потом для второго и для третьего.'
 }
 
 interface ButtonProps {
@@ -210,27 +210,27 @@ const CartDrop1 = ({type, idxs}: {type: number, idxs: number[]}) => {
   useEffect(() => {
     if (drop1PrevCard && drop1Card !== drop1PrevCard) {
       if (drop1PrevCard === 1) {
-        api.start({x: - 90 - 30, y: - 126 - 20, visibility: 'visible'});
+        api.start({x: - 90 - 30 + 2, y: - 126 - 20 + 2, visibility: 'visible'});
         setTimeout(() => {
           api.start({x: 0, y: 0, visibility: 'hidden'});
         }, 1000);
       } else if (drop1PrevCard === 2) {
-        api2.start({x2: 0, y2: - 126 - 20, visibility2: 'visible'});
+        api2.start({x2: 0 + 2, y2: - 126 - 20 + 2, visibility2: 'visible'});
         setTimeout(() => {
           api2.start({x2: 0, y2: 0, visibility2: 'hidden'});
         }, 1000);
       } else if (drop1PrevCard === 3) {
-        api3.start({x3: 90 + 30, y3: - 126 - 20, visibility3: 'visible'});
+        api3.start({x3: 90 + 30 + 2, y3: - 126 - 20 + 2, visibility3: 'visible'});
         setTimeout(() => {
           api3.start({x3: 0, y3: 0, visibility3: 'hidden'});
         }, 1000);
       } else if (drop1PrevCard === 4) {
-        api4.start({x4: 90 + 30 + 90 + 30, y4: - 126 - 20, visibility4: 'visible'});
+        api4.start({x4: 90 + 30 + 90 + 30 + 2, y4: - 126 - 20 + 2, visibility4: 'visible'});
         setTimeout(() => {
           api4.start({x4: 0, y4: 0, visibility4: 'hidden'});
         }, 1000);
       } else if (drop1PrevCard === 5) {
-        api5.start({x5: 90 + 30 + 90 + 30 + 90 + 30, y5: - 126 - 20, visibility5: 'visible'});
+        api5.start({x5: 90 + 30 + 90 + 30 + 90 + 30 + 2, y5: - 126 - 20 + 2, visibility5: 'visible'});
         setTimeout(() => {
           api5.start({x5: 0, y5: 0, visibility5: 'hidden'});
         }, 1000);
@@ -306,7 +306,7 @@ const CartDrop1 = ({type, idxs}: {type: number, idxs: number[]}) => {
   );
 }
 
-const CartDrop2 = ({type}: {type: number}) => {
+const CartDrop2 = ({type, idxs}: {type: number, idxs: number[]}) => {
   const drop2Card = useCardsLyaout1(s => s.drop2Card);
   const drop2PrevCard = useCardsLyaout1(s => s.drop2PrevCard);
   const drop2IsActive = useCardsLyaout1(s => s.drop2IsActive);
@@ -350,27 +350,27 @@ const CartDrop2 = ({type}: {type: number}) => {
   useEffect(() => {
     if (drop2PrevCard && drop2Card !== drop2PrevCard) {
       if (drop2PrevCard === 1) {
-        api.start({x: - 90 - 30 - 90 - 30, y: - 126 - 20, visibility: 'visible'});
+        api.start({x: - 90 - 30 - 90 - 30 + 2, y: - 126 - 20 + 2, visibility: 'visible'});
         setTimeout(() => {
           api.start({x: 0, y: 0, visibility: 'hidden'});
         }, 1000);
       } else if (drop2PrevCard === 2) {
-        api2.start({x2: - 90 - 30, y2: - 126 - 20, visibility2: 'visible'});
+        api2.start({x2: - 90 - 30 + 2, y2: - 126 - 20 + 2, visibility2: 'visible'});
         setTimeout(() => {
           api2.start({x2: 0, y2: 0, visibility2: 'hidden'});
         }, 1000);
       } else if (drop2PrevCard === 3) {
-        api3.start({x3: 0, y3: - 126 - 20, visibility3: 'visible'});
+        api3.start({x3: 0 + 2, y3: - 126 - 20 + 2, visibility3: 'visible'});
         setTimeout(() => {
           api3.start({x3: 0, y3: 0, visibility3: 'hidden'});
         }, 1000);
       } else if (drop2PrevCard === 4) {
-        api4.start({x4: 90 + 30, y4: - 126 - 20, visibility4: 'visible'});
+        api4.start({x4: 90 + 30 + 2, y4: - 126 - 20 + 2, visibility4: 'visible'});
         setTimeout(() => {
           api4.start({x4: 0, y4: 0, visibility4: 'hidden'});
         }, 1000);
       } else if (drop2PrevCard === 5) {
-        api5.start({x5: 90 + 30 + 90 + 30, y5: - 126 - 20, visibility5: 'visible'});
+        api5.start({x5: 90 + 30 + 90 + 30 + 2, y5: - 126 - 20 + 2, visibility5: 'visible'});
         setTimeout(() => {
           api5.start({x5: 0, y5: 0, visibility5: 'hidden'});
         }, 1000);
@@ -390,7 +390,7 @@ const CartDrop2 = ({type}: {type: number}) => {
             src={Card1}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x, y, visibility}}
+            style={{x, y, visibility, zIndex: idxs.indexOf(drop2PrevCard) + 20}}
           />
         )}
         {(drop2PrevCard && drop2PrevCard === 2) && (
@@ -398,7 +398,7 @@ const CartDrop2 = ({type}: {type: number}) => {
             src={Card2}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x: x2, y: y2, visibility: visibility2}}
+            style={{x: x2, y: y2, visibility: visibility2, zIndex: idxs.indexOf(drop2PrevCard) + 20}}
           />
         )}
         {(drop2PrevCard && drop2PrevCard === 3) && (
@@ -406,7 +406,7 @@ const CartDrop2 = ({type}: {type: number}) => {
             src={Card3}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x: x3, y: y3, visibility: visibility3}}
+            style={{x: x3, y: y3, visibility: visibility3, zIndex: idxs.indexOf(drop2PrevCard) + 20}}
           />
         )}
         {(drop2PrevCard && drop2PrevCard === 4) && (
@@ -414,7 +414,7 @@ const CartDrop2 = ({type}: {type: number}) => {
             src={Card4}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x: x4, y: y4, visibility: visibility4}}
+            style={{x: x4, y: y4, visibility: visibility4, zIndex: idxs.indexOf(drop2PrevCard) + 20}}
           />
         )}
         {(drop2PrevCard && drop2PrevCard === 5) && (
@@ -422,7 +422,7 @@ const CartDrop2 = ({type}: {type: number}) => {
             src={Card5}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x: x5, y: y5, visibility: visibility5}}
+            style={{x: x5, y: y5, visibility: visibility5, zIndex: idxs.indexOf(drop2PrevCard) + 20}}
           />
         )}
 
@@ -446,7 +446,7 @@ const CartDrop2 = ({type}: {type: number}) => {
   );
 }
 
-const CartDrop3 = ({type}: {type: number}) => {
+const CartDrop3 = ({type, idxs}: {type: number, idxs: number[]}) => {
   const drop3Card = useCardsLyaout1(s => s.drop3Card);
   const drop3PrevCard = useCardsLyaout1(s => s.drop3PrevCard);
   const drop3IsActive = useCardsLyaout1(s => s.drop3IsActive);
@@ -490,27 +490,27 @@ const CartDrop3 = ({type}: {type: number}) => {
   useEffect(() => {
     if (drop3PrevCard && drop3Card !== drop3PrevCard) {
       if (drop3PrevCard === 1) {
-        api.start({x: - 90 - 30 - 90 - 30 - 90 - 30, y: - 126 - 20, visibility: 'visible'});
+        api.start({x: - 90 - 30 - 90 - 30 - 90 - 30 + 2, y: - 126 - 20 + 2, visibility: 'visible'});
         setTimeout(() => {
           api.start({x: 0, y: 0, visibility: 'hidden'});
         }, 1000);
       } else if (drop3PrevCard === 2) {
-        api2.start({x2: - 90 - 30 - 90 - 30, y2: - 126 - 20, visibility2: 'visible'});
+        api2.start({x2: - 90 - 30 - 90 - 30 + 2, y2: - 126 - 20 + 2, visibility2: 'visible'});
         setTimeout(() => {
           api2.start({x2: 0, y2: 0, visibility2: 'hidden'});
         }, 1000);
       } else if (drop3PrevCard === 3) {
-        api3.start({x3: - 90 - 30, y3: - 126 - 20, visibility3: 'visible'});
+        api3.start({x3: - 90 - 30 + 2, y3: - 126 - 20 + 2, visibility3: 'visible'});
         setTimeout(() => {
           api3.start({x3: 0, y3: 0, visibility3: 'hidden'});
         }, 1000);
       } else if (drop3PrevCard === 4) {
-        api4.start({x4: 0, y4: - 126 - 20, visibility4: 'visible'});
+        api4.start({x4: 0 + 2, y4: - 126 - 20 + 2, visibility4: 'visible'});
         setTimeout(() => {
           api4.start({x4: 0, y4: 0, visibility4: 'hidden'});
         }, 1000);
       } else if (drop3PrevCard === 5) {
-        api5.start({x5: 90 + 30, y5: - 126 - 20, visibility5: 'visible'});
+        api5.start({x5: 90 + 30 + 2, y5: - 126 - 20 + 2, visibility5: 'visible'});
         setTimeout(() => {
           api5.start({x5: 0, y5: 0, visibility5: 'hidden'});
         }, 1000);
@@ -530,7 +530,7 @@ const CartDrop3 = ({type}: {type: number}) => {
             src={Card1}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x, y, visibility}}
+            style={{x, y, visibility, zIndex: idxs.indexOf(drop3PrevCard) + 20}}
           />
         )}
         {(drop3PrevCard && drop3PrevCard === 2) && (
@@ -538,7 +538,7 @@ const CartDrop3 = ({type}: {type: number}) => {
             src={Card2}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x: x2, y: y2, visibility: visibility2}}
+            style={{x: x2, y: y2, visibility: visibility2, zIndex: idxs.indexOf(drop3PrevCard) + 20}}
           />
         )}
         {(drop3PrevCard && drop3PrevCard === 3) && (
@@ -546,7 +546,7 @@ const CartDrop3 = ({type}: {type: number}) => {
             src={Card3}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x: x3, y: y3, visibility: visibility3}}
+            style={{x: x3, y: y3, visibility: visibility3, zIndex: idxs.indexOf(drop3PrevCard) + 20}}
           />
         )}
         {(drop3PrevCard && drop3PrevCard === 4) && (
@@ -554,7 +554,7 @@ const CartDrop3 = ({type}: {type: number}) => {
             src={Card4}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x: x4, y: y4, visibility: visibility4}}
+            style={{x: x4, y: y4, visibility: visibility4, zIndex: idxs.indexOf(drop3PrevCard) + 20}}
           />
         )}
         {(drop3PrevCard && drop3PrevCard === 5) && (
@@ -562,7 +562,7 @@ const CartDrop3 = ({type}: {type: number}) => {
             src={Card5}
             className={styles.cardItemAnimateDrop}
             draggable={false}
-            style={{x: x5, y: y5, visibility: visibility5}}
+            style={{x: x5, y: y5, visibility: visibility5, zIndex: idxs.indexOf(drop3PrevCard) + 20}}
           />
         )}
 
@@ -627,8 +627,8 @@ const Cards = () => {
         <Card type={5} z={idxs.indexOf(5)} setZIndex={setZIndex} />
       </div>
       <CartDrop1 type={1} idxs={idxs} />
-      <CartDrop2 type={2} />
-      <CartDrop3 type={3} />
+      <CartDrop2 type={2} idxs={idxs}  />
+      <CartDrop3 type={3} idxs={idxs}  />
     </div>
   );
 }
