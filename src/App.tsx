@@ -32,8 +32,8 @@ function App() {
         <CoinSeries />
       </div> */}
       <div className={styles.testWrapper}>
-        <CardLayout1 />
-        {/* <CardLayout2 /> */}
+        {/* <CardLayout1 /> */}
+        <CardLayout2 />
         {/* <SolutionTable /> */}
         {/* <OutcomeTable /> */}
         {/* <TwoConditionTable /> */}
