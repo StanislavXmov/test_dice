@@ -108,6 +108,8 @@
 }
 
 .cardBg {
+  height: 136px;
+  width: 100px;
   position: absolute;
   transform: translate(0px, -10px);
   z-index: 0;
@@ -115,6 +117,8 @@
 }
 
 .cardAnim {
+  height: 126px;
+  width: 90px;
   position: relative;
   z-index: 13;
   touch-action: none;
@@ -124,6 +128,8 @@
 }
 
 .cardItemDefault {
+  height: 126px;
+  width: 90px;
   position: absolute;
   z-index: 10;
   touch-action: none;
@@ -136,6 +142,8 @@
 }
 
 .cardItemDrop {
+  height: 126px;
+  width: 90px;
   left: 0px;
   top: 0px;
   position: absolute;
@@ -145,6 +153,8 @@
 }
 
 .cardItemAnimateDrop {
+  height: 126px;
+  width: 90px;
   left: -2px;
   top: -2px;
   position: absolute;
@@ -154,6 +164,8 @@
 }
 
 .cardItem {
+  height: 126px;
+  width: 90px;
   position: relative;
   z-index: 10;
   touch-action: none;
