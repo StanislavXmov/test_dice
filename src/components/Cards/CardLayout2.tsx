@@ -54,7 +54,7 @@ const TableDesc = ({ taskTitle }: { taskTitle: string }) => {
 const CartDrop = ({className, card}: {className: string, card: CardsKey}) => {
   return (
     <div
-      className={`${className}`}
+      className={`${className} ${styles.cardDropDone}`}
     >
       <div className={styles.dropCardsWrapper}>
         <img src={cards[card]} className={styles.cardItemDrop} draggable={false} />
@@ -124,7 +124,7 @@ const InputControlls = ({error, answer, value, setValueHandler, setInfoHandler}:
           // disabled
           value={5}
         />
-        <span className={styles.symbol}>×</span>
+        {(error || answer) &&(<span className={styles.symbol}>×</span>)}
       </div>
       <div className={styles.inputWrapper}>
         <input
@@ -137,7 +137,7 @@ const InputControlls = ({error, answer, value, setValueHandler, setInfoHandler}:
           // disabled
           value={5}
         />
-        <span className={styles.symbol}>×</span>
+        {(error || answer) &&(<span className={styles.symbol}>×</span>)}
       </div>
       <div className={styles.inputWrapper}>
         <input
@@ -150,7 +150,7 @@ const InputControlls = ({error, answer, value, setValueHandler, setInfoHandler}:
           // disabled
           value={5}
         />
-        <span className={styles.symbol}>=</span>
+        {(error || answer) &&(<span className={styles.symbol}>=</span>)}
       </div>
       <div className={styles.inputCalcWrapper}>
         <input

@@ -170,6 +170,7 @@ const CartDrop1 = ({type, idxs}: {type: number, idxs: number[]}) => {
   const drop1Card = useCardsLyaout1(s => s.drop1Card);
   const drop1PrevCard = useCardsLyaout1(s => s.drop1PrevCard);
   const drop1IsActive = useCardsLyaout1(s => s.drop1IsActive);
+  const drop1Values = useCardsLyaout1(s => s.drop1Values);
 
   const [{x, y, visibility}, api] = useSpring<{x: number, y: number, visibility: "initial" | "visible" | "hidden"}>(
     () => ({
@@ -242,7 +243,7 @@ const CartDrop1 = ({type, idxs}: {type: number, idxs: number[]}) => {
   return (
     <animated.div
       data-receive={type}
-      className={`${styles.cardDrop1} ${drop1IsActive ? styles.cardDropActive : ''}`}
+      className={`${styles.cardDrop1} ${drop1IsActive ? styles.cardDropActive : ''} ${drop1Values.length === 5 ? styles.cardDropDone : ''}`}
     >
       <div className={styles.dropCardsWrapper}>
         {(drop1PrevCard && drop1PrevCard === 1) && (
@@ -310,6 +311,7 @@ const CartDrop2 = ({type, idxs}: {type: number, idxs: number[]}) => {
   const drop2Card = useCardsLyaout1(s => s.drop2Card);
   const drop2PrevCard = useCardsLyaout1(s => s.drop2PrevCard);
   const drop2IsActive = useCardsLyaout1(s => s.drop2IsActive);
+  const drop2Values = useCardsLyaout1(s => s.drop2Values);
 
   const [{x ,y , visibility}, api] = useSpring<{x: number, y: number, visibility: "initial" | "visible" | "hidden"}>(
     () => ({
@@ -382,7 +384,7 @@ const CartDrop2 = ({type, idxs}: {type: number, idxs: number[]}) => {
   return (
     <animated.div
       data-receive={type}
-      className={`${styles.cardDrop2} ${drop2IsActive ? styles.cardDropActive : ''}`}
+      className={`${styles.cardDrop2} ${drop2IsActive ? styles.cardDropActive : ''} ${drop2Values.length === 5 ? styles.cardDropDone : ''}`}
     >
       <div className={styles.dropCardsWrapper}>
         {(drop2PrevCard && drop2PrevCard === 1) && (
@@ -450,6 +452,7 @@ const CartDrop3 = ({type, idxs}: {type: number, idxs: number[]}) => {
   const drop3Card = useCardsLyaout1(s => s.drop3Card);
   const drop3PrevCard = useCardsLyaout1(s => s.drop3PrevCard);
   const drop3IsActive = useCardsLyaout1(s => s.drop3IsActive);
+  const drop3Values = useCardsLyaout1(s => s.drop3Values);
 
   const [{x ,y , visibility}, api] = useSpring<{x: number, y: number, visibility: "initial" | "visible" | "hidden"}>(
     () => ({
@@ -522,7 +525,7 @@ const CartDrop3 = ({type, idxs}: {type: number, idxs: number[]}) => {
   return (
     <animated.div
       data-receive={type}
-      className={`${styles.cardDrop3} ${drop3IsActive ? styles.cardDropActive : ''}`}
+      className={`${styles.cardDrop3} ${drop3IsActive ? styles.cardDropActive : ''} ${drop3Values.length === 5 ? styles.cardDropDone : ''}`}
     >
       <div className={styles.dropCardsWrapper}>
         {(drop3PrevCard && drop3PrevCard === 1) && (
@@ -586,7 +589,7 @@ const CartDrop3 = ({type, idxs}: {type: number, idxs: number[]}) => {
   );
 }
 
-const Cards = () => {
+const Cards = ({setInfoHandler}: {setInfoHandler: (v: boolean, type: 'ERROR' | 'ANSWER') => void}) => {
   const [idxs, setIdxs] = useState<number[]>([1,2,3,4,5]);
 
   const setZIndex = (id: number) => {
@@ -595,8 +598,8 @@ const Cards = () => {
     const el = a.splice(i, 1);
     a.push(el[0]);
     setIdxs(a);
-    console.log(a);
-    
+    setInfoHandler(false, 'ANSWER');
+    setInfoHandler(false, 'ERROR');
   }
 
   return (
@@ -714,7 +717,14 @@ export const CardLayout1 = () => {
     } else {
       setError(true);
     }
+  }
 
+  const setInfoHandler = (v: boolean, type: 'ERROR' | 'ANSWER') => {
+    if (type === 'ERROR') {
+      setError(v);
+    } else if (type ='ANSWER') {
+      setAnswer(v);
+    }
   }
 
   return (
@@ -722,7 +732,7 @@ export const CardLayout1 = () => {
       <ResetButton cb={resetHandler} />
       <h2 className={styles.title}>Размещения с повторениями</h2>
       <TableDesc taskTitle={task.taskTitle} />
-      <Cards />
+      <Cards setInfoHandler={setInfoHandler} />
       <InputControlls answer={answer} error={error} />
       <div className={styles.submitWrapper}>
         <button
