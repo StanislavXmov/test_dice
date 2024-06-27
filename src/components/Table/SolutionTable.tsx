@@ -588,7 +588,7 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
               )}
               {step === 4 && (
                 <div>
-                  <div className={styles.labelTitle}>Вероятность пересечения событий <span className={styles.formulaText}>A</span> и <span className={styles.formulaText}>B</span></div>
+                  <div className={styles.labelTitle}>Вероятность события <span className={styles.formulaText}>A</span> при условии <span className={styles.formulaText}>B</span></div>
                   <div className={styles.calc}>
                     <div className={styles.calcWrapper}>
                       <span className={styles.formulaText}>P (A | B) =</span>
@@ -621,7 +621,7 @@ const Table = ({ tableView, task, error, answer, setErrorHandler, isNewTask }: {
               )}
               {step === 5 && (
                 <div>
-                  <div className={styles.labelTitle}>Вероятность пересечения событий <span className={styles.formulaText}>A</span> и <span className={styles.formulaText}>B</span></div>
+                  <div className={styles.labelTitle}>Вероятность события <span className={styles.formulaText}>B</span> при условии <span className={styles.formulaText}>A</span></div>
                   <div className={styles.calc}>
                     <div className={styles.calcWrapper}>
                       <span className={styles.formulaText}>P (B | A) =</span>
