@@ -1,4 +1,4 @@
-import { DragEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, DragEvent, useEffect, useRef, useState } from 'react';
 import { useGesture } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
 import { CardsType, useCardsLyaout1 } from '../../state/useCards';
@@ -640,6 +640,26 @@ const InputControlls = ({error, answer}: {error: boolean, answer: boolean}) => {
   const drop1Values = useCardsLyaout1(s => s.drop1Values);
   const drop2Values = useCardsLyaout1(s => s.drop2Values);
   const drop3Values = useCardsLyaout1(s => s.drop3Values);
+  // input test
+  // const [input1Value, setInput1Value] = useState<number>();
+  // const [input1OnChange, setInput1OnChange] = useState<boolean>(false);
+
+  // const onChangeHandler1 = (e: ChangeEvent<HTMLInputElement>) => {
+  //   if (drop1Values.length === 5) {
+  //     return;
+  //   }
+  //   const value = Number(e.target.value);
+  //   if (!isNaN(value)) {
+  //     setInput1OnChange(true);
+  //     setInput1Value(value);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   setInput1OnChange(false);
+  //   console.log(drop1Values);
+    
+  // }, [drop1Values]);
   
   return (
     <div className={styles.inputControllsWrapper}>
@@ -651,9 +671,11 @@ const InputControlls = ({error, answer}: {error: boolean, answer: boolean}) => {
           id="drop1"
           className={`
             ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${drop1Values.length === 5 ? styles.answerColor : ''}`}
+          // onChange={onChangeHandler1}
           onChange={(e) => {}}
           // disabled
-          value={drop1Values.length || ''}
+          // value={input1OnChange ? input1Value : drop1Values.length || ''}
+          value={drop2Values.length || ''}
         />
       </div>
       <div className={styles.inputWrapper}>
