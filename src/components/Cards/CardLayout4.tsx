@@ -51,6 +51,10 @@ const TableDesc = ({ taskTitle }: { taskTitle: string }) => {
   );
 }
 
+let drop1Counter = 1;
+let drop2Counter = 1;
+let drop3Counter = 1;
+
 const Card = ({type, z, setZIndex}: {
   type: CardsType,
   z: number,
@@ -65,6 +69,9 @@ const Card = ({type, z, setZIndex}: {
   const drop1IsActive = useCardsLyaout1(s => s.drop1IsActive);
   const drop2IsActive = useCardsLyaout1(s => s.drop2IsActive);
   const drop3IsActive = useCardsLyaout1(s => s.drop3IsActive);
+  const drop1PrevCard = useCardsLyaout1(s => s.drop1PrevCard);
+  const drop2PrevCard = useCardsLyaout1(s => s.drop2PrevCard);
+  const drop3PrevCard = useCardsLyaout1(s => s.drop3PrevCard);
   // console.log(drop1Values, drop2Values, drop3Values);
   
 
@@ -96,15 +103,12 @@ const Card = ({type, z, setZIndex}: {
         const el = elements.find(e => (e as HTMLElement).dataset.receive);
         if (el) {
           const receiveType = (el as HTMLElement).dataset.receive;
-          // console.log('RECEIVE_TYPE', receiveType);
           if (Number(receiveType) === 1) {
             if (!drop1IsActive) {
-              // api.start({x: 0, y: 0, z: 13 });
               api.start({x: 0, y: 0 });
               return;
             }
             if (drop1Values.includes(type)) {
-              // api.start({x: 0, y: 0, z: 13 });
               api.start({x: 0, y: 0 });
               return;
             } else {
@@ -112,12 +116,10 @@ const Card = ({type, z, setZIndex}: {
             }
           } else if (Number(receiveType) === 2) {
             if (!drop2IsActive) {
-              // api.start({x: 0, y: 0, z: 13 });
               api.start({x: 0, y: 0 });
               return;
             }
             if (drop2Values.includes(type)) {
-              // api.start({x: 0, y: 0, z: 13 });
               api.start({x: 0, y: 0 });
               return;
             } else {
@@ -125,12 +127,10 @@ const Card = ({type, z, setZIndex}: {
             }
           } else if (Number(receiveType) === 3) {
             if (!drop3IsActive) {
-              // api.start({x: 0, y: 0, z: 13 });
               api.start({x: 0, y: 0 });
               return;
             }
             if (drop3Values.includes(type)) {
-              // api.start({x: 0, y: 0, z: 13 });
               api.start({x: 0, y: 0 });
               return;
             } else {
@@ -138,13 +138,11 @@ const Card = ({type, z, setZIndex}: {
             }
           }
 
-          // api.start({x: 0, y: 0, visibility: 'hidden', z: 13 });
           api.start({x: 0, y: 0, visibility: 'hidden'});
           // setTimeout(() => {
           //   api.start({x: 0, y: 0, visibility: 'visible'});
           // }, 1000);
         } else {
-          // api.start({x: 0, y: 0, z: 13 });
           api.start({x: 0, y: 0});
         }
       }
@@ -153,6 +151,35 @@ const Card = ({type, z, setZIndex}: {
       eventOptions: { passive: false },
     }
   );
+
+  useEffect(() => {
+    // if (type === drop1PrevCard || type === drop2PrevCard || type === drop3PrevCard) {
+    //   console.log(drop1PrevCard, drop1IsActive, drop2IsActive, drop3IsActive);
+    //   setTimeout(() => {
+    //     api.start({x: 0, y: 0, visibility: 'visible'});
+    //   }, 1000);
+    // }
+    if (drop1Counter < 5 && type === drop1PrevCard) {
+      console.log(drop1Counter, drop1Values.length, drop1PrevCard);
+      setTimeout(() => {
+        api.start({x: 0, y: 0, visibility: 'visible'});
+        drop1Counter += 1;
+      }, 1000);
+    } else if (drop2Counter < 5 && type === drop2PrevCard) {
+      console.log(drop2Counter, drop2Values.length, drop2PrevCard);
+      setTimeout(() => {
+        api.start({x: 0, y: 0, visibility: 'visible'});
+        drop1Counter += 1;
+      }, 1000);
+    } else if (drop3Counter < 5 && type === drop3PrevCard) {
+      console.log(drop3Counter, drop3Values.length, drop3PrevCard);
+      setTimeout(() => {
+        api.start({x: 0, y: 0, visibility: 'visible'});
+        drop1Counter += 1;
+      }, 1000);
+    }
+  }, [drop1PrevCard, drop2PrevCard, drop3PrevCard]);
+
   return (
     <animated.div
       ref={target}
@@ -384,7 +411,7 @@ const CartDrop2 = ({type, idxs}: {type: number, idxs: number[]}) => {
   return (
     <animated.div
       data-receive={type}
-      className={`${styles.cardDrop2} ${drop2IsActive ? styles.cardDropActive : ''} ${drop2Values.length === 5 ? styles.cardDropDone : ''}`}
+      className={`${styles.cardDrop2} ${drop2IsActive ? styles.cardDropActive : ''} ${drop2Values.length === 4 ? styles.cardDropDone : ''}`}
     >
       <div className={styles.dropCardsWrapper}>
         {(drop2PrevCard && drop2PrevCard === 1) && (
@@ -525,7 +552,7 @@ const CartDrop3 = ({type, idxs}: {type: number, idxs: number[]}) => {
   return (
     <animated.div
       data-receive={type}
-      className={`${styles.cardDrop3} ${drop3IsActive ? styles.cardDropActive : ''} ${drop3Values.length === 5 ? styles.cardDropDone : ''}`}
+      className={`${styles.cardDrop3} ${drop3IsActive ? styles.cardDropActive : ''} ${drop3Values.length === 3 ? styles.cardDropDone : ''}`}
     >
       <div className={styles.dropCardsWrapper}>
         {(drop3PrevCard && drop3PrevCard === 1) && (
@@ -674,7 +701,7 @@ const InputControlls = ({error, answer}: {error: boolean, answer: boolean}) => {
           name="drop2"
           id="drop2"
           className={`
-            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${drop2Values.length === 5 ? styles.answerColor : ''}`}
+            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${drop2Values.length === 4 ? styles.answerColor : ''}`}
           onChange={(e) => {}}
           // disabled
           value={drop2Values.length || ''}
@@ -686,7 +713,7 @@ const InputControlls = ({error, answer}: {error: boolean, answer: boolean}) => {
           name="drop3"
           id="drop3"
           className={`
-            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${drop3Values.length === 5 ? styles.answerColor : ''}`}
+            ${styles.formulaInput} ${error ? styles.errorColor : ''}  ${drop3Values.length === 3 ? styles.answerColor : ''}`}
           onChange={(e) => {}}
           // disabled
           value={drop3Values.length || ''}

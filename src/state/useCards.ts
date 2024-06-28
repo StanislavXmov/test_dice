@@ -207,7 +207,7 @@ export const useCardsLyaout4 = create<CardsLyaout1State>()(subscribeWithSelector
   drop2Values: [],
   setDrop2Card: (c) => set((s) => {
     const values = [...s.drop2Values, c];
-    if (values.length === 5) {
+    if (values.length === 4) {
       return {
         drop2Card: c,
         drop2PrevCard: s.drop2Card,
@@ -227,7 +227,7 @@ export const useCardsLyaout4 = create<CardsLyaout1State>()(subscribeWithSelector
   drop3Values: [],
   setDrop3Card: (c) => set((s) => {
     const values = [...s.drop3Values, c];
-    if (values.length === 5) {
+    if (values.length === 3) {
       return {
         drop3Card: c,
         drop3PrevCard: s.drop3Card,
