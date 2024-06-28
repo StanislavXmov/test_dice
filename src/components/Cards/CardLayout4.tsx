@@ -6,7 +6,6 @@ import { CardsType, useCardsLyaout4 as useCardsLyaout1 } from '../../state/useCa
 import styles from './CardLayout4.module.scss';
 
 import ResetIcon from '../icons/reset2.svg?react';
-import CardBG from '../images/cards/cards.png';
 import Card1 from '../images/cards/card1.png';
 import Card2 from '../images/cards/card2.png';
 import Card3 from '../images/cards/card3.png';
@@ -25,7 +24,7 @@ const cards = {
 type CardsKey = keyof(typeof cards);
 
 const task = {
-  taskTitle: 'Сколькими способами можно выбрать карту из 5 карт для каждого пустого места в тройке карт? Перекладывайте карты и впишите ответ, когда поймёте закономерность.'
+  taskTitle: 'Сколькими способами можно выбрать карту из 5 карт для каждого пустого места в тройке карт? Посчитайте возможности для первого места, потом для второго и для третьего.'
 }
 
 interface ButtonProps {
