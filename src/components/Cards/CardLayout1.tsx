@@ -675,7 +675,7 @@ const InputControlls = ({error, answer}: {error: boolean, answer: boolean}) => {
           onChange={(e) => {}}
           // disabled
           // value={input1OnChange ? input1Value : drop1Values.length || ''}
-          value={drop2Values.length || ''}
+          value={drop1Values.length || ''}
         />
       </div>
       <div className={styles.inputWrapper}>

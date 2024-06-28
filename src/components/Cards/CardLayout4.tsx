@@ -140,9 +140,9 @@ const Card = ({type, z, setZIndex}: {
 
           // api.start({x: 0, y: 0, visibility: 'hidden', z: 13 });
           api.start({x: 0, y: 0, visibility: 'hidden'});
-          setTimeout(() => {
-            api.start({x: 0, y: 0, visibility: 'visible'});
-          }, 1000);
+          // setTimeout(() => {
+          //   api.start({x: 0, y: 0, visibility: 'visible'});
+          // }, 1000);
         } else {
           // api.start({x: 0, y: 0, z: 13 });
           api.start({x: 0, y: 0});
@@ -665,7 +665,7 @@ const InputControlls = ({error, answer}: {error: boolean, answer: boolean}) => {
           onChange={(e) => {}}
           // disabled
           // value={input1OnChange ? input1Value : drop1Values.length || ''}
-          value={drop2Values.length || ''}
+          value={drop1Values.length || ''}
         />
       </div>
       <div className={styles.inputWrapper}>
