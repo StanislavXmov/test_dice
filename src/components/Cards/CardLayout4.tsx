@@ -25,7 +25,7 @@ const cards = {
 type CardsKey = keyof(typeof cards);
 
 const task = {
-  taskTitle: 'Сколькими способами можно выбрать карту из 5 колод для каждого пустого места в тройке карт? Посчитайте возможности для первого места, потом для второго и для третьего.'
+  taskTitle: 'Сколькими способами можно выбрать карту из 5 карт для каждого пустого места в тройке карт? Перекладывайте карты и впишите ответ, когда поймёте закономерность.'
 }
 
 interface ButtonProps {
@@ -72,6 +72,8 @@ const Card = ({type, z, setZIndex}: {
   const drop1PrevCard = useCardsLyaout1(s => s.drop1PrevCard);
   const drop2PrevCard = useCardsLyaout1(s => s.drop2PrevCard);
   const drop3PrevCard = useCardsLyaout1(s => s.drop3PrevCard);
+  const isReset = useCardsLyaout1(s => s.isReset);
+  
   // console.log(drop1Values, drop2Values, drop3Values);
   
 
@@ -153,32 +155,29 @@ const Card = ({type, z, setZIndex}: {
   );
 
   useEffect(() => {
-    // if (type === drop1PrevCard || type === drop2PrevCard || type === drop3PrevCard) {
-    //   console.log(drop1PrevCard, drop1IsActive, drop2IsActive, drop3IsActive);
-    //   setTimeout(() => {
-    //     api.start({x: 0, y: 0, visibility: 'visible'});
-    //   }, 1000);
-    // }
     if (drop1Counter < 5 && type === drop1PrevCard) {
-      console.log(drop1Counter, drop1Values.length, drop1PrevCard);
       setTimeout(() => {
         api.start({x: 0, y: 0, visibility: 'visible'});
         drop1Counter += 1;
       }, 1000);
-    } else if (drop2Counter < 5 && type === drop2PrevCard) {
-      console.log(drop2Counter, drop2Values.length, drop2PrevCard);
+    } else if (drop2Counter < 4 && type === drop2PrevCard) {
       setTimeout(() => {
         api.start({x: 0, y: 0, visibility: 'visible'});
-        drop1Counter += 1;
+        drop2Counter += 1;
       }, 1000);
-    } else if (drop3Counter < 5 && type === drop3PrevCard) {
-      console.log(drop3Counter, drop3Values.length, drop3PrevCard);
+    } else if (drop3Counter < 3 && type === drop3PrevCard) {
       setTimeout(() => {
         api.start({x: 0, y: 0, visibility: 'visible'});
-        drop1Counter += 1;
+        drop3Counter += 1;
       }, 1000);
     }
   }, [drop1PrevCard, drop2PrevCard, drop3PrevCard]);
+
+  useEffect(() => {
+      if (isReset) {
+        api.start({x: 0, y: 0, visibility: 'visible'});
+      }
+  }, [isReset]);
 
   return (
     <animated.div
@@ -747,10 +746,13 @@ export const CardLayout4 = () => {
     setAnswer(false);
     setError(false);
     reset();
+    drop1Counter = 1;
+    drop2Counter = 1;
+    drop3Counter = 1;
   }
 
   const checkHandler = () => {
-    if (drop1Values.length === 5 && drop2Values.length === 5 && drop3Values.length === 5) {
+    if (drop1Values.length === 5 && drop2Values.length === 4 && drop3Values.length === 3) {
       setAnswer(true);
       setError(false);
     } else {
@@ -769,7 +771,7 @@ export const CardLayout4 = () => {
   return (
     <div className={styles.layer}>
       <ResetButton cb={resetHandler} />
-      <h2 className={styles.title}>Размещения с повторениями</h2>
+      <h2 className={styles.title}>Размещения без повторений</h2>
       <TableDesc taskTitle={task.taskTitle} />
       <Cards setInfoHandler={setInfoHandler} />
       <InputControlls answer={answer} error={error} />

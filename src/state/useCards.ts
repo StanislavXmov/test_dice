@@ -180,7 +180,7 @@ export const useCardsLyaout3 = create<CardsLyaout1State>()(subscribeWithSelector
   })),
 })));
 
-export const useCardsLyaout4 = create<CardsLyaout1State>()(subscribeWithSelector(set => ({
+export const useCardsLyaout4 = create<CardsLyaout1State & {isReset: boolean}>()(subscribeWithSelector(set => ({
   drop1Card: null,
   drop1PrevCard: null,
   drop1IsActive: true,
@@ -194,9 +194,10 @@ export const useCardsLyaout4 = create<CardsLyaout1State>()(subscribeWithSelector
         drop1Values: values,
         drop1IsActive: false,
         drop2IsActive: true,
+        isReset: false,
       };
     } else {
-      return {drop1Card: c, drop1PrevCard: s.drop1Card, drop1Values: values};
+      return {drop1Card: c, drop1PrevCard: s.drop1Card, drop1Values: values, isReset: false};
     }
   }),
   setDrop1Values: (c) => set((s) => ({drop1Values: [...s.drop1Values, c]})),
@@ -214,9 +215,10 @@ export const useCardsLyaout4 = create<CardsLyaout1State>()(subscribeWithSelector
         drop2Values: values,
         drop2IsActive: false,
         drop3IsActive: true,
+        isReset: false,
       };
     } else {
-      return {drop2Card: c, drop2PrevCard: s.drop2Card, drop2Values: values};
+      return {drop2Card: c, drop2PrevCard: s.drop2Card, drop2Values: values, isReset: false};
     }
   }),
   setDrop2Values: (c) => set((s) => ({drop2Values: [...s.drop2Values, c]})),
@@ -233,9 +235,10 @@ export const useCardsLyaout4 = create<CardsLyaout1State>()(subscribeWithSelector
         drop3PrevCard: s.drop3Card,
         drop3Values: values,
         drop3IsActive: false,
+        isReset: false,
       };
     } else {
-      return {drop3Card: c, drop3PrevCard: s.drop3Card, drop3Values: values};
+      return {drop3Card: c, drop3PrevCard: s.drop3Card, drop3Values: values, isReset: false};
     }
   }),
   setDrop3Values: (c) => set((s) => ({drop3Values: [...s.drop3Values, c]})),
@@ -253,5 +256,7 @@ export const useCardsLyaout4 = create<CardsLyaout1State>()(subscribeWithSelector
     drop3PrevCard: null,
     drop3IsActive: false,
     drop3Values: [],
+    isReset: true,
   })),
+  isReset: false,
 })));
