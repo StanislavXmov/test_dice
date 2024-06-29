@@ -224,9 +224,39 @@
 }
 
 .inputWrapper {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.inputCalcWrapper {
+  padding: 0px 0px 0px 12px;
+  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.inputCalcLabel {
+  position: absolute;
+  top: -92px;
+  width: 130px;
+  font-family: 'SB Sans Display Normal';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.53px;
+  text-align: left;
+}
+
+.inputCalcInfo {
+  position: absolute;
+  right: 6px;
+}
+
+.symbol {
+  position: absolute;
+  right: -18px;
 }
 
 .errorColor {

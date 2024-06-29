@@ -39,7 +39,7 @@ function App() {
         {/* <CardLayout4 /> */}
         {/* <CardLayout3 /> */}
         {/* <CardLayout1 /> */}
-        {/* <CardLayout2 /> */}
+        <CardLayout2 />
         {/* <SolutionTable /> */}
         {/* <OutcomeTable /> */}
         {/* <TwoConditionTable /> */}

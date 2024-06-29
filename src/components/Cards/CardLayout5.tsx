@@ -3,7 +3,7 @@ import { useGesture } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
 import { CardsType, useCardsLyaout1 } from '../../state/useCards';
 
-import styles from './CardLayout1.module.scss';
+import styles from './CardLayout5.module.scss';
 
 import ResetIcon from '../icons/reset2.svg?react';
 import CardBG from '../images/cards/cards.png';
@@ -164,6 +164,18 @@ const Card = ({type, z, setZIndex}: {
         <img src={cards[type as CardsKey]} className={styles.cardItem} draggable={false} />
       </animated.div>
     </animated.div>
+  );
+}
+
+const CartDropDefault = ({className, card}: {className: string, card: CardsKey}) => {
+  return (
+    <div
+      className={`${className} ${styles.cardDropDone}`}
+    >
+      <div className={styles.dropCardsWrapper}>
+        <img src={cards[card]} className={styles.cardItemDrop} draggable={false} />
+      </div>
+    </div>
   );
 }
 
@@ -637,6 +649,40 @@ const Cards = ({setInfoHandler}: {setInfoHandler: (v: boolean, type: 'ERROR' | '
   );
 }
 
+const CardsDefault = () => {
+  const drop1Card = useCardsLyaout1(s => s.drop1Card);
+  const drop2Card = useCardsLyaout1(s => s.drop2Card);
+  const drop3Card = useCardsLyaout1(s => s.drop3Card);
+
+  return (
+    <div className={styles.cardWrapper}>
+      <div className={styles.card}>
+        <img src={CardBG} className={styles.cardBg} draggable={false} />
+        <img src={Card1} className={styles.cardItemDefault} draggable={false} />
+      </div>
+      <div className={styles.card}>
+        <img src={CardBG} className={styles.cardBg} draggable={false} />
+        <img src={Card2} className={styles.cardItemDefault} draggable={false} />
+      </div>
+      <div className={styles.card}>
+        <img src={CardBG} className={styles.cardBg} draggable={false} />
+        <img src={Card3} className={styles.cardItemDefault} draggable={false} />
+      </div>
+      <div className={styles.card}>
+        <img src={CardBG} className={styles.cardBg} draggable={false} />
+        <img src={Card4} className={styles.cardItemDefault} draggable={false} />
+      </div>
+      <div className={styles.card}>
+        <img src={CardBG} className={styles.cardBg} draggable={false} />
+        <img src={Card5} className={styles.cardItemDefault} draggable={false} />
+      </div>
+      <CartDropDefault className={styles.cardDrop1} card={drop1Card as CardsKey} />
+      <CartDropDefault className={styles.cardDrop2} card={drop2Card as CardsKey} />
+      <CartDropDefault className={styles.cardDrop3} card={drop3Card as CardsKey} />
+    </div>
+  );
+}
+
 const InputControlls = ({error, answer}: {error: boolean, answer: boolean}) => {
   const drop1Values = useCardsLyaout1(s => s.drop1Values);
   const drop2Values = useCardsLyaout1(s => s.drop2Values);
@@ -719,10 +765,100 @@ const InputControlls = ({error, answer}: {error: boolean, answer: boolean}) => {
   );
 }
 
+const InputControllsType2 = ({error, answer, value, setValueHandler, setInfoHandler}: {
+  error: boolean,
+  answer: boolean,
+  value: number,
+  setValueHandler: (v: number) => void,
+  setInfoHandler: (v: boolean, type: 'ERROR' | 'ANSWER') => void
+}) => {
+
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+    if (!isNaN(value)) {
+      setInfoHandler(false, 'ANSWER');
+      setInfoHandler(false, 'ERROR');
+      setValueHandler(value);
+    }
+  }
+  
+  return (
+    <div className={styles.inputControllsWrapper}>
+      <div className={styles.controllsLabel}>Количество способов:</div>
+      <div className={styles.inputWrapper}>
+        <input
+          type="text"
+          name="drop1"
+          id="drop1"
+          className={`
+            ${styles.formulaInput}`}
+          onChange={(e) => {}}
+          // disabled
+          value={5}
+        />
+        {(error || answer) &&(<span className={styles.symbol}>×</span>)}
+      </div>
+      <div className={styles.inputWrapper}>
+        <input
+          type="text"
+          name="drop2"
+          id="drop2"
+          className={`
+            ${styles.formulaInput}`}
+          onChange={(e) => {}}
+          // disabled
+          value={5}
+        />
+        {(error || answer) &&(<span className={styles.symbol}>×</span>)}
+      </div>
+      <div className={styles.inputWrapper}>
+        <input
+          type="text"
+          name="drop3"
+          id="drop3"
+          className={`
+            ${styles.formulaInput}`}
+          onChange={(e) => {}}
+          // disabled
+          value={5}
+        />
+        {(error || answer) &&(<span className={styles.symbol}>=</span>)}
+      </div>
+      <div className={styles.inputCalcWrapper}>
+        <input
+          type="text"
+          name="drop3"
+          id="drop3"
+          className={`
+            ${styles.formulaInput}  ${error ? styles.errorColor : ''}  ${answer ? styles.answerColor : ''}`}
+          onChange={onChangeHandler}
+          // disabled
+          value={value || ''}
+        />
+        <div className={styles.inputCalcLabel}>Количество размещений с повторениями из 5 по 5:</div>
+        <div className={styles.inputCalcInfo}>
+          {error && (
+            <div className={styles.calcWrapper}>
+              <span className={styles.errorMessage}>× Ошибка</span>
+            </div>
+          )}
+          {answer && (
+            <div className={styles.calcWrapper}>
+              <span className={styles.answerMessage}>✓ Верно</span>
+            </div>
+          )}
+        </div>
+        
+      </div>
+    </div>
+  );
+}
+
 export const CardLayout5 = () => {
   const [step, setStep] = useState(0);
   const [error, setError] = useState(false);
   const [answer, setAnswer] = useState(false);
+  const [value, setValue] = useState(0);
   const drop1Values = useCardsLyaout1(s => s.drop1Values);
   const drop2Values = useCardsLyaout1(s => s.drop2Values);
   const drop3Values = useCardsLyaout1(s => s.drop3Values);
@@ -734,18 +870,33 @@ export const CardLayout5 = () => {
     reset();
   }
 
+  const setValueHandler = (v: number) => {
+    setValue(v);
+  }
+
   const checkStep1Handler = () => {
     if (drop1Values.length === 5 && drop2Values.length === 5 && drop3Values.length === 5) {
       setAnswer(true);
       setError(false);
-      setStep(1);
+      setTimeout(() => {
+        setStep(1);
+        setAnswer(false);
+        setError(false);
+      }, 500);
     } else {
       setError(true);
     }
   }
 
   const checkStep2Handler = () => {
-    
+    if (value && value === 125) {
+      setAnswer(true);
+      setError(false);
+    } else {
+      if (value) {
+        setError(true);
+      }
+    }
   }
 
   const setInfoHandler = (v: boolean, type: 'ERROR' | 'ANSWER') => {
@@ -773,6 +924,16 @@ export const CardLayout5 = () => {
             <ArrowIcon />
           </button>
         </div>
+      )}
+      {step === 1 && (<CardsDefault />)}
+      {step === 1 && (
+        <InputControllsType2
+          answer={answer}
+          error={error}
+          value={value}
+          setValueHandler={setValueHandler}
+          setInfoHandler={setInfoHandler}
+        />
       )}
       {step === 1 && (
         <div className={styles.submitWrapper}>
