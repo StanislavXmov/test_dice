@@ -14,6 +14,7 @@ import { CardLayout1 } from './components/Cards/CardLayout1';
 import { CardLayout2 } from './components/Cards/CardLayout2';
 import { CardLayout3 } from './components/Cards/CardLayout3';
 import { CardLayout4 } from './components/Cards/CardLayout4';
+import { CardLayout5 } from './components/Cards/CardLayout5';
 
 import styles from './App.module.scss';
 
@@ -34,10 +35,11 @@ function App() {
         <CoinSeries />
       </div> */}
       <div className={styles.testWrapper}>
-        <CardLayout4 />
-        <CardLayout3 />
-        <CardLayout1 />
-        <CardLayout2 />
+        <CardLayout5 />
+        {/* <CardLayout4 /> */}
+        {/* <CardLayout3 /> */}
+        {/* <CardLayout1 /> */}
+        {/* <CardLayout2 /> */}
         {/* <SolutionTable /> */}
         {/* <OutcomeTable /> */}
         {/* <TwoConditionTable /> */}
