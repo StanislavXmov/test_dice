@@ -867,6 +867,8 @@ export const CardLayout5 = () => {
   const resetHandler = () => {
     setAnswer(false);
     setError(false);
+    setStep(0);
+    setValue(0);
     reset();
   }
 
