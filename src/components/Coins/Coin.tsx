@@ -1,6 +1,6 @@
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
-import { Box, Line, Plane, useGLTF } from '@react-three/drei';
+import { Box, Line, Plane, useGLTF, useTexture } from '@react-three/drei';
 import { Physics, RapierRigidBody, RigidBody, CuboidCollider } from '@react-three/rapier';
 import { Mesh, MeshStandardMaterial, Vector3 } from 'three';
 
@@ -23,6 +23,7 @@ interface Model3d extends GLTF {
 
 const material = new MeshStandardMaterial({color: '#97dd7c', opacity: 0, transparent: true});
 const material2 = new MeshStandardMaterial({color: '#f5f5f5', opacity: 1, transparent: true});
+const material3 = new MeshStandardMaterial({color: '#c1c1c1', opacity: 1, transparent: true});
 
 export const Coin = () => {
   const position = useCoinPosition(s => s.position);
@@ -31,6 +32,8 @@ export const Coin = () => {
   const setDisabled = useRoleCoinButton(s => s.setDisabled);
 
   const {nodes, materials} = useGLTF('./coin.glb') as unknown as Model3d;
+  // const textureBg = useTexture('./bg.png');
+  // const textureBg2 = useTexture('./bg2.png');
   
   const body = useRef<RapierRigidBody>(null);
 
@@ -80,11 +83,17 @@ export const Coin = () => {
         // debug
       >
         <CuboidCollider args={[9, 0.5, 9]} position={[0, -0.5, 0]} />
+        {/* <Plane args={[9, 9]} position={[0, -0.5, 0]} rotation={[-Math.PI / 2, 0, 0]} >
+          <meshStandardMaterial map={textureBg} />
+        </Plane> */}
         <RigidBody type='fixed'>
           <Box args={[8, 5, 1]} position={[0, 2.5, 5]} material={material} />
         </RigidBody>
         <RigidBody type='fixed'>
           <Box args={[8, 5, 1]} position={[0, 2.5, -3.5]} material={material2} />
+          {/* <Box args={[8, 5, 1]} position={[0, 2.5, -3.5]} >
+            <meshStandardMaterial map={textureBg2} />
+          </Box> */}
         </RigidBody>
         <RigidBody type='fixed'>
           <Box args={[1, 5, 8]} position={[4, 2.5, 0.5]} material={material} />
