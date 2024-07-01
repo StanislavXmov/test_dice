@@ -37,9 +37,9 @@ function App() {
       </div> */}
       <div className={styles.testWrapper}>
         <CardLayout6 />
-        {/* <CardLayout5 /> */}
+        <CardLayout5 />
         {/* <CardLayout4 /> */}
-        {/* <CardLayout3 /> */}
+        <CardLayout3 />
         {/* <CardLayout1 /> */}
         {/* <CardLayout2 /> */}
         {/* <SolutionTable /> */}
