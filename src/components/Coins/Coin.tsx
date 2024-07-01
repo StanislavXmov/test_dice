@@ -33,7 +33,12 @@ export const Coin = () => {
 
   const {nodes, materials} = useGLTF('./coin.glb') as unknown as Model3d;
   // const textureBg = useTexture('./bg.png');
+  // // textureBg.minFilter = 1006;
   // const textureBg2 = useTexture('./bg2.png');
+  // textureBg2.offset.x = -0.032;
+  // textureBg2.minFilter = 1006;
+  
+  
   
   const body = useRef<RapierRigidBody>(null);
 
@@ -83,7 +88,7 @@ export const Coin = () => {
         // debug
       >
         <CuboidCollider args={[9, 0.5, 9]} position={[0, -0.5, 0]} />
-        {/* <Plane args={[9, 9]} position={[0, -0.5, 0]} rotation={[-Math.PI / 2, 0, 0]} >
+        {/* <Plane args={[10, 10]} position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} >
           <meshStandardMaterial map={textureBg} />
         </Plane> */}
         <RigidBody type='fixed'>
@@ -91,7 +96,7 @@ export const Coin = () => {
         </RigidBody>
         <RigidBody type='fixed'>
           <Box args={[8, 5, 1]} position={[0, 2.5, -3.5]} material={material2} />
-          {/* <Box args={[8, 5, 1]} position={[0, 2.5, -3.5]} >
+          {/* <Box args={[10, 5, 1]} position={[0, 2.5, -3.5]} >
             <meshStandardMaterial map={textureBg2} />
           </Box> */}
         </RigidBody>
